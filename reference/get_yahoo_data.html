@@ -62,21 +62,19 @@ The data includes open stock price, high, low, close, volume, along with timesta
 
 
 <dl><dt id="arg-symbol">symbol<a class="anchor" aria-label="anchor" href="#arg-symbol"></a></dt>
-<dd><p>A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).</p></dd>
+<dd><p><code>character</code> A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).</p></dd>
 
 
 <dt id="arg-start-date">start_date<a class="anchor" aria-label="anchor" href="#arg-start-date"></a></dt>
-<dd><p>A character string representing the start date in the format "YYYY-MM-DD". If <code>NULL</code>, data starts from 1970-01-01.</p></dd>
+<dd><p><code>character</code> A character string representing the start date in the format "YYYY-MM-DD". If <code>NULL</code>, data starts from 1970-01-01.</p></dd>
 
 
 <dt id="arg-end-date">end_date<a class="anchor" aria-label="anchor" href="#arg-end-date"></a></dt>
-<dd><p>A character string representing the end date in the format "YYYY-MM-DD". If <code>NULL</code>, data is retrieved up to the current date.</p></dd>
+<dd><p><code>character</code> A character string representing the end date in the format "YYYY-MM-DD". If <code>NULL</code>, data is retrieved up to the current date.</p></dd>
 
 
 <dt id="arg-range">range<a class="anchor" aria-label="anchor" href="#arg-range"></a></dt>
-<dd><p>A character string representing the range for the returned datas : default will return daily values.
-Other ranges will filter out some of these daily values, depending on the desired range.
-Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".</p></dd>
+<dd><p><code>character</code> A character string representing the range for the returned datas : default will return daily values.</p><table class="table table"><tr><td><strong>Valid <code>range</code> values</strong></td></tr><tr><td><code>"1d"</code>, <code>"5d"</code>, <code>"1mo"</code>, <code>"3mo"</code>, <code>"6mo"</code>, <code>"1y"</code>, <code>"2y"</code>, <code>"5y"</code>, <code>"10y"</code>, <code>"ytd"</code> and <code>"max"</code></td></tr><tr><td>Other ranges will filter out some of these daily values, depending on the desired range.</td></tr><tr><td>Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".</td></tr><tr><td></td></tr></table></dd>
 
 
 <dt id="arg--verbose">.verbose<a class="anchor" aria-label="anchor" href="#arg--verbose"></a></dt>
@@ -128,8 +126,7 @@ Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd"
 <dt>timezone</dt>
 <dd><p><code>character</code> The timezone in which the data is reported.</p></dd>
 
-</dl><p>@references Source : https://query1.finance.yahoo.com/v8/finance/chart/</p>
-    </div>
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The default <code>data.frame</code> have a line for each day.
@@ -137,6 +134,10 @@ If the user provide another range than '1d' (one day), lines will be filtered ou
 Valid ranges are: "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".</p>
 <p>The function allows the user to specify a date range using start and end dates. If no date range is specified,
 it retrieves all available data from the beginning of time (default for start) to the current date (default for end).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Source : https://query1.finance.yahoo.com/v8/finance/chart/</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -90,8 +90,8 @@ exchange rate, given currencies symbols.</li>
 <span><span class="co"># print the exchange rate :</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">changes</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"from"</span>, <span class="st">"to"</span>,  <span class="st">"regularmarketprice"</span>, <span class="st">"currency"</span>, <span class="st">"timestamp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   from  to regularmarketprice currency           timestamp</span></span>
-<span><span class="co">#&gt; 1  RON EUR             0.2004      EUR 2025-04-01 23:00:14</span></span>
-<span><span class="co">#&gt; 2  USD EUR             0.9259      EUR 2025-04-01 23:03:14</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  RON EUR             0.2004      EUR 2025-04-01 23:10:15</span></span>
+<span><span class="co">#&gt; 2  USD EUR             0.9260      EUR 2025-04-01 23:11:15</span></span></code></pre></div>
 <ul>
 <li>
 <code><a href="../reference/get_changes_historic.html">financr::get_changes_historic()</a></code> return a
@@ -106,9 +106,9 @@ rates returned by <code><a href="../reference/get_changes.html">financr::get_cha
 <span></span>
 <span><span class="co"># Historic of exchange rate (2 first lines) </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">changes</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;             timestamp      low    close     high     open from  to</span></span>
-<span><span class="co">#&gt; 1 2024-04-01 23:00:00 1.072536 1.073722 1.077877 1.073722  EUR USD</span></span>
-<span><span class="co">#&gt; 2 2024-04-02 23:00:00 1.076473 1.076855 1.083189 1.076855  EUR USD</span></span></code></pre></div>
+<span><span class="co">#&gt;             timestamp    close      low     open     high from  to</span></span>
+<span><span class="co">#&gt; 1 2024-04-01 23:00:00 1.073722 1.072536 1.073722 1.077877  EUR USD</span></span>
+<span><span class="co">#&gt; 2 2024-04-02 23:00:00 1.076855 1.076473 1.076855 1.083189  EUR USD</span></span></code></pre></div>
 <hr>
 <p><strong>get_currencies()</strong></p>
 <ul>
@@ -133,7 +133,7 @@ the <code>data.frame</code> returned by
 <span><span class="va">few_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_currencies.html">get_currencies</a></span><span class="op">(</span>keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RON"</span>,  <span class="st">"USD"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">few_currencies</span></span>
 <span><span class="co">#&gt;     shortname     longname symbol locallongname</span></span>
-<span><span class="co">#&gt; 62        USD    US Dollar    USD     US Dollar</span></span>
+<span><span class="co">#&gt; 63        USD    US Dollar    USD     US Dollar</span></span>
 <span><span class="co">#&gt; 113       RON Romanian Leu    RON  Romanian Leu</span></span></code></pre></div>
 <!-- --- -->
 <!-- **Technical details.** `financr::get_changes()` behavior is similar to `paste(from, to, "-X")`. Thus : -->

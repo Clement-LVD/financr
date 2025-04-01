@@ -66,18 +66,16 @@
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="get_yahoo_data.html">get_yahoo_data</a></code></p><dl><dt><code>symbol</code></dt>
-<dd><p>A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).</p></dd>
+<dd><p><code>character</code> A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).</p></dd>
 
     <dt><code>start_date</code></dt>
-<dd><p>A character string representing the start date in the format "YYYY-MM-DD". If <code>NULL</code>, data starts from 1970-01-01.</p></dd>
+<dd><p><code>character</code> A character string representing the start date in the format "YYYY-MM-DD". If <code>NULL</code>, data starts from 1970-01-01.</p></dd>
 
     <dt><code>end_date</code></dt>
-<dd><p>A character string representing the end date in the format "YYYY-MM-DD". If <code>NULL</code>, data is retrieved up to the current date.</p></dd>
+<dd><p><code>character</code> A character string representing the end date in the format "YYYY-MM-DD". If <code>NULL</code>, data is retrieved up to the current date.</p></dd>
 
     <dt><code>range</code></dt>
-<dd><p>A character string representing the range for the returned datas : default will return daily values.
-Other ranges will filter out some of these daily values, depending on the desired range.
-Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".</p></dd>
+<dd><p><code>character</code> A character string representing the range for the returned datas : default will return daily values.</p><table class="table table"><tr><td><strong>Valid <code>range</code> values</strong></td></tr><tr><td><code>"1d"</code>, <code>"5d"</code>, <code>"1mo"</code>, <code>"3mo"</code>, <code>"6mo"</code>, <code>"1y"</code>, <code>"2y"</code>, <code>"5y"</code>, <code>"10y"</code>, <code>"ytd"</code> and <code>"max"</code></td></tr><tr><td>Other ranges will filter out some of these daily values, depending on the desired range.</td></tr><tr><td>Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".</td></tr><tr><td></td></tr></table></dd>
 
 
 </dl></dd>
@@ -128,8 +126,7 @@ Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd"
 <dt>timezone</dt>
 <dd><p><code>character</code> The timezone in which the data is reported.</p></dd>
 
-</dl><p>@references Source : https://query1.finance.yahoo.com/v8/finance/chart/</p>
-    </div>
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Return a <code>data.frame</code> with additionnal attributes:</p><dl><dt>n.currencies</dt>
@@ -149,6 +146,10 @@ Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd"
 
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Source : https://query1.finance.yahoo.com/v8/finance/chart/</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="get_yahoo_data.html">get_yahoo_data</a></code></p></div>
