@@ -7,4 +7,7 @@ articles:
   Get_changes: Get_changes.html
   get_indices_and_get_crypto: get_indices_and_get_crypto.html
   get_info_and_historic: get_info_and_historic.html
-last_built: 2025-04-01T22:21Z
+last_built: 2025-04-01T22:31Z
+urls:
+  reference: https://clement-lvd.github.io/financr/reference
+  article: https://clement-lvd.github.io/financr/articles

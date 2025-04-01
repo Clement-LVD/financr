@@ -1,0 +1,12 @@
+url: https://clement-lvd.github.io/financr/
+favicon: "man/figures/logo-gold.png"  # Logo affiché dans l’onglet du navigateur
+template:
+  bootstrap: 5
+  bootswatch: flatly
+authors:
+  Clément Laverdet:
+    href: https://clement-lvd.github.io/about_me
+github:
+      icon: fa-github
+      href: https://github.com/clement-LVD/financr
+
