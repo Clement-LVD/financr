@@ -1,0 +1,10 @@
+pandoc: '3.2'
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  About_the_Yahoo_Finance_License: About_the_Yahoo_Finance_License.html
+  Functions_summary: Functions_summary.html
+  Get_changes: Get_changes.html
+  get_indices_and_get_crypto: get_indices_and_get_crypto.html
+  get_info_and_historic: get_info_and_historic.html
+last_built: 2025-04-01T22:21Z

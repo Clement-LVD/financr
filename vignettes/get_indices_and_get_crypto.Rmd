@@ -1,0 +1,39 @@
+---
+title: "get_indices() And get_crypto()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{get_indices() And get_crypto()}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(financr)
+```
+
+This vignette is about `financr::get_indices()` and `financr::get_crypto()`. These functions offers the latest financial values of 41 world-indices and 100 crypto-currencies, respectively. These values are expressed in USD. 
+
+- `financr::get_indices()` return a `data.frame` with the latest financial value of major world financial indices.
+
+```{r indices}
+# World-indices values on their respective exchange places in USD ($)
+indices <- get_indices()
+str(indices)
+```
+
+- `financr::get_crypto()` return a `data.frame` of 100 crypto-currencies values. 
+
+```{r crypto}
+# Top 100 crypto-currencies latest values in USD ($)
+krypt <- get_crypto()
+str(krypt)
+```
+
+

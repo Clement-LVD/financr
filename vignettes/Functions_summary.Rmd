@@ -1,0 +1,110 @@
+---
+title: "Summary of financr Functions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Summary of financr Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette explains the functions offered by `'financr'`.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+## `'financr'` Overview
+
+- **All the `'financr'` functions return a standardized `data.frame`.**
+    - Functions with the `'_historic'` suffix return an historic of financial data, 
+    - while the others retrieve up-to-date data and latest financial insights.
+
+```{r fn, echo=FALSE}
+fn <- data.frame(Minimal_example = c(
+                     "`get_indices()`" , "`get_crypto()`"   ,"`get_info_from_name('Saab')`"
+
+  , "`get_historic('AAPL')`"
+                 
+                  , "`get_changes('USD', 'EUR')`",  "`get_changes_historic('USD', 'EUR')`" 
+                  ,'`valid_symbol("AAPL")`'
+                  ) 
+  , Input = c( "", "", "Free-texts, e.g., companies names" 
+
+,"Ticker symbol(s)^[https://en.wikipedia.org/wiki/Ticker_symbol]"
+, "Currencies to convert"
+ , "Currencies + optional `range` and `interval`"
+, "Text(s) to verify"
+                             )
+             , Data.frame_returned =  c( "World indices, latest insights and values"
+                        , "100 major crypto-currencies, latest insights and values (USD)"
+                        ,"Ticker symbol(s) associated with the text, latest insights and values" 
+
+ , "**Historic** of financial data"
+ ,"Latest exchanges rates" , "**Historic** of exchanges rates"
+ , "Validity of financial symbol(s)"
+                           )
+             , Data = c( rep("Latest**^‡^**", 2),"Latest**^†^**", "Historic*",  "Latest**^‡^**", "Historic*", "Latest*")
+          
+)
+colnames(fn) <- c("Example", "Input", "Returned `data.frame`", "Data")
+
+knitr::kable(fn,   
+               , format = "pipe"
+             , caption = "Table 1. Overview of `'financr'` Functions"    , font_size = 10) 
+             
+          
+  # column_spec(1, width = "4em")%>% 
+  # column_spec(2, width = "11em")
+
+```
+
+Sources :
+
+- \* : Yahoo Finance APIs, e.g., query1.finance.yahoo.com/v1/finance/currencies ; [...]/v8/finance/chart or query2.finance.yahoo.com/v6/finance, etc.
+- **†** : Scraping from https://finance.yahoo.com/lookup/  
+- **‡** : Scraping from other Yahoo Finance pages, such as https://finance.yahoo.com/markets/world-indices/ or [...]/markets/crypto, etc.
+
+---
+
+**Standardized Return Conventions.** Regarding all the `data.frame` returned by `'financr'` functions:
+    
+The column names are:
+
+- following the ['snake_case' conventions](https://wikipedia.org/wiki/Snake_case), e.g., in lowercase and without spaces;
+- and symbols are replaced (e.g., "%' is replaced by 'percent');
+
+Regarding the values : 
+
+- Numeric values are returned as `integer` or `numeric` class of values. 
+
+---
+
+## `'financr'` Specifics 
+
+**Role of financr in the 'Reach Yahoo Finance' ecosystem.** `'financr'` only retrieves the data from Yahoo Finance and make no assumptions about the visualizations or analyses performed with these financial data. Consequently, `financr` dependencies are kept low.
+
+Other R packages retrieves data from the same source as `'financr'`, i.e. Yahoo Finance. E.g., [`'yahoofinancer'`](https://cran.r-project.org/package=yahoofinancer), [`yfr`](https://cran.r-project.org/package=yfR), [`'quantmod'`](https://cran.r-project.org/package=quantmod) and the packages that depends on them such as [`stocks`](https://cran.r-project.org/package=stocks) that depends on `'quantmod'`. 
+
+Regarding the fetching of historical financial values from Yahoo Finance, the returned objects of these packages have different properties, see below. 
+
+```{r echo=FALSE}
+
+deps <- data.frame(Package = c("`'financr'`", "`'yahoofinancer'`", '`yfr`', "`'quantmod'`")
+  
+, get_historic = c("`financr::get_historic()` return a standard `data.frame`" 
+               ,  "`'yahoofinancer'` methods return an `'R6'` class object (e.g., `Ticker$get_history`)"
+              ,  '`yfr::yf_get()` return a tibble' 
+                 , "`getSymbols()` from the `'quantmod'` package return a time series object (`'xts'` & `'zoo'` object)" ) )
+
+knitr::kable(deps, row.names = F, caption = "Table 2. `'financr'` `get_historic()` Alternatives and Returned Values")
+
+
+```
+
+
+Other functions offered by these packages are sometimes more or less equivalent (e.g., `financr::valid_symbol()`) whereas other functions are specific to one of these packages. E.g., `'financr'` offer free-text search with `financr::get_info_from_name()`, while `'quantmod'` offers financial data-analysis oriented functions and time series data visualization methods. Other packages are derivated from these 2 examples, e.g.,  which rely on quantmod and ans.
+

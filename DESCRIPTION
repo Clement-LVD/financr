@@ -1,0 +1,29 @@
+Package: financr
+Title:  Retrieve Financial Data From Yahoo Finance
+Version: 0.0.2
+Authors@R:
+    person("Clément", "Laverdet", , "clementlvd@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-4466-3394"))
+Description: Retrieve historical market data (e.g., market prices, currencies exchange rates) ; 
+     latest insights on companies, financial symbols, major indices, currencies and crypto-currencies ;
+     and convert currencies and crypto-currencies at the latest exchange rates.
+License: MIT + file LICENSE
+URL: https://github.com/clement-LVD/financr,
+    https://clement-lvd.github.io/financr/
+BugReports: https://github.com/clement-LVD/financr/issues
+Imports: 
+    jsonlite,
+    curl,
+    XML
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+References: 
+  Sources are (a) Yahoo Finance API, i.e. https://query1.finance.yahoo.com/v1/finance/currencies and https://query1.finance.yahoo.com/v8/finance/chart    
+            ; and (b) Yahoo website pages, e.g., https://finance.yahoo.com/lookup> and <https://finance.yahoo.com/markets/world-indices

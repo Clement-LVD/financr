@@ -1,0 +1,67 @@
+---
+title: "Get_changes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get_changes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette is about using `financr` functions to understand and exchange currencies, from financial currencies symbols. 
+
+**get_changes() & get_changes_historic()**
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+- `financr::get_changes()` compute changes with the latest exchange rate, given currencies symbols.
+
+```{r changes}
+library(financr)
+
+changes <- get_changes(from = c("RON", "USD"), to = "EUR")
+
+# print the exchange rate :
+head(changes[ , c("from", "to",  "regularmarketprice", "currency", "timestamp")])
+
+```
+
+
+- `financr::get_changes_historic()` return a `data.frame` with the historic of exchange rates, given currencies symbols. In addition of these historical values, the attributes of this `data.frame` have the latest exchange rates returned by `financr::get_changes()`.
+
+```{r change-historic}
+
+changes <- get_changes_historic(from = c("EUR", "RON") )
+
+# Historic of exchange rate (2 first lines) 
+head(changes, 2)
+
+```
+
+---
+**get_currencies()** 
+
+- `financr::get_currencies()` return a list of currencies symbols and names. This is helpful to understand the currencies symbols of the Yahoo Finance API, such as the `currency` column of the `data.frame` returned by `financr::get_historic`. 
+
+```{r currencies}
+# If you need to understand a currency symbol
+currencies <- get_currencies()
+str(currencies)
+# If you need to understand a currency symbol :
+
+few_currencies <- get_currencies(keep = c("RON",  "USD") )
+few_currencies
+
+```
+
+
+<!-- --- -->
+<!-- **Technical details.** `financr::get_changes()` behavior is similar to `paste(from, to, "-X")`. Thus : -->
+
+<!-- - it's fine to convert several value into *one* other values, and vice-versa ; -->
+<!-- - it's fine to convert a list of paired values ; -->
+<!-- - 2 list of different lengths will lead to messy results. -->
