@@ -10,10 +10,13 @@
 #' The function allows the user to specify a date range using start and end dates. If no date range is specified,
 #' it retrieves all available data from the beginning of time (default for start) to the current date (default for end).
 #'
-#' @param symbol A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).
-#' @param start_date A character string representing the start date in the format "YYYY-MM-DD". If `NULL`, data starts from 1970-01-01.
-#' @param end_date A character string representing the end date in the format "YYYY-MM-DD". If `NULL`, data is retrieved up to the current date.
-#' @param range A character string representing the range for the returned datas : default will return daily values.
+#' @param symbol `character` A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).
+#' @param start_date `character` A character string representing the start date in the format "YYYY-MM-DD". If `NULL`, data starts from 1970-01-01.
+#' @param end_date `character` A character string representing the end date in the format "YYYY-MM-DD". If `NULL`, data is retrieved up to the current date.
+#' @param range `character` A character string representing the range for the returned datas : default will return daily values.
+#' | **Valid `range` values**                                       |
+#' |-------------------------------------------------------------------|
+#' | `"1d"`, `"5d"`, `"1mo"`, `"3mo"`, `"6mo"`, `"1y"`, `"2y"`, `"5y"`, `"10y"`, `"ytd"` and `"max"` |
 #' Other ranges will filter out some of these daily values, depending on the desired range.
 #' Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
@@ -32,7 +35,8 @@
 #'   \item{exchangename}{`character` The name of the exchange marketplace where the financial instrument is listed.}
 #'   \item{fullexchangename}{`character` The full name of the exchange marketplace.}
 #'   \item{timezone}{`character` The timezone in which the data is reported.}
-#'   @references Source : https://query1.finance.yahoo.com/v8/finance/chart/
+#' @keywords internal
+#' @references Source : https://query1.finance.yahoo.com/v8/finance/chart/
 get_yahoo_data <- function(symbol = "AAPL", start_date = NULL, end_date = NULL, range = "1d", .verbose = T) {
 # data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "5d")
 n_symbs <- length(symbol)

@@ -13,15 +13,18 @@ get_yahoo_data(
 )
 }
 \arguments{
-\item{symbol}{A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
+\item{symbol}{\code{character} A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
 
-\item{start_date}{A character string representing the start date in the format "YYYY-MM-DD". If \code{NULL}, data starts from 1970-01-01.}
+\item{start_date}{\code{character} A character string representing the start date in the format "YYYY-MM-DD". If \code{NULL}, data starts from 1970-01-01.}
 
-\item{end_date}{A character string representing the end date in the format "YYYY-MM-DD". If \code{NULL}, data is retrieved up to the current date.}
+\item{end_date}{\code{character} A character string representing the end date in the format "YYYY-MM-DD". If \code{NULL}, data is retrieved up to the current date.}
 
-\item{range}{A character string representing the range for the returned datas : default will return daily values.
-Other ranges will filter out some of these daily values, depending on the desired range.
-Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".}
+\item{range}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
+   \strong{Valid \code{range} values} \cr
+   \code{"1d"}, \code{"5d"}, \code{"1mo"}, \code{"3mo"}, \code{"6mo"}, \code{"1y"}, \code{"2y"}, \code{"5y"}, \code{"10y"}, \code{"ytd"} and \code{"max"} \cr
+   Other ranges will filter out some of these daily values, depending on the desired range. \cr
+   Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max". \cr
+}}
 
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
 }
@@ -41,7 +44,6 @@ A data frame containing the historical financial data with the following columns
 \item{exchangename}{\code{character} The name of the exchange marketplace where the financial instrument is listed.}
 \item{fullexchangename}{\code{character} The full name of the exchange marketplace.}
 \item{timezone}{\code{character} The timezone in which the data is reported.}
-@references Source : https://query1.finance.yahoo.com/v8/finance/chart/
 }
 \description{
 Get historical financial values associated with a ticker symbol.
@@ -55,3 +57,7 @@ Valid ranges are: "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd
 The function allows the user to specify a date range using start and end dates. If no date range is specified,
 it retrieves all available data from the beginning of time (default for start) to the current date (default for end).
 }
+\references{
+Source : https://query1.finance.yahoo.com/v8/finance/chart/
+}
+\keyword{internal}

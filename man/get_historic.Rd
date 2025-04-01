@@ -16,12 +16,15 @@ get_historic(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...)
 \item{...}{
   Arguments passed on to \code{\link[=get_yahoo_data]{get_yahoo_data}}
   \describe{
-    \item{\code{symbol}}{A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
-    \item{\code{start_date}}{A character string representing the start date in the format "YYYY-MM-DD". If \code{NULL}, data starts from 1970-01-01.}
-    \item{\code{end_date}}{A character string representing the end date in the format "YYYY-MM-DD". If \code{NULL}, data is retrieved up to the current date.}
-    \item{\code{range}}{A character string representing the range for the returned datas : default will return daily values.
-Other ranges will filter out some of these daily values, depending on the desired range.
-Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".}
+    \item{\code{symbol}}{\code{character} A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
+    \item{\code{start_date}}{\code{character} A character string representing the start date in the format "YYYY-MM-DD". If \code{NULL}, data starts from 1970-01-01.}
+    \item{\code{end_date}}{\code{character} A character string representing the end date in the format "YYYY-MM-DD". If \code{NULL}, data is retrieved up to the current date.}
+    \item{\code{range}}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
+   \strong{Valid \code{range} values} \cr
+   \code{"1d"}, \code{"5d"}, \code{"1mo"}, \code{"3mo"}, \code{"6mo"}, \code{"1y"}, \code{"2y"}, \code{"5y"}, \code{"10y"}, \code{"ytd"} and \code{"max"} \cr
+   Other ranges will filter out some of these daily values, depending on the desired range. \cr
+   Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max". \cr
+}}
   }}
 }
 \value{
@@ -40,7 +43,6 @@ A data frame containing the historical financial data with the following columns
 \item{exchangename}{\code{character} The name of the exchange marketplace where the financial instrument is listed.}
 \item{fullexchangename}{\code{character} The full name of the exchange marketplace.}
 \item{timezone}{\code{character} The timezone in which the data is reported.}
-@references Source : https://query1.finance.yahoo.com/v8/finance/chart/
 }
 \description{
 Get the historic of stock market data for financial ticker symbols, e.g., values at each closing day.
@@ -57,6 +59,9 @@ Return a \code{data.frame} with additionnal attributes:
 }
 \examples{
 datas <- get_historic(symbols = c("VOLCAR-B.ST", "SAAB-B.ST") )
+}
+\references{
+Source : https://query1.finance.yahoo.com/v8/finance/chart/
 }
 \seealso{
 \code{\link{get_yahoo_data}}
