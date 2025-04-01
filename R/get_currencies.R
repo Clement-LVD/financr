@@ -1,4 +1,4 @@
-#' Get Currencies Names And Symbol
+#' Get Currencies Names And Symbols
 #'
 #' Return a `data.frame` of financial indices (currencies) from Yahoo Finance.
 #' Optionally, it can filter the results, given a vector of symbols, e.g., 'EUR'.
@@ -8,7 +8,7 @@
 #' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console if necessary.
 #' @return A data frame containing unique financial indices (currencies). The table has
 #'         columns like `symbol`, `name`, and other relevant information, with all column names in lowercase.
-#'         If `keep` is specified, only the matching indices are returned.#'
+#'         If `keep` is specified, only the matching indices are returned.
 #' @examples
 #' # Fetch all available indices
 #' all_indices <- get_currencies()

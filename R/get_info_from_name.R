@@ -1,10 +1,9 @@
-#' Get Latest Financial Information and Ticker Symbol, Given Company Name(s)
+#' Get Latest Financial Information and Ticker Symbol From Company Name(s)
 #'
-#' Given free texts such as companies names, the function retrieves overall stock market data.
-#' It returns a data.frame with the ticker symbol on various exchange
+#' Get latest overall insights and ticker symbols associated with free texts, such as companies names.
+#' Several ticker symbols associated with various exchanges places could be returned, with
 #' , companies names, last price on the marketplace,
-#' sector/category (if available), type (e.g., "stocks")
-#' , exchange marketplace name and initially searched companies names.
+#' sector/category (if available), etc.
 #'
 #' @param names A character string representing the company name to search for.
 #' @param exchange (optionnal) A character string representing the exchange place(s) to consider (exact match). Default keep all the exchange places.

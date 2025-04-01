@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_info_from_name.R
 \name{get_info_from_name}
 \alias{get_info_from_name}
-\title{Get Latest Financial Information and Ticker Symbol, Given Company Name(s)}
+\title{Get Latest Financial Information and Ticker Symbol From Company Name(s)}
 \usage{
 get_info_from_name(names, exchange = NULL, sector = NULL)
 }
@@ -26,11 +26,10 @@ A data frame with columns:
 }
 }
 \description{
-Given free texts such as companies names, the function retrieves overall stock market data.
-It returns a data.frame with the ticker symbol on various exchange
+Get latest overall insights and ticker symbols associated with free texts, such as companies names.
+Several ticker symbols associated with various exchanges places could be returned, with
 , companies names, last price on the marketplace,
-sector/category (if available), type (e.g., "stocks")
-, exchange marketplace name and initially searched companies names.
+sector/category (if available), etc.
 }
 \details{
 Return a \code{data.frame} with additionnal attributes:

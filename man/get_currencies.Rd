@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_currencies.R
 \name{get_currencies}
 \alias{get_currencies}
-\title{Get Currencies Names And Symbol}
+\title{Get Currencies Names And Symbols}
 \usage{
 get_currencies(keep = NULL, .verbose = T)
 }
@@ -15,7 +15,7 @@ no filtering is applied, and all available indices are returned.}
 \value{
 A data frame containing unique financial indices (currencies). The table has
 columns like \code{symbol}, \code{name}, and other relevant information, with all column names in lowercase.
-If \code{keep} is specified, only the matching indices are returned.#'
+If \code{keep} is specified, only the matching indices are returned.
 }
 \description{
 Return a \code{data.frame} of financial indices (currencies) from Yahoo Finance.
