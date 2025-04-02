@@ -90,14 +90,14 @@ names, and get historical financial data for these symbols.</p>
 <span><span class="co">#&gt;   VOLCAR-B.ST [OK]                                                                                                      VOLV-B.ST [OK]                                                                                                      VOLV-A.ST [OK]                                                                                                    </span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">datas</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1530 obs. of  20 variables:</span></span>
-<span><span class="co">#&gt;  $ open                : num  19.3 19.1 19.1 19.1 19.1 ...</span></span>
-<span><span class="co">#&gt;  $ close               : num  19.2 19.1 19.1 19.1 19.1 ...</span></span>
-<span><span class="co">#&gt;  $ low                 : num  19.1 19.1 19 19.1 19.1 ...</span></span>
-<span><span class="co">#&gt;  $ high                : num  19.3 19.3 19.1 19.2 19.1 ...</span></span>
-<span><span class="co">#&gt;  $ volume              : int  0 77370 15211 18321 3056 127294 7152 21962 5421 8115 ...</span></span>
-<span><span class="co">#&gt;  $ timestamp           : int  1743490800 1743490860 1743490920 1743490980 1743491040 1743491100 1743491160 1743491220 1743491280 1743491340 ...</span></span>
-<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-01 07:00:00" "2025-04-01 07:01:00" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    12 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt;  $ open                : num  18.5 18.2 NA 18.3 290.1 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  18.2 18.4 NA 18.3 290.2 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  18.2 18.2 NA 18.3 289.4 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  18.5 18.4 NA 18.3 290.4 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 104239 NA 0 0 14884 NA 0 0 1206 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp           : int  1743577200 1743577260 1743577320 1743577375 1743577200 1743577260 1743577320 1743577375 1743577200 1743577260 ...</span></span>
+<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-02 07:00:00" "2025-04-02 07:01:00" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
 <span><span class="co">#&gt;  $ symbol              : chr  "VOLCAR-B.ST" "VOLCAR-B.ST" "VOLCAR-B.ST" "VOLCAR-B.ST" ...</span></span>
 <span><span class="co">#&gt;  $ shortname           : chr  "Volvo Car AB ser. B" "Volvo Car AB ser. B" "Volvo Car AB ser. B" "Volvo Car AB ser. B" ...</span></span>
@@ -106,11 +106,11 @@ names, and get historical financial data for these symbols.</p>
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  18.5 18.5 18.5 18.5 18.5 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  18.5 18.5 18.5 18.5 18.5 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  44.8 44.8 44.8 44.8 44.8 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  18.5 18.5 18.5 18.5 18.5 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  19.3 19.3 19.3 19.3 19.3 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  18.3 18.3 18.3 18.3 290.7 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  18.2 18.2 18.2 18.2 243.7 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  44.8 44.8 44.8 44.8 344.4 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  18.2 18.2 18.2 18.2 289.4 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  18.5 18.5 18.5 18.5 291.1 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-02"</span></span>
@@ -125,7 +125,7 @@ names, and get historical financial data for these symbols.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">explaination</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    shortname      longname symbol locallongname</span></span>
-<span><span class="co">#&gt; 36       SEK Swedish Krona    SEK Swedish Krona</span></span></code></pre></div>
+<span><span class="co">#&gt; 37       SEK Swedish Krona    SEK Swedish Krona</span></span></code></pre></div>
 <p>See how to convert it to another currency such as ‘USD’ with the <a href="https://clement-lvd.github.io/financr/articles/Get_changes.html">Vignette
 of <code>get_changes()</code> and <code>get_currencies()</code></a>.</p>
   </main>
