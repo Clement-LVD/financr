@@ -75,22 +75,52 @@
     
 <p>This vignette show how to fetch data from company names and get
 historic financial data from Yahoo API.</p>
+<p><strong>Search for ticker symbols, given keyword(s).</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span></code></pre></div>
-<p>Fetch ticker symbols associated with keyword(s) such as companies
-names, and get historical financial data for these symbols.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span>
+<span><span class="co"># Search the symbols of volvo car and Saab in the Stockholm exchange place</span></span>
+<span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_from_text.html">search_from_text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"Nickei"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    7 obs. of  10 variables:</span></span>
+<span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "YM=F" "MYM=F" "RX=F" ...</span></span>
+<span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Mini Dow Jones Indus.-$5 Jun 25" "Micro E-mini Dow Jones Industri" "Dow Jones US Real Estate Index " ...</span></span>
+<span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" NA NA NA ...</span></span>
+<span><span class="co">#&gt;  $ exchange      : chr  "DJI" "CBT" "CBT" "CBT" ...</span></span>
+<span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Chicago Board of Trade" "Chicago Board of Trade" "Chicago Board of Trade" ...</span></span>
+<span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "FUTURE" "FUTURE" "FUTURE" ...</span></span>
+<span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Futures" "Futures" "Futures" ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  48644 32173 30003 30002 20426 ...</span></span>
+<span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
+<span><span class="co">#&gt;  $ searched      : chr  "Dow jones" "Dow jones" "Dow jones" "Dow jones" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-02"</span></span>
+<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
+<p><strong>Search for symbols and latest prices on the exchange places,
+given keyword(s).</strong></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># 1) fetch_indices (optionally filter a precise marketplace)</span></span>
-<span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_info_from_name.html">get_info_from_name</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO"</span>, <span class="st">"RENAULT"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Search the symbols of volvo car and Saab in the Stockholm exchange place</span></span>
+<span><span class="va">swedish</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_info_from_name.html">get_info_from_name</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"SAAB"</span><span class="op">)</span></span>
 <span>                         , exchange <span class="op">=</span> <span class="st">"STO"</span><span class="op">)</span></span>
-<span><span class="co"># Keep only the swedish exchange place (STOckholm)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">swedish</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    2 obs. of  7 variables:</span></span>
+<span><span class="co">#&gt;  $ symbol    : chr  "VOLCAR-B.ST" "SAAB-B.ST"</span></span>
+<span><span class="co">#&gt;  $ name      : chr  "Volvo Car AB ser. B" "SAAB AB ser. B"</span></span>
+<span><span class="co">#&gt;  $ last price: chr  "18.94" "387.20"</span></span>
+<span><span class="co">#&gt;  $ sector    : chr  "Consumer Cyclical" "Industrials"</span></span>
+<span><span class="co">#&gt;  $ type      : chr  "Stocks" "Stocks"</span></span>
+<span><span class="co">#&gt;  $ exchange  : chr  "STO" "STO"</span></span>
+<span><span class="co">#&gt;  $ searched  : chr  "VOLVO car" "SAAB"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-02"</span></span>
+<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
+<p><strong>Get historical financial data, given symbols of
+assets.</strong></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get historical values, given ticker symbol(s)</span></span>
+<span><span class="va">historic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_historic.html">get_historic</a></span><span class="op">(</span>symbols <span class="op">=</span> <span class="va">swedish</span><span class="op">$</span><span class="va">symbol</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   VOLCAR-B.ST [OK]                                                                                                      SAAB-B.ST [OK]                                                                                                    </span></span>
 <span></span>
-<span><span class="co"># 2) Fetch historical values, given ticker symbol(s)</span></span>
-<span><span class="va">datas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_historic.html">get_historic</a></span><span class="op">(</span>symbols <span class="op">=</span> <span class="va">indices</span><span class="op">$</span><span class="va">symbol</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   VOLCAR-B.ST [OK]                                                                                                      VOLV-B.ST [OK]                                                                                                      VOLV-A.ST [OK]                                                                                                    </span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">datas</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1530 obs. of  20 variables:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">historic</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
 <span><span class="co">#&gt;  $ open                : num  18.5 18.2 18.5 18.3 18.2 ...</span></span>
 <span><span class="co">#&gt;  $ close               : num  18.2 18.4 18.3 18.2 18.1 ...</span></span>
 <span><span class="co">#&gt;  $ low                 : num  18.2 18.2 18.3 18.2 18 ...</span></span>
@@ -115,11 +145,14 @@ names, and get historical financial data for these symbols.</p>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-02"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
-<p>If you need to, see what are these currencies with
-<code><a href="../reference/get_currencies.html">financr::get_currencies()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">unknown_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">datas</span><span class="op">$</span><span class="va">currency</span><span class="op">)</span></span>
+<p>Additional attributes indicates such as the symbols of currencies in
+the <code>data.frame</code>, e.g., attributes of the
+<code>'finance'</code> <code>data.frame</code> from the previous example
+indicates that prices are in the ‘SEK’ currency.</p>
+<p><strong>Find names of all currencies with
+<code><a href="../reference/get_currencies.html">financr::get_currencies()</a></code>.</strong></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">unknown_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">historic</span><span class="op">$</span><span class="va">currency</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">explaination</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_currencies.html">get_currencies</a></span><span class="op">(</span><span class="va">unknown_currencies</span><span class="op">)</span></span>
 <span></span>

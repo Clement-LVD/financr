@@ -96,7 +96,7 @@ insights.</li>
 <colgroup>
 <col width="20%">
 <col width="34%">
-<col width="38%">
+<col width="37%">
 <col width="7%">
 </colgroup>
 <thead><tr class="header">
@@ -124,13 +124,20 @@ insights.</li>
 </tr>
 <tr class="odd">
 <td align="left"><code>get_info_from_name('Saab')</code></td>
-<td align="left">Free-texts, e.g., companies names</td>
-<td align="left">Ticker symbol(s) associated with the text, latest
-insights and values</td>
+<td align="left">Free-text(s), e.g., companies names</td>
+<td align="left">Assets names, ticker symbols, latest insights and
+financial values</td>
 <td align="left">Latest<strong><sup>†</sup></strong>
 </td>
 </tr>
 <tr class="even">
+<td align="left"><code>search_from_text('Saab')</code></td>
+<td align="left">Free-text(s)</td>
+<td align="left">Assets names, ticker symbol(s) associated with the text
+searched</td>
+<td align="left">Latest*</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>get_historic('AAPL')</code></td>
 <td align="left">Ticker symbol(s)<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Ticker_symbol" class="external-link uri"&gt;https://en.wikipedia.org/wiki/Ticker_symbol&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>
 </td>
@@ -138,14 +145,14 @@ insights and values</td>
 <strong>Historic</strong> of financial data</td>
 <td align="left">Historic*</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>get_changes('USD', 'EUR')</code></td>
 <td align="left">Currencies to convert</td>
 <td align="left">Latest exchanges rates</td>
 <td align="left">Latest<strong><sup>‡</sup></strong>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
 <td align="left">Currencies + optional <code>range</code> and
 <code>interval</code>
@@ -154,7 +161,7 @@ insights and values</td>
 <strong>Historic</strong> of exchanges rates</td>
 <td align="left">Historic*</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>valid_symbol("AAPL")</code></td>
 <td align="left">Text(s) to verify</td>
 <td align="left">Validity of financial symbol(s)</td>
@@ -165,7 +172,7 @@ insights and values</td>
 <p>Sources :</p>
 <ul>
 <li>* : Yahoo Finance APIs, e.g.,
-query1.finance.yahoo.com/v1/finance/currencies ; […]/v8/finance/chart or
+query2.finance.yahoo.com/v1/finance/currencies ; […]/v8/finance/chart or
 query2.finance.yahoo.com/v6/finance, etc.</li>
 <li>
 <strong>†</strong> : Scraping from <a href="https://finance.yahoo.com/lookup/" class="external-link uri">https://finance.yahoo.com/lookup/</a><br>
@@ -250,15 +257,7 @@ Alternatives and Returned Values</caption>
 </tr>
 </tbody>
 </table>
-<p>Other functions offered by these packages are sometimes more or less
-equivalent (e.g., <code><a href="../reference/valid_symbol.html">financr::valid_symbol()</a></code>) whereas other
-functions are specific to one of these packages. E.g.,
-<code>'financr'</code> offer free-text search with
-<code><a href="../reference/get_info_from_name.html">financr::get_info_from_name()</a></code>, while
-<code>'quantmod'</code> offers financial data-analysis oriented
-functions and time series data visualization methods. Other packages are
-derivated from these 2 examples, e.g., which rely on quantmod and
-ans.</p>
+<!-- Other functions offered by these packages are sometimes more or less equivalent (e.g., `financr::valid_symbol()`) whereas other functions are specific to one of these packages. E.g., `'financr'` offer free-text search with `financr::get_info_from_name()`, while `'quantmod'` offers financial data-analysis oriented functions and time series data visualization methods. Other packages are derivated from these 2 examples, e.g.,  which rely on quantmod and ans. -->
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
