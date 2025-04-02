@@ -1,5 +1,3 @@
-
-
 # this url  url = "https://finance.yahoo.com/markets/world-indices/"
 # is a html table and this is an api call :
 # url <- 'https://query2.finance.yahoo.com/v6/finance/quote/validate?symbols=AAPL&format=CSV'

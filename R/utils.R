@@ -1,7 +1,7 @@
 # url of yahoo api is from here. Default is V8 API
-retrieve_yahoo_api_chart_url <- function(suffix = "v8/finance/chart/"){return(paste0("https://query1.finance.yahoo.com/", suffix) )}
+retrieve_yahoo_api_chart_url <- function(suffix = "v8/finance/chart/"){return(paste0("https://query2.finance.yahoo.com/", suffix) )}
 
-
+"https://query1.finance.yahoo.com/"
 #  add a var full of na, given a list of vars that are supposed to be present
 add_missing_var_to_df <- function(df, vars, .verbose = T){
 if(length(df) == 0) return(df)

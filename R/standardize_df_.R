@@ -1,6 +1,8 @@
 
 #### 1) standardize data.frame colnames ####
 standardize_df_cols <- function(df, sep = "_"){
+  if(length(df) == 0) return(df)
+
   colnames(df) <- trimws(colnames(df))
 
   df[, which(nchar( colnames(df)) == 0)] <- NULL
@@ -15,7 +17,8 @@ standardize_df_cols <- function(df, sep = "_"){
   n.char.col <- apply(df, 2, FUN = function(col) sum(nchar(col)) )
   n.char.col <- names(n.char.col)[n.char.col == 0]
 
-  df[, n.char.col] <- NULL
+if(length(n.char.col) > 0) {
+  if(!all(is.na(n.char.col))) df[, n.char.col] <- NULL}
 
   colnames(df) <- gsub("\\(|\\)", "", colnames(df))
   # todo convert cells values

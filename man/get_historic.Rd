@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_historic.R
 \name{get_historic}
 \alias{get_historic}
-\title{Get Historical Financial Data Indices}
+\title{Get Historical Financial Data For Ticker Symbols}
 \usage{
 get_historic(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...)
 }
