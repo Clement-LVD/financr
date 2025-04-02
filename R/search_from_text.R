@@ -2,7 +2,7 @@
 #'
 #' Get ticker symbols associated with free texts, such as companies names.
 #' Several ticker symbols associated with various exchanges places could be returned, with
-#' , companies names, sector/category (if available), etc.
+#'  companies names, sector/category (if available), etc.
 #'
 #' @param texts `character` A character string or a list of character representing the text(s) to search for, e.g., company names.
 #' @param quotetype (optionnal) A character string representing the type of asset to search for.
@@ -11,7 +11,7 @@
 #' |:----------|:-----------------------------------------------------------------------|
 #' |ETF        |Exchange-Traded Fund - A basket of stocks or bonds traded like a stock. |
 #' |EQUITY     |Equity - A stock representing ownership in a company.                   |
-#' |MUTUALFUND |Mutual Fund - A pooled investment fund managed by professionals.        |
+#' |MUTUALFUND |Mutual Fund - A pooled investment fund.                                 |
 #' |INDEX      |Index - A benchmark representing a group of stocks (e.g., S&P 500).     |
 #' |FUTURE     |Future - A contract to buy/sell an asset at a future date and price.    |
 #'
@@ -19,21 +19,24 @@
 #' @param .verbose `logical`, default = `FALSE` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
 #' @return A data frame with the following columns:
 #' \describe{
-#'   \item{symbol}{`character` - The ticker symbol associated with an asset (e.g., "VTI", "^DWCPF").}
-#'   \item{shortname}{`character` - A short name for the asset (e.g., ETF or index name).}
-#'   \item{longname}{`character` - The full name of the asset, such as the full ETF or index name (Not always returned by the API).}
-#'   \item{exchange}{`character` - The exchange where the asset is listed (e.g., "PCX", "DJI", "NGM").}
-#'   \item{exchdisp}{`character` - The full name of the exchange place where the asset is traded (e.g., "NYSEArca", "Dow Jones").}
-#'   \item{quoteType}{`character` - The type of asset (e.g., "FUTURES", "INDEX").}
-#'   \item{typeDisp}{`character` - The type of asset, formatted for display (e.g., "Futures", "Index").}
-#'   \item{score}{`numeric` - A numerical score assigned by Yahoo in order to indicate the relevance of the matched result, i.e. similarity with the text).}
-#'   \item{isYahooFinance}{`logical` - Indicates whether the symbol is recognized by Yahoo Finance (should always be `TRUE` in this context).}
-#'   \item{searched}{`character` - The character searched on the Yahoo API (e.g., "Dow Jones").}
+#'   \item{symbol}{`character` - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
+#'   \item{shortname}{`character` - A short name for the asset, e.g., ETF or index name.}
+#'   \item{longname}{`character` - The full name of the asset, such as the full ETF or index name - sometimes not returned by Yahoo.}
+#'   \item{exchange}{`character` - The exchange where the asset is listed, e.g., "PCX", "DJI", "NGM".}
+#'   \item{exchdisp}{`character` - The full name of the exchange place where the asset is traded, e.g., "NYSEArca", "Dow Jones".}
+#'   \item{quoteType}{`character` - The type of asset, e.g., "FUTURES", "INDEX".}
+#'   \item{typeDisp}{`character` - The type of asset, formatted for display, e.g., "Futures", "Index").}
+#'   \item{score}{`numeric` - A numerical score assigned by Yahoo in order to indicate the relevance of the matched result, i.e. similarity with the text.}
+#'   \item{isYahooFinance}{`logical` - Indicates whether the symbol is recognized by Yahoo Finance - should always be `TRUE` in this context.}
+#'   \item{searched}{`character` - The character searched on the Yahoo API, e.g., "Dow Jones".}
 #' }
 #' @examples
+#' # Get data on all marketplace(s):
 #' oil <- search_from_text(texts = c("TOTAL", "DOW JONES", "BP"))
-#' #Get data on marketplace(s)
-#' swedish <- search_from_text(c("SAAB", "VOLVO"),  exchange = c("STO", "PAR"))
+#'
+#' # Or get data on specific exchanges places:
+#' swedish <- search_from_text(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
+#' head(swedish)
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v1/
 #' @export
