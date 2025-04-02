@@ -2,13 +2,14 @@
 % Please edit documentation in R/get_yahoo_data.R
 \name{get_yahoo_data}
 \alias{get_yahoo_data}
-\title{Get Yahoo Finance Data For a Given Symbol}
+\title{Get Historical Financial Data For a Given Symbol}
 \usage{
 get_yahoo_data(
   symbol = "AAPL",
   start_date = NULL,
   end_date = NULL,
   range = "1d",
+  add_dividends_and_splits = TRUE,
   .verbose = T
 )
 }
@@ -25,6 +26,8 @@ get_yahoo_data(
    Other ranges will filter out some of these daily values, depending on the desired range. \cr
    Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max". \cr
 }}
+
+\item{add_dividends_and_splits}{default = \code{TRUE} - Add insights on dividends}
 
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
 }
@@ -44,6 +47,12 @@ A data frame containing the historical financial data with the following columns
 \item{exchangename}{\code{character} The name of the exchange marketplace where the financial instrument is listed.}
 \item{fullexchangename}{\code{character} The full name of the exchange marketplace.}
 \item{timezone}{\code{character} The timezone in which the data is reported.}
+\item{gmtoffset}{\code{integer} The UNIX timestamp of difference between the market local time and the GMT time.}
+\item{regularMarketPrice}{\code{numeric} The actual price if market is open, or last closing price if not.}
+\item{fiftyTwoWeekLow}{\code{numeric}  Lowest price for the last 52 weeks.}
+\item{fiftyTwoWeekHigh}{\code{numeric} Highest price for the last 52 weeks.}
+\item{regularMarketDayHigh}{\code{numeric} The highest price of the day (local exchange place day).}
+\item{regularMarketDayLow}{\code{numeric}  The lowest price of the day (local exchange place day).}
 }
 \description{
 Get historical financial values associated with a ticker symbol.

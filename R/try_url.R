@@ -5,12 +5,34 @@
 #' @importFrom curl curl_fetch_memory
 try_url <- function(url, .verbose = T){
 
-  answer <- curl::curl_fetch_memory(url)
-  content <- rawToChar(answer$content)
+  safe_curl_fetch <- function(url) {
+    tryCatch(
+      {
+        response <- curl::curl_fetch_memory(url)
+        list(success = TRUE, content = rawToChar(response$content), status = response$status_code)
+      },
+      error = function(e) {
+        list(success = FALSE, content = NULL, error_message = conditionMessage(e))
+      }
+    )
+  }
 
-  if(answer$status_code != 200) {
-   if(.verbose) message("Navigation error ", answer$status_code, " returned from ",dirname(url), " : \n", gsub(pattern = '.*description":|\\{|\\}', replacement = "",content) )
+
+  answer <- safe_curl_fetch(url)
+
+  if(!answer$success) {
+    if(.verbose) message("Navigation error : ", answer$error_message, "\n")
+    return(NA)
+  }
+
+   content <- answer$content
+
+
+  if(answer$status != 200) {
+   if(.verbose) message("Navigation error ", answer$status, " returned from ",dirname(url), " : \n", gsub(pattern = '.*description":|\\{|\\}', replacement = "",content) )
     return(NA)}
+
+  # content <- rawToChar(answer$content)
 
 return(content)
 }

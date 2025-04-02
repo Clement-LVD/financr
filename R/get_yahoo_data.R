@@ -1,4 +1,4 @@
-#' Get Yahoo Finance Data For a Given Symbol
+#' Get Historical Financial Data For a Given Symbol
 #'
 #'  Get historical financial values associated with a ticker symbol.
 #'  The data includes open stock price, high, low, close, volume, along with timestamps.
@@ -19,6 +19,7 @@
 #' | `"1d"`, `"5d"`, `"1mo"`, `"3mo"`, `"6mo"`, `"1y"`, `"2y"`, `"5y"`, `"10y"`, `"ytd"` and `"max"` |
 #' Other ranges will filter out some of these daily values, depending on the desired range.
 #' Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".
+#' @param add_dividends_and_splits default = `TRUE` - Add insights on dividends
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
 #' @return A data frame containing the historical financial data with the following columns:
 #'   \item{open}{`numeric` The opening price for the period (default is each day).}
@@ -35,10 +36,19 @@
 #'   \item{exchangename}{`character` The name of the exchange marketplace where the financial instrument is listed.}
 #'   \item{fullexchangename}{`character` The full name of the exchange marketplace.}
 #'   \item{timezone}{`character` The timezone in which the data is reported.}
+#'   \item{gmtoffset}{`integer` The UNIX timestamp of difference between the market local time and the GMT time.}
+#'   \item{regularMarketPrice}{`numeric` The actual price if market is open, or last closing price if not.}
+#'   \item{fiftyTwoWeekLow}{`numeric`  Lowest price for the last 52 weeks.}
+#'   \item{fiftyTwoWeekHigh}{`numeric` Highest price for the last 52 weeks.}
+#'   \item{regularMarketDayHigh}{`numeric` The highest price of the day (local exchange place day).}
+#'   \item{regularMarketDayLow}{`numeric`  The lowest price of the day (local exchange place day).}
 #' @keywords internal
 #' @references Source : https://query1.finance.yahoo.com/v8/finance/chart/
-get_yahoo_data <- function(symbol = "AAPL", start_date = NULL, end_date = NULL, range = "1d", .verbose = T) {
-# data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "5d")
+get_yahoo_data <- function(symbol = "AAPL", start_date = NULL, end_date = NULL
+                           , range = "1d"
+                           , add_dividends_and_splits = TRUE
+                           , .verbose = T) {
+# data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
 n_symbs <- length(symbol)
 if( n_symbs > 1 ) return(NA)
 if( n_symbs ==0) return(NULL)
@@ -56,6 +66,8 @@ if( .verbose ) warning(immediate. = T, "Only one symbol should be passed to get_
 if( .verbose ) cat("Specified range ('",range, "') is not a valid range. \nChoices are : ", paste0(collapse= ", ", valid_ranges ))
   return(NA)
     }
+# xxx to do xxx
+  valid_intervals <- c("1m", "2m", "5m", "15m", "30m", "60m", "90m", "1h", "1d", "5d", "1wk", "1mo", "3mo")
 
    # convert date to timestamps Unix
   if (!is.null(start_date)) {
@@ -78,12 +90,19 @@ if( .verbose ) cat("Specified range ('",range, "') is not a valid range. \nChoic
   params <- list(
     period1 = start_timestamp,
     period2 = end_timestamp,
+    # interval = range
     range = range
   )
+# xxx it's range or interval = both work xxx
 
   # Create parameters for the yahoo url-api
   query_string <- paste(names(params), params, sep = "=", collapse = "&")
   full_url <- paste(url, "?", query_string, sep = "")
+full_url <- paste0(full_url, "&includePrePost=true")
+# Add pre & post market data
+
+ # Add dividends & splits
+ if(add_dividends_and_splits) full_url <-  paste0(full_url, "&events=div%7Csplit")
 
   # fetch data
     data <- fetch_yahoo(full_url, .verbose = .verbose)
@@ -115,7 +134,11 @@ meta_datas <- extract_changes_meta_list_of_tables(data$chart$result$meta)
 # and the overall datas interesting for us :
 meta_datas <- data$chart$result$meta
 
-to_retain <-  c("currency", "symbol",  "shortName" , "longName", "exchangeName", "fullExchangeName","timezone")
+to_retain <-  c("currency", "symbol",  "shortName" , "longName", "exchangeName", "fullExchangeName"
+                ,"timezone", "gmtoffset"
+                , "regularMarketPrice", "fiftyTwoWeekLow", "fiftyTwoWeekHigh","regularMarketDayLow", "regularMarketDayHigh"
+                # ,  "regularMarketVolume"
+                )
 meta_datas <- add_missing_var_to_df(df = meta_datas, to_retain, .verbose = .verbose)
 
 col_to_add <- meta_datas[, to_retain]

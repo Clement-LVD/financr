@@ -1,4 +1,4 @@
-#' Get Historical Financial Data Indices
+#' Get Historical Financial Data For Ticker Symbols
 #'
 #' Get the historic of stock market data for financial ticker symbols, e.g., values at each closing day.
 #' @param symbols `character` A character string representing the financial indices to search for, e.g., ticker symbol(s).
