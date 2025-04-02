@@ -3,8 +3,10 @@
 # and this is an api call :
 #  url <- 'https://query2.finance.yahoo.com/v6/finance/quote/validate?symbols=AAPL'
 #' @importFrom curl curl_fetch_memory
-try_url <- function(url, .verbose = T){
+#' @importFrom utils URLencode
 
+try_url <- function(url, .verbose = T){
+url <-  utils::URLencode(url)
   safe_curl_fetch <- function(url) {
     tryCatch(
       {

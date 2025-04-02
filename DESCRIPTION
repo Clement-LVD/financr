@@ -14,7 +14,8 @@ BugReports: https://github.com/clement-LVD/financr/issues
 Imports: 
     jsonlite,
     curl,
-    XML
+    XML,
+    utils
 Suggests: 
     knitr,
     rmarkdown,

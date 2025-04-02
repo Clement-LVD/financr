@@ -16,29 +16,42 @@ knitr::opts_chunk$set(
 
 This vignette show how to fetch data from company names and get historic financial data from Yahoo API.
 
+
+**Search for ticker symbols, given keyword(s).**
+
 ```{r setup}
 library(financr)
+# Search the symbols of volvo car and Saab in the Stockholm exchange place
+indices <- search_from_text(c("Dow jones", "Nickei"))
+
+str(indices)
 ```
 
-Fetch ticker symbols associated with keyword(s) such as companies names, and get historical financial data for these symbols. 
+**Search for symbols and latest prices on the exchange places, given keyword(s).**
+
+```{r example-price}
+# Search the symbols of volvo car and Saab in the Stockholm exchange place
+swedish <- get_info_from_name(names = c("VOLVO car", "SAAB")
+                         , exchange = "STO")
+str(swedish)
+
+```
+
+**Get historical financial data, given symbols of assets.** 
 
 ```{r example3}
-# 1) fetch_indices (optionally filter a precise marketplace)
-indices <- get_info_from_name(names = c("VOLVO", "RENAULT")
-                         , exchange = "STO")
-# Keep only the swedish exchange place (STOckholm)
+# Get historical values, given ticker symbol(s)
+historic <- get_historic(symbols = swedish$symbol)
 
-# 2) Fetch historical values, given ticker symbol(s)
-datas <- get_historic(symbols = indices$symbol)
-
-str(datas)
+str(historic)
 ```
 
-If you need to, see what are these currencies with `financr::get_currencies()`.
+Additional attributes indicates such as the symbols of currencies in the `data.frame`, e.g., attributes of the `'finance'` `data.frame` from the previous example indicates that prices are in the 'SEK' currency. 
+
+**Find names of all currencies with `financr::get_currencies()`.**
  
 ```{r}
-
-unknown_currencies <- unique(datas$currency)
+unknown_currencies <- unique(historic$currency)
 
 explaination <- get_currencies(unknown_currencies)
 
