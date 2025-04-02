@@ -87,13 +87,15 @@ Regarding the values :
 
 **Role of financr in the 'Reach Yahoo Finance' ecosystem.** `'financr'` only retrieves the data from Yahoo Finance and make no assumptions about the visualizations or analyses performed with these financial data. Consequently, `financr` dependencies are kept low.
 
-Other R packages retrieves data from the same source as `'financr'`, i.e. Yahoo Finance. E.g., [`'yahoofinancer'`](https://cran.r-project.org/package=yahoofinancer), [`yfr`](https://cran.r-project.org/package=yfR), [`'quantmod'`](https://cran.r-project.org/package=quantmod) and the packages that depends on them such as [`stocks`](https://cran.r-project.org/package=stocks) that depends on `'quantmod'`. 
+Other R packages retrieves data from the same source as `'financr'`, i.e. Yahoo Finance. E.g., [`'yahoofinancer'`](https://cran.r-project.org/package=yahoofinancer), [`'quantmod'`](https://cran.r-project.org/package=quantmod) and the packages that depends on them such as [`yfr`](https://cran.r-project.org/package=yfR) and [`stocks`](https://cran.r-project.org/package=stocks) (depends on `'quantmod'`). 
 
 Regarding the fetching of historical financial values from Yahoo Finance, the returned objects of these packages have different properties, see below. 
 
 ```{r echo=FALSE}
 
-deps <- data.frame(Package = c("`'financr'`", "`'yahoofinancer'`", '`yfr`', "`'quantmod'`")
+deps <- data.frame(Package = c("`'financr'`", "`'yahoofinancer'`"
+                               , '`yfr`'
+                               , "`'quantmod'`")
   
 , get_historic = c("`financr::get_historic()` return a standard `data.frame`" 
                ,  "`'yahoofinancer'` methods return an `'R6'` class object (e.g., `Ticker$get_history`)"
