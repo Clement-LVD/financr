@@ -97,12 +97,12 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">swed_indices</span><span class="op">)</span> <span class="co"># Results of the day, over all marketplaces</span></span>
 <span><span class="co">#&gt; 'data.frame':    41 obs. of  7 variables:</span></span>
-<span><span class="co">#&gt;  $ symbol    : chr  "SAAB-B.ST" "SDV1.F" "SAABBS.XC" "SAABF" ...</span></span>
+<span><span class="co">#&gt;  $ symbol    : chr  "SAAB-B.ST" "SDV1.F" "SAABF" "SAABBS.XC" ...</span></span>
 <span><span class="co">#&gt;  $ name      : chr  "SAAB AB ser. B" "Saab AB                       N" "Saab AB" "Saab AB" ...</span></span>
-<span><span class="co">#&gt;  $ last price: chr  "403.75" "37.11" "386.33" "39.71" ...</span></span>
+<span><span class="co">#&gt;  $ last price: chr  "387.20" "36.14" "40.31" "393.88" ...</span></span>
 <span><span class="co">#&gt;  $ sector    : chr  "Industrials" "Industrials" "Industrials" "Industrials" ...</span></span>
 <span><span class="co">#&gt;  $ type      : chr  "Stocks" "Stocks" "Stocks" "Stocks" ...</span></span>
-<span><span class="co">#&gt;  $ exchange  : chr  "STO" "FRA" "CXE" "PNK" ...</span></span>
+<span><span class="co">#&gt;  $ exchange  : chr  "STO" "FRA" "PNK" "CXE" ...</span></span>
 <span><span class="co">#&gt;  $ searched  : chr  "SAAB" "SAAB" "SAAB" "SAAB" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-02"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
@@ -114,21 +114,27 @@
 <span><span class="va">histo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_historic.html">get_historic</a></span><span class="op">(</span>symbols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAAB-B.ST"</span>, <span class="st">"VOLV-B.ST"</span><span class="op">)</span>, .verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">histo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1020 obs. of  14 variables:</span></span>
-<span><span class="co">#&gt;  $ open            : num  390 386 385 388 388 ...</span></span>
-<span><span class="co">#&gt;  $ close           : num  386 385 387 388 390 ...</span></span>
-<span><span class="co">#&gt;  $ low             : num  386 385 385 387 388 ...</span></span>
-<span><span class="co">#&gt;  $ high            : num  391 387 387 388 390 ...</span></span>
-<span><span class="co">#&gt;  $ volume          : int  0 43690 19282 25525 18380 27971 12996 3797 2652 10832 ...</span></span>
-<span><span class="co">#&gt;  $ timestamp       : int  1743490800 1743490860 1743490920 1743490980 1743491040 1743491100 1743491160 1743491220 1743491280 1743491340 ...</span></span>
-<span><span class="co">#&gt;  $ date            : POSIXct, format: "2025-04-01 09:00:00" "2025-04-01 09:01:00" ...</span></span>
-<span><span class="co">#&gt;  $ currency        : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
-<span><span class="co">#&gt;  $ symbol          : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
-<span><span class="co">#&gt;  $ shortname       : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
-<span><span class="co">#&gt;  $ longname        : chr  "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" ...</span></span>
-<span><span class="co">#&gt;  $ exchangename    : chr  "STO" "STO" "STO" "STO" ...</span></span>
-<span><span class="co">#&gt;  $ fullexchangename: chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
-<span><span class="co">#&gt;  $ timezone        : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt;  $ open                : num  403 403 405 407 407 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  403 405 407 407 409 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  402 403 405 406 407 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  404 406 407 407 409 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 44058 30302 31561 27720 31097 23914 37929 11939 13352 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp           : int  1743577200 1743577260 1743577320 1743577380 1743577440 1743577500 1743577560 1743577620 1743577680 1743577740 ...</span></span>
+<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-02 09:00:00" "2025-04-02 09:01:00" ...</span></span>
+<span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
+<span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
+<span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
+<span><span class="co">#&gt;  $ longname            : chr  "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" ...</span></span>
+<span><span class="co">#&gt;  $ exchangename        : chr  "STO" "STO" "STO" "STO" ...</span></span>
+<span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
+<span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
+<span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  387 387 387 387 387 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  417 417 417 417 417 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  383 383 383 383 383 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  410 410 410 410 410 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-02"</span></span>
