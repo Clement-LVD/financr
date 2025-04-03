@@ -1,6 +1,6 @@
 
 test_that("get_currencies data returns a valid data.frame", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
   result <- get_currencies()
 
   # result is a good old data.frame
@@ -13,7 +13,7 @@ test_that("get_currencies data returns a valid data.frame", {
 })
 
 test_that("get_currencies filter according to keep parameter", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
   symbol ="PLN"
 test <- get_currencies( keep = symbol)
 

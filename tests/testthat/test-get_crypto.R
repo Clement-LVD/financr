@@ -1,6 +1,7 @@
 
 test_that("get_crypto data returns a valid data.frame", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   result <- get_crypto()
 
   # result is a good old data.frame
@@ -9,14 +10,16 @@ test_that("get_crypto data returns a valid data.frame", {
   # verify col
   expected_cols <- c( "symbol" ,   "name"  ,   "price"  ,  "change" ,
                       "change_percent" ,    "market_cap" ,"volume"  ,"volume_in_currency_24hr",
-                      "total_volume_all_currencies_24hr", "circulating_supply"     ,          "X52_wk_change_percent"     ,       "from"
-                   ,   "to"      )
+                      "total_volume_all_currencies_24hr", "circulating_supply"
+                      ,          "x52_wk_change_percent"
+                      ,       "from",   "to"      )
   expect_true(all(expected_cols %in% colnames(result)))
   expect_true(nrow(result) > 20)
 })
 
 test_that("get_crypto filter according to keep parameter", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   symbol ="BTC"
   test <- get_crypto( keep = symbol)
 

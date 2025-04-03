@@ -1,7 +1,8 @@
 # Load testthat and your package
 
 test_that("get_historic returns a valid data.frame", {
-  skip_on_cran()
+   if(!internet_or_not()) skip()
+
   symbols <- c("VOLCAR-B.ST", "SAAB-B.ST")
   result <- get_historic(symbols)
 
@@ -16,7 +17,8 @@ test_that("get_historic returns a valid data.frame", {
 })
 
 test_that("get_historic handles empty symbols input", {
-  skip_on_cran()
+   if(!internet_or_not()) skip()
+
   result <- get_historic(symbols = character(0))
 
   # empty results if empty symbol
@@ -24,7 +26,8 @@ test_that("get_historic handles empty symbols input", {
 })
 
 test_that("get_historic handles non-existent symbols", {
-  skip_on_cran()
+   if(!internet_or_not()) skip()
+
   result <- get_historic(symbols = c("INVALID-SYMBOL"))
 
   # invalid symbol = NA and a warning
@@ -32,7 +35,8 @@ test_that("get_historic handles non-existent symbols", {
 })
 
 test_that("get_historic respects .verbose parameter", {
-  skip_on_cran()
+   if(!internet_or_not()) skip()
+
   expect_silent(get_historic(symbols = c("SAAB-B.ST"), .verbose = FALSE))
 })
 

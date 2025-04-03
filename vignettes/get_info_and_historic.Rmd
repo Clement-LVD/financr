@@ -21,9 +21,8 @@ This vignette show how to fetch data from company names and get historic financi
 
 ```{r setup}
 library(financr)
-# Search the symbols of volvo car and Saab in the Stockholm exchange place
-indices <- search_from_text(c("Dow jones", "Nickei"))
-
+# Search symbols of all index with dow jones or euronex
+indices <- search_from_text(texts = c("Dow jones", "euronext"), type = "index" )
 str(indices)
 ```
 

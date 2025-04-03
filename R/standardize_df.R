@@ -1,33 +1,44 @@
 
 #### 1) standardize data.frame colnames ####
 standardize_df_cols <- function(df, sep = "_"){
-  if(length(df) == 0) return(df)
+  if(!is.data.frame(df)) return(df)
+  # harmonize colnames :
+  colnames(df) <- trimws(colnames(df))
+  # empty colnames fixing
+  empty_names <- which(nchar( colnames(df)) == 0)
+  colnames(df)[empty_names] <- paste0("var", seq_along(empty_names))
 
+  df <- drop_col_wo_char(df)
+
+  df <- standardize_df_percent_col(df) # hereafter
+
+  colnames(df) <- make.names(colnames(df), unique = TRUE)
+
+  colnames(df) <- gsub(" +|\\.+", " ", colnames(df))
+  colnames(df) <- tolower( colnames(df) )
+  colnames(df) <- gsub("\\(|\\)", "", colnames(df))
   colnames(df) <- trimws(colnames(df))
 
-  df[, which(nchar( colnames(df)) == 0)] <- NULL
-
-  original_col <- colnames(df)
-  # harmonize colnames :
-  colnames(df) <- tolower( original_col)
-   colnames(df) <- gsub(" +", " ", colnames(df))
-
-
-  # eject col without char :
-  n.char.col <- apply(df, 2, FUN = function(col) sum(nchar(col)) )
-  n.char.col <- names(n.char.col)[n.char.col == 0]
-
-if(length(n.char.col) > 0) {
-  if(!all(is.na(n.char.col))) df[, n.char.col] <- NULL}
-
-  colnames(df) <- gsub("\\(|\\)", "", colnames(df))
-  # todo convert cells values
   colnames(df) <- gsub(" ",sep, colnames(df))
-  return(df)
+
+   return(df)
+}
+
+
+# drop col without char :
+drop_col_wo_char <- function(df){
+  if(!is.data.frame(df)) return(df)
+
+n.char.col <- apply(df, 2, FUN = function(col) sum(nchar(keepNA = F, col)) )
+
+if(length(n.char.col== 0) > 0) df[, n.char.col == 0] <- NULL
+
+return(df)
 }
 
 ### 2) convert cols with "%" symbol or "-" / "--" NA writing style ####
 standardize_df_percent_col <- function(df, regex_to_replace_by_na  = "^--?$" , pattern_to_erase = "%|," ){
+  if(!is.data.frame(df)) return(df)
 
  colnames(df) <- gsub("%", "percent", colnames(df))
 
@@ -60,6 +71,7 @@ standardize_df_percent_col <- function(df, regex_to_replace_by_na  = "^--?$" , p
 }
 
 standardize_df_cols_to_numeric <- function(df){
+  if(!is.data.frame(df)) return(df)
 
 # 1) search for col : with no char instead of our abbreviations (T, B, M, K at the end of the line)
   have_no_char <- sapply(df, function(col) {
@@ -110,7 +122,7 @@ standardize_df_convert_abbr_to_numeric <- function(x) {
     }
 
     return(as.numeric(val) )  }
-
+# here warning are naturally raised by R
   # numeric return
   returned <- as.numeric(sapply(USE.NAMES = F, x, convert_value))
   return(returned)

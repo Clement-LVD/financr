@@ -18,7 +18,7 @@ if(length(df) == 0) return(df)
 
 
 
-# Filter out junk observations : columns full of na
+# Filter out junk observations : a row full of na
 remove_na_rows <- function(df, na_limit = ncol(df)) {
   if(!is.data.frame(df)) return(df)
   # Verify df is not empty

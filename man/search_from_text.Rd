@@ -4,7 +4,7 @@
 \alias{search_from_text}
 \title{Get Ticker Symbol From a Text Search}
 \usage{
-search_from_text(texts, .verbose = F, exchange = NULL, quotetype = NULL)
+search_from_text(texts, .verbose = F, exchange = NULL, type = NULL)
 }
 \arguments{
 \item{texts}{\code{character} A character string or a list of character representing the text(s) to search for, e.g., company names.}
@@ -13,11 +13,11 @@ search_from_text(texts, .verbose = F, exchange = NULL, quotetype = NULL)
 
 \item{exchange}{(optionnal)  A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.}
 
-\item{quotetype}{(optionnal) A character string representing the type of asset to search for.\tabular{ll}{
+\item{type}{(optionnal) A character string representing a type of asset to search for ('quotetype' column value is used to filter out results). Case insensitive.\tabular{ll}{
    Type \tab Description \cr
    ETF \tab Exchange-Traded Fund - A basket of stocks or bonds traded like a stock. \cr
    EQUITY \tab Equity - A stock representing ownership in a company. \cr
-   MUTUALFUND \tab Mutual Fund - A pooled investment fund managed by professionals. \cr
+   MUTUALFUND \tab Mutual Fund - A pooled investment fund. \cr
    INDEX \tab Index - A benchmark representing a group of stocks (e.g., S&P 500). \cr
    FUTURE \tab Future - A contract to buy/sell an asset at a future date and price. \cr
 }}
@@ -25,22 +25,22 @@ search_from_text(texts, .verbose = F, exchange = NULL, quotetype = NULL)
 \value{
 A data frame with the following columns:
 \describe{
-\item{symbol}{\code{character} - The ticker symbol associated with an asset (e.g., "VTI", "^DWCPF").}
-\item{shortname}{\code{character} - A short name for the asset (e.g., ETF or index name).}
-\item{longname}{\code{character} - The full name of the asset, such as the full ETF or index name (Not always returned by the API).}
-\item{exchange}{\code{character} - The exchange where the asset is listed (e.g., "PCX", "DJI", "NGM").}
-\item{exchdisp}{\code{character} - The full name of the exchange place where the asset is traded (e.g., "NYSEArca", "Dow Jones").}
-\item{quoteType}{\code{character} - The type of asset (e.g., "FUTURES", "INDEX").}
-\item{typeDisp}{\code{character} - The type of asset, formatted for display (e.g., "Futures", "Index").}
-\item{score}{\code{numeric} - A numerical score assigned by Yahoo in order to indicate the relevance of the matched result, i.e. similarity with the text).}
-\item{isYahooFinance}{\code{logical} - Indicates whether the symbol is recognized by Yahoo Finance (should always be \code{TRUE} in this context).}
-\item{searched}{\code{character} - The character searched on the Yahoo API (e.g., "Dow Jones").}
+\item{symbol}{\code{character} - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
+\item{shortname}{\code{character} - A short name for the asset, e.g., ETF or index name.}
+\item{longname}{\code{character} - The full name of the asset, such as the full ETF or index name - sometimes not returned by Yahoo.}
+\item{exchange}{\code{character} - The exchange where the asset is listed, e.g., "PCX", "DJI", "NGM".}
+\item{exchdisp}{\code{character} - The full name of the exchange place where the asset is traded, e.g., "NYSEArca", "Dow Jones".}
+\item{quoteType}{\code{character} - The type of asset, e.g., "FUTURES", "INDEX".}
+\item{typeDisp}{\code{character} - The type of asset, formatted for display, e.g., "Futures", "Index").}
+\item{score}{\code{numeric} - A numerical score assigned by Yahoo in order to indicate the relevance of the matched result, i.e. similarity with the text.}
+\item{isYahooFinance}{\code{logical} - Indicates whether the symbol is recognized by Yahoo Finance - should always be \code{TRUE} in this context.}
+\item{searched}{\code{character} - The text searched on the Yahoo API, e.g., "Dow Jones".}
 }
 }
 \description{
 Get ticker symbols associated with free texts, such as companies names.
 Several ticker symbols associated with various exchanges places could be returned, with
-, companies names, sector/category (if available), etc.
+companies names, sector/category (if available), etc.
 }
 \details{
 Return a \code{data.frame} with additionnal attributes:
@@ -53,9 +53,12 @@ Return a \code{data.frame} with additionnal attributes:
 }
 }
 \examples{
-oil <- search_from_text(texts = c("TOTAL", "DOW JONES", "BP"))
-#Get data on marketplace(s)
-swedish <- search_from_text(c("SAAB", "VOLVO"),  exchange = c("STO", "PAR"))
+# Seaarch all symbols for index indices
+indices <- search_from_text(texts = c("Dow jones", "euronext"), type = "index" )
+
+# Or get data on specific exchanges places:
+swedish <- search_from_text(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
+head(swedish)
 }
 \references{
 Source : https://query2.finance.yahoo.com/v1/

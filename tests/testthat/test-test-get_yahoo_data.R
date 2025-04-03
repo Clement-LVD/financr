@@ -1,6 +1,7 @@
 
 test_that("get_yahoo data returns a valid data.frame", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   symbol <- "VOLCAR-B.ST"
   result <- get_yahoo_data(symbol)
 
@@ -15,11 +16,13 @@ test_that("get_yahoo data returns a valid data.frame", {
 })
 
 test_that("get_yahoo data handles invalid input", {
-  skip_on_cran()
+
   # empty entry => null
   result <- get_yahoo_data(symbol = character(0), .verbose = F)
  # empty results if empty symbol
   expect_true(is.null(result))
+
+  if(!internet_or_not()) skip()
 
   # several symbol = NA
   result <- get_yahoo_data(symbol = c( "AAPL" ,"GOOGL" ) )
@@ -27,7 +30,8 @@ test_that("get_yahoo data handles invalid input", {
 })
 
 test_that("get_yahoo_data handles non-existent symbols", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   result <- get_yahoo_data(symbol = "INVALID-SYMBOL")
 
   # invalid symbol = NA and a warning
@@ -35,7 +39,8 @@ test_that("get_yahoo_data handles non-existent symbols", {
 })
 
 test_that("get_yahoo_data send message by default and respect .verbose parameter", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   expect_message(get_yahoo_data(symbol = "invalide" ))
 
   expect_silent(get_yahoo_data(symbol = "invalide", .verbose = FALSE))

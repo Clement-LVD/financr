@@ -1,7 +1,6 @@
 
 test_that("Validation works and answer unique values" , {
-  skip_on_cran()
-
+  if(!internet_or_not()) skip()
 # answer is in the same order : simple case
 test_vector = c("AAPL", "SAAB", "SAAB")
   test <- valid_symbol(test_vector, .verbose = F)
@@ -21,7 +20,7 @@ test_vector <- c("AAPL" , "SAAB", "VOLVO", "fake symbol")
 
 test_that("Various input works", {
 
-  skip_on_cran()
+  if(!internet_or_not()) skip()
 
   test_vector = c("AAPL", "SAAB")
   test_2 = c("AAPL", "SAAB", "VOLVO")
@@ -40,8 +39,9 @@ expect_equal(as.logical(test), c(TRUE , FALSE, FALSE, FALSE))
 
 test_that(".verbose parameters work", {
 
-  skip_on_cran()
-  # test for a message about the fake Symbol SAAB
+  if(!internet_or_not()) skip()
+
+  # test for a message about the fake Symbol
   expect_message(valid_symbol("fake symbol"))
   # but no message if user don't want
   expect_no_message(valid_symbol("fake symbol", .verbose = F))

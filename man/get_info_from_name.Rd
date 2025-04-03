@@ -15,14 +15,15 @@ get_info_from_name(names, exchange = NULL, sector = NULL)
 }
 \value{
 A data frame with columns:
-- \code{symbol}: The stock ticker symbol from yahoo
-- \code{name}: The full company name.
-- \code{last_price}: The latest available price.
-- \code{sector}: The sector or industry category (if available).
-- \code{type}: The type of asset (certainly "stocks").
-- \code{exchange}: The stock exchange place for this stock.
-\itemize{
-\item \code{searched}: The original names searched
+
+\describe{
+\item{symbol}{\code{character} - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
+\item{name}{\code{character} - Name of the asset, e.g., ETF or index name.}
+\item{last_price}{\code{numeric} - The last price of the asset.}
+\item{sector}{\code{character} -  The sector or industry category if available, e.g., 'Industrials', 'Consumer Cyclical'.}
+\item{type}{\code{character} -   The type of asset (certainly "stocks").}
+\item{exchange}{\code{character} -   The stock exchange place for this asset, e.g., 'PAR' is Paris (FR) exchange place.}
+\item{searched}{\code{character} - The text searched on Yahoo, e.g., "Dow Jones".}
 }
 }
 \description{
@@ -42,13 +43,13 @@ Return a \code{data.frame} with additionnal attributes:
 }
 }
 \examples{
-oil <- get_info_from_name(names = c("TOTAL", "SHELL", "BP"), sector = "Energy")
+oil <- get_info_from_name(names = c("Dow Jones", "Euronext"))
 #Get data on marketplace(s)
-swedish <- get_info_from_name(names = c("SAAB", "VOLVO"),  exchange = c("STO", "PAR"))
+cars <- get_info_from_name(names = c("RENAULT", "VOLVO"),  exchange = c("STO", "PAR"))
 }
 \references{
 Source : search on https://finance.yahoo.com/lookup/
 }
 \seealso{
-\code{\link{get_yahoo_data}},  \code{\link{get_historic}}
+\code{\link{get_yahoo_data}}
 }

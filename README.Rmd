@@ -22,15 +22,17 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")  # En anglais
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 [![CRAN status](https://www.r-pkg.org/badges/version/financr)](https://CRAN.R-project.org/package=financr)
+[![Codecov test coverage](https://codecov.io/gh/Clement-LVD/financr/graph/badge.svg)](https://app.codecov.io/gh/Clement-LVD/financr)
+[![R-CMD-check](https://github.com/Clement-LVD/financr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Clement-LVD/financr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ![ ](https://img.shields.io/badge/Package-bold?style=flat&logoColor=black&logoSize=2&label=R&labelColor=black&color=green)
 
 `'financr'` retrieves financial data from Yahoo Finance.
 
-- Get historical market data (e.g., market prices, currencies exchange rates) ; 
-- Get latest insights on companies, financial symbols, major indices, currencies and crypto-currencies exchanges rates ;
-- Convert currencies and crypto-currencies with latest exchange rates.
+- Get historical market data (e.g., market prices, currencies exchange rates)
+- Get latest insights on financial assets such as companies, major indices, currencies and crypto-currencies exchanges rates
+- And other helper functions, such as converting currencies and cryptocurrencies using the latest exchange rates.
 
 See the [Vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           
@@ -44,17 +46,26 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
-**Get ticker symbol and actual values.** Given keyword(s) such as companies names, search latest stock values with `financr::get_info_from_name()`.
+**Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search financial ticker symbols with `financr::search_from_text()`.
 
-```{r example}
+```{r example1}
 library(financr)
 
-swed_indices <- get_info_from_name(names = c("SAAB", "VOLVO"))
+indices <- search_from_text(texts = c("Dow jones", "euronext"), type = "index" )
 
-str(swed_indices) # Results of the day, over all marketplaces
+str(indices) # Ticker symbols of index (all exchange places)
 ```
 
-If you don't know the ticker symbol of a financial value, exploring the results of `financr::get_info_from_name()` is a way to find it.
+
+Or retrieve the symbols and latest values on the stocks exchange places with `financr::get_info_from_name()`.
+
+```{r example-scraping}
+swed_indices <- get_info_from_name(names = c("SAAB", "VOLVO"), exchange = "STO")
+
+str(swed_indices) # More or less similar than the previous example + latest values of the day
+```
+
+If you don't know the ticker symbol of an asset, exploring the results of `financr::get_info_from_name()` or `search_from_text()` is a way to find it.
 
 **Get historical financial data.**  Given ticker symbol(s), get historic of financial values with `financr::get_historic()` :
 
@@ -62,12 +73,12 @@ If you don't know the ticker symbol of a financial value, exploring the results 
 
 # Fetch historical values, given ticker symbol(s)
 histo <- get_historic(symbols = c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
+# Default interval is daily values.
 
 str(histo)
 
 ```
 
-Each lines of this `data.frame` are daily values.
 
  
 ## Vignettes

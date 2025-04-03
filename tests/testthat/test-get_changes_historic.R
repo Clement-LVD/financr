@@ -1,7 +1,8 @@
 # get_changes tests
 
 test_that("get_changes_historic returns a valid data.frame", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   from <- c("EUR", "RON")
   result <- get_changes_historic(from = from)
 
@@ -16,7 +17,8 @@ test_that("get_changes_historic returns a valid data.frame", {
 })
 
 test_that("get_changes handles custom 'to' conversion (and empty symbols input)", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   result <- get_changes_historic(from = c( "USD", character(0)), to = "EUR")
 
   # empty results if empty symbol + 1 result
@@ -29,7 +31,8 @@ test_that("get_changes handles custom 'to' conversion (and empty symbols input)"
 
 
 test_that("get_changes handles custom from list of paired char", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   result <- get_changes_historic(from = c("USD" = "EUR", "RON" = "EUR"))
 
   expect_true(all(unique(result$from) %in% c("USD" , "RON") ))
@@ -39,7 +42,7 @@ test_that("get_changes handles custom from list of paired char", {
 
 
 test_that("get_changes handles empty symbols input", {
-  skip_on_cran()
+
   result <- get_changes_historic(from = character(0))
 
   # empty results if empty symbol
@@ -47,7 +50,8 @@ test_that("get_changes handles empty symbols input", {
 })
 
 test_that("get_changes handles non-existent symbols", {
-  skip_on_cran()
+  if(!internet_or_not()) skip()
+
   result <- get_changes_historic(from ="INVALID-SYMBOL")
 
   # invalid symbol = NA and a warning
@@ -56,6 +60,8 @@ test_that("get_changes handles non-existent symbols", {
 
 test_that("get_changes respects .verbose parameter", {
   skip_on_cran()
+  if(!internet_or_not()) skip()
+
   expect_silent(get_changes_historic(from = c("eerrorr"), .verbose = FALSE))
 })
 

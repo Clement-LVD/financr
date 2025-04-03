@@ -5,7 +5,7 @@
 #'  companies names, sector/category (if available), etc.
 #'
 #' @param texts `character` A character string or a list of character representing the text(s) to search for, e.g., company names.
-#' @param quotetype (optionnal) A character string representing the type of asset to search for.
+#' @param type (optionnal) A character string representing a type of asset to search for ('quotetype' column value is used to filter out results). Case insensitive.
 #'
 #' |Type       |Description                                                             |
 #' |:----------|:-----------------------------------------------------------------------|
@@ -28,11 +28,11 @@
 #'   \item{typeDisp}{`character` - The type of asset, formatted for display, e.g., "Futures", "Index").}
 #'   \item{score}{`numeric` - A numerical score assigned by Yahoo in order to indicate the relevance of the matched result, i.e. similarity with the text.}
 #'   \item{isYahooFinance}{`logical` - Indicates whether the symbol is recognized by Yahoo Finance - should always be `TRUE` in this context.}
-#'   \item{searched}{`character` - The character searched on the Yahoo API, e.g., "Dow Jones".}
+#'   \item{searched}{`character` - The text searched on the Yahoo API, e.g., "Dow Jones".}
 #' }
 #' @examples
-#' # Get data on all marketplace(s):
-#' oil <- search_from_text(texts = c("TOTAL", "DOW JONES", "BP"))
+#' # Seaarch all symbols for index indices
+#' indices <- search_from_text(texts = c("Dow jones", "euronext"), type = "index" )
 #'
 #' # Or get data on specific exchanges places:
 #' swedish <- search_from_text(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
@@ -40,15 +40,15 @@
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v1/
 #' @export
-search_from_text <- function(texts, .verbose = F, exchange = NULL, quotetype = NULL){
+search_from_text <- function(texts, .verbose = F, exchange = NULL,  type = NULL){
 # url = "https://query2.finance.yahoo.com/v1/finance/search?q=saab"
+if (!is.character(texts)) { return(texts) }
 
 texts <- texts[!is.na(texts)]
-if (!is.character(texts)) { return(NA) }
 if(length(texts) == 0) return(NULL)
 
 texts <- as.character(unique(texts))
-
+texts <- tolower(texts)
 if(!internet_or_not()) return(NA)
 
 url = retrieve_yahoo_api_chart_url(suffix ="v1/finance/search?q=" )
@@ -93,12 +93,12 @@ returned_results <- do.call(rbind, results)
 if(is.null(returned_results)) return(NA)
 # filtering and return a financial_df
 
-if(!is.null(quotetype   )) returned_results <- returned_results[which(tolower(returned_results$quotetype)   %in% tolower(quotetype)   ), ]
+if(!is.null(type   )) returned_results <- returned_results[which(tolower(returned_results$quotetype)   %in% tolower(type)   ), ]
 
 if(!is.null(exchange) ) {returned_results <- returned_results[which(tolower(returned_results$exchange) %in% tolower(exchange)), ]}
 
 return(construct_financial_df( returned_results) )
- }
+
   # optionnal criterius :
   # "quotesCount": self.max_results,
   # "enableFuzzyQuery": self.enable_fuzzy_query,
@@ -111,3 +111,4 @@ return(construct_financial_df( returned_results) )
   # "enableResearchReports": self.enable_research,
   # "enableCulturalAssets": self.enable_cultural_assets,
   # "recommendedCount": self.recommended
+ }

@@ -1,6 +1,7 @@
 
 test_that("get_indices data returns a valid data.frame", {
-  skip_on_cran()
+   if(!internet_or_not()) skip()
+
   result <- get_indices()
 
   # result is a good old data.frame
@@ -13,7 +14,8 @@ test_that("get_indices data returns a valid data.frame", {
 })
 
 test_that("get_indices filter according to keep parameter", {
-  skip_on_cran()
+   if(!internet_or_not()) skip()
+
   symbol ="^DJI"
 test <- get_indices( keep = symbol)
 
@@ -25,7 +27,8 @@ expect_true(  is.numeric(test$price))
 
 
 test_that("get_indices respect .verbose parameter", {
-  skip_on_cran()
+   # if(!internet_or_not()) skip()
+
   expect_silent(get_indices( .verbose = FALSE))
 
   })

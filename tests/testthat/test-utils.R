@@ -45,9 +45,9 @@ expect_null(df_new)
 test_that("remove_na_rows work correctly", {
 
   df2 <- data.frame(a = c(1, 2, NA), b = c(NA, 5, 6))
-  df_filtered <- remove_na_rows(df2)
+  df_filtered <- remove_na_rows(df2, na_limit = -1 )
 
-  expect_equal(nrow(df_filtered), 3)  # verify that there is all the line
+  expect_equal(nrow(df_filtered),1)  # verify that there is all the line
 
   df3 <- data.frame(a = c(NA, 2, NA), b = c(NA, 5, 6))
   df_filtered <- remove_na_rows(df3)

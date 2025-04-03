@@ -39,8 +39,6 @@ get_crypto <- function(keep = NULL, .verbose = T){
   krypt <-  standardize_df_cols(krypt)
 # extract text : common pattern to several yahoo tables
   krypt$price <- extract_before_sep(krypt$price)
-# deal with '%' symbol and convert to numeric
-  krypt <- standardize_df_percent_col(krypt)
   krypt <- standardize_df_cols_to_numeric(krypt)
 # capture before and after the -
   capture_groups <- "(.*)-(.*)"

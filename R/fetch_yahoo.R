@@ -28,7 +28,7 @@ extract_first_html_table <- function(content){
   if(length(tables) == 0) return(NA)
 
   # Verify results
-  if (!is.na(tables) && length(tables) > 0) {
+  if ( length(tables) > 0) {
 
     tables  <- tables[[1]]  # get first table
 

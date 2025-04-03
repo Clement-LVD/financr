@@ -9,18 +9,21 @@
 #' @param exchange (optionnal) A character string representing the exchange place(s) to consider (exact match). Default keep all the exchange places.
 #' @param sector (optionnal)  A character string representing the sector(s) to consider (exact match). Default keep all results.
 #' @return A data frame with columns:
-#' 	- `symbol`: The stock ticker symbol from yahoo
-#' 	- `name`: The full company name.
-#' 	- `last_price`: The latest available price.
-#' 	- `sector`: The sector or industry category (if available).
-#' 	- `type`: The type of asset (certainly "stocks").
-#' 	- `exchange`: The stock exchange place for this stock.
-#'  - `searched`: The original names searched
+#'
+#' \describe{
+#'   \item{symbol}{`character` - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
+#'   \item{name}{`character` - Name of the asset, e.g., ETF or index name.}
+#'   \item{last_price}{`numeric` - The last price of the asset.}
+#'   \item{sector}{`character` -  The sector or industry category if available, e.g., 'Industrials', 'Consumer Cyclical'.}
+#'   \item{type}{`character` -   The type of asset (certainly "stocks").}
+#'   \item{exchange}{`character` -   The stock exchange place for this asset, e.g., 'PAR' is Paris (FR) exchange place.}
+#'   \item{searched}{`character` - The text searched on Yahoo, e.g., "Dow Jones".}
+#'  }
 #' @examples
-#' oil <- get_info_from_name(names = c("TOTAL", "SHELL", "BP"), sector = "Energy")
+#' oil <- get_info_from_name(names = c("Dow Jones", "Euronext"))
 #' #Get data on marketplace(s)
-#' swedish <- get_info_from_name(names = c("SAAB", "VOLVO"),  exchange = c("STO", "PAR"))
-#' @seealso \code{\link{get_yahoo_data}},  \code{\link{get_historic}}
+#' cars <- get_info_from_name(names = c("RENAULT", "VOLVO"),  exchange = c("STO", "PAR"))
+#' @seealso \code{\link{get_yahoo_data}}
 #' @inherit construct_financial_df details
 #' @references Source : search on https://finance.yahoo.com/lookup/
 #' @export
@@ -35,7 +38,8 @@ base_url = "https://finance.yahoo.com/lookup/equity/?s="
 url_complete <- paste0(base_url, name)
 # fetch yahoo data
      table <-  fetch_yahoo(url_complete)
-if(!is.list(table)) return(NULL)
+
+if(!is.list(table)) return(table) # certainly NA
 
      table$searched <- name
      return(table)
@@ -45,7 +49,8 @@ results <- do.call(rbind, results)
 
 if(is.null(results)) return(results)
 
-colnames(results) <- trimws(tolower(colnames(results)))
+results <- standardize_df_cols(results)
+
 colnames(results)[grep("sector", colnames(results) )] <- "sector"
 
 if(!is.null(sector)) results <- results[which(results$sector %in% sector), ]
