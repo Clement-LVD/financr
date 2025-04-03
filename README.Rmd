@@ -16,7 +16,7 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")  # En anglais
 
 ```
 
-# '`financr`'
+# `financr`
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
