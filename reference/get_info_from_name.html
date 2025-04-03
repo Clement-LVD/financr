@@ -75,14 +75,30 @@ sector/category (if available), etc.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame with columns:
-- <code>symbol</code>: The stock ticker symbol from yahoo
-- <code>name</code>: The full company name.
-- <code>last_price</code>: The latest available price.
-- <code>sector</code>: The sector or industry category (if available).
-- <code>type</code>: The type of asset (certainly "stocks").
-- <code>exchange</code>: The stock exchange place for this stock.</p><ul><li><p><code>searched</code>: The original names searched</p></li>
-</ul></div>
+    <p>A data frame with columns:</p>
+<dl><dt>symbol</dt>
+<dd><p><code>character</code> - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".</p></dd>
+
+<dt>name</dt>
+<dd><p><code>character</code> - Name of the asset, e.g., ETF or index name.</p></dd>
+
+<dt>last_price</dt>
+<dd><p><code>numeric</code> - The last price of the asset.</p></dd>
+
+<dt>sector</dt>
+<dd><p><code>character</code> -  The sector or industry category if available, e.g., 'Industrials', 'Consumer Cyclical'.</p></dd>
+
+<dt>type</dt>
+<dd><p><code>character</code> -   The type of asset (certainly "stocks").</p></dd>
+
+<dt>exchange</dt>
+<dd><p><code>character</code> -   The stock exchange place for this asset, e.g., 'PAR' is Paris (FR) exchange place.</p></dd>
+
+<dt>searched</dt>
+<dd><p><code>character</code> - The text searched on Yahoo, e.g., "Dow Jones".</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Return a <code>data.frame</code> with additionnal attributes:</p><dl><dt>n.currencies</dt>
@@ -108,14 +124,14 @@ sector/category (if available), etc.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="get_yahoo_data.html">get_yahoo_data</a></code>,  <code><a href="get_historic.html">get_historic</a></code></p></div>
+    <div class="dont-index"><p><code><a href="get_yahoo_data.html">get_yahoo_data</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">oil</span> <span class="op">&lt;-</span> <span class="fu">get_info_from_name</span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TOTAL"</span>, <span class="st">"SHELL"</span>, <span class="st">"BP"</span><span class="op">)</span>, sector <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">oil</span> <span class="op">&lt;-</span> <span class="fu">get_info_from_name</span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow Jones"</span>, <span class="st">"Euronext"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co">#Get data on marketplace(s)</span></span></span>
-<span class="r-in"><span><span class="va">swedish</span> <span class="op">&lt;-</span> <span class="fu">get_info_from_name</span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAAB"</span>, <span class="st">"VOLVO"</span><span class="op">)</span>,  exchange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STO"</span>, <span class="st">"PAR"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cars</span> <span class="op">&lt;-</span> <span class="fu">get_info_from_name</span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RENAULT"</span>, <span class="st">"VOLVO"</span><span class="op">)</span>,  exchange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STO"</span>, <span class="st">"PAR"</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
