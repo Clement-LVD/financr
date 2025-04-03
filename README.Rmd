@@ -30,9 +30,9 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")  # En anglais
 
 `'financr'` retrieves financial data from Yahoo Finance.
 
-- Get historical market data (e.g., market prices, currencies exchange rates)
-- Get latest insights on financial assets such as companies, major indices, currencies and crypto-currencies exchanges rates
-- And other helper functions, such as converting currencies and cryptocurrencies using the latest exchange rates.
+- Get historical market data (e.g., market prices, currency exchange rates).
+- Get the latest insights on financial assets such as companies, major indices, currencies and cryptocurrency exchange rates.
+- Other helper functions, such as converting currencies and cryptocurrencies using the latest exchange rates.
 
 See the [Vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           

@@ -24,11 +24,11 @@ alt=" " />
 
 `'financr'` retrieves financial data from Yahoo Finance.
 
-- Get historical market data (e.g., market prices, currencies exchange
-  rates)
-- Get latest insights on financial assets such as companies, major
-  indices, currencies and crypto-currencies exchanges rates
-- And other helper functions, such as converting currencies and
+- Get historical market data (e.g., market prices, currency exchange
+  rates).
+- Get the latest insights on financial assets such as companies, major
+  indices, currencies and cryptocurrency exchange rates.
+- Other helper functions, such as converting currencies and
   cryptocurrencies using the latest exchange rates.
 
 See the [Vignette ‘Summary of financr
@@ -65,7 +65,7 @@ str(indices) # Ticker symbols of index (all exchange places)
 #>  $ score         : num  52196 20477 20444 20011 20005 ...
 #>  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #>  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...
-#>  - attr(*, "date")= Date[1:1], format: "2025-04-03"
+#>  - attr(*, "date")= Date[1:1], format: "2025-04-04"
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
@@ -84,7 +84,7 @@ str(swed_indices) # More or less similar than the previous example + latest valu
 #>  $ type      : chr  "Stocks" "Stocks" "Stocks" "Stocks"
 #>  $ exchange  : chr  "STO" "STO" "STO" "STO"
 #>  $ searched  : chr  "SAAB" "VOLVO" "VOLVO" "VOLVO"
-#>  - attr(*, "date")= Date[1:1], format: "2025-04-03"
+#>  - attr(*, "date")= Date[1:1], format: "2025-04-04"
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
@@ -125,7 +125,7 @@ str(histo)
 #>  $ regularmarketdayhigh: num  412 412 412 412 412 ...
 #>  - attr(*, "n.currencies")= int 1
 #>  - attr(*, "currencies")= chr "SEK"
-#>  - attr(*, "date")= Date[1:1], format: "2025-04-03"
+#>  - attr(*, "date")= Date[1:1], format: "2025-04-04"
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
