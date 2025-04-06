@@ -61,21 +61,21 @@ str(df_month)
 ```
 
 ---
-### get_currencies()
+### last_currencies()
 
-- `get_currencies()` return a list of currencies symbols and names.
+- `last_currencies()` return a list of currencies symbols and names.
 
 ```{r currencies}
-currencies <- get_currencies()
+currencies <- last_currencies()
 str(currencies)
 ```
 
  It is helpful to understand the currency symbols used by the Yahoo Finance API, such as those found in the currency column of the `data.frame` returned by `get_historic()`.
  
-**Parameters.** Filter out symbols with the `keep` parameter and/or add the latest market values ('USD') for each currency with `last_usd_values` parameter.
+**Parameters.** Filter out symbols with the `keep` parameter and/or add the latest market values ('USD') for each currency with `add_usd_values` parameter.
 
 ```{r currencies2}
-few_currencies <- get_currencies(keep = c("RON",  "USD"), last_usd_values = T )
+few_currencies <- last_currencies(keep = c("RON",  "USD"), add_usd_values = T )
 few_currencies
 ```
 

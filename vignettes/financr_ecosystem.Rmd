@@ -1,0 +1,23 @@
+---
+title: "`'financr'` Ecosystem"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{`'financr'` Ecosystem}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Other `'R packages'` retrieves data from Yahoo Finance, and thus have the same source as `'financr'`. E.g., [`'yahoofinancer'`](https://cran.r-project.org/package=yahoofinancer), [`'quantmod'`](https://cran.r-project.org/package=quantmod) and the packages that depends on them such as [`'yfr'`](https://cran.r-project.org/package=yfR) and [`'stocks'`](https://cran.r-project.org/package=stocks) that depends on `'quantmod'`. 
+
+`'financr'` only retrieves data from Yahoo Finance, without assumptions about the visualizations or analyses performed with these financial data. Consequently, `'financr'` dependencies are kept low. Other packages could offers more advanced methods, for example, `'quantmod'` offers financial data-analysis oriented functions and time series data visualization methods.
+
+`'financr'` functions always return a standardized `data.frame`. For example, `financr::get_historic()` return a standard `data.frame` while `'yahoofinancer'` methods return an `'R6'` class object (e.g., `Ticker$get_history`) ; `quantmod::getSymbols()` return a `'xts'` & `'zoo'` time series object ; and `yfr::yf_get()` return a tibble. 
+
+See the [Vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).

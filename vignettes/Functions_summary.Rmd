@@ -6,9 +6,6 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
- `'financr'` only retrieves the data from Yahoo Finance and make no assumptions about the visualizations or analyses performed with these financial data. Consequently, `financr` dependencies are kept low.
-
-
 This vignette explains the functions offered by `'financr'`.
 
 ```{r, include = FALSE}
@@ -19,99 +16,148 @@ knitr::opts_chunk$set(
 
 ```
 
-## `'financr'` Overview
+## Overview
 
-- **All the `'financr'` functions return a standardized `data.frame`.**
-    - Functions with the `'_historic'` suffix return an historic of financial data, 
-    - while the others retrieve up-to-date data and latest financial insights.
+**Inputs.** Each function expects a specific type of input, based on its prefix.
 
-```{r fn, echo=FALSE}
-fn <- data.frame(Minimal_example = c(
-                     "`get_indices()`" , "`get_crypto()`"   
-                     ,"`search_summary('Saab')`"
-                     
- ,"`search_assets(c('Saab', 'volvo'))`" ,"`search_asset_quick('Saab')`"
+```{r inputs, echo = F}
 
-  , "`get_historic('AAPL')`"
-                 
-                  , "`get_changes('USD', 'EUR')`",  "`get_changes_historic('USD', 'EUR')`" 
-                  ,'`valid_symbol("AAPL")`'
-                  ) 
-  , Input = c( "", "", "Free-text(s), e.g., companies names","Free-text(s)" ,"Free-text(s)"
+knitr::kable(
+data.frame(Prefix = c("**search_**", "**get_**", "**last_**")
+, Example  = c("`search_summary(c('Saab', 'Dow Jones'))`", "`get_historic(c('SAAB-B.ST', '^DJI' ) )`", "`last_indices()`"  )
+, Expected_input = c("Free-text(s)"
+, "Financial symbol(s) such as a ticker symbol (e.g., 'AAPL') or a 3-letter currency code (e.g., 'USD')"
+, "Do not require any input. All arguments are optional"                                
+                                )     
 
-,"Ticker symbol(s)^[https://en.wikipedia.org/wiki/Ticker_symbol]"
-, "Currencies to convert"
- , "Currencies + optional `range` and `interval`"
-, "Text(s) to verify"
-                             )
-             , Data.frame_returned =  c( "World indices, latest insights and values"
-                        , "100 major crypto-currencies, latest insights and values (USD)"
-                        ,"Assets names, ticker symbols, latest insights and financial values" 
-                        ,"Assets names and symbol(s) associated with the texts searched" 
-                        ,"Assets names and symbol(s) associated with the text searched" 
-
- , "**Historic** of financial data"
- ,"Latest exchanges rates" , "**Historic** of exchanges rates"
- , "Validity of financial symbol(s)"
-                           )
-             , Data = c( rep("Latest**^‡^**", 2),"Latest**^†^**", "Latest*","Latest*", "Historic*",  "Latest*", "Historic*", "Latest*")
-          
-)
-colnames(fn) <- c("Example", "Input", "Returned `data.frame`", "Data")
-
-knitr::kable(fn,   
-               , format = "pipe"
-             , caption = "Table 1. Overview of `'financr'` Functions"    , font_size = 10) 
-             
-          
-  # column_spec(1, width = "4em")%>% 
-  # column_spec(2, width = "11em")
+) )
 
 ```
 
-Sources :
+---
 
-- \* : Yahoo Finance APIs, e.g., query2.finance.yahoo.com/v1/finance/currencies ; [...]/v8/finance/chart or query2.finance.yahoo.com/v6/finance, etc.
-- **†** : Scraping from https://finance.yahoo.com/lookup/  
-- **‡** : Scraping from other Yahoo Finance pages, such as https://finance.yahoo.com/markets/world-indices/ or [...]/markets/crypto, etc.
+**Outputs.** All the `'financr'` functions return a standardized `data.frame` (see the last section ['Standardized Return Conventions'](#standardized-return-conventions)).
+
+- Functions with the `'_historic'` suffix return an historic of financial data, 
+- while the others retrieve up-to-date data and latest financial insights.
+
+## Details
+
+**last_ family.**
+
+```{r fn, echo=FALSE}
+
+last_fn <- data.frame(
+  Example = c( "`last_market_summary()`",
+                     "`last_indices()`" , "`last_crypto()`"
+               , "`last_currencies()`" 
+                        
+                      )
+ , data.frame_returned =  c( "Latest summary information for a set of major financial market indices",
+   "World indices latest insights and values (USD)", "100 major crypto-currencies latest insights and values (USD)" 
+    ,   "ISO currency codes for currencies, names and (optionally) latest 'USD' values"  )
+, Source = c( "*"
+,  rep("**^‡^**", 2) 
+, "*"            )
+  )
+
+knitr::kable(last_fn
+             
+             , caption = "Functions with the prefix `'last_'` retrieve latest data and do not require any input (all arguments are optional).")
+
+```
+
+- ‡ : Scraping latest data from Yahoo Finance pages, i.e. https://finance.yahoo.com/markets/world-indices/ or [...]/markets/crypto
+
+- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+
+**search_ family.**
+        
+```{r search-fn, echo=FALSE}
+
+fn <- data.frame(Example =   c( 
+                     "`search_summary('Saab')`"
+                     
+ ,"`search_assets('Saab')`" 
+ 
+ ,"`search_asset_quick('Saab')`" ) 
+  
+ 
+ , Data.frame_returned =  c(  "Assets names, ticker symbols, latest insights and financial values" 
+                        ,"Assets names and symbol(s) associated with the texts searched"   
+                       ,"Assets names and symbol(s) associated with the text searched" )
+             , Source = c( "**^†^**", "*","*")
+          
+)
+colnames(fn) <- c("Example", "Returned `data.frame`", "Source")
+
+knitr::kable(fn,   
+               , format = "pipe"
+             , caption = "Functions with the prefix `'search_'` retrieve latest data and expect free-text input(s)."    , font_size = 10) 
+             
+        
+```
+
+- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+- † : Scraping from https://finance.yahoo.com/lookup/  
+
+**get_ family.**
+
+```{r get-fn, echo = F}
+
+fn <- data.frame(Example =   c(   "`get_historic('AAPL')` <br> & `get_historic_light('AAPL')`"
+                  , "`get_changes('USD', 'EUR')`",  "`get_changes_historic('USD', 'EUR')`" 
+                 
+                  , "`get_similar('AAPL')`"
+                  ) 
+  
+  , Input = c("Asset symbol(s), such as ticker symbols^[https://en.wikipedia.org/wiki/Ticker_symbol]"
+ ,"ISO currency code(s) to convert"
+ ,"ISO currency code(s)"
+,"Asset symbol(s)"
+  )
+
+ , Data.frame_returned =  c("**Historic** of financial data*"
+ ,"**Latest** exchanges rates*" , "**Historic** of exchanges rates*"
+ , "**Latest** symbols associated with those provided and similarity scores*"
+                           )
+)
+
+colnames(fn) <- c("Example", 'Input',"Returned `data.frame`")
+
+
+knitr::kable(fn,   
+               , format = "pipe"
+             , caption = "Functions with the prefix `'get_'` retrieve the historical or latest financial values, given financial symbol(s)"    , font_size = 10) 
+
+```
+
+- \* : Retrieve latest or historical data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+
+**Other functions.**
+
+```{r other-fn, echo = F}
+
+knitr::kable(data.frame(Example  =  '`valid_symbol("AAPL")`'
+        ,    Input =  "Text(s) to verify" 
+          , Data.frame_returned = "(logical values) Validity of financial symbol(s)*"
+             ) 
+        , caption = "Other helper functions")
+
+```
+
+- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
 
 ---
 
-**Standardized Return Conventions.** Regarding all the `data.frame` returned by `'financr'` functions:
+## Standardized Return Conventions
+Regarding all the `data.frame` returned by `'financr'` functions:
     
 The column names are:
 
 - following the ['snake_case' conventions](https://wikipedia.org/wiki/Snake_case), e.g., in lowercase and without spaces;
 - and symbols are replaced (e.g., "%' is replaced by 'percent');
 
-Regarding the values : 
+Within the returned `data.frame`,  numeric values are returned as `integer` or `numeric` class of values. Thus, the texts answered by Yahoo Finance API are converted into numeric values, e.g., `"1.2M"` is turned into `1200000` and `"85%"` into `85`. 
 
-- Numeric values are returned as `integer` or `numeric` class of values. 
-
----
-
-## `'financr'` Specifics 
-
-**Role of financr in the 'Reach Yahoo Finance' ecosystem.**Other R packages retrieves data from the same source as `'financr'`, i.e. Yahoo Finance. E.g., [`'yahoofinancer'`](https://cran.r-project.org/package=yahoofinancer), [`'quantmod'`](https://cran.r-project.org/package=quantmod) and the packages that depends on them such as [`yfr`](https://cran.r-project.org/package=yfR) and [`stocks`](https://cran.r-project.org/package=stocks) (depends on `'quantmod'`). 
-
-Regarding the fetching of historical financial values from Yahoo Finance, the returned objects of these packages have different properties, see below. 
-
-```{r echo=FALSE}
-
-deps <- data.frame(Package = c("`'financr'`", "`'yahoofinancer'`"
-                               , '`yfr`'
-                               , "`'quantmod'`")
-  
-, get_historic = c("`financr::get_historic()` return a standard `data.frame`" 
-               ,  "`'yahoofinancer'` methods return an `'R6'` class object (e.g., `Ticker$get_history`)"
-              ,  '`yfr::yf_get()` return a tibble' 
-                 , "`getSymbols()` from the `'quantmod'` package return a time series object (`'xts'` & `'zoo'` object)" ) )
-
-knitr::kable(deps, row.names = F, caption = "Table 2. `'financr'` `get_historic()` Alternatives and Returned Values")
-
-
-```
-
-
-<!-- Other functions offered by these packages are sometimes more or less equivalent (e.g., `financr::valid_symbol()`) whereas other functions are specific to one of these packages. E.g., `'financr'` offer free-text search with `financr::search_summary()`, while `'quantmod'` offers financial data-analysis oriented functions and time series data visualization methods. Other packages are derivated from these 2 examples, e.g.,  which rely on quantmod and ans. -->
-
+Examples of similarities and differences with other `'R packages'` are in the [Vignette 'Summary of financr Ecosystem'](https://clement-lvd.github.io/financr/articles/financr_ecosystem.html).

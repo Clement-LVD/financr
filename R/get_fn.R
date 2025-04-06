@@ -1,0 +1,233 @@
+
+# A 'get_' prefix mean that the expected inputs are symbol(s)
+# some of these functions have their own files, e.g., get_changes and get_yahoo_data
+
+# function for standardizing symbols
+standardize_symbols <- function(symbols){
+  symbols <- symbols[!is.na(symbols)] # deal with na values
+  symbols <- toupper(gsub(" *", "", symbols, perl = T )) # suppress spaces and uppercase
+  return(unique(symbols))
+}
+
+
+#' Find Similar Financial Symbols
+#'
+#' Given symbol(s), retrieve identical symbols (according to Yahoo Finance) and a score of similarity.
+#'
+#' @param symbols `character` A character string representing a financial symbol to search.
+#' @param .verbose `logical` If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.
+#' @param ... Other symbols (char. or list of char.)
+#' @return A `data.frame` with the symbols associated with those provided by the user and similarity scores, according to Yahoo Finance.
+#' \describe{
+#'   \item{from}{`character` - Financial symbol provided by the user.}
+#'   \item{symbol}{`character` - Symbol associated with the other 'from' symbol.}
+#'   \item{score}{`numeric` - Similarity score, according to Yahoo Finance.}
+#'   }
+#' @examples
+#' get_similar(symbols =   "AAPL,GOOGL")
+#' get_similar(symbols =   c("AAPL", "GOOGL"))
+#' @references Source : https://query2.finance.yahoo.com/v6/finance/quote/validate
+#' @export
+get_similar <- function(symbols = "SAAB-B.ST", .verbose = F, ...){
+
+  symbols <- c(symbols, ...)
+
+  if(length(symbols) == 0) return(NULL)
+  if(all(is.na(symbols))) return(NA)
+
+  if(!internet_or_not()) return(NA)
+
+  symbols <- symbols[!is.na(symbols)]
+
+  initial_symbols <- standardize_symbols(symbols)
+
+  symbols <- paste0(initial_symbols, collapse = ",")
+
+
+  url <- retrieve_yahoo_api_chart_url(suffix = paste0("/v6/finance/recommendationsbysymbol/", symbols) )
+
+  raws <- fetch_yahoo(url, .verbose = .verbose)
+
+  results <- raws[[1]][[1]]
+
+  if(length(results) == 0) return(NA)
+
+  edgelist <- results[[2]]
+
+  names(edgelist) <- results[[1]]
+
+  edgelist <-  Map(function(df, name) { df$from <- name ; return(df) }, edgelist, names(edgelist))
+
+  edgelist <- do.call(rbind, edgelist)
+
+  edgelist <- edgelist[ , c("from", "symbol", "score")]
+
+  return(construct_financial_df(edgelist))
+}
+
+
+#' Get Historical Financial Data For Ticker Symbols
+#'
+#' Get the historic of stock market data for financial ticker symbols, e.g., values at each closing day.
+#' @param symbols `character` A character string representing the financial indices to search for, e.g., ticker symbol(s).
+#' @param wait.time `double`, default = `0` A character string representing an additional waiting time between 2 calls to the Yahoo API.
+#' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console.
+#' @param ... Parameters passed to `get_yahoo_data`
+#' @inheritDotParams get_yahoo_data
+#' @inherit get_yahoo_data return references
+#' @inherit construct_financial_df details
+#' @examples
+#' datas <- get_historic(symbols = c("VOLCAR-B.ST", "SAAB-B.ST") )
+#' str(datas)
+#' @seealso \code{\link{get_yahoo_data}}
+#' @seealso For more details see the help vignette:
+#' \code{vignette("get_info_and_historic", package = "financr"))}
+#' @export
+get_historic <- function(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...){
+  if(length(symbols) == 0) return(NULL)
+  if(all(is.na(symbols))) return(NA)
+  if(!is.character(symbols)) return(NA)
+  if(!internet_or_not()) return(NA)
+
+  result_actions = list()
+
+  stocks <- lapply(symbols, FUN = function(symbol) {
+
+    results <- get_yahoo_data(symbol, .verbose = .verbose, ...)
+
+    if(length(results) == 1){ if(is.na(results)) return(NA) }
+
+    results <- as.data.frame(results)
+
+    Sys.sleep(wait.time)
+
+    return(results)
+
+  })
+
+  returned_results <- do.call(rbind, stocks)
+
+  if(is.null(returned_results)) return(NULL) #other problem such as no symbol at all
+  if( all(is.na(returned_results))) return(NA)
+
+  returned_results <- construct_financial_df(returned_results  )
+  return(returned_results)
+}
+
+# Other API source
+
+#' Get Historical Financial Data For Ticker Symbols
+#'
+#' Get an historic of stock market data for financial ticker symbols, e.g., values at each closing day.
+#' @param symbols `character` A character string representing the financial indices to search for, e.g., ticker symbol(s).
+#' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console.
+#' @param interval `character`, default = `"1d"`. The interval between 2 rows of the time.series answered
+#' | **Valid `interval` values**                                       |
+#' |-------------------------------------------------------------------|
+#' |  `"1m"`,  `"5m"`, `"15m"`, `"1d"`,  `"1wk"`, `"1mo"` |
+#'
+#' @param range `character`, default = `"1y"`. The period covered by the time series.
+#' | **Valid `range` values**                                                    |
+#' |-------------------------------------------------------------------------------|
+#' |  `"1d"`, `"5d"`, `"1mo"`, `"3mo"`, `"6mo"`, `"1y"`, `"5y"`, `"max"` |
+#'
+#' @return A `data.frame` with a historical values :
+#' \describe{
+#'   \item{symbol}{`character` - Financial ticker symbol.}
+#'   \item{timestamp}{`POSIXct` - Date of the observation (closing price).}
+#'   \item{close}{`numeric` - Closing price of the asset.}
+#'   }
+#' @examples
+#' histo_light <- get_historic_light(c("SAAB-B.ST", "AAPL"))
+#' @export
+get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '1mo' , .verbose = F){
+  if(length(symbols) == 0) return(NULL)
+  if(all(is.na(symbols))) return(NA)
+  if(!is.character(symbols)) return(NA)
+  if(!internet_or_not()) return(NA)
+
+  histo_light_results <- lapply(symbols, FUN = function(symbol) {
+
+    url <- retrieve_yahoo_api_chart_url(suffix = paste0("v8/finance/spark?interval=", interval, "&range=", range, "&symbols=", symbol) )
+
+    raws <- fetch_yahoo(url, .verbose = .verbose)
+
+    if(length(raws) == 1) if(is.na(raws)) return(raws)
+
+    results <- raws[[1]]
+
+    if(length(results) == 0) return(NA)
+
+    if(length(results$timestamp) != length( results$close)) return(NA)
+
+    short_historic <- data.frame(symbol = results$symbol
+                                 , timestamp = as.POSIXct(results$timestamp)
+                                 , close = results$close )
+
+    short_historic <- standardize_df_cols(short_historic)
+  })
+
+
+  returned_results <- do.call(rbind, histo_light_results)
+  # next function will return na if the data.frame is full of na
+  return(construct_financial_df(returned_results))
+}
+
+
+#' Get Historic of Exchange Rates For Devises
+#'
+#' Get a `data.frame` of historical values of exchanges rates, given currencies to exchange.
+#' Default parameters will return a period of 1 year (1 obs. per day) and convert to USD.
+#' @inheritParams get_changes
+#' @param interval `character`, default = `"1d"`. The interval between 2 rows of the time.series answered
+#' | **Valid `interval` values**                                       |
+#' |-------------------------------------------------------------------|
+#' |  `"1m"`, `"2m"`, `"3m"`, `"5m"`, `"15m"`, `"30m"`, `"1h"`, `"4h"`, `"1d"`, `"1wk"`, `"1mo"`, `"3mo"` |
+#'
+#' @param range `character`, default = `"1y"`. The period covered by the time series.
+#' | **Valid `range` values**                                                    |
+#' |-------------------------------------------------------------------------------|
+#' |  `"1d"`, `"5d"`, `"1m"`, `"3m"`, `"6m"`, `"1y"`, `"5y"`, `"ytd"`, `"all"` |
+#'
+#' @details
+#' For each pair of 'from' and 'to' currency, it returns a `data.frame` with the historical exchanges rates on a given period (default is daily results for a year)
+
+#' @inherit get_changes references
+#' @return A `data.frame` containing the historical exchanges rates on a given period (default is daily results for a year).
+#'   The columns are:
+#'   \item{timestamp}{`POSIXct` The opening price for the period (default is each day).}
+#'   \item{close}{`numeric` The closing price for the period (default is each day).}
+#'   \item{high}{`numeric` The lowest price for the period (default is each day).}
+#'   \item{low}{`numeric` The highest price for the period (default is each day).}
+#'   \item{open}{`integer` The traded volume.}
+#'   \item{from}{`character`, the currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
+#'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
+#'  Depending on the desired interval, recent observation will be truncated,
+#'  e.g., a `'5y'` range  with a `'1d'` interval will answer approximately 30 days of values from 5 years ago.
+#' @inherit construct_financial_df details
+#' @examples
+#' days <- get_changes_historic(from = c("EUR", "JPY"))
+#' days_bis <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
+#' # Or pass paired values as 2 list (equivalent to hereabove line) :
+#' same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+#' months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
+#' @seealso \code{\link{get_changes}}
+#' @seealso For more details see the help vignette:
+#' \code{vignette("get_changes", package = "financr"))}
+#' @export
+get_changes_historic <- function(from = NULL, to = "USD"
+
+                                 , interval = "1d"
+                                 , range = "1y",  .verbose = T){
+
+  historic <- get_changes(from = from, to = to, interval = interval, range = range, .verbose = .verbose )
+
+  if(length(historic) == 0) return(historic)
+  if(length(historic) == 1) if(is.na(historic)) return(NA)
+
+  historic <- construct_financial_df(historic)
+
+  return(historic)
+}
+
+

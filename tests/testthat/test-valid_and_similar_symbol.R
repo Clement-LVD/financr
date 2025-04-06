@@ -1,9 +1,9 @@
 
 
-test_that("similar_symbols works" , {
+test_that("get_similar works" , {
   if(!internet_or_not()) skip()
 
- test <- similar_symbol(symbols =   "AAPL,GOOGL")
+ test <- get_similar(symbols =   "AAPL,GOOGL")
 
  expect_s3_class(test, "data.frame")
 
@@ -16,7 +16,7 @@ expect_false(any(unique(test$symbol) %in% c("AAPL", "GOOGL")))
 expect_true(length(unique(test$symbol) ) > 2)
 
 # test with a list of values and deal with na
-test <- similar_symbol(symbols =  c( "AAPL", "GOOGL", NA))
+test <- get_similar(symbols =  c( "AAPL", "GOOGL", NA))
 
 expect_s3_class(test, "data.frame")
 
@@ -32,12 +32,12 @@ expect_true(length(unique(test$symbol) ) > 2)
 })
 
 
-test_that("similar_symbols works with null and NA values" , {
+test_that("get_similar works with null and NA values" , {
 
-test <- similar_symbol(symbols =  NULL)
+test <- get_similar(symbols =  NULL)
 expect_null(test)
 
-test <- similar_symbol(symbols =  NA)
+test <- get_similar(symbols =  NA)
 expect_true(is.na(test))
 })
 

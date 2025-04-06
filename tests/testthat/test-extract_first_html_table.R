@@ -1,5 +1,5 @@
 
-test_that("Extracte correctement la première table d'un contenu HTML", {
+test_that("extract_first_html_table HTML", {
 
 
   # Cas 2: Contenu sans aucune table (retourne NA)

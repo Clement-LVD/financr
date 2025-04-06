@@ -28,11 +28,11 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")  # En anglais
 
 ![ ](https://img.shields.io/badge/Package-bold?style=flat&logoColor=black&logoSize=2&label=R&labelColor=black&color=green)
 
-`'financr'` retrieves financial data from Yahoo Finance.
+`'financr'` retrieves financial data from Yahoo Finance : 
 
-- Get historical market data (e.g., market prices, currency exchange rates).
-- Get the latest insights on financial assets such as companies, major indices, currencies and cryptocurrency exchange rates.
-- Other helper functions, such as converting currencies and cryptocurrencies using the latest exchange rates.
+- historical market data, e.g., market prices, currency exchange rates.
+- latest insights on financial assets such as companies, major indices, currencies and cryptocurrency exchange rates.
+- Other insights, e.g., validity of financial symbol(s) and other assets associated with.
 
 See the [Vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           
@@ -46,21 +46,21 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
-**Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search financial ticker symbols with `financr::search_from_text()`.
+**Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search financial ticker symbols with `financr::search_assets()`.
 
 ```{r example1}
 library(financr)
 
-indices <- search_assets(texts = c("Dow jones", "euronext"), type = "index" )
+indices <- search_assets(c("Dow jones", "euronext"), type = "index" )
 
-str(indices) # Ticker symbols of index (all exchange places)
+str(indices)
 ```
 
 
 Or retrieve the symbols and latest values on the stocks exchange places with `financr::search_summary()`.
 
 ```{r example-scraping}
-swed_indices <- search_summary(names = c("SAAB", "VOLVO"), exchange = "STO")
+swed_indices <- search_summary( c("SAAB", "VOLVO"), exchange = "STO")
 
 str(swed_indices) # More or less similar than the previous example + latest values of the day
 ```
@@ -72,7 +72,7 @@ If you don't know the ticker symbol of an asset, exploring the results of `finan
 ```{r example2}
 
 # Fetch historical values, given ticker symbol(s)
-histo <- get_historic(symbols = c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
+histo <- get_historic(c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
 # Default interval is daily values.
 
 str(histo)

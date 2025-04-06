@@ -55,11 +55,11 @@ Additional attributes indicates such as the symbols of currencies in the `data.f
 ```{r}
 unknown_currencies <- unique(historic$currency)
 
-values_currencies <- get_currencies(keep = unknown_currencies, last_usd_values = T)
+values_currencies <- last_currencies(keep = unknown_currencies, add_usd_values = T)
 
 head(values_currencies)
 
 ```
 
-See how to convert currencies and get last exchanges rates with the [Vignette of `get_changes()` and `get_currencies()`](https://clement-lvd.github.io/financr/articles/get_changes.html). 
+See how to convert currencies and get last exchanges rates with the [Vignette of `get_changes()` and `last_currencies()`](https://clement-lvd.github.io/financr/articles/get_changes.html). 
 

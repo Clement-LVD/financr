@@ -16,7 +16,7 @@ test_that("get_changes_historic returns a valid data.frame", {
   expect_equal(unique(result$to), "USD") # defaut convert to usd
 })
 
-test_that("get_changes handles custom 'to' conversion (and empty symbols input)", {
+test_that("get_changes_historic handles custom 'to' conversion (and empty symbols input)", {
   if(!internet_or_not()) skip()
 
   result <- get_changes_historic(from = c( "USD", character(0)), to = "EUR")
@@ -30,7 +30,7 @@ test_that("get_changes handles custom 'to' conversion (and empty symbols input)"
 })
 
 
-test_that("get_changes handles custom from list of paired char", {
+test_that("get_changes_historic handles custom from list of paired char", {
   if(!internet_or_not()) skip()
 
   result <- get_changes_historic(from = c("USD" = "EUR", "RON" = "EUR"))
@@ -41,7 +41,7 @@ test_that("get_changes handles custom from list of paired char", {
 })
 
 
-test_that("get_changes handles empty symbols input", {
+test_that("get_changes_historic handles empty symbols input", {
 
   result <- get_changes_historic(from = character(0))
 
@@ -49,7 +49,7 @@ test_that("get_changes handles empty symbols input", {
   expect_true(is.null(result))
 })
 
-test_that("get_changes handles non-existent symbols", {
+test_that("get_changes_historic handles non-existent symbols", {
   if(!internet_or_not()) skip()
 
   result <- get_changes_historic(from ="INVALID-SYMBOL")
@@ -58,7 +58,7 @@ test_that("get_changes handles non-existent symbols", {
   expect_true(is.na(result)|| is.null(result))
 })
 
-test_that("get_changes respects .verbose parameter", {
+test_that("get_changes_historic respects .verbose parameter", {
   if(!internet_or_not()) skip()
 
   expect_silent(get_changes_historic(from = c("eerrorr"), .verbose = FALSE))

@@ -1,8 +1,8 @@
 ---
-title: "get_indices() And get_crypto()"
+title: "last_indices() And last_crypto()"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{get_indices() And get_crypto()}
+  %\VignetteIndexEntry{last_indices() And last_crypto()}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,25 +18,25 @@ knitr::opts_chunk$set(
 library(financr)
 ```
 
-This vignette is about `financr::get_indices()` and `financr::get_crypto()`. 
+This vignette is about `financr::last_indices()` and `financr::last_crypto()`. 
 
 These functions offers the latest financial values of more than 40 world-indices and 100 crypto-currencies, respectively. These values are expressed in USD. 
 
 ---
 
-`get_indices()` return a `data.frame` with the latest financial value of major world financial indices.
+`last_indices()` return a `data.frame` with the latest financial value of major world financial indices.
 
 ```{r indices}
-indices <- get_indices()
+indices <- last_indices()
 str(indices)
 ```
 
 ---
 
-`get_crypto()` return a `data.frame` of 100 crypto-currencies values in USD ($). 
+`last_crypto()` return a `data.frame` of 100 crypto-currencies values in USD ($). 
 
 ```{r crypto}
-krypt <- get_crypto()
+krypt <- last_crypto()
 str(krypt)
 ```
 

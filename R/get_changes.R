@@ -103,20 +103,12 @@ return(construct_financial_df(changes))
 #url = "https://query2.finance.yahoo.com/v8/finance/chart/FJDUSD=X"
 get_a_change <- function(url, range = NULL, interval = NULL, .verbose = F){
 
-  col_2_return = c("currency"
-                   ,"symbol" ,
-                   "exchangename",
-                   # "fullexchangename"  ,
-                   "instrumenttype"    ,
-                   "firsttradedate"  ,
-  "gmtoffset"     ,       "timezone"
-  ,       "exchangetimezonename"
-  ,"regularmarketprice" ,"regularmarketdayhigh"
-  ,"regularmarketdaylow"
-  ,  "fiftytwoweekhigh"  , "fiftytwoweeklow"
-
-  ,  "previousclose" ,  "regular_timezone"
-  , "from", "to", "timestamp"
+# other columns, e.g., "fullexchangename"  ,
+col_2_return = c("currency" ,"symbol" , "exchangename",  "instrumenttype" ,  "firsttradedate"
+, "gmtoffset"     ,       "timezone"  ,       "exchangetimezonename"
+,"regularmarketprice" ,"regularmarketdayhigh"  ,"regularmarketdaylow"
+,  "fiftytwoweekhigh"  , "fiftytwoweeklow",  "previousclose"
+,  "regular_timezone"  , "from", "to", "timestamp"
                     )
 
 suffix = ""
