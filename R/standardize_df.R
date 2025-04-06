@@ -36,6 +36,21 @@ standardize_df_of_dfs <- function(df) {
   return(returned_df)
 }
 
+# find column to translate into posixct according to names: use hereafter
+standardize_timestamp_col <- function(df){
+regexx <- "((d|D)ate|(t|T)ime|(t|T)imestamp)($|_raw$|_fmt$)" #""
+col_2_translate <- grepl(regexx, names(df), ignore.case = TRUE, perl = T)
+col_2_translate <- names(df)[col_2_translate]
+
+if(length(col_2_translate) > 0){
+
+  col_without_char <- unlist(lapply(df[col_2_translate], FUN = function(col) all(!grepl(pattern = "[A-z]", col))))
+  col_2_translate <- col_2_translate[col_without_char]
+if(length(col_2_translate) > 0) df[col_2_translate] <- lapply( df[col_2_translate], as.POSIXct)}
+
+return(df)
+}
+
 #### 1) standardize data.frame colnames ####
 standardize_df_cols <- function(df, sep = "_"){
   if(!is.data.frame(df)) return(df)
@@ -59,21 +74,12 @@ df <- standardize_df_percent_col(df) # hereafter
 
   colnames(df) <- gsub(" ",sep, colnames(df))
 
-# find column to translate into posixct according to names:
-regexx <- "((d|D)ate|(t|T)ime|(t|T)imestamp)(_raw|_fmt)?$" #""
-col_2_translate <- grepl(regexx, names(df), ignore.case = TRUE, perl = T)
-col_2_translate <- names(df)[col_2_translate]
-
-if(length(col_2_translate) > 0){
-
-  col_without_char <- unlist(lapply(df[col_2_translate], FUN = function(col) all(!grepl(pattern = "[A-z]", col))))
-  col_2_translate <- col_2_translate[col_without_char]
-if(length(col_2_translate) > 0) df[col_2_translate] <- lapply( df[col_2_translate], as.POSIXct)}
-
   df <- standardize_df_cols_to_numeric(df)
+ df <- standardize_timestamp_col(df)
 
-   return(df)
+ return(df)
 }
+
 
 
 # drop col without char :

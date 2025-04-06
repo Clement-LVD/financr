@@ -17,8 +17,6 @@
 #' | **Valid `range` values**                                       |
 #' |-------------------------------------------------------------------|
 #' | `"1d"`, `"5d"`, `"1mo"`, `"3mo"`, `"6mo"`, `"1y"`, `"2y"`, `"5y"`, `"10y"`, `"ytd"` and `"max"` |
-#' Other ranges will filter out some of these daily values, depending on the desired range.
-#' Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
 #' @return A data frame containing the historical financial data with the following columns:
 #'   \item{open}{`numeric` The opening price for the period (default is each day).}

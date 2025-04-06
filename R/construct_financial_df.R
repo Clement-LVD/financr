@@ -10,8 +10,11 @@
 #'   \item{n.currencies}{`integer` - Number of unique currencies in the `data.frame`.}
 #'   \item{currencies}{`character` - A vector of currency symbols in the `data.frame` (e.g., `"BTC"`, `"ETH"`, `"USD"`).}
 #'   \item{exchange}{`character` - A vector of exchange pairs (e.g., `"BTC => USD"`). If not applicable, `NULL` (no entry).}
-#'   \item{date}{`Date` - The date when the data was retrieved, set using `Sys.Date()`.}
+#'   \item{date.fetch}{`Date` - The date when the data was retrieved, set using `Sys.Date()`.}
 #'   \item{crypto}{`logical` - `TRUE` if cryptocurrencies are present, otherwise `FALSE`.}
+#'   \item{date.begin}{`POSIXct` - The oldest obs. in the dataset.}
+#'   \item{date.end}{`POSIXct` - The most recent date in the dataset.}
+#'   \item{date.dif}{`numeric` & `difftime` - The number of seconds between date.begin and date.end.}
 #' }
 #'
 #' @seealso Other functions that use these attributes can reference this documentation.
@@ -26,6 +29,8 @@ exchange = NULL
 n_currencies = NULL
 currencies = NULL
 to_exchange = NULL
+date_old = NULL
+date_new = NULL
 
 if("currency" %in% namm) {
   currencies <- unique(df$currency)
@@ -47,13 +52,20 @@ exchange <- paste(df$from , df$to, sep = " => " )
 exchange <-  unique(exchange)
 }
 
+if("timestamp"  %in% namm){date_old = min(df$timestamp) ; date_new = max(df$timestamp)}
+if("regularmarkettime"  %in% namm){date_old = min(df$regularmarkettime) ; date_new = max(df$regularmarkettime)}
+date_dif = date_new - date_old
+if(length(date_dif) == 0) date_dif <- NULL
 # return a data.frame
 structure(df
             , n.currencies = n_currencies
           , currencies = currencies
             , exchange = exchange
-          ,  date = Sys.Date()
+          ,  date.fetch = Sys.Date()
           , crypto = crypto
+          , date.begin = date_old
+          , date.end = date_new
+          , date.dif = date_dif
           , ...)
 
 

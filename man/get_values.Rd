@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_fn.R
 \name{get_values}
 \alias{get_values}
-\title{Retrieve latest financial data of symbols}
+\title{Retrieve latest financial data}
 \usage{
 get_values(symbols = c("AAPL", "GOOGL"), .verbose = F)
 }
@@ -12,7 +12,7 @@ get_values(symbols = c("AAPL", "GOOGL"), .verbose = F)
 \item{.verbose}{Logical. If TRUE, displays verbose output during the fetching process. Default is FALSE.}
 }
 \value{
-A data.frame with 1 row per symbol provided and 21 columns, including:
+A data.frame with 1 row per valid financial symbol and 21 columns, including:
 \describe{
 \item{currency}{\code{character} - Trading currency of the asset (e.g., "USD").}
 \item{symbol}{ \code{character} - Symbol of the asset, e.g., ticker symbol.}
@@ -37,8 +37,7 @@ A data.frame with 1 row per symbol provided and 21 columns, including:
 }
 }
 \description{
-Calls an internal API to fetch flat latest (non-historical) metadata for one or more asset symbols.
-Returns a data.frame with one row per valid financial symbol, with information such as latest prices and trading context.
+Get latest insights, given financial symbols. Data such as latest prices and trading context are returned.
 }
 \details{
 Return a \code{data.frame} with additionnal attributes:
@@ -46,8 +45,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
-\item{date}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
+\item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
+\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
+\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
 }
 }
 \examples{

@@ -22,8 +22,6 @@ get_yahoo_data(
 \item{range}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
    \strong{Valid \code{range} values} \cr
    \code{"1d"}, \code{"5d"}, \code{"1mo"}, \code{"3mo"}, \code{"6mo"}, \code{"1y"}, \code{"2y"}, \code{"5y"}, \code{"10y"}, \code{"ytd"} and \code{"max"} \cr
-   Other ranges will filter out some of these daily values, depending on the desired range. \cr
-   Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max". \cr
 }}
 
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}

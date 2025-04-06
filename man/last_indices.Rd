@@ -9,7 +9,7 @@ last_indices(.verbose = T, keep = NULL)
 \arguments{
 \item{.verbose}{\code{logical}, default = \code{TRUE}. If \code{TRUE}, send messages to the console if necessary.}
 
-\item{keep}{A character vector of symbols to filter the results. If NULL (default),
+\item{keep}{A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
 no filtering is applied, and all available indices are returned.}
 }
 \value{
@@ -32,8 +32,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
-\item{date}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
+\item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
+\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
+\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
 }
 }
 \examples{

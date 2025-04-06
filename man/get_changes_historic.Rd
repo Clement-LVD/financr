@@ -43,9 +43,9 @@ A \code{data.frame} containing the historical exchanges rates on a given period 
 The columns are:
 \item{timestamp}{\code{POSIXct} The opening price for the period (default is each day).}
 \item{close}{\code{numeric} The closing price for the period (default is each day).}
-\item{high}{\code{numeric} The lowest price for the period (default is each day).}
 \item{low}{\code{numeric} The highest price for the period (default is each day).}
 \item{open}{\code{integer} The traded volume.}
+\item{high}{\code{numeric} The lowest price for the period (default is each day).}
 \item{from}{\code{character}, the currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
 \item{to}{\code{character}, the currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) in this line of the \code{data.frame} are expressed with this currency}.}
 Depending on the desired interval, recent observation will be truncated,

@@ -109,7 +109,7 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' Return a `data.frame` of financial indices (currencies) given a vector of symbols, e.g., 'EUR'.
 #' Optionally, it can filter the results and add the last market price ('USD') of these currencies.
 #'
-#' @param keep A character vector of symbols to filter the results. If NULL (default),
+#' @param keep A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
 #'                  no filtering is applied, and all available indices are returned.
 #' @param add_usd_values `logical`, default = `FALSE`. If `TRUE`, add latest market values ('USD') from `get_changes()`. See [get_changes()] for the base structure.
 #' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console if necessary.
@@ -121,7 +121,7 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' all_indices <- last_currencies()
 #'
 #' # Fetch only specific indices
-#' selected_indices <- last_currencies(keep = c("USD", "EUR"))
+#' selected_indices <- last_currencies(keep = c("^Z", "EUR"))
 #' @references Source : https://query2.finance.yahoo.com/v1/finance/currencies
 #' @inherit construct_financial_df details
 #' @seealso \code{\link{get_changes}}
@@ -142,7 +142,7 @@ last_currencies <- function(keep = NULL, add_usd_values = F, .verbose = T) {
   results <- currencies$currencies$result
 
   # filter indices
-  if(!is.null(keep) ) {results <- results[which(results$symbol  %in% keep), ]}
+  if(!is.null(keep) ) {results <- results[grep( paste0(keep, collapse = "|"), x = results$symbol, ignore.case = T, perl = T), ]}
 
 results <- standardize_df_cols(results)
 

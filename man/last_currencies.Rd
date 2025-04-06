@@ -7,7 +7,7 @@
 last_currencies(keep = NULL, add_usd_values = F, .verbose = T)
 }
 \arguments{
-\item{keep}{A character vector of symbols to filter the results. If NULL (default),
+\item{keep}{A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
 no filtering is applied, and all available indices are returned.}
 
 \item{add_usd_values}{\code{logical}, default = \code{FALSE}. If \code{TRUE}, add latest market values ('USD') from \code{get_changes()}. See \code{\link[=get_changes]{get_changes()}} for the base structure.}
@@ -29,8 +29,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
-\item{date}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
+\item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
+\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
+\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
 }
 }
 \examples{
@@ -38,7 +41,7 @@ Return a \code{data.frame} with additionnal attributes:
 all_indices <- last_currencies()
 
 # Fetch only specific indices
-selected_indices <- last_currencies(keep = c("USD", "EUR"))
+selected_indices <- last_currencies(keep = c("^Z", "EUR"))
 }
 \references{
 Source : https://query2.finance.yahoo.com/v1/finance/currencies

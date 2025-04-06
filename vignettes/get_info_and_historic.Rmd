@@ -1,8 +1,8 @@
 ---
-title: "get_info_and_historic"
+title: "Workflow Example"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{get_info_and_historic}
+  %\VignetteIndexEntry{Workflow Example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,10 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette show how to fetch data from company names and get historic financial data from Yahoo API.
+This vignette show a workflow example, relying on the Yahoo Finance API.
 
-
-**Search for ticker symbols, given keyword(s).** E.g., search symbols of all index with 'dow jones' or 'euronext' (case insensitive).
+**Search for ticker symbols, given keyword(s).** E.g., search symbols of all index with 'Dow jones' or 'Euronext' (case insensitive).
 
 ```{r setup}
 library(financr)
@@ -62,5 +61,5 @@ head(values_currencies)
 
 ```
 
-See how to convert currencies and get last exchanges rates with the [Vignette of `get_changes()` and `last_currencies()`](https://clement-lvd.github.io/financr/articles/currencies.html). 
+See how to convert currencies and get last exchanges rates with the [Vignette of currency-related functions](https://clement-lvd.github.io/financr/articles/currencies.html). 
 

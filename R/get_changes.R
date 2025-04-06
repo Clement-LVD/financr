@@ -111,7 +111,7 @@ col_2_return = c("currency" ,"symbol" , "exchangename",  "instrumenttype" ,  "fi
 suffix = ""
   # add special keyword to each of the url :
  if(any(!is.null(range), !is.null(interval))) suffix = "?"
-  # add optionnal special keywords (used by get_changes_historic) :
+  # add optional special keywords (used by get_changes_historic) :
   if(!is.null(interval)) suffix = paste0(suffix, "&interval=", interval)
   if(!is.null(range)) suffix = paste0(suffix, "&range=", range)
 
@@ -168,6 +168,8 @@ historic <- unlist_df_with_list_of_leng1(main$indicators$quote[[1]]
   # create our from and to var
   historic$from <- deduced_from
   historic$to <- deduced_to
+
+  historic <- standardize_df_cols(historic)
  #return historical tables
   return( historic  )
 

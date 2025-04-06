@@ -18,9 +18,32 @@ knitr::opts_chunk$set(
 library(financr)
 ```
 
-This vignette is about the '`last_`' functions such as `financr::last_indices()` and `financr::last_crypto()` that offers the latest financial values ('USD') of more than 40 world-indices and 100 crypto-currencies, respectively. 
+This vignette is about the '`last_`' functions.
+
+### Fetching the API
+Retrieve market summary insights.
+
+```{r}
+datas <- last_market_summary(region = "US")
+
+str(datas)
+
+```
+
+Or retrieve currencies and their latest 'USD' values, e.g. currencies with a 3-letters ISO code that begin with 'Z'.
+ 
+```{r}
+
+last_currencies(keep = "^Z", add_usd_values = T)
+
+```
+
 
 ---
+
+### Scraping on Yahoo Finance
+
+Some functions rely on web scraping (Yahoo Finance webpages), such as `financr::last_indices()` and `financr::last_crypto()` which respectively provide the latest financial values (in USD) for over 40 global market indices and 100 cryptocurrencies.
 
 `last_indices()` return a `data.frame` with the latest financial value of major world financial indices.
 

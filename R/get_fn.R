@@ -9,14 +9,13 @@ standardize_symbols <- function(symbols){
   return(unique(symbols))
 }
 
-#' Retrieve latest financial data of symbols
+#' Retrieve latest financial data
 #'
-#' Calls an internal API to fetch flat latest (non-historical) metadata for one or more asset symbols.
-#' Returns a data.frame with one row per valid financial symbol, with information such as latest prices and trading context.
+#' Get latest insights, given financial symbols. Data such as latest prices and trading context are returned.
 #'
 #' @param symbols Character vector. One or more asset symbols (e.g., \code{c("AAPL", "GOOGL")}).
 #' @param .verbose Logical. If TRUE, displays verbose output during the fetching process. Default is FALSE.
-#' @return A data.frame with 1 row per symbol provided and 21 columns, including:
+#' @return A data.frame with 1 row per valid financial symbol and 21 columns, including:
 #' \describe{
 #'   \item{currency}{`character` - Trading currency of the asset (e.g., "USD").}
 #'   \item{symbol}{ `character` - Symbol of the asset, e.g., ticker symbol.}
@@ -303,9 +302,9 @@ get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '
 #'   The columns are:
 #'   \item{timestamp}{`POSIXct` The opening price for the period (default is each day).}
 #'   \item{close}{`numeric` The closing price for the period (default is each day).}
-#'   \item{high}{`numeric` The lowest price for the period (default is each day).}
 #'   \item{low}{`numeric` The highest price for the period (default is each day).}
 #'   \item{open}{`integer` The traded volume.}
+#'   \item{high}{`numeric` The lowest price for the period (default is each day).}
 #'   \item{from}{`character`, the currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
 #'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
 #'  Depending on the desired interval, recent observation will be truncated,
