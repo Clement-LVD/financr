@@ -41,7 +41,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Get_changes</a></li>
+    <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
     <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul>
@@ -76,57 +76,52 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span></code></pre></div>
 <p>This vignette is about <code><a href="../reference/get_indices.html">financr::get_indices()</a></code> and
-<code><a href="../reference/get_crypto.html">financr::get_crypto()</a></code>. These functions offers the latest
-financial values of 41 world-indices and 100 crypto-currencies,
-respectively. These values are expressed in USD.</p>
-<ul>
-<li>
-<code><a href="../reference/get_indices.html">financr::get_indices()</a></code> return a <code>data.frame</code>
-with the latest financial value of major world financial indices.</li>
-</ul>
+<code><a href="../reference/get_crypto.html">financr::get_crypto()</a></code>.</p>
+<p>These functions offers the latest financial values of more than 40
+world-indices and 100 crypto-currencies, respectively. These values are
+expressed in USD.</p>
+<hr>
+<p><code><a href="../reference/get_indices.html">get_indices()</a></code> return a <code>data.frame</code> with the
+latest financial value of major world financial indices.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># World-indices values on their respective exchange places in USD ($)</span></span>
-<span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_indices.html">get_indices</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_indices.html">get_indices</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    41 obs. of  7 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol        : chr  "^GSPC" "^DJI" "^IXIC" "^NYA" ...</span></span>
 <span><span class="co">#&gt;  $ name          : chr  "S&amp;P 500" "Dow Jones Industrial Average" "NASDAQ Composite" "NYSE COMPOSITE (DJ)" ...</span></span>
-<span><span class="co">#&gt;  $ price         : num  5397 40546 16551 18767 4916 ...</span></span>
-<span><span class="co">#&gt;  $ change        : num  -274 -1679 -1050 -766 -246 ...</span></span>
-<span><span class="co">#&gt;  $ change_percent: num  -4.84 -3.98 -5.97 -3.92 -4.77 ...</span></span>
-<span><span class="co">#&gt;  $ volume        : num  5.00e+09 9.46e+08 8.28e+09 0.00 0.00 ...</span></span>
+<span><span class="co">#&gt;  $ price         : num  5074 38315 15588 17619 4608 ...</span></span>
+<span><span class="co">#&gt;  $ change        : num  -322 -2231 -963 -1149 -308 ...</span></span>
+<span><span class="co">#&gt;  $ change_percent: num  -5.97 -5.5 -5.82 -6.12 -6.27 ...</span></span>
+<span><span class="co">#&gt;  $ volume        : num  6.05e+09 1.29e+09 9.14e+09 0.00 0.00 ...</span></span>
 <span><span class="co">#&gt;  $ currency      : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "USD"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-03"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
-<ul>
-<li>
-<code><a href="../reference/get_crypto.html">financr::get_crypto()</a></code> return a <code>data.frame</code>
-of 100 crypto-currencies values.</li>
-</ul>
+<hr>
+<p><code><a href="../reference/get_crypto.html">get_crypto()</a></code> return a <code>data.frame</code> of 100
+crypto-currencies values in USD ($).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Top 100 crypto-currencies latest values in USD ($)</span></span>
-<span><span class="va">krypt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_crypto.html">get_crypto</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">krypt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_crypto.html">get_crypto</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">krypt</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    100 obs. of  13 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol                          : chr  "BTC-USD" "ETH-USD" "USDT-USD" "XRP-USD" ...</span></span>
 <span><span class="co">#&gt;  $ name                            : chr  "Bitcoin USD" "Ethereum USD" "Tether USDt USD" "XRP USD" ...</span></span>
-<span><span class="co">#&gt;  $ price                           : num  82798.39 1813.57 1 2.06 592.3 ...</span></span>
-<span><span class="co">#&gt;  $ change                          : num  -1.72e+03 -4.00e+01 -2.30e-04 -2.43e-02 -6.15 ...</span></span>
-<span><span class="co">#&gt;  $ change_percent                  : num  -2.03 -2.16 -0.02 -1.16 -1.03 0.01 -6.21 -4.52 -2.77 -0.28 ...</span></span>
-<span><span class="co">#&gt;  $ market_cap                      : num  1.64e+12 2.19e+11 1.44e+11 1.20e+11 8.44e+10 ...</span></span>
-<span><span class="co">#&gt;  $ volume                          : num  4.11e+10 1.90e+10 8.37e+10 6.28e+09 2.14e+09 ...</span></span>
-<span><span class="co">#&gt;  $ volume_in_currency_24hr         : num  4.11e+10 1.90e+10 8.37e+10 6.28e+09 2.14e+09 ...</span></span>
-<span><span class="co">#&gt;  $ total_volume_all_currencies_24hr: num  4.11e+10 1.90e+10 8.37e+10 6.28e+09 2.14e+09 ...</span></span>
-<span><span class="co">#&gt;  $ circulating_supply              : num  1.98e+07 1.21e+08 1.44e+11 5.82e+10 1.42e+08 ...</span></span>
-<span><span class="co">#&gt;  $ x52_wk_change_percent           : num  20.4 -46.09 -0.06 241.12 0.89 ...</span></span>
+<span><span class="co">#&gt;  $ price                           : num  83426.74 1812.07 1 2.14 591.71 ...</span></span>
+<span><span class="co">#&gt;  $ change                          : num  -5.17e+02 -5.11 6.20e-05 1.82e-02 -5.32 ...</span></span>
+<span><span class="co">#&gt;  $ change_percent                  : num  -0.62 -0.28 0.01 0.86 -0.89 -0.8 0 -1.04 -1.81 -0.98 ...</span></span>
+<span><span class="co">#&gt;  $ market_cap                      : num  1.66e+12 2.19e+11 1.44e+11 1.25e+11 8.43e+10 ...</span></span>
+<span><span class="co">#&gt;  $ volume                          : num  1.42e+10 6.37e+09 3.37e+10 2.09e+09 1.00e+09 ...</span></span>
+<span><span class="co">#&gt;  $ volume_in_currency_24hr         : num  1.42e+10 6.37e+09 3.37e+10 2.09e+09 1.00e+09 ...</span></span>
+<span><span class="co">#&gt;  $ total_volume_all_currencies_24hr: num  1.42e+10 6.37e+09 3.37e+10 2.09e+09 1.00e+09 ...</span></span>
+<span><span class="co">#&gt;  $ circulating_supply              : num  1.98e+07 1.21e+08 1.44e+11 5.83e+10 1.42e+08 ...</span></span>
+<span><span class="co">#&gt;  $ x52_wk_change_percent           : num  20.88 -47.43 -0.03 257.91 2.31 ...</span></span>
 <span><span class="co">#&gt;  $ from                            : chr  "BTC" "ETH" "USDT" "XRP" ...</span></span>
 <span><span class="co">#&gt;  $ to                              : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 101</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:101] "BTC" "ETH" "USDT" "XRP" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "exchange")= chr [1:100] "BTC =&gt; USD" "ETH =&gt; USD" "USDT =&gt; USD" "XRP =&gt; USD" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-03"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi TRUE</span></span></code></pre></div>
   </main>
 </div>
