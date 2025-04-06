@@ -22,8 +22,8 @@
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
     <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
-    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">last_indices() And last_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
+    <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -130,8 +130,8 @@ no filtering is applied, and all available indices are returned.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>For more details see the help vignette:
-<code>vignette("get_indices_and_last_crypto", package = "financr"))</code></p></div>
+    <div class="dont-index"><p>For more details on the 'last_' family of functions see the help vignette:
+<code><a href="../articles/last_family.html">vignette("last_family")</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -139,26 +139,26 @@ no filtering is applied, and all available indices are returned.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">krypto</span> <span class="op">&lt;-</span> <span class="fu">last_crypto</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">krypto</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     symbol            name        price      change change_percent  market_cap</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  BTC-USD     Bitcoin USD 82494.520000 -259.330000          -0.31 1.63700e+12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  ETH-USD    Ethereum USD  1766.250000  -20.240000          -1.13 2.13137e+11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 USDT-USD Tether USDt USD     0.999502   -0.000194          -0.02 1.44015e+11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  XRP-USD         XRP USD     2.059500   -0.069600          -3.27 1.20020e+11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  BNB-USD         BNB USD   583.540000   -9.820000          -1.66 8.31370e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 USDC-USD    USD Coin USD     0.999946   -0.000091          -0.01 6.05020e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  BTC-USD     Bitcoin USD 82335.060000 -585.090000          -0.71 1.63400e+12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  ETH-USD    Ethereum USD  1746.610000  -42.060000          -2.35 2.10766e+11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 USDT-USD Tether USDt USD     0.999616   -0.000148          -0.01 1.44031e+11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  XRP-USD         XRP USD     2.050000   -0.085400          -4.00 1.19462e+11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  BNB-USD         BNB USD   580.240000  -13.100000          -2.21 8.26670e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 USDC-USD    USD Coin USD     1.000100    0.000100           0.01 6.05060e+10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       volume volume_in_currency_24hr total_volume_all_currencies_24hr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.3152e+10              1.3152e+10                       1.3152e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 6.5780e+09              6.5780e+09                       6.5780e+09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 3.2171e+10              3.2171e+10                       3.2171e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2.0510e+09              2.0510e+09                       2.0510e+09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1.0360e+09              1.0360e+09                       1.0360e+09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 4.2590e+09              4.2590e+09                       4.2590e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.3328e+10              1.3328e+10                       1.3328e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 7.4160e+09              7.4160e+09                       7.4160e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 3.3148e+10              3.3148e+10                       3.3148e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2.0730e+09              2.0730e+09                       2.0730e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1.0450e+09              1.0450e+09                       1.0450e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 4.4540e+09              4.4540e+09                       4.4540e+09</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   circulating_supply x52_wk_change_percent from  to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        1.98470e+07                 20.39  BTC USD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        1.20672e+08                -47.71  ETH USD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3        1.44087e+11                 -0.03 USDT USD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4        5.82750e+10                260.39  XRP USD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5        1.42471e+08                  1.54  BNB USD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        6.05050e+10                  0.01 USDC USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        6.05000e+10                  0.01 USDC USD</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
