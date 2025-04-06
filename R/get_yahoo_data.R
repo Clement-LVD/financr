@@ -19,7 +19,6 @@
 #' | `"1d"`, `"5d"`, `"1mo"`, `"3mo"`, `"6mo"`, `"1y"`, `"2y"`, `"5y"`, `"10y"`, `"ytd"` and `"max"` |
 #' Other ranges will filter out some of these daily values, depending on the desired range.
 #' Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".
-#' @param add_dividends_and_splits default = `TRUE` - Add insights on dividends
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
 #' @return A data frame containing the historical financial data with the following columns:
 #'   \item{open}{`numeric` The opening price for the period (default is each day).}
@@ -47,7 +46,6 @@
 #' #example : data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
 get_yahoo_data <- function(symbol = "AAPL", start_date = NULL, end_date = NULL
                            , range = "1d"
-                           , add_dividends_and_splits = TRUE
                            , .verbose = T) {
 #### 1. Verify input ####
 n_symbs <- length(symbol)
@@ -92,8 +90,6 @@ full_url <- paste(url, "?", query_string, sep = "")
 
 # Add other data : post market data and maybe dividends and splits
 full_url <- paste0(full_url, "&includePrePost=true")
-
-if(add_dividends_and_splits) full_url <-  paste0(full_url, "&events=div%7Csplit")
 
 #### 3. Get data ####
 data <- fetch_yahoo(full_url, .verbose = .verbose)

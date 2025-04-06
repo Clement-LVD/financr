@@ -3,8 +3,6 @@ output: github_document
 language: en
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -12,7 +10,6 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-Sys.setlocale("LC_TIME", "en_US.UTF-8")  # En anglais
 
 ```
 
@@ -28,11 +25,11 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")  # En anglais
 
 ![ ](https://img.shields.io/badge/Package-bold?style=flat&logoColor=black&logoSize=2&label=R&labelColor=black&color=green)
 
-`'financr'` retrieves financial data from Yahoo Finance : 
+Retrieves financial data from Yahoo Finance : 
 
-- Historic of financial data, e.g., market prices, currency exchange rates.
-- Latest insights on financial assets such as companies, major indices, currencies and cryptocurrency exchange rates.
-- Other insights, e.g., validity of financial symbol(s) and other assets associated with these symbol(s).
+- Historical market data, e.g., prices of assets, currencies exchange rates.
+- Latest insights on assets, e.g., major indices, currencies and cryptocurrencies.
+- Other insights, e.g.,  market summary, assets association (related to each other), symbol validation.
 
 See the [vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           
@@ -46,7 +43,7 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
-**Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search financial ticker symbols with `financr::search_assets()`.
+**Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search symbols with `financr::search_assets()`.
 
 ```{r example1}
 library(financr)
@@ -57,34 +54,30 @@ str(indices)
 ```
 
 
-Or use `financr::search_summary()`, in order to add latest prices to the results of the previous example.
+Optionally use `add_latest_values` parameter to add latest prices to these results.
 
 ```{r example-scraping}
-swed_indices <- search_summary( c("SAAB", "VOLVO"), exchange = "STO")
+indices2 <- search_assets(c("Dow jones", "euronext"), type = "index", add_latest_values = TRUE )
 
-str(swed_indices)
+str(indices2)
 ```
 
-If you don't know the ticker symbol of an asset, exploring the results of `financr::search_summary()`, `search_assets()` or `search_assets_quick()` is a way to find it.
+If you don't know the ticker symbol of an asset, exploring the results of `search_assets()` or `search_assets_quick()` is a way to find it.
 
-**Get historical financial data.**  Given ticker symbol(s), get historic of financial values with `financr::get_historic()` :
+**Get historical financial data.**  Given ticker symbol(s), get historic of financial values with `financr::get_historic()` (default interval is daily values).
 
 ```{r example2}
-
-# Fetch historical values, given ticker symbol(s)
 histo <- get_historic(c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
-# Default interval is daily values.
 
 str(histo)
 
 ```
 
-
  
-## Vignettes [WIP]
+## Vignettes
 **Get latest financial insights with the 'last_' family of functions**, e.g., latest values and insights about major indices, world-indices and crypto-currencies. See the [vignette on the '`last_` family' of functions`](https://clement-lvd.github.io/financr/articles/last_family.html).
 
-**Change currencies at current exchange rates and get historic of exchange rates.** See the [vignette on currency-related functions](https://clement-lvd.github.io/financr/articles/Get_changes.html).
+**Change currencies at current exchange rates and get historic of exchange rates.** See the [vignette on currency-related functions](https://clement-lvd.github.io/financr/articles/currencies.html).
  
 **Cascading functionnality.** `'financr'` offer the possibility to chain these process, e.g.,
 

@@ -74,5 +74,5 @@ Source : https://query2.finance.yahoo.com/v8/finance/chart/
 }
 \seealso{
 For more details see the help vignette:
-\code{vignette("get_changes", package = "financr"))}
+\code{vignette("currencies", package = "financr"))}
 }

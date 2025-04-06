@@ -30,8 +30,9 @@ str(indices)
 **Search for symbols and latest prices on the exchange places, given keyword(s).** E.g., search the symbols of 'Volvo car' and 'Saab' in the Stockholm exchange place (case insensitive).
 
 ```{r example-price}
-swedish <- search_summary(c("Volvo car", "Saab")
-                         , exchange = "STO")
+swedish <- search_assets(c("Volvo car", "Saab")
+                         , exchange = "STO"
+                         , add_latest_values = T)
 str(swedish)
 
 ```
@@ -61,5 +62,5 @@ head(values_currencies)
 
 ```
 
-See how to convert currencies and get last exchanges rates with the [Vignette of `get_changes()` and `last_currencies()`](https://clement-lvd.github.io/financr/articles/get_changes.html). 
+See how to convert currencies and get last exchanges rates with the [Vignette of `get_changes()` and `last_currencies()`](https://clement-lvd.github.io/financr/articles/currencies.html). 
 

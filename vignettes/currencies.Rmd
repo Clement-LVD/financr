@@ -1,8 +1,8 @@
 ---
-title: "Deal with currencies"
+title: "Currency-related functions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Deal with currencies}
+  %\VignetteIndexEntry{Currency-related functions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -40,30 +40,31 @@ str(changes)
 
 ```
 
-Currencies are indicated with the syntax of `get_changes()` and, similarly, default are converting to 'USD'. E.g., pass a named list of character vectors, or two separate lists of equal length.
+Currencies are indicated with the syntax of `get_changes()` and default are converting to 'USD' (as `get_changes()` default). E.g., pass a named list of character vectors, or two separate lists of equal length.
 
 
 ```{r change-ways}
-
 df2_days <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
  
 same_as_df2_days <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
 
-head(same_as_df2_days, 2)
 ```
 
-**Parameters.** Optionally, you can tweak the returned data.frame using the interval and range parameters. E.g., retrieve one observation per month over a five-year period.
+**Parameters.** Optionally, you can tweak the returned `data.frame` using the interval and range parameters. E.g., retrieve one observation per month over a five-year period.
 
 ```{r change-ranges}
+df_month <- get_changes_historic(
+  from = c("EUR", "JPY")
+  , interval = "1mo", range = '5y')
 
-df_month <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
 str(df_month)
 ```
 
 ---
+
 ### last_currencies()
 
-- `last_currencies()` return a list of currencies symbols and names.
+Get a `data.frame` of currencies symbols and names.
 
 ```{r currencies}
 currencies <- last_currencies()
@@ -75,7 +76,8 @@ str(currencies)
 **Parameters.** Filter out symbols with the `keep` parameter and/or add the latest market values ('USD') for each currency with `add_usd_values` parameter.
 
 ```{r currencies2}
-few_currencies <- last_currencies(keep = c("RON",  "USD"), add_usd_values = T )
+few_currencies <- last_currencies(keep = c("RON",  "USD")
+                                  , add_usd_values = T )
 few_currencies
 ```
 

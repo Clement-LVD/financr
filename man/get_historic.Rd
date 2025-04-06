@@ -25,7 +25,6 @@ get_historic(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...)
    Other ranges will filter out some of these daily values, depending on the desired range. \cr
    Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max". \cr
 }}
-    \item{\code{add_dividends_and_splits}}{default = \code{TRUE} - Add insights on dividends}
   }}
 }
 \value{

@@ -47,5 +47,5 @@ Source : https://query2.finance.yahoo.com/v1/finance/currencies
 \code{\link{get_changes}}
 
 For more details see the help vignette:
-\code{vignette("get_changes", package = "financr"))}
+\code{vignette("currencies", package = "financr"))}
 }

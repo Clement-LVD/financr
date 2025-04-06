@@ -35,7 +35,7 @@
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v8/finance/chart/
 #' @seealso For more details see the help vignette:
-#' \code{vignette("get_changes", package = "financr"))}
+#' \code{vignette("currencies", package = "financr"))}
 #' @examples
 #' # Latest exchange rates from € and ¥ to $ (default convert to 'USD")
 #' df <- get_changes(from = c("EUR", "JPY"))
@@ -89,9 +89,6 @@ if(all(sapply(changes, is.na) )) return(NA)
 changes <- unique(changes)
 # erase the junks col' that yahoo chart give us (need yahoo-account management)
 if("volume" %in% colnames(changes)) changes$volume <- NULL
-
-changes <- standardize_df_posixct_for_big_number(changes)
-#convert columns : Replace all values unix by posixct
 
 changes <- remove_na_rows(changes, na_limit = ncol(changes) - 1) # timestamp, from & to are always here
 

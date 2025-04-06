@@ -9,6 +9,114 @@ standardize_symbols <- function(symbols){
   return(unique(symbols))
 }
 
+#' Retrieve latest financial data of symbols
+#'
+#' Calls an internal API to fetch flat latest (non-historical) metadata for one or more asset symbols.
+#' Returns a data.frame with one row per valid financial symbol, with information such as latest prices and trading context.
+#'
+#' @param symbols Character vector. One or more asset symbols (e.g., \code{c("AAPL", "GOOGL")}).
+#' @param .verbose Logical. If TRUE, displays verbose output during the fetching process. Default is FALSE.
+#' @return A data.frame with 1 row per symbol provided and 21 columns, including:
+#' \describe{
+#'   \item{currency}{`character` - Trading currency of the asset (e.g., "USD").}
+#'   \item{symbol}{ `character` - Symbol of the asset, e.g., ticker symbol.}
+#'   \item{exchangename}{ `character` - Abbreviated exchange place or financial instrument name.}
+#'   \item{fullexchangename}{ `character` - Full name of the exchange place or financial instrument.}
+#'   \item{instrumenttype}{ `character` - Type of financial instrument (e.g., "EQUITY").}
+#'   \item{firsttradedate}{ `POSIXct` - Datetime when the asset was first traded.}
+#'   \item{regularmarkettime}{ `POSIXct` - Timestamp of the latest regular market quote.}
+#'   \item{hasprepostmarketdata}{ `logical` - Indicates if pre/post-market data is available.}
+#'   \item{gmtoffset}{ `integer` - Offset from GMT in seconds.}
+#'   \item{timezone}{ `character` - Abbreviated timezone name of the market.}
+#'   \item{exchangetimezonename}{ `character` - Timezone name of the exchange location.}
+#'   \item{regularmarketprice}{ `numeric`   - Latest regular market trading price.}
+#'   \item{fiftytwoweekhigh}{ `numeric`   - highest price over a 52-weeks period.}
+#'   \item{fiftytwoweeklow}{ `numeric`   - lowest price over a  52-weeks period.}
+#'   \item{regularmarketdayhigh}{ `numeric`   - Highest price during the current market day.}
+#'   \item{regularmarketdaylow}{ `numeric`   - Lowest price during the current market day.}
+#'   \item{regularmarketvolume}{ `integer`   - Volume traded during the current market day.}
+#'   \item{shortname}{ `character` - Shortened or common name of the asset.}
+#'   \item{chartpreviousclose}{ `numeric`   - Closing price shown in charts.}
+#'   \item{previousclose}{`numeric`   - Previous official market close price.}
+#' }
+#' @inherit construct_financial_df details
+#' @examples
+#' get_values(c("AAPL", "GOOGL","SAAB-B.ST"))
+#' @references Source : https://query2.finance.yahoo.com/v8/finance/chart/
+#' @export
+get_values <- function(symbols = c("AAPL", "GOOGL"), .verbose = F){
+if(length(symbols) == 0 ) return(NULL)
+if(!is.character(symbols)) return(NA)
+if(!internet_or_not()) return(NA)
+
+symbols <- standardize_symbols(symbols)
+
+results <- lapply(symbols, get_asset_value, .verbose = .verbose )
+
+complete_results <- do.call(rbind, results)
+
+if(length(complete_results) == 0) return(NA)
+
+return( construct_financial_df(complete_results) )
+}
+
+
+# utility func' for hereafter : keep 'normal' column and drop stranges list values
+keep_flat_columns <- function(df) {
+is_flat <- sapply(df, function(col) {is.atomic(col) && !is.list(col)})
+df <- df[ , is_flat, drop = FALSE]
+return(df)
+}
+
+# internal function to take an asset value (like historic but just flat meta data are returned)
+
+#' Retrieve flat meta data for a financial asset
+#'
+#' Internal function to fetch flat (non-nested) meta data for a given asset symbol, such as a stock.
+#' Returns a one-row data frame with high-level market and asset information (e.g., prices, volumes, timezones).
+#'
+#' @param symbol Character. Asset symbol to query (e.g., "AAPL").
+#' @param .verbose Logical. If TRUE, enables verbose output for debugging purposes. Default is FALSE.
+#' @return A data.frame with 1 row per symbol provided and 21 columns see `get_values()`
+#' @seealso \code{get_values}
+#' @keywords internal
+#' @examples
+#' \dontrun{
+#' last_prices <- get_asset_value("SAAB-B.ST")
+#' str(last_prices)
+#' }
+get_asset_value <- function(symbol = "SAAB-B.ST", .verbose = F){
+  if(length(symbol) == 0) return(NULL)
+  if(length(symbol) > 1) return(NULL)
+  if(all(is.na(symbol))) return(NULL)
+
+  if(!internet_or_not()) return(NULL)
+
+  url <- retrieve_yahoo_api_chart_url(suffix = paste0("v8/finance/chart/", symbol) )
+
+  raws <- fetch_yahoo(url, .verbose = .verbose)
+
+  if(length(raws) == 0) return(NULL)
+  if(length(raws) == 1) if(is.na(raws)) return(NULL)
+
+  results <- raws[[1]][[1]][[1]]
+
+  last_results <- keep_flat_columns(results)
+
+  last_results <- standardize_df_cols(last_results)
+
+  col_2_return <- c('currency', 'symbol', 'exchangename', 'fullexchangename', 'instrumenttype', 'firsttradedate', 'regularmarkettime', 'hasprepostmarketdata', 'gmtoffset', 'timezone', 'exchangetimezonename', 'regularmarketprice', 'fiftytwoweekhigh', 'fiftytwoweeklow', 'regularmarketdayhigh', 'regularmarketdaylow', 'regularmarketvolume'
+                    # , 'longname'
+                    , 'shortname'
+                    , 'chartpreviousclose', 'previousclose')
+
+last_results <- add_missing_var_to_df(last_results, col_2_return)
+
+last_results <- last_results[, col_2_return]
+
+
+  return(last_results)
+}
 
 #' Find Similar Financial Symbols
 #'
@@ -36,8 +144,6 @@ get_similar <- function(symbols = "SAAB-B.ST", .verbose = F, ...){
   if(all(is.na(symbols))) return(NA)
 
   if(!internet_or_not()) return(NA)
-
-  symbols <- symbols[!is.na(symbols)]
 
   initial_symbols <- standardize_symbols(symbols)
 
@@ -213,7 +319,7 @@ get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '
 #' months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
 #' @seealso \code{\link{get_changes}}
 #' @seealso For more details see the help vignette:
-#' \code{vignette("get_changes", package = "financr"))}
+#' \code{vignette("currencies", package = "financr"))}
 #' @export
 get_changes_historic <- function(from = NULL, to = "USD"
 

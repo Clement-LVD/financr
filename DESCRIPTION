@@ -1,12 +1,12 @@
 Package: financr
 Title:  Retrieve Financial Data From Yahoo Finance
-Version: 0.2.0
+Version: 0.3.0
 Authors@R:
     person("Clément", "Laverdet", , "clementlvd@gmail.com", role = c("aut", "cre", 'cph'),
            comment = c(ORCID = "0000-0003-4466-3394"))
 Description: Retrieve historical market data (e.g., market prices, currencies exchange rates) ; 
-     latest insights on companies, financial symbols, major indices, currencies and crypto-currencies values;
-     and various helper functions, e.g., convert currencies at the latest exchange rates.
+     latest insights on  financial assets, major indices, currencies and crypto-currencies ;
+     and various helper functions, e.g., retrieves the latest exchange rates, find symbol validity or similar assets.
 License: MIT + file LICENSE
 URL: https://github.com/clement-LVD/financr,
     https://clement-lvd.github.io/financr/

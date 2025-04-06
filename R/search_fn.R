@@ -1,7 +1,5 @@
 #### Search from free-text(s) ####
 
-###### 1) Fetch Yahoo API ######
-
 #' Search Financial Asset From Keywords (Multiple Texts)
 #'
 #' Get ticker symbols associated with free texts, such as companies names.
@@ -19,7 +17,8 @@
 #' |INDEX      |Index - A benchmark representing a group of stocks (e.g., S&P 500).     |
 #' |FUTURE     |Future - A contract to buy/sell an asset at a future date and price.    |
 #'
-#' @param exchange (optionnal)  A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.
+#' @param exchange `character` (optionnal) - A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.
+#' @param add_latest_values `logical`, default = `FALSE` - If `TRUE`, search for the values of the symbols and add columns from `get_values()`
 #' @param .verbose `logical`, default = `FALSE` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
 #' @return A data frame with the following columns:
 #' \describe{
@@ -37,14 +36,20 @@
 #' @examples
 #' indices <- search_assets(texts = c("Dow jones", "euronext"), type = "index" )
 #'
-#' swedish <- search_assets(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
-#' head(swedish)
+#' swed <- search_assets(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
+#' head(swed)
+#'
+#' swed_last_values <- search_assets(c("VOLVO car", "SAAB")
+#' ,  exchange = "STO", add_latest_values = TRUE )
+#'
+#' str(swed_last_values)
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v1/
 #' @seealso For more details see the help vignette:
 #' \code{vignette("get_info_and_historic", package = "financr"))}
+#' @seealso \code{get_values}
 #' @export
-search_assets <- function(texts, .verbose = F, exchange = NULL,  type = NULL){
+search_assets <- function(texts, exchange = NULL,  type = NULL, add_latest_values = F, .verbose = F){
 # url = "https://query2.finance.yahoo.com/v1/finance/search?q=saab"
 if (!is.character(texts)) { return(texts) }
 
@@ -86,6 +91,8 @@ main <- add_missing_var_to_df(main, cols_to_keep)
 
 main$searched <- searched_value
 
+
+
 return(main)
 }
 )
@@ -100,6 +107,12 @@ if(is.null(returned_results)) return(NA)
 if(!is.null(type   )) returned_results <- returned_results[which(tolower(returned_results$quotetype)   %in% tolower(type)   ), ]
 
 if(!is.null(exchange) ) {returned_results <- returned_results[which(tolower(returned_results$exchange) %in% tolower(exchange)), ]}
+
+# optionnaly add last values
+if(add_latest_values){
+  values <- get_values(returned_results$symbol, .verbose = .verbose)
+  returned_results <- merge(returned_results, values, by = c("symbol", "shortname"))
+}
 
 return(construct_financial_df( returned_results) )
 
@@ -161,73 +174,6 @@ results <- lapply(texts, FUN = function(text){
 data <- do.call(rbind, results)
 
 return(construct_financial_df(data) )
-}
-
-
-###### 2) Scrap Yahoo Finance ######
-
-#' Get Latest Financial Information and Ticker Symbol From Company Name(s)
-#'
-#' Get latest overall insights and ticker symbols associated with free texts, such as companies texts.
-#' Several ticker symbols associated with various exchanges places could be returned, with
-#' , companies texts, last price on the marketplace,
-#' sector/category (if available), etc.
-#'
-#' @param texts A character string representing the company name to search for.
-#' @param exchange (optionnal) A character string representing the exchange place(s) to consider (exact match). Default keep all the exchange places.
-#' @param sector (optionnal)  A character string representing the sector(s) to consider (exact match). Default keep all results.
-#' @return A data frame with columns:
-#'
-#' \describe{
-#'   \item{symbol}{`character` - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
-#'   \item{name}{`character` - Name of the asset, e.g., ETF or index name.}
-#'   \item{last_price}{`numeric` - The last price of the asset.}
-#'   \item{sector}{`character` - The sector or industry category if available, e.g., 'Industrials', 'Consumer Cyclical'.}
-#'   \item{type}{`character` - The type of asset (certainly "stocks").}
-#'   \item{exchange}{`character` - The stock exchange place for this asset, e.g., 'PAR' is Paris (FR) exchange place.}
-#'   \item{searched}{`character` - The text searched on Yahoo, e.g., "Dow Jones".}
-#'  }
-#' @examples
-#' oil <- search_summary(texts = c("Dow Jones", "Euronext"))
-#' #Get data on marketplace(s)
-#' cars <- search_summary(texts = c("RENAULT", "VOLVO"),  exchange = c("STO", "PAR"))
-#' @seealso For more details see the help vignette:
-#' \code{vignette("get_info_and_historic", package = "financr")}
-#' @inherit construct_financial_df details
-#' @references Source : search on https://finance.yahoo.com/lookup/
-#' @export
-search_summary <- function(texts, exchange = NULL, sector = NULL) {
-
-  if(!internet_or_not()) return(NA)
-
-  # loop over the texts#
-  results <- lapply(texts, function(name) {
-
-    base_url = "https://finance.yahoo.com/lookup/equity/?s="
-    url_complete <- paste0(base_url, name)
-    # fetch yahoo data
-    table <-  fetch_yahoo(url_complete)
-
-    if(!is.list(table)) return(table) # certainly NA
-
-    table$searched <- name
-    return(table)
-  })
-
-  results <- do.call(rbind, results)
-
-  if(is.null(results)) return(results)
-
-  results <- standardize_df_cols(df = results)
-
-  colnames(results)[grep("sector", colnames(results) )] <- "sector"
-
-  if(!is.null(sector)) results <- results[which(results$sector %in% sector), ]
-
-  # filter exchange
-  if(!is.null(exchange) ) {results <- results[which(results$exchange %in% exchange), ]}
-
-  return(construct_financial_df(unique(results)))
 }
 
 

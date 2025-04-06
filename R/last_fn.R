@@ -82,12 +82,12 @@ last_crypto <- function(keep = NULL, .verbose = T){
 #' @export
 last_indices <- function(.verbose = T, keep = NULL){
 
-  if(!internet_or_not()) return(NULL)
+  if(!internet_or_not()) return(NA)
 
   url = "https://finance.yahoo.com/markets/world-indices/?count=100"
   indices <- fetch_yahoo(url, .verbose = .verbose)
 
-  if(is.null(indices)) return(NULL)
+  if(is.null(indices)) return(NA)
 
   indices <- standardize_df_cols(indices)
 
@@ -126,7 +126,7 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' @inherit construct_financial_df details
 #' @seealso \code{\link{get_changes}}
 #' @seealso For more details see the help vignette:
-#' \code{vignette("get_changes", package = "financr"))}
+#' \code{vignette("currencies", package = "financr"))}
 #' @export
 last_currencies <- function(keep = NULL, add_usd_values = F, .verbose = T) {
 
@@ -208,12 +208,7 @@ last_market_summary <- function(region = NULL, .verbose = TRUE){
   results <- standardize_df_of_dfs(df = results)
   #this run standardize_col for us
 
-  results <- standardize_df_posixct_for_big_number(results)
-
   return( construct_financial_df(results) )
 
 }
-
-
-
 

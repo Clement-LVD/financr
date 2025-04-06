@@ -80,7 +80,7 @@ knitr::kable(last_fn
 ```{r search-fn, echo=FALSE}
 
 fn <- data.frame(Example =   c( 
-                     "`search_summary('Saab')`"
+"`search_assets('Saab', add_latest_values = T)`"
                      
  ,"`search_assets('Saab')`" 
  
@@ -90,10 +90,9 @@ fn <- data.frame(Example =   c(
  , Data.frame_returned =  c(  "Assets names, ticker symbols, latest insights and financial values" 
                         ,"Assets names and symbol(s) associated with the texts searched"   
                        ,"Assets names and symbol(s) associated with the text searched" )
-             , Source = c( "**^†^**", "*","*")
           
 )
-colnames(fn) <- c("Example", "Returned `data.frame`", "Source")
+colnames(fn) <- c("Example", "Returned `data.frame`")
 
 knitr::kable(fn,   
                , format = "pipe"
@@ -102,8 +101,7 @@ knitr::kable(fn,
         
 ```
 
-- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
-- † : Scraping from https://finance.yahoo.com/lookup/  
+- Source : Yahoo Finance API (https://query2.finance.yahoo.com) 
 
 ---
 
@@ -123,9 +121,9 @@ fn <- data.frame(Example =   c(   "`get_historic('AAPL')` <br> & `get_historic_l
 ,"Asset symbol(s)"
   )
 
- , Data.frame_returned =  c("**Historic** of financial data*"
- ,"**Latest** exchanges rates*" , "**Historic** of exchanges rates*"
- , "**Latest** symbols associated with those provided and similarity scores*"
+ , Data.frame_returned =  c("**Historic** of financial data"
+ ,"**Latest** exchanges rates" , "**Historic** of exchanges rates"
+ , "**Latest** symbols associated with those provided and similarity scores"
                            )
 )
 
@@ -138,7 +136,7 @@ knitr::kable(fn,
 
 ```
 
-- \* : Retrieve latest or historical data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+- Source : Yahoo Finance API (https://query2.finance.yahoo.com) 
 
 ---
 
@@ -148,13 +146,13 @@ knitr::kable(fn,
 
 knitr::kable(data.frame(Example  =  '`valid_symbol("AAPL")`'
         ,    Input =  "Text(s) to verify" 
-          , Data.frame_returned = "(logical values) Validity of financial symbol(s)*"
+          , Data.frame_returned = "(logical values) Validity of financial symbol(s)"
              ) 
         , caption = "Other helper functions")
 
 ```
 
-- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+- Source : Yahoo Finance API (https://query2.finance.yahoo.com) 
 
 ---
 

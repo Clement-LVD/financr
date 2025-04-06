@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # `financr`
 
 <!-- badges: start -->
@@ -22,14 +20,14 @@ alt=" " />
 <figcaption aria-hidden="true"> </figcaption>
 </figure>
 
-`'financr'` retrieves financial data from Yahoo Finance :
+Retrieves financial data from Yahoo Finance :
 
-- Historic of financial data, e.g., market prices, currency exchange
-  rates.
-- Latest insights on financial assets such as companies, major indices,
-  currencies and cryptocurrency exchange rates.
-- Other insights, e.g., validity of financial symbol(s) and other assets
-  associated with these symbol(s).
+- Historical market data, e.g., prices of assets, exchange rates of
+  currencies.
+- Latest insights on assets, e.g., major indices, currencies and
+  cryptocurrencies.
+- Other insights, e.g., market summary, assets association (related to
+  each other), symbol validation.
 
 See the [vignette ‘Summary of financr
 Functions’](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
@@ -45,8 +43,7 @@ devtools::install_github("clement-LVD/financr")
 ## Examples
 
 **Get ticker symbol from free-texts.** Given keyword(s) such as
-companies names, search financial ticker symbols with
-`financr::search_assets()`.
+companies names, search symbols with `financr::search_assets()`.
 
 ``` r
 library(financr)
@@ -62,44 +59,64 @@ str(indices)
 #>  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Amsterdam" ...
 #>  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...
 #>  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...
-#>  $ score         : num  51005 20280 20174 20005 20005 ...
+#>  $ score         : num  41255 20159 20118 20005 20005 ...
 #>  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #>  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...
 #>  - attr(*, "date")= Date[1:1], format: "2025-04-06"
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
-Or use `financr::search_summary()`, in order to add latest prices to the
-results of the previous example.
+Optionally use `add_latest_values` parameter to add latest prices to
+these results.
 
 ``` r
-swed_indices <- search_summary( c("SAAB", "VOLVO"), exchange = "STO")
+indices2 <- search_assets(c("Dow jones", "euronext"), type = "index", add_latest_values = TRUE )
 
-str(swed_indices)
-#> 'data.frame':    4 obs. of  7 variables:
-#>  $ symbol    : chr  "SAAB-B.ST" "VOLCAR-B.ST" "VOLV-B.ST" "VOLV-A.ST"
-#>  $ name      : chr  "SAAB AB ser. B" "Volvo Car AB ser. B" "Volvo, AB ser. B" "Volvo, AB ser. A"
-#>  $ last_price: chr  "379.40" "17.72" "245.10" "244.80"
-#>  $ sector    : chr  "Industrials" "Consumer Cyclical" "Industrials" "Industrials"
-#>  $ type      : chr  "Stocks" "Stocks" "Stocks" "Stocks"
-#>  $ exchange  : chr  "STO" "STO" "STO" "STO"
-#>  $ searched  : chr  "SAAB" "VOLVO" "VOLVO" "VOLVO"
+str(indices2)
+#> 'data.frame':    9 obs. of  28 variables:
+#>  $ symbol              : chr  "^DJI" "^DWCPF" "^DWRTF" "^N100" ...
+#>  $ shortname           : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...
+#>  $ longname            : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...
+#>  $ exchange            : chr  "DJI" "DJI" "DJI" "PAR" ...
+#>  $ exchdisp            : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...
+#>  $ quotetype           : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...
+#>  $ typedisp            : chr  "Index" "Index" "Index" "Index" ...
+#>  $ score               : num  41255 20159 20118 20005 20004 ...
+#>  $ isyahoofinance      : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+#>  $ searched            : chr  "dow jones" "dow jones" "dow jones" "euronext" ...
+#>  $ currency            : chr  "USD" "USD" "USD" "EUR" ...
+#>  $ exchangename        : chr  "DJI" "DJI" "DJI" "PAR" ...
+#>  $ fullexchangename    : chr  "DJI" "DJI" "DJI" "Paris" ...
+#>  $ instrumenttype      : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...
+#>  $ firsttradedate      : POSIXct, format: "1992-01-02 15:30:00" "2006-08-24 15:30:00" ...
+#>  $ regularmarkettime   : POSIXct, format: "2025-04-04 22:35:58" "2025-04-04 23:10:11" ...
+#>  $ hasprepostmarketdata: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+#>  $ gmtoffset           : int  -14400 -14400 -14400 7200 7200 7200 7200 7200 7200
+#>  $ timezone            : chr  "EDT" "EDT" "EDT" "CEST" ...
+#>  $ exchangetimezonename: chr  "America/New_York" "America/New_York" "America/New_York" "Europe/Paris" ...
+#>  $ regularmarketprice  : num  38315 1852 270 1436 989 ...
+#>  $ fiftytwoweekhigh    : num  45074 2471 279 1619 989 ...
+#>  $ fiftytwoweeklow     : num  37612 1806 270 1370 989 ...
+#>  $ regularmarketdayhigh: num  40098 1894 279 1512 989 ...
+#>  $ regularmarketdaylow : num  38265 1806 270 1420 989 ...
+#>  $ regularmarketvolume : int  1290108622 0 0 0 0 NA 0 NA NA
+#>  $ chartpreviousclose  : num  40546 1954 283 1513 1028 ...
+#>  $ previousclose       : num  40546 1954 283 1513 1028 ...
+#>  - attr(*, "n.currencies")= int 2
+#>  - attr(*, "currencies")= chr [1:2] "USD" "EUR"
 #>  - attr(*, "date")= Date[1:1], format: "2025-04-06"
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
 If you don’t know the ticker symbol of an asset, exploring the results
-of `financr::search_summary()`, `search_assets()` or
-`search_assets_quick()` is a way to find it.
+of `search_assets()` or `search_assets_quick()` is a way to find it.
 
 **Get historical financial data.** Given ticker symbol(s), get historic
-of financial values with `financr::get_historic()` :
+of financial values with `financr::get_historic()` (default interval is
+daily values).
 
 ``` r
-
-# Fetch historical values, given ticker symbol(s)
 histo <- get_historic(c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
-# Default interval is daily values.
 
 str(histo)
 #> 'data.frame':    1020 obs. of  20 variables:
@@ -129,7 +146,7 @@ str(histo)
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
-## Vignettes \[WIP\]
+## Vignettes
 
 **Get latest financial insights with the ‘last\_’ family of functions**,
 e.g., latest values and insights about major indices, world-indices and
@@ -138,7 +155,7 @@ functions\`](https://clement-lvd.github.io/financr/articles/last_family.html).
 
 **Change currencies at current exchange rates and get historic of
 exchange rates.** See the [vignette on currency-related
-functions](https://clement-lvd.github.io/financr/articles/Get_changes.html).
+functions](https://clement-lvd.github.io/financr/articles/currencies.html).
 
 **Cascading functionnality.** `'financr'` offer the possibility to chain
 these process, e.g.,

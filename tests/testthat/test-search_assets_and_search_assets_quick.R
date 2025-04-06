@@ -14,7 +14,7 @@ test_that("search_assets handle empty and null values", {
 
 test_that("search_assets return a valid structure", {
 
-  res <- search_assets("Dow Jones")
+  res <- search_assets("Dow Jones", type = "Index")
   if(!internet_or_not()) skip()
 
   # Vérifier que le résultat est un data frame

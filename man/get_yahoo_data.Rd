@@ -9,7 +9,6 @@ get_yahoo_data(
   start_date = NULL,
   end_date = NULL,
   range = "1d",
-  add_dividends_and_splits = TRUE,
   .verbose = T
 )
 }
@@ -26,8 +25,6 @@ get_yahoo_data(
    Other ranges will filter out some of these daily values, depending on the desired range. \cr
    Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max". \cr
 }}
-
-\item{add_dividends_and_splits}{default = \code{TRUE} - Add insights on dividends}
 
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
 }

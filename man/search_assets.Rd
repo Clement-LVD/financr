@@ -4,14 +4,18 @@
 \alias{search_assets}
 \title{Search Financial Asset From Keywords (Multiple Texts)}
 \usage{
-search_assets(texts, .verbose = F, exchange = NULL, type = NULL)
+search_assets(
+  texts,
+  exchange = NULL,
+  type = NULL,
+  add_latest_values = F,
+  .verbose = F
+)
 }
 \arguments{
 \item{texts}{\code{character} A character string or a list of character representing the text(s) to search for, e.g., company names.}
 
-\item{.verbose}{\code{logical}, default = \code{FALSE} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
-
-\item{exchange}{(optionnal)  A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.}
+\item{exchange}{\code{character} (optionnal) - A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.}
 
 \item{type}{(optionnal) A character string representing a type of asset to search for ('quotetype' column value is used to filter out results). Case insensitive.\tabular{ll}{
    Type \tab Description \cr
@@ -21,6 +25,10 @@ search_assets(texts, .verbose = F, exchange = NULL, type = NULL)
    INDEX \tab Index - A benchmark representing a group of stocks (e.g., S&P 500). \cr
    FUTURE \tab Future - A contract to buy/sell an asset at a future date and price. \cr
 }}
+
+\item{add_latest_values}{\code{logical}, default = \code{FALSE} - If \code{TRUE}, search for the values of the symbols and add columns from \code{get_values()}}
+
+\item{.verbose}{\code{logical}, default = \code{FALSE} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
 }
 \value{
 A data frame with the following columns:
@@ -55,8 +63,13 @@ Return a \code{data.frame} with additionnal attributes:
 \examples{
 indices <- search_assets(texts = c("Dow jones", "euronext"), type = "index" )
 
-swedish <- search_assets(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
-head(swedish)
+swed <- search_assets(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
+head(swed)
+
+swed_last_values <- search_assets(c("VOLVO car", "SAAB")
+,  exchange = "STO", add_latest_values = TRUE )
+
+str(swed_last_values)
 }
 \references{
 Source : https://query2.finance.yahoo.com/v1/
@@ -64,4 +77,6 @@ Source : https://query2.finance.yahoo.com/v1/
 \seealso{
 For more details see the help vignette:
 \code{vignette("get_info_and_historic", package = "financr"))}
+
+\code{get_values}
 }

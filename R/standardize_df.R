@@ -59,6 +59,16 @@ df <- standardize_df_percent_col(df) # hereafter
 
   colnames(df) <- gsub(" ",sep, colnames(df))
 
+# find column to translate into posixct according to names:
+regexx <- "((d|D)ate|(t|T)ime|(t|T)imestamp)(_raw|_fmt)?$" #""
+col_2_translate <- grepl(regexx, names(df), ignore.case = TRUE, perl = T)
+col_2_translate <- names(df)[col_2_translate]
+
+if(length(col_2_translate) > 0){
+
+  col_without_char <- unlist(lapply(df[col_2_translate], FUN = function(col) all(!grepl(pattern = "[A-z]", col))))
+  col_2_translate <- col_2_translate[col_without_char]
+if(length(col_2_translate) > 0) df[col_2_translate] <- lapply( df[col_2_translate], as.POSIXct)}
 
   df <- standardize_df_cols_to_numeric(df)
 
@@ -183,19 +193,3 @@ standardize_df_convert_abbr_to_numeric <- function(x) {
   return(returned)
 }
 
-# and standardize big number as posixct
-standardize_df_posixct_for_big_number <- function(df, limit = 1e9){
-  # 1000000000 = 2001
-
-  # 'integer'  variables with a value > 1e9
-  cols_posix <- names(df)[sapply(df, is.numeric) & sapply(df, function(col) any(col > limit))]
-
-  cols_posix <- cols_posix[!is.na(cols_posix)]
-
-  #convert with lapply() to posixct
-  if(length(cols_posix) > 0){
-    df[, cols_posix] <- lapply(df[, cols_posix, drop = FALSE], as.POSIXct)
-  }
-
-return(df)
-}
