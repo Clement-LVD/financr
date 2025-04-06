@@ -22,9 +22,9 @@ e.g., latest prices, change and percentage change."><meta property="og:image" co
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
-    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
-    <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
+    <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of Functions</a></li>
+    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">Workflow Example</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -61,7 +61,7 @@ e.g., latest prices, change and percentage change.</p>
 
 
 <dt id="arg-keep">keep<a class="anchor" aria-label="anchor" href="#arg-keep"></a></dt>
-<dd><p>A character vector of symbols to filter the results. If NULL (default),
+<dd><p>A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
 no filtering is applied, and all available indices are returned.</p></dd>
 
 </dl></div>
@@ -101,11 +101,20 @@ no filtering is applied, and all available indices are returned.</p></dd>
 <dt>exchange</dt>
 <dd><p><code>character</code> - A vector of exchange pairs (e.g., <code>"BTC =&gt; USD"</code>). If not applicable, <code>NULL</code> (no entry).</p></dd>
 
-<dt>date</dt>
+<dt>date.fetch</dt>
 <dd><p><code>Date</code> - The date when the data was retrieved, set using <code><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date()</a></code>.</p></dd>
 
 <dt>crypto</dt>
 <dd><p><code>logical</code> - <code>TRUE</code> if cryptocurrencies are present, otherwise <code>FALSE</code>.</p></dd>
+
+<dt>date.begin</dt>
+<dd><p><code>POSIXct</code> - The oldest obs. in the dataset.</p></dd>
+
+<dt>date.end</dt>
+<dd><p><code>POSIXct</code> - The most recent date in the dataset.</p></dd>
+
+<dt>date.dif</dt>
+<dd><p><code>numeric</code> &amp; <code>difftime</code> - The number of seconds between date.begin and date.end.</p></dd>
 
 
 </dl></div>

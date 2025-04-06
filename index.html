@@ -44,9 +44,9 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="articles/currencies.html">Currency-related functions</a></li>
-    <li><a class="dropdown-item" href="articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
-    <li><a class="dropdown-item" href="articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="articles/get_info_and_historic.html">get_info_and_historic</a></li>
+    <li><a class="dropdown-item" href="articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
+    <li><a class="dropdown-item" href="articles/Functions_summary.html">Summary of Functions</a></li>
+    <li><a class="dropdown-item" href="articles/get_info_and_historic.html">Workflow Example</a></li>
     <li><a class="dropdown-item" href="articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul>
 </li>
@@ -76,7 +76,7 @@
  
 </figcaption></figure><p>Retrieves financial data from Yahoo Finance :</p>
 <ul>
-<li>Historical market data, e.g., prices of assets, exchange rates of currencies.</li>
+<li>Historical market data, e.g., prices of assets, currencies exchange rates.</li>
 <li>Latest insights on assets, e.g., major indices, currencies and cryptocurrencies.</li>
 <li>Other insights, e.g., market summary, assets association (related to each other), symbol validation.</li>
 </ul>
@@ -98,7 +98,7 @@
 <span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_assets.html">search_assets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    9 obs. of  10 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    8 obs. of  10 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "^DWCPF" "^DWRTF" "ESG1N.AS" ...</span></span>
 <span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Eurozone 100 ESG NR" ...</span></span>
 <span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Eurozone 100 ESG NR" ...</span></span>
@@ -106,25 +106,25 @@
 <span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Amsterdam" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score         : num  41255 20159 20118 20005 20005 ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  35585 20112 20105 20005 20004 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <p>Optionally use <code>add_latest_values</code> parameter to add latest prices to these results.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">indices2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_assets.html">search_assets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span>, add_latest_values <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    9 obs. of  28 variables:</span></span>
-<span><span class="co">#&gt;  $ symbol              : chr  "^DJI" "^DWCPF" "^DWRTF" "^N100" ...</span></span>
-<span><span class="co">#&gt;  $ shortname           : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...</span></span>
-<span><span class="co">#&gt;  $ longname            : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    8 obs. of  28 variables:</span></span>
+<span><span class="co">#&gt;  $ symbol              : chr  "^DJI" "^DWCPF" "^DWRTF" "ALASG.PA" ...</span></span>
+<span><span class="co">#&gt;  $ shortname           : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Growth All-Share Index" ...</span></span>
+<span><span class="co">#&gt;  $ longname            : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Growth All-Share Index" ...</span></span>
 <span><span class="co">#&gt;  $ exchange            : chr  "DJI" "DJI" "DJI" "PAR" ...</span></span>
 <span><span class="co">#&gt;  $ exchdisp            : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype           : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp            : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score               : num  41255 20159 20118 20005 20004 ...</span></span>
+<span><span class="co">#&gt;  $ score               : num  35585 20112 20105 20004 20004 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance      : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched            : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "USD" "USD" "USD" "EUR" ...</span></span>
@@ -134,21 +134,25 @@
 <span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "1992-01-02 15:30:00" "2006-08-24 15:30:00" ...</span></span>
 <span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-04-04 22:35:58" "2025-04-04 23:10:11" ...</span></span>
 <span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
-<span><span class="co">#&gt;  $ gmtoffset           : int  -14400 -14400 -14400 7200 7200 7200 7200 7200 7200</span></span>
+<span><span class="co">#&gt;  $ gmtoffset           : int  -14400 -14400 -14400 7200 7200 7200 7200 7200</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "EDT" "EDT" "EDT" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ exchangetimezonename: chr  "America/New_York" "America/New_York" "America/New_York" "Europe/Paris" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  38315 1852 270 1436 989 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  45074 2471 279 1619 989 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  37612 1806 270 1370 989 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  40098 1894 279 1512 989 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  38265 1806 270 1420 989 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketvolume : int  1290108622 0 0 0 0 NA 0 NA NA</span></span>
-<span><span class="co">#&gt;  $ chartpreviousclose  : num  40546 1954 283 1513 1028 ...</span></span>
-<span><span class="co">#&gt;  $ previousclose       : num  40546 1954 283 1513 1028 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  38315 1852 270 989 2367 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  45074 2471 279 989 2367 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  37612 1806 270 989 2367 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  40098 1894 279 989 2367 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  38265 1806 270 989 2367 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  1290108622 0 0 0 NA 0 NA NA</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  40546 1954 283 1028 2502 ...</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  40546 1954 283 1028 2502 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 2</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:2] "USD" "EUR"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
-<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-06"</span></span>
+<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-04-04 18:05:02"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-04 23:10:13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= 'difftime' num 5.08638888888889</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "units")= chr "hours"</span></span></code></pre></div>
 <p>If you don’t know the ticker symbol of an asset, exploring the results of <code><a href="reference/search_assets.html">search_assets()</a></code> or <code><a href="reference/search_assets_quick.html">search_assets_quick()</a></code> is a way to find it.</p>
 <p><strong>Get historical financial data.</strong> Given ticker symbol(s), get historic of financial values with <code><a href="reference/get_historic.html">financr::get_historic()</a></code> (default interval is daily values).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -178,26 +182,22 @@
 <span><span class="co">#&gt;  $ regularmarketdayhigh: num  420 420 420 420 420 420 420 420 420 420 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
-<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-06"</span></span>
+<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1743750000</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= int 1743780540</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= int 30540</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
 </h2>
-<p><strong>Get latest financial insights with the ‘last_’ family of functions</strong>, e.g., latest values and insights about major indices, world-indices and crypto-currencies. See the <a href="https://clement-lvd.github.io/financr/articles/last_family.html">vignette on the ‘<code>last_</code> family’ of functions`</a>.</p>
-<p><strong>Change currencies at current exchange rates and get historic of exchange rates.</strong> See the <a href="https://clement-lvd.github.io/financr/articles/currencies.html">vignette on currency-related functions</a>.</p>
-<p><strong>Cascading functionnality.</strong> <code>'financr'</code> offer the possibility to chain these process, e.g.,</p>
-<ol style="list-style-type: decimal">
-<li>get ticker symbol and latest insights from keyword(s) such as company names,</li>
-<li>then get the financial historic associated with these ticker symbol,</li>
-<li>and finally convert their values in a given standardized currency, e.g., ‘USD’.</li>
-</ol>
-<p>See the vignette on <a href="https://clement-lvd.github.io/financr/articles/get_info_and_historic.html"><code>search_summary()</code> and <code>get_historic()</code></a>.</p>
-</div>
-<div class="section level2">
-<h2 id="licence">Licence<a class="anchor" aria-label="anchor" href="#licence"></a>
-</h2>
-<p>This package retrieves data from Yahoo Finance, a property of Yahoo Inc. Users must comply with <a href="https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html" class="external-link">Yahoo Finance’s API terms</a>. See more informations on the <a href="https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html">legal Vignette</a>.</p>
+<ul>
+<li><p><a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">Summary of financr functions</a>.</p></li>
+<li><p><a href="https://clement-lvd.github.io/financr/articles/last_family.html">The ‘<code>last_</code> family’ of functions`</a>.</p></li>
+<li><p><a href="https://clement-lvd.github.io/financr/articles/currencies.html">Currency-related functions</a>.</p></li>
+<li><p><a href="https://clement-lvd.github.io/financr/articles/get_info_and_historic.html">Workflow example</a>.</p></li>
+</ul>
+<p><strong>Yahoo Finance API Licence.</strong> This package retrieves data from Yahoo Finance, a property of Yahoo Inc. Users must comply with <a href="https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html" class="external-link">Yahoo Finance’s API terms</a>. See more informations on the <a href="https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html">legal Vignette</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

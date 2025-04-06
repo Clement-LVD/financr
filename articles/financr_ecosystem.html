@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>`'financr'` Ecosystem • financr</title>
+<title>'financr' Ecosystem • financr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="`'financr'` Ecosystem">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="'financr' Ecosystem">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -41,9 +41,9 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
-    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
-    <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
+    <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of Functions</a></li>
+    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">Workflow Example</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul>
 </li>
@@ -65,7 +65,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>`'financr'` Ecosystem</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>'financr' Ecosystem</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/clement-LVD/financr/blob/main/vignettes/financr_ecosystem.Rmd" class="external-link"><code>vignettes/financr_ecosystem.Rmd</code></a></small>
@@ -75,26 +75,34 @@
     
     
 <p>Other <code>'R packages'</code> retrieves data from Yahoo Finance,
-and thus have the same source as <code>'financr'</code>. E.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
-<a href="https://cran.r-project.org/package=quantmod" class="external-link"><code>'quantmod'</code></a>
-and the packages that depends on them such as <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>'yfr'</code></a> and
+and thus have the same source as <code>'financr'</code>, e.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
+<a href="https://cran.r-project.org/package=quantmod" class="external-link"><code>'quantmod'</code></a>.
+The same is true for packages that depends on them, e.g., <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>'yfr'</code></a> and
 <a href="https://cran.r-project.org/package=stocks" class="external-link"><code>'stocks'</code></a>
 that depends on <code>'quantmod'</code>.</p>
 <p><code>'financr'</code> only retrieves data from Yahoo Finance,
 without assumptions about the visualizations or analyses performed with
 these financial data. Consequently, <code>'financr'</code> dependencies
-are kept low. Other packages could offers more advanced methods, for
-example, <code>'quantmod'</code> offers financial data-analysis oriented
-functions and time series data visualization methods.</p>
-<p><code>'financr'</code> functions always return a standardized
-<code>data.frame</code>. For example,
+are kept low, while other packages sometimes offers more advanced
+methods. For example, <code>'quantmod'</code> offers financial
+data-analysis oriented functions and time series data visualization
+methods.</p>
+<p>Regarding the fetching of historical data from Yahoo Finance API,</p>
+<ul>
+<li>
 <code><a href="../reference/get_historic.html">financr::get_historic()</a></code> return a standard
-<code>data.frame</code> while <code>'yahoofinancer'</code> methods
-return an <code>'R6'</code> class object (e.g.,
-<code>Ticker$get_history</code>) ; <code>quantmod::getSymbols()</code>
-return a <code>'xts'</code> &amp; <code>'zoo'</code> time series object
-; and <code>yfr::yf_get()</code> return a tibble.</p>
-<p>See the <a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">Vignette
+<code>data.frame</code> ;</li>
+<li>
+<code>'yahoofinancer'</code> methods return an <code>'R6'</code>
+class object (e.g., <code>Ticker$get_history</code>) ;</li>
+<li>
+<code>quantmod::getSymbols()</code> return a <code>'xts'</code>
+&amp; <code>'zoo'</code> time series object ;</li>
+<li>
+<code>yfr::yf_get()</code> return a tibble.</li>
+</ul>
+<p><code>'financr'</code> functions always return a standardized
+<code>data.frame</code>, see the <a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">Vignette
 ‘Summary of financr Functions’</a>.</p>
   </main>
 </div>

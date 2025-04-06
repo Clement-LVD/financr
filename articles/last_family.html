@@ -41,9 +41,9 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
-    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
-    <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
+    <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of Functions</a></li>
+    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">Workflow Example</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul>
 </li>
@@ -76,15 +76,88 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span></code></pre></div>
-<p>This vignette is about the ‘<code>last_</code>’ functions such as
-<code><a href="../reference/last_indices.html">financr::last_indices()</a></code> and
-<code><a href="../reference/last_crypto.html">financr::last_crypto()</a></code> that offers the latest financial
-values (‘USD’) of more than 40 world-indices and 100 crypto-currencies,
-respectively.</p>
+<p>This vignette is about the ‘<code>last_</code>’ functions.</p>
+<div class="section level3">
+<h3 id="fetching-the-api">Fetching the API<a class="anchor" aria-label="anchor" href="#fetching-the-api"></a>
+</h3>
+<p>Retrieve market summary insights.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">datas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_market_summary.html">last_market_summary</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"US"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">datas</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    15 obs. of  38 variables:</span></span>
+<span><span class="co">#&gt;  $ fullexchangename              : chr  "SNP" "DJI" "Nasdaq GIDS" "Chicago Options" ...</span></span>
+<span><span class="co">#&gt;  $ symbol                        : chr  "^GSPC" "^DJI" "^IXIC" "^RUT" ...</span></span>
+<span><span class="co">#&gt;  $ gmtoffsetmilliseconds         : int  -14400000 -14400000 -14400000 -14400000 -14400000 -14400000 -14400000 3600000 -18000000 3600000 ...</span></span>
+<span><span class="co">#&gt;  $ language                      : chr  "en-US" "en-US" "en-US" "en-US" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime_raw         : POSIXct, format: "2025-04-04 20:35:58" "2025-04-04 20:35:58" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime_fmt         : chr  "4:35PM EDT" "4:35PM EDT" "5:15PM EDT" "4:30PM EDT" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketchangepercent_raw: num  -5.975 -5.503 -5.817 -4.371 0.532 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketchangepercent_fmt: num  -5.97 -5.5 -5.82 -4.37 0.53 0.68 1.01 -1.52 -1.73 -1.99 ...</span></span>
+<span><span class="co">#&gt;  $ quotetype                     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
+<span><span class="co">#&gt;  $ typedisp                      : chr  "Index" "Index" "Index" "Index" ...</span></span>
+<span><span class="co">#&gt;  $ tradeable                     : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketpreviousclose_raw: num  5397 40546 16551 1911 62 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketpreviousclose_fmt: num  5397 40546 16551 1911 62 ...</span></span>
+<span><span class="co">#&gt;  $ exchangetimezonename          : chr  "America/New_York" "America/New_York" "America/New_York" "America/New_York" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketchange_raw       : num  -322.44 -2231.04 -962.81 -83.52 0.33 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketchange_fmt       : num  -322.44 -2231.04 -962.81 -83.52 0.33 ...</span></span>
+<span><span class="co">#&gt;  $ cryptotradeable               : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
+<span><span class="co">#&gt;  $ exchangedatadelayedby         : int  0 0 0 15 10 10 10 0 0 0 ...</span></span>
+<span><span class="co">#&gt;  $ firsttradedatemilliseconds    : num  -1.33e+12 6.94e+11 3.46e+10 5.58e+11 9.67e+11 ...</span></span>
+<span><span class="co">#&gt;  $ exchangetimezoneshortname     : chr  "EDT" "EDT" "EDT" "EDT" ...</span></span>
+<span><span class="co">#&gt;  $ hasprepostmarketdata          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
+<span><span class="co">#&gt;  $ marketstate                   : chr  "CLOSED" "CLOSED" "CLOSED" "CLOSED" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice_raw        : num  5074.1 38314.9 15587.8 1827 62.3 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice_fmt        : num  5074.1 38314.9 15587.8 1827 62.3 ...</span></span>
+<span><span class="co">#&gt;  $ custompricealertconfidence    : chr  "LOW" "LOW" "LOW" "LOW" ...</span></span>
+<span><span class="co">#&gt;  $ market                        : chr  "us_market" "us_market" "us_market" "us_market" ...</span></span>
+<span><span class="co">#&gt;  $ quotesourcename               : chr  "Delayed Quote" "Delayed Quote" "Delayed Quote" "Delayed Quote" ...</span></span>
+<span><span class="co">#&gt;  $ pricehint                     : int  2 2 2 2 NA NA NA 4 4 4 ...</span></span>
+<span><span class="co">#&gt;  $ exchange                      : chr  "SNP" "DJI" "NIM" "WCB" ...</span></span>
+<span><span class="co">#&gt;  $ sourceinterval                : int  15 120 15 15 30 15 15 15 15 15 ...</span></span>
+<span><span class="co">#&gt;  $ shortname                     : chr  "S&amp;P 500" "Dow 30" "Nasdaq" "Russell 2000" ...</span></span>
+<span><span class="co">#&gt;  $ region                        : chr  "US" "US" "US" "US" ...</span></span>
+<span><span class="co">#&gt;  $ triggerable                   : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
+<span><span class="co">#&gt;  $ longname                      : chr  "S&amp;P 500" "Dow Jones Industrial Average" "NASDAQ Composite" "Russell 2000" ...</span></span>
+<span><span class="co">#&gt;  $ headsymbolasstring            : chr  NA NA NA NA ...</span></span>
+<span><span class="co">#&gt;  $ headsymbol                    : logi  NA NA NA NA TRUE TRUE ...</span></span>
+<span><span class="co">#&gt;  $ contractsymbol                : logi  NA NA NA NA FALSE FALSE ...</span></span>
+<span><span class="co">#&gt;  $ currency                      : chr  NA NA NA NA ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
+<span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:3] NA "USD" "JPY"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-06"</span></span>
+<span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
+<p>Or retrieve currencies and their latest ‘USD’ values, e.g. currencies
+with a 3-letters ISO code that begin with ‘Z’.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/last_currencies.html">last_currencies</a></span><span class="op">(</span>keep <span class="op">=</span> <span class="st">"^Z"</span>, add_usd_values <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   symbol shortname           longname      locallongname currency exchangename</span></span>
+<span><span class="co">#&gt; 1    ZAR       ZAR South African Rand South African Rand      USD          CCY</span></span>
+<span><span class="co">#&gt; 2    ZMW       ZMW                ZMW                ZMW      USD          CCY</span></span>
+<span><span class="co">#&gt;   instrumenttype firsttradedate gmtoffset timezone exchangetimezonename</span></span>
+<span><span class="co">#&gt; 1       CURRENCY     2003-12-01      3600      BST        Europe/London</span></span>
+<span><span class="co">#&gt; 2       CURRENCY     2013-01-03      3600      BST        Europe/London</span></span>
+<span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
+<span><span class="co">#&gt; 1             0.0523               0.0527              0.0523           0.0673</span></span>
+<span><span class="co">#&gt; 2             0.0360               0.0360              0.0360           0.0418</span></span>
+<span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
+<span><span class="co">#&gt; 1          0.0516        0.0535              BST USD 2025-04-06 21:04:28</span></span>
+<span><span class="co">#&gt; 2          0.0345        0.0359              BST USD 2025-04-06 14:54:47</span></span></code></pre></div>
 <hr>
+</div>
+<div class="section level3">
+<h3 id="scraping-on-yahoo-finance">Scraping on Yahoo Finance<a class="anchor" aria-label="anchor" href="#scraping-on-yahoo-finance"></a>
+</h3>
+<p>Some functions rely on web scraping (Yahoo Finance webpages), such as
+<code><a href="../reference/last_indices.html">financr::last_indices()</a></code> and
+<code><a href="../reference/last_crypto.html">financr::last_crypto()</a></code> which respectively provide the
+latest financial values (in USD) for over 40 global market indices and
+100 cryptocurrencies.</p>
 <p><code><a href="../reference/last_indices.html">last_indices()</a></code> return a <code>data.frame</code> with the
 latest financial value of major world financial indices.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_indices.html">last_indices</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    41 obs. of  7 variables:</span></span>
@@ -97,24 +170,24 @@ latest financial value of major world financial indices.</p>
 <span><span class="co">#&gt;  $ currency      : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "USD"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <hr>
 <p><code><a href="../reference/last_crypto.html">last_crypto()</a></code> return a <code>data.frame</code> of 100
 crypto-currencies values in USD ($).</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">krypt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_crypto.html">last_crypto</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">krypt</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    100 obs. of  13 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol                          : chr  "BTC-USD" "ETH-USD" "USDT-USD" "XRP-USD" ...</span></span>
 <span><span class="co">#&gt;  $ name                            : chr  "Bitcoin USD" "Ethereum USD" "Tether USDt USD" "XRP USD" ...</span></span>
-<span><span class="co">#&gt;  $ price                           : num  7.93e+04 1.62e+03 9.99e-01 1.99 5.55e+02 ...</span></span>
-<span><span class="co">#&gt;  $ change                          : num  -3.76e+03 -1.74e+02 -2.00e-04 -1.40e-01 -3.71e+01 ...</span></span>
-<span><span class="co">#&gt;  $ change_percent                  : num  -4.53 -9.71 -0.02 -6.55 -6.27 -0.01 -9.87 -9.78 -1.84 -9.41 ...</span></span>
-<span><span class="co">#&gt;  $ market_cap                      : num  1.57e+12 1.95e+11 1.44e+11 1.16e+11 7.91e+10 ...</span></span>
-<span><span class="co">#&gt;  $ volume                          : num  2.33e+10 1.51e+10 5.27e+10 3.08e+09 1.27e+09 ...</span></span>
-<span><span class="co">#&gt;  $ volume_in_currency_24hr         : num  2.33e+10 1.51e+10 5.27e+10 3.08e+09 1.27e+09 ...</span></span>
-<span><span class="co">#&gt;  $ total_volume_all_currencies_24hr: num  2.33e+10 1.51e+10 5.27e+10 3.08e+09 1.27e+09 ...</span></span>
+<span><span class="co">#&gt;  $ price                           : num  7.94e+04 1.59e+03 9.99e-01 1.98 5.54e+02 ...</span></span>
+<span><span class="co">#&gt;  $ change                          : num  -3.64e+03 -1.94e+02 -3.71e-04 -1.53e-01 -3.68e+01 ...</span></span>
+<span><span class="co">#&gt;  $ change_percent                  : num  -4.38 -10.84 -0.04 -7.17 -6.22 ...</span></span>
+<span><span class="co">#&gt;  $ market_cap                      : num  1.58e+12 1.92e+11 1.44e+11 1.15e+11 7.90e+10 ...</span></span>
+<span><span class="co">#&gt;  $ volume                          : num  2.69e+10 1.76e+10 5.98e+10 3.74e+09 1.34e+09 ...</span></span>
+<span><span class="co">#&gt;  $ volume_in_currency_24hr         : num  2.69e+10 1.76e+10 5.98e+10 3.74e+09 1.34e+09 ...</span></span>
+<span><span class="co">#&gt;  $ total_volume_all_currencies_24hr: num  2.69e+10 1.76e+10 5.98e+10 3.74e+09 1.34e+09 ...</span></span>
 <span><span class="co">#&gt;  $ circulating_supply              : num  1.98e+07 1.21e+08 1.44e+11 5.83e+10 1.42e+08 ...</span></span>
 <span><span class="co">#&gt;  $ x52_wk_change_percent           : num  20.39 -47.71 -0.03 260.39 1.54 ...</span></span>
 <span><span class="co">#&gt;  $ from                            : chr  "BTC" "ETH" "USDT" "XRP" ...</span></span>
@@ -122,9 +195,11 @@ crypto-currencies values in USD ($).</p>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 101</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:101] "BTC" "ETH" "USDT" "XRP" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "exchange")= chr [1:100] "BTC =&gt; USD" "ETH =&gt; USD" "USDT =&gt; USD" "XRP =&gt; USD" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi TRUE</span></span></code></pre></div>
-  </main>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
