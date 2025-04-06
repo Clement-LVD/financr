@@ -95,7 +95,9 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_assets.html">search_assets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span>
+<span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_assets.html">search_assets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span></span>
+<span>                           , <span class="st">"euronext"</span><span class="op">)</span></span>
+<span>                         , type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    8 obs. of  10 variables:</span></span>
@@ -113,7 +115,10 @@
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <p>Optionally use <code>add_latest_values</code> parameter to add latest prices to these results.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">indices2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_assets.html">search_assets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span>, add_latest_values <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">indices2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_assets.html">search_assets</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span></span>
+<span>  , type <span class="op">=</span> <span class="st">"index"</span></span>
+<span>  , add_latest_values <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    8 obs. of  28 variables:</span></span>
@@ -156,7 +161,9 @@
 <p>If you don’t know the ticker symbol of an asset, exploring the results of <code><a href="reference/search_assets.html">search_assets()</a></code> or <code><a href="reference/search_assets_quick.html">search_assets_quick()</a></code> is a way to find it.</p>
 <p><strong>Get historical financial data.</strong> Given ticker symbol(s), get historic of financial values with <code><a href="reference/get_historic.html">financr::get_historic()</a></code> (default interval is daily values).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">histo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_historic.html">get_historic</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAAB-B.ST"</span>, <span class="st">"VOLV-B.ST"</span><span class="op">)</span>, .verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">histo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_historic.html">get_historic</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAAB-B.ST"</span>, <span class="st">"VOLV-B.ST"</span><span class="op">)</span></span>
+<span>  , .verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">histo</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
