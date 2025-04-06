@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>About_the_Yahoo_Finance_License • financr</title>
+<title>`'financr'` Ecosystem • financr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="About_the_Yahoo_Finance_License">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="`'financr'` Ecosystem">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -65,35 +65,37 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>About_the_Yahoo_Finance_License</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>`'financr'` Ecosystem</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/clement-LVD/financr/blob/main/vignettes/About_the_Yahoo_Finance_License.Rmd" class="external-link"><code>vignettes/About_the_Yahoo_Finance_License.Rmd</code></a></small>
-      <div class="d-none name"><code>About_the_Yahoo_Finance_License.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/clement-LVD/financr/blob/main/vignettes/financr_ecosystem.Rmd" class="external-link"><code>vignettes/financr_ecosystem.Rmd</code></a></small>
+      <div class="d-none name"><code>financr_ecosystem.Rmd</code></div>
     </div>
 
     
     
-<p>The <code>financr</code> package retrieves data from Yahoo Finance, a
-property of Yahoo Inc. </p>
-<p><strong>Legal Acceptance.</strong> With any use of Yahoo Finance
-data, the user’s agreement is contracted, see hereafter.</p>
-<p>The user comply with the <a href="https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn" class="external-link">Yahoo
-Finance’s API terms</a> and has no possibility of disputing it as soon
-as data as retrieved, i.e. if you “disagree with any of the terms in the
-TOU or API Documents, Yahoo does not grant you a license to use the
-Yahoo APIs” (<a href="https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/" class="external-link uri">https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/</a>
-2025).</p>
-<p><strong>Good Practices.</strong> Regarding the good practices when
-fetching from the Yahoo Finance API:</p>
-<blockquote>
-<p>Use the Yahoo APIs in a manner that exceeds reasonable request
-volume, constitutes excessive or abusive usage, or otherwise fails to
-comply or is inconsistent with any part of the Yahoo API documentation
-located within <a href="http://developer.yahoo.com/" class="external-link uri">http://developer.yahoo.com/</a> as determined by Yahoo in
-its sole discretion. (<a href="https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html" class="external-link uri">https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html</a>
-2025)</p>
-</blockquote>
+<p>Other <code>'R packages'</code> retrieves data from Yahoo Finance,
+and thus have the same source as <code>'financr'</code>. E.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
+<a href="https://cran.r-project.org/package=quantmod" class="external-link"><code>'quantmod'</code></a>
+and the packages that depends on them such as <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>'yfr'</code></a> and
+<a href="https://cran.r-project.org/package=stocks" class="external-link"><code>'stocks'</code></a>
+that depends on <code>'quantmod'</code>.</p>
+<p><code>'financr'</code> only retrieves data from Yahoo Finance,
+without assumptions about the visualizations or analyses performed with
+these financial data. Consequently, <code>'financr'</code> dependencies
+are kept low. Other packages could offers more advanced methods, for
+example, <code>'quantmod'</code> offers financial data-analysis oriented
+functions and time series data visualization methods.</p>
+<p><code>'financr'</code> functions always return a standardized
+<code>data.frame</code>. For example,
+<code><a href="../reference/get_historic.html">financr::get_historic()</a></code> return a standard
+<code>data.frame</code> while <code>'yahoofinancer'</code> methods
+return an <code>'R6'</code> class object (e.g.,
+<code>Ticker$get_history</code>) ; <code>quantmod::getSymbols()</code>
+return a <code>'xts'</code> &amp; <code>'zoo'</code> time series object
+; and <code>yfr::yf_get()</code> return a tibble.</p>
+<p>See the <a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">Vignette
+‘Summary of financr Functions’</a>.</p>
   </main>
 </div>
 

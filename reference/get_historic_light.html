@@ -19,9 +19,10 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
     <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
-    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
+    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">last_indices() And last_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -35,7 +36,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get Historical Financial Data For Ticker Symbols</h1>
-      <small class="dont-index">Source: <a href="https://github.com/clement-LVD/financr/blob/main/R/get_historic.R" class="external-link"><code>R/get_historic.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/clement-LVD/financr/blob/main/R/get_fn.R" class="external-link"><code>R/get_fn.R</code></a></small>
       <div class="d-none name"><code>get_historic_light.Rd</code></div>
     </div>
 
@@ -75,7 +76,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>data.frame</code> with a few historical values :</p><dl><dt>symbol</dt>
+    <p>A <code>data.frame</code> with a historical values :</p><dl><dt>symbol</dt>
 <dd><p><code>character</code> - Financial ticker symbol.</p></dd>
 
 <dt>timestamp</dt>

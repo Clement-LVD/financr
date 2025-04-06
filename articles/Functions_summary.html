@@ -40,9 +40,10 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
     <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
-    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
+    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">last_indices() And last_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul>
 </li>
@@ -73,197 +74,239 @@
 
     
     
-<p><code>'financr'</code> only retrieves the data from Yahoo Finance and
-make no assumptions about the visualizations or analyses performed with
-these financial data. Consequently, <code>financr</code> dependencies
-are kept low.</p>
 <p>This vignette explains the functions offered by
 <code>'financr'</code>.</p>
 <div class="section level2">
-<h2 id="financr-overview">
-<code>'financr'</code> Overview<a class="anchor" aria-label="anchor" href="#financr-overview"></a>
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<ul>
-<li>
-<strong>All the <code>'financr'</code> functions return a
-standardized <code>data.frame</code>.</strong>
+<p><strong>Inputs.</strong> Each function expects a specific type of
+input, based on its prefix.</p>
+<table class="table">
+<colgroup>
+<col width="7%">
+<col width="26%">
+<col width="65%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Prefix</th>
+<th align="left">Example</th>
+<th align="left">Expected_input</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>search_</strong></td>
+<td align="left"><code>search_summary(c('Saab', 'Dow Jones'))</code></td>
+<td align="left">Free-text(s)</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>get_</strong></td>
+<td align="left"><code>get_historic(c('SAAB-B.ST', '^DJI' ) )</code></td>
+<td align="left">Financial symbol(s) such as a ticker symbol (e.g.,
+‘AAPL’) or a 3-letter currency code (e.g., ‘USD’)</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>last_</strong></td>
+<td align="left"><code><a href="../reference/last_indices.html">last_indices()</a></code></td>
+<td align="left">Do not require any input. All arguments are
+optional</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>Outputs.</strong> All the <code>'financr'</code> functions
+return a standardized <code>data.frame</code> (see the last section <a href="#standardized-return-conventions">‘Standardized Return
+Conventions’</a>).</p>
 <ul>
 <li>Functions with the <code>'_historic'</code> suffix return an
 historic of financial data,</li>
 <li>while the others retrieve up-to-date data and latest financial
 insights.</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
+</h2>
+<p><strong>last_ family.</strong></p>
+<table class="table">
+<caption>Functions with the prefix <code>'last_'</code> retrieve latest
+data and do not require any input (all arguments are
+optional).</caption>
+<colgroup>
+<col width="21%">
+<col width="70%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Example</th>
+<th align="left">data.frame_returned</th>
+<th align="left">Source</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code><a href="../reference/last_market_summary.html">last_market_summary()</a></code></td>
+<td align="left">Latest summary information for a set of major financial
+market indices</td>
+<td align="left">*</td>
+</tr>
+<tr class="even">
+<td align="left"><code><a href="../reference/last_indices.html">last_indices()</a></code></td>
+<td align="left">World indices latest insights and values (USD)</td>
+<td align="left"><strong><sup>‡</sup></strong></td>
+</tr>
+<tr class="odd">
+<td align="left"><code><a href="../reference/last_crypto.html">last_crypto()</a></code></td>
+<td align="left">100 major crypto-currencies latest insights and values
+(USD)</td>
+<td align="left"><strong><sup>‡</sup></strong></td>
+</tr>
+<tr class="even">
+<td align="left"><code><a href="../reference/last_currencies.html">last_currencies()</a></code></td>
+<td align="left">ISO currency codes for currencies, names and
+(optionally) latest ‘USD’ values</td>
+<td align="left">*</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>‡ : Scraping latest data from Yahoo Finance pages, i.e. <a href="https://finance.yahoo.com/markets/world-indices/" class="external-link uri">https://finance.yahoo.com/markets/world-indices/</a> or
+[…]/markets/crypto</p></li>
+<li><p>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</p></li>
+</ul>
+<p><strong>search_ family.</strong></p>
+<table class="table">
+<caption>Functions with the prefix <code>'search_'</code> retrieve
+latest data and expect free-text input(s).</caption>
+<colgroup>
+<col width="27%">
+<col width="64%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Example</th>
+<th align="left">Returned <code>data.frame</code>
+</th>
+<th align="left">Source</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>search_summary('Saab')</code></td>
+<td align="left">Assets names, ticker symbols, latest insights and
+financial values</td>
+<td align="left"><strong><sup>†</sup></strong></td>
+</tr>
+<tr class="even">
+<td align="left"><code>search_assets('Saab')</code></td>
+<td align="left">Assets names and symbol(s) associated with the texts
+searched</td>
+<td align="left">*</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>search_asset_quick('Saab')</code></td>
+<td align="left">Assets names and symbol(s) associated with the text
+searched</td>
+<td align="left">*</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
+<li>† : Scraping from <a href="https://finance.yahoo.com/lookup/" class="external-link uri">https://finance.yahoo.com/lookup/</a>
 </li>
 </ul>
+<p><strong>get_ family.</strong></p>
 <table class="table">
-<caption>Table 1. Overview of <code>'financr'</code> Functions</caption>
+<caption>Functions with the prefix <code>'get_'</code> retrieve the
+historical or latest financial values, given financial
+symbol(s)</caption>
 <colgroup>
-<col width="20%">
-<col width="34%">
-<col width="37%">
-<col width="7%">
+<col width="27%">
+<col width="39%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Example</th>
 <th align="left">Input</th>
 <th align="left">Returned <code>data.frame</code>
 </th>
-<th align="left">Data</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code><a href="../reference/get_indices.html">get_indices()</a></code></td>
-<td align="left"></td>
-<td align="left">World indices, latest insights and values</td>
-<td align="left">Latest<strong><sup>‡</sup></strong>
+<td align="left">
+<code>get_historic('AAPL')</code> <br> &amp;
+<code>get_historic_light('AAPL')</code>
 </td>
-</tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/get_crypto.html">get_crypto()</a></code></td>
-<td align="left"></td>
-<td align="left">100 major crypto-currencies, latest insights and values
-(USD)</td>
-<td align="left">Latest<strong><sup>‡</sup></strong>
-</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>search_summary('Saab')</code></td>
-<td align="left">Free-text(s), e.g., companies names</td>
-<td align="left">Assets names, ticker symbols, latest insights and
-financial values</td>
-<td align="left">Latest<strong><sup>†</sup></strong>
-</td>
-</tr>
-<tr class="even">
-<td align="left"><code>search_assets(c('Saab', 'volvo'))</code></td>
-<td align="left">Free-text(s)</td>
-<td align="left">Assets names and symbol(s) associated with the texts
-searched</td>
-<td align="left">Latest*</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>search_asset_quick('Saab')</code></td>
-<td align="left">Free-text(s)</td>
-<td align="left">Assets names and symbol(s) associated with the text
-searched</td>
-<td align="left">Latest*</td>
-</tr>
-<tr class="even">
-<td align="left"><code>get_historic('AAPL')</code></td>
-<td align="left">Ticker symbol(s)<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Ticker_symbol" class="external-link uri"&gt;https://en.wikipedia.org/wiki/Ticker_symbol&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>
+<td align="left">Asset symbol(s), such as ticker symbols<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Ticker_symbol" class="external-link uri"&gt;https://en.wikipedia.org/wiki/Ticker_symbol&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>
 </td>
 <td align="left">
-<strong>Historic</strong> of financial data</td>
-<td align="left">Historic*</td>
+<strong>Historic</strong> of financial data*</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>get_changes('USD', 'EUR')</code></td>
-<td align="left">Currencies to convert</td>
-<td align="left">Latest exchanges rates</td>
-<td align="left">Latest*</td>
-</tr>
-<tr class="even">
-<td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
-<td align="left">Currencies + optional <code>range</code> and
-<code>interval</code>
-</td>
+<td align="left">ISO currency code(s) to convert</td>
 <td align="left">
-<strong>Historic</strong> of exchanges rates</td>
-<td align="left">Historic*</td>
+<strong>Latest</strong> exchanges rates*</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>valid_symbol("AAPL")</code></td>
-<td align="left">Text(s) to verify</td>
-<td align="left">Validity of financial symbol(s)</td>
-<td align="left">Latest*</td>
+<td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
+<td align="left">ISO currency code(s)</td>
+<td align="left">
+<strong>Historic</strong> of exchanges rates*</td>
+</tr>
+<tr class="even">
+<td align="left"><code>get_similar('AAPL')</code></td>
+<td align="left">Asset symbol(s)</td>
+<td align="left">
+<strong>Latest</strong> symbols associated with those
+provided and similarity scores*</td>
 </tr>
 </tbody>
 </table>
-<p>Sources :</p>
 <ul>
-<li>* : Yahoo Finance APIs, e.g.,
-query2.finance.yahoo.com/v1/finance/currencies ; […]/v8/finance/chart or
-query2.finance.yahoo.com/v6/finance, etc.</li>
-<li>
-<strong>†</strong> : Scraping from <a href="https://finance.yahoo.com/lookup/" class="external-link uri">https://finance.yahoo.com/lookup/</a><br>
-</li>
-<li>
-<strong>‡</strong> : Scraping from other Yahoo Finance pages, such
-as <a href="https://finance.yahoo.com/markets/world-indices/" class="external-link uri">https://finance.yahoo.com/markets/world-indices/</a> or
-[…]/markets/crypto, etc.</li>
+<li>* : Retrieve latest or historical data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
+</ul>
+<p><strong>Other functions.</strong></p>
+<table class="table">
+<caption>Other helper functions</caption>
+<colgroup>
+<col width="25%">
+<col width="19%">
+<col width="54%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Example</th>
+<th align="left">Input</th>
+<th align="left">Data.frame_returned</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left"><code>valid_symbol("AAPL")</code></td>
+<td align="left">Text(s) to verify</td>
+<td align="left">(logical values) Validity of financial symbol(s)*</td>
+</tr></tbody>
+</table>
+<ul>
+<li>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
 </ul>
 <hr>
-<p><strong>Standardized Return Conventions.</strong> Regarding all the
-<code>data.frame</code> returned by <code>'financr'</code>
-functions:</p>
+</div>
+<div class="section level2">
+<h2 id="standardized-return-conventions">Standardized Return Conventions<a class="anchor" aria-label="anchor" href="#standardized-return-conventions"></a>
+</h2>
+<p>Regarding all the <code>data.frame</code> returned by
+<code>'financr'</code> functions:</p>
 <p>The column names are:</p>
 <ul>
 <li>following the <a href="https://wikipedia.org/wiki/Snake_case" class="external-link">‘snake_case’
 conventions</a>, e.g., in lowercase and without spaces;</li>
 <li>and symbols are replaced (e.g., “%’ is replaced by ‘percent’);</li>
 </ul>
-<p>Regarding the values :</p>
-<ul>
-<li>Numeric values are returned as <code>integer</code> or
-<code>numeric</code> class of values.</li>
-</ul>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="financr-specifics">
-<code>'financr'</code> Specifics<a class="anchor" aria-label="anchor" href="#financr-specifics"></a>
-</h2>
-<p><strong>Role of financr in the ‘Reach Yahoo Finance’
-ecosystem.</strong>Other R packages retrieves data from the same source
-as <code>'financr'</code>, i.e. Yahoo Finance. E.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
-<a href="https://cran.r-project.org/package=quantmod" class="external-link"><code>'quantmod'</code></a>
-and the packages that depends on them such as <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>yfr</code></a> and
-<a href="https://cran.r-project.org/package=stocks" class="external-link"><code>stocks</code></a>
-(depends on <code>'quantmod'</code>).</p>
-<p>Regarding the fetching of historical financial values from Yahoo
-Finance, the returned objects of these packages have different
-properties, see below.</p>
-<table class="table">
-<caption>Table 2. <code>'financr'</code> <code><a href="../reference/get_historic.html">get_historic()</a></code>
-Alternatives and Returned Values</caption>
-<colgroup>
-<col width="15%">
-<col width="84%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Package</th>
-<th align="left">get_historic</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>'financr'</code></td>
-<td align="left">
-<code><a href="../reference/get_historic.html">financr::get_historic()</a></code> return a standard
-<code>data.frame</code>
-</td>
-</tr>
-<tr class="even">
-<td align="left"><code>'yahoofinancer'</code></td>
-<td align="left">
-<code>'yahoofinancer'</code> methods return an
-<code>'R6'</code> class object (e.g.,
-<code>Ticker$get_history</code>)</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>yfr</code></td>
-<td align="left">
-<code>yfr::yf_get()</code> return a tibble</td>
-</tr>
-<tr class="even">
-<td align="left"><code>'quantmod'</code></td>
-<td align="left">
-<code>getSymbols()</code> from the
-<code>'quantmod'</code> package return a time series object
-(<code>'xts'</code> &amp; <code>'zoo'</code> object)</td>
-</tr>
-</tbody>
-</table>
-<!-- Other functions offered by these packages are sometimes more or less equivalent (e.g., `financr::valid_symbol()`) whereas other functions are specific to one of these packages. E.g., `'financr'` offer free-text search with `financr::search_summary()`, while `'quantmod'` offers financial data-analysis oriented functions and time series data visualization methods. Other packages are derivated from these 2 examples, e.g.,  which rely on quantmod and ans. -->
+<p>Within the returned <code>data.frame</code>, numeric values are
+returned as <code>integer</code> or <code>numeric</code> class of
+values. Thus, the texts answered by Yahoo Finance API are converted into
+numeric values, e.g., <code>"1.2M"</code> is turned into
+<code>1200000</code> and <code>"85%"</code> into <code>85</code>.</p>
+<p>Examples of similarities and differences with other
+<code>'R packages'</code> are in the <a href="https://clement-lvd.github.io/financr/articles/financr_ecosystem.html">Vignette
+‘Summary of financr Ecosystem’</a>.</p>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

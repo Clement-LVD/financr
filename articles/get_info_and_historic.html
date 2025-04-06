@@ -40,9 +40,10 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
     <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
-    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
+    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">last_indices() And last_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul>
 </li>
@@ -82,7 +83,7 @@ insensitive).</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span>
 <span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_assets.html">search_assets</a></span><span class="op">(</span>texts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    8 obs. of  10 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    9 obs. of  10 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "^DWCPF" "^DWRTF" "ESG1N.AS" ...</span></span>
 <span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Eurozone 100 ESG NR" ...</span></span>
 <span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Eurozone 100 ESG NR" ...</span></span>
@@ -90,7 +91,7 @@ insensitive).</p>
 <span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Amsterdam" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score         : num  53328 20317 20210 20005 20005 ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  51005 20280 20174 20005 20005 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
@@ -152,13 +153,13 @@ the <code>data.frame</code>, e.g., attributes of the
 example indicates that prices are in the ‘SEK’ currency.</p>
 <hr>
 <p><strong>Find names of all currencies of the results with
-<code><a href="../reference/get_currencies.html">get_currencies()</a></code>.</strong> And optionally add insights from
+<code>get_currencies()</code>.</strong> And optionally add insights from
 <code><a href="../reference/get_changes.html">get_changes()</a></code>, e.g., latest market prices of the currency
 (‘USD’).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">unknown_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">historic</span><span class="op">$</span><span class="va">currency</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">values_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_currencies.html">get_currencies</a></span><span class="op">(</span>keep <span class="op">=</span> <span class="va">unknown_currencies</span>, last_usd_values <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">values_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_currencies.html">last_currencies</a></span><span class="op">(</span>keep <span class="op">=</span> <span class="va">unknown_currencies</span>, add_usd_values <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">values_currencies</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   symbol shortname      longname locallongname currency exchangename</span></span>
@@ -168,10 +169,11 @@ example indicates that prices are in the ‘SEK’ currency.</p>
 <span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
 <span><span class="co">#&gt; 1             0.1001               0.1001              0.1001           0.1041</span></span>
 <span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
-<span><span class="co">#&gt; 1          0.0884        0.1026              BST USD 2025-04-05 04:21:12</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          0.0884        0.1026              BST USD 2025-04-06 04:21:13</span></span></code></pre></div>
 <p>See how to convert currencies and get last exchanges rates with the
 <a href="https://clement-lvd.github.io/financr/articles/get_changes.html">Vignette
-of <code>get_changes()</code> and <code>get_currencies()</code></a>.</p>
+of <code>get_changes()</code> and
+<code>last_currencies()</code></a>.</p>
   </main>
 </div>
 

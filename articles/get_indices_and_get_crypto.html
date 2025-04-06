@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>get_indices() And get_crypto() • financr</title>
+<title>last_indices() And last_crypto() • financr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="get_indices() And get_crypto()">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="last_indices() And last_crypto()">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -40,9 +40,10 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
     <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
-    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
+    <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">last_indices() And last_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul>
 </li>
@@ -64,7 +65,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>get_indices() And get_crypto()</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>last_indices() And last_crypto()</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/clement-LVD/financr/blob/main/vignettes/get_indices_and_get_crypto.Rmd" class="external-link"><code>vignettes/get_indices_and_get_crypto.Rmd</code></a></small>
@@ -75,16 +76,16 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span></code></pre></div>
-<p>This vignette is about <code><a href="../reference/get_indices.html">financr::get_indices()</a></code> and
-<code><a href="../reference/get_crypto.html">financr::get_crypto()</a></code>.</p>
+<p>This vignette is about <code><a href="../reference/last_indices.html">financr::last_indices()</a></code> and
+<code><a href="../reference/last_crypto.html">financr::last_crypto()</a></code>.</p>
 <p>These functions offers the latest financial values of more than 40
 world-indices and 100 crypto-currencies, respectively. These values are
 expressed in USD.</p>
 <hr>
-<p><code><a href="../reference/get_indices.html">get_indices()</a></code> return a <code>data.frame</code> with the
+<p><code><a href="../reference/last_indices.html">last_indices()</a></code> return a <code>data.frame</code> with the
 latest financial value of major world financial indices.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_indices.html">get_indices</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_indices.html">last_indices</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    41 obs. of  7 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol        : chr  "^GSPC" "^DJI" "^IXIC" "^NYA" ...</span></span>
@@ -99,23 +100,23 @@ latest financial value of major world financial indices.</p>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <hr>
-<p><code><a href="../reference/get_crypto.html">get_crypto()</a></code> return a <code>data.frame</code> of 100
+<p><code><a href="../reference/last_crypto.html">last_crypto()</a></code> return a <code>data.frame</code> of 100
 crypto-currencies values in USD ($).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">krypt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_crypto.html">get_crypto</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">krypt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_crypto.html">last_crypto</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">krypt</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    100 obs. of  13 variables:</span></span>
 <span><span class="co">#&gt;  $ symbol                          : chr  "BTC-USD" "ETH-USD" "USDT-USD" "XRP-USD" ...</span></span>
 <span><span class="co">#&gt;  $ name                            : chr  "Bitcoin USD" "Ethereum USD" "Tether USDt USD" "XRP USD" ...</span></span>
-<span><span class="co">#&gt;  $ price                           : num  83392.91 1807.42 1 2.14 591.68 ...</span></span>
-<span><span class="co">#&gt;  $ change                          : num  -5.09e+02 -9.14 9.10e-05 1.75e-02 -5.12 ...</span></span>
-<span><span class="co">#&gt;  $ change_percent                  : num  -0.61 -0.5 0.01 0.82 -0.86 -1.02 0.01 -1.05 -2.07 -1.18 ...</span></span>
-<span><span class="co">#&gt;  $ market_cap                      : num  1.66e+12 2.18e+11 1.44e+11 1.25e+11 8.43e+10 ...</span></span>
-<span><span class="co">#&gt;  $ volume                          : num  1.42e+10 6.39e+09 3.37e+10 2.10e+09 1.00e+09 ...</span></span>
-<span><span class="co">#&gt;  $ volume_in_currency_24hr         : num  1.42e+10 6.39e+09 3.37e+10 2.10e+09 1.00e+09 ...</span></span>
-<span><span class="co">#&gt;  $ total_volume_all_currencies_24hr: num  1.42e+10 6.39e+09 3.37e+10 2.10e+09 1.00e+09 ...</span></span>
+<span><span class="co">#&gt;  $ price                           : num  82494.52 1766.25 1 2.06 583.54 ...</span></span>
+<span><span class="co">#&gt;  $ change                          : num  -2.59e+02 -2.02e+01 -1.94e-04 -6.96e-02 -9.82 ...</span></span>
+<span><span class="co">#&gt;  $ change_percent                  : num  -0.31 -1.13 -0.02 -3.27 -1.66 -0.01 -2.63 -3.5 0.94 -3.82 ...</span></span>
+<span><span class="co">#&gt;  $ market_cap                      : num  1.64e+12 2.13e+11 1.44e+11 1.20e+11 8.31e+10 ...</span></span>
+<span><span class="co">#&gt;  $ volume                          : num  1.32e+10 6.58e+09 3.22e+10 2.05e+09 1.04e+09 ...</span></span>
+<span><span class="co">#&gt;  $ volume_in_currency_24hr         : num  1.32e+10 6.58e+09 3.22e+10 2.05e+09 1.04e+09 ...</span></span>
+<span><span class="co">#&gt;  $ total_volume_all_currencies_24hr: num  1.32e+10 6.58e+09 3.22e+10 2.05e+09 1.04e+09 ...</span></span>
 <span><span class="co">#&gt;  $ circulating_supply              : num  1.98e+07 1.21e+08 1.44e+11 5.83e+10 1.42e+08 ...</span></span>
-<span><span class="co">#&gt;  $ x52_wk_change_percent           : num  20.88 -47.43 -0.03 257.91 2.31 ...</span></span>
+<span><span class="co">#&gt;  $ x52_wk_change_percent           : num  20.39 -47.71 -0.03 260.39 1.54 ...</span></span>
 <span><span class="co">#&gt;  $ from                            : chr  "BTC" "ETH" "USDT" "XRP" ...</span></span>
 <span><span class="co">#&gt;  $ to                              : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 101</span></span>
