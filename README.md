@@ -88,8 +88,7 @@ str(swed_indices) # More or less similar than the previous example + latest valu
 ```
 
 If you don’t know the ticker symbol of an asset, exploring the results
-of `financr::search_summary()` or `search_from_text()` is a way to find
-it.
+of `financr::search_summary()` or `search_assets()` is a way to find it.
 
 **Get historical financial data.** Given ticker symbol(s), get historic
 of financial values with `financr::get_historic()` :
@@ -130,13 +129,14 @@ str(histo)
 
 ## Vignettes
 
+**Get latest financial insights with the ‘last\_’ family of functions**,
+e.g., latest values and insights about major indices, world-indices and
+crypto-currencies. See the [vignette on the ‘`last_` family’ of
+functions\`](https://clement-lvd.github.io/financr/articles/last_family.html).
+
 **Change currencies at current exchange rates and get historic of
 exchange rates.** See the Vignette of [`get_changes()` and
 `get_currencies()`](https://clement-lvd.github.io/financr/articles/Get_changes.html).
-
-**Get latest financial values and insights on major world-indices and
-crypto-currencies.** See the [vignette of `get_indices()` and
-`get_crypto()`](https://clement-lvd.github.io/financr/articles/get_indices_and_get_crypto.html).
 
 **Cascading functionnality.** `'financr'` offer the possibility to chain
 these process, e.g.,
@@ -147,7 +147,7 @@ these process, e.g.,
 3.  and finally convert their values in a given standardized currency,
     e.g., ‘USD’.
 
-See the vignette on [`search_summarys()` and
+See the vignette on [`search_summary()` and
 `get_historic()`](https://clement-lvd.github.io/financr/articles/get_info_and_historic.html).
 
 ## Licence

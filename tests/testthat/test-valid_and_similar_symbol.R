@@ -43,6 +43,11 @@ expect_true(is.na(test))
 
 
 
+test_that("Valid_symbol : null inputs works", {
+
+  test <- valid_symbol(symbols =NULL,character(0) ,  .verbose = F)
+  expect_null(test)
+})
 
 test_that("Valid_symbol() works and answer unique values" , {
   if(!internet_or_not()) skip()

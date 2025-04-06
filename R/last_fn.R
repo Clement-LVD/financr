@@ -26,8 +26,8 @@
 #'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
 #' }
 #' @inherit construct_financial_df details
-#' @seealso For more details see the help vignette:
-#' \code{vignette("get_indices_and_last_crypto", package = "financr"))}
+#' @seealso For more details on the 'last_' family of functions see the help vignette:
+#' \code{vignette("last_family")}
 #' @examples
 #' krypto <- last_crypto()
 #' head(krypto)
@@ -72,8 +72,8 @@ last_crypto <- function(keep = NULL, .verbose = T){
 #'   \item{volume}{`numeric` - The total trading volume of the index components.}
 #'   \item{currency}{`character` - Currency associated with the world-indice, i.e. `'USD'`.}
 #' @inherit construct_financial_df details
-#' @seealso For more details see the help vignette:
-#' \code{vignette("last_indices_and_get_crypto")}
+#' @seealso For more details on the 'last_' family of functions see the help vignette:
+#' \code{vignette("last_family")}
 #' @examples
 #' \dontrun{
 #' indices <- last_indices()
@@ -181,6 +181,8 @@ results <- standardize_df_cols(results)
 #'   \item Other fields such as \code{cryptotradeable}, \code{tradeable}, \code{triggerable}, \code{contracts}, etc.
 #' }
 #' @references Source : https://query2.finance.yahoo.com/v6/finance/quote/marketSummary
+#' @seealso For more details on the 'last_' family of functions see the help vignette:
+#' \code{vignette("last_family")}
 #' @examples
 #' df <- last_market_summary()
 #'

@@ -1,8 +1,8 @@
 ---
-title: "last_indices() And last_crypto()"
+title: "The '`last_`' family of functions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{last_indices() And last_crypto()}
+  %\VignetteIndexEntry{The '`last_`' family of functions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,9 +18,7 @@ knitr::opts_chunk$set(
 library(financr)
 ```
 
-This vignette is about `financr::last_indices()` and `financr::last_crypto()`. 
-
-These functions offers the latest financial values of more than 40 world-indices and 100 crypto-currencies, respectively. These values are expressed in USD. 
+This vignette is about the '`last_`' functions such as `financr::last_indices()` and `financr::last_crypto()` that offers the latest financial values ('USD') of more than 40 world-indices and 100 crypto-currencies, respectively. 
 
 ---
 
