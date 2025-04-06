@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +40,9 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Deal with currencies</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul>
@@ -84,14 +84,14 @@ insensitive).</p>
 <span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_assets.html">search_assets</a></span><span class="op">(</span>texts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    9 obs. of  10 variables:</span></span>
-<span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "^DWCPF" "^DWRTF" "^N100" ...</span></span>
-<span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...</span></span>
-<span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...</span></span>
-<span><span class="co">#&gt;  $ exchange      : chr  "DJI" "DJI" "DJI" "PAR" ...</span></span>
-<span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...</span></span>
+<span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "^DWCPF" "^DWRTF" "ESG1N.AS" ...</span></span>
+<span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Eurozone 100 ESG NR" ...</span></span>
+<span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext Eurozone 100 ESG NR" ...</span></span>
+<span><span class="co">#&gt;  $ exchange      : chr  "DJI" "DJI" "DJI" "AMS" ...</span></span>
+<span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Amsterdam" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score         : num  50420 20268 20167 20006 20005 ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  41255 20159 20118 20005 20005 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
@@ -101,17 +101,41 @@ insensitive).</p>
 given keyword(s).</strong> E.g., search the symbols of ‘Volvo car’ and
 ‘Saab’ in the Stockholm exchange place (case insensitive).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">swedish</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_summary.html">search_summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Volvo car"</span>, <span class="st">"Saab"</span><span class="op">)</span></span>
-<span>                         , exchange <span class="op">=</span> <span class="st">"STO"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">swedish</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_assets.html">search_assets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Volvo car"</span>, <span class="st">"Saab"</span><span class="op">)</span></span>
+<span>                         , exchange <span class="op">=</span> <span class="st">"STO"</span></span>
+<span>                         , add_latest_values <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">swedish</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    2 obs. of  7 variables:</span></span>
-<span><span class="co">#&gt;  $ symbol    : chr  "VOLCAR-B.ST" "SAAB-B.ST"</span></span>
-<span><span class="co">#&gt;  $ name      : chr  "Volvo Car AB ser. B" "SAAB AB ser. B"</span></span>
-<span><span class="co">#&gt;  $ last_price: chr  "17.72" "379.40"</span></span>
-<span><span class="co">#&gt;  $ sector    : chr  "Consumer Cyclical" "Industrials"</span></span>
-<span><span class="co">#&gt;  $ type      : chr  "Stocks" "Stocks"</span></span>
-<span><span class="co">#&gt;  $ exchange  : chr  "STO" "STO"</span></span>
-<span><span class="co">#&gt;  $ searched  : chr  "Volvo car" "Saab"</span></span>
+<span><span class="co">#&gt; 'data.frame':    2 obs. of  28 variables:</span></span>
+<span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "VOLCAR-B.ST"</span></span>
+<span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "Volvo Car AB ser. B"</span></span>
+<span><span class="co">#&gt;  $ longname            : chr  "Saab AB (publ)" "Volvo Car AB (publ.)"</span></span>
+<span><span class="co">#&gt;  $ exchange            : chr  "STO" "STO"</span></span>
+<span><span class="co">#&gt;  $ exchdisp            : chr  "Stockholm" "Stockholm"</span></span>
+<span><span class="co">#&gt;  $ quotetype           : chr  "EQUITY" "EQUITY"</span></span>
+<span><span class="co">#&gt;  $ typedisp            : chr  "Equity" "Equity"</span></span>
+<span><span class="co">#&gt;  $ score               : num  20003 20005</span></span>
+<span><span class="co">#&gt;  $ isyahoofinance      : logi  TRUE TRUE</span></span>
+<span><span class="co">#&gt;  $ searched            : chr  "saab" "volvo car"</span></span>
+<span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK"</span></span>
+<span><span class="co">#&gt;  $ exchangename        : chr  "STO" "STO"</span></span>
+<span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm"</span></span>
+<span><span class="co">#&gt;  $ instrumenttype      : chr  "EQUITY" "EQUITY"</span></span>
+<span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "2000-01-03 08:00:00" "2021-10-29 07:00:00"</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-04-04 15:29:55" "2025-04-04 15:29:38"</span></span>
+<span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE</span></span>
+<span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200</span></span>
+<span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST"</span></span>
+<span><span class="co">#&gt;  $ exchangetimezonename: chr  "Europe/Stockholm" "Europe/Stockholm"</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  379.4 17.7</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  420 44.8</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  203.7 17.2</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  420 18.4</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  365 17.2</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  6985601 10297687</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  411.6 17.8</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  411.6 17.8</span></span>
+<span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
+<span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <hr>
@@ -123,26 +147,26 @@ below.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">historic</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
-<span><span class="co">#&gt;  $ open                : num  17.9 18 17.9 18 17.9 ...</span></span>
-<span><span class="co">#&gt;  $ close               : num  18 18 18 17.9 17.9 ...</span></span>
-<span><span class="co">#&gt;  $ low                 : num  17.9 17.9 17.9 17.9 17.9 ...</span></span>
-<span><span class="co">#&gt;  $ high                : num  18 18 18 18 17.9 ...</span></span>
-<span><span class="co">#&gt;  $ volume              : int  0 11151 41332 25778 34751 20044 55114 8305 46188 34141 ...</span></span>
+<span><span class="co">#&gt;  $ open                : num  411 410 414 416 418 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  410 414 416 418 419 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  409 409 413 416 417 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  412 415 418 418 419 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 36745 56432 18363 43626 34211 51050 34181 45256 36016 ...</span></span>
 <span><span class="co">#&gt;  $ timestamp           : int  1743750000 1743750060 1743750120 1743750180 1743750240 1743750300 1743750360 1743750420 1743750480 1743750540 ...</span></span>
 <span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-04 07:00:00" "2025-04-04 07:01:00" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
-<span><span class="co">#&gt;  $ symbol              : chr  "VOLCAR-B.ST" "VOLCAR-B.ST" "VOLCAR-B.ST" "VOLCAR-B.ST" ...</span></span>
-<span><span class="co">#&gt;  $ shortname           : chr  "Volvo Car AB ser. B" "Volvo Car AB ser. B" "Volvo Car AB ser. B" "Volvo Car AB ser. B" ...</span></span>
-<span><span class="co">#&gt;  $ longname            : chr  "Volvo Car AB (publ.)" "Volvo Car AB (publ.)" "Volvo Car AB (publ.)" "Volvo Car AB (publ.)" ...</span></span>
+<span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
+<span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
+<span><span class="co">#&gt;  $ longname            : chr  "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" ...</span></span>
 <span><span class="co">#&gt;  $ exchangename        : chr  "STO" "STO" "STO" "STO" ...</span></span>
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  17.7 17.7 17.7 17.7 17.7 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  17.2 17.2 17.2 17.2 17.2 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  44.8 44.8 44.8 44.8 44.8 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  17.2 17.2 17.2 17.2 17.2 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  18.4 18.4 18.4 18.4 18.4 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  379 379 379 379 379 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  420 420 420 420 420 420 420 420 420 420 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  365 365 365 365 365 365 365 365 365 365 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  420 420 420 420 420 420 420 420 420 420 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span></span>
@@ -164,14 +188,14 @@ example indicates that prices are in the ‘SEK’ currency.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">values_currencies</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   symbol shortname      longname locallongname currency exchangename</span></span>
 <span><span class="co">#&gt; 1    SEK       SEK Swedish Krona Swedish Krona      USD          CCY</span></span>
-<span><span class="co">#&gt;   instrumenttype firsttradedate gmtoffset timezone exchangetimezonename</span></span>
-<span><span class="co">#&gt; 1       CURRENCY      995238000      3600      BST        Europe/London</span></span>
+<span><span class="co">#&gt;   instrumenttype      firsttradedate gmtoffset timezone exchangetimezonename</span></span>
+<span><span class="co">#&gt; 1       CURRENCY 2001-07-15 23:00:00      3600      BST        Europe/London</span></span>
 <span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
 <span><span class="co">#&gt; 1             0.1001               0.1001              0.1001           0.1041</span></span>
 <span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
 <span><span class="co">#&gt; 1          0.0884        0.1026              BST USD 2025-04-06 04:21:13</span></span></code></pre></div>
 <p>See how to convert currencies and get last exchanges rates with the
-<a href="https://clement-lvd.github.io/financr/articles/get_changes.html">Vignette
+<a href="https://clement-lvd.github.io/financr/articles/currencies.html">Vignette
 of <code>get_changes()</code> and
 <code>last_currencies()</code></a>.</p>
   </main>

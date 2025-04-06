@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +40,9 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Deal with currencies</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul>
@@ -179,41 +179,34 @@ market indices</td>
 <caption>Functions with the prefix <code>'search_'</code> retrieve
 latest data and expect free-text input(s).</caption>
 <colgroup>
-<col width="28%">
-<col width="63%">
-<col width="7%">
+<col width="41%">
+<col width="58%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Example</th>
 <th align="left">Returned <code>data.frame</code>
 </th>
-<th align="left">Source</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>search_summary('Saab')</code></td>
+<td align="left"><code>search_assets('Saab', add_latest_values = T)</code></td>
 <td align="left">Assets names, ticker symbols, latest insights and
 financial values</td>
-<td align="left"><strong><sup>†</sup></strong></td>
 </tr>
 <tr class="even">
 <td align="left"><code>search_assets('Saab')</code></td>
 <td align="left">Assets names and symbol(s) associated with the texts
 searched</td>
-<td align="left">*</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>search_assets_quick('Saab')</code></td>
 <td align="left">Assets names and symbol(s) associated with the text
 searched</td>
-<td align="left">*</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
-<li>† : Scraping from <a href="https://finance.yahoo.com/lookup/" class="external-link uri">https://finance.yahoo.com/lookup/</a>
-</li>
+<li>Source : Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
 </ul>
 <hr>
 <p><strong>get_ family.</strong></p>
@@ -241,31 +234,31 @@ symbol(s)</caption>
 <td align="left">Asset symbol(s), such as ticker symbols<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Ticker_symbol" class="external-link uri"&gt;https://en.wikipedia.org/wiki/Ticker_symbol&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>
 </td>
 <td align="left">
-<strong>Historic</strong> of financial data*</td>
+<strong>Historic</strong> of financial data</td>
 </tr>
 <tr class="even">
 <td align="left"><code>get_changes('USD', 'EUR')</code></td>
 <td align="left">ISO currency code(s) to convert</td>
 <td align="left">
-<strong>Latest</strong> exchanges rates*</td>
+<strong>Latest</strong> exchanges rates</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
 <td align="left">ISO currency code(s)</td>
 <td align="left">
-<strong>Historic</strong> of exchanges rates*</td>
+<strong>Historic</strong> of exchanges rates</td>
 </tr>
 <tr class="even">
 <td align="left"><code>get_similar('AAPL')</code></td>
 <td align="left">Asset symbol(s)</td>
 <td align="left">
 <strong>Latest</strong> symbols associated with those
-provided and similarity scores*</td>
+provided and similarity scores</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>* : Retrieve latest or historical data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
+<li>Source : Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
 </ul>
 <hr>
 <p><strong>Other functions.</strong></p>
@@ -273,7 +266,7 @@ provided and similarity scores*</td>
 <caption>Other helper functions</caption>
 <colgroup>
 <col width="25%">
-<col width="19%">
+<col width="20%">
 <col width="54%">
 </colgroup>
 <thead><tr class="header">
@@ -284,11 +277,11 @@ provided and similarity scores*</td>
 <tbody><tr class="odd">
 <td align="left"><code>valid_symbol("AAPL")</code></td>
 <td align="left">Text(s) to verify</td>
-<td align="left">(logical values) Validity of financial symbol(s)*</td>
+<td align="left">(logical values) Validity of financial symbol(s)</td>
 </tr></tbody>
 </table>
 <ul>
-<li>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
+<li>Source : Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
 </ul>
 <hr>
 </div>

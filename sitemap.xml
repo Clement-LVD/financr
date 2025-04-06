@@ -4,7 +4,7 @@
 <url><loc>https://clement-lvd.github.io/financr/LICENSE.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/articles/Functions_summary.html</loc></url>
-<url><loc>https://clement-lvd.github.io/financr/articles/Get_changes.html</loc></url>
+<url><loc>https://clement-lvd.github.io/financr/articles/currencies.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/articles/financr_ecosystem.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/articles/get_info_and_historic.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/articles/index.html</loc></url>
@@ -12,11 +12,13 @@
 <url><loc>https://clement-lvd.github.io/financr/authors.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/index.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/construct_financial_df.html</loc></url>
+<url><loc>https://clement-lvd.github.io/financr/reference/get_asset_value.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/get_changes.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/get_changes_historic.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/get_historic.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/get_historic_light.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/get_similar.html</loc></url>
+<url><loc>https://clement-lvd.github.io/financr/reference/get_values.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/get_yahoo_data.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/index.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/last_crypto.html</loc></url>
@@ -25,7 +27,6 @@
 <url><loc>https://clement-lvd.github.io/financr/reference/last_market_summary.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/search_assets.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/search_assets_quick.html</loc></url>
-<url><loc>https://clement-lvd.github.io/financr/reference/search_summary.html</loc></url>
 <url><loc>https://clement-lvd.github.io/financr/reference/valid_symbol.html</loc></url>
 </urlset>
 

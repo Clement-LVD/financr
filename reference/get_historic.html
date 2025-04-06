@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,9 +19,9 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Deal with currencies</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul></li>
@@ -77,9 +77,6 @@
 
     <dt><code>range</code></dt>
 <dd><p><code>character</code> A character string representing the range for the returned datas : default will return daily values.</p><table class="table table"><tr><td><strong>Valid <code>range</code> values</strong></td></tr><tr><td><code>"1d"</code>, <code>"5d"</code>, <code>"1mo"</code>, <code>"3mo"</code>, <code>"6mo"</code>, <code>"1y"</code>, <code>"2y"</code>, <code>"5y"</code>, <code>"10y"</code>, <code>"ytd"</code> and <code>"max"</code></td></tr><tr><td>Other ranges will filter out some of these daily values, depending on the desired range.</td></tr><tr><td>Valid ranges are "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", and "max".</td></tr><tr><td></td></tr></table></dd>
-
-    <dt><code>add_dividends_and_splits</code></dt>
-<dd><p>default = <code>TRUE</code> - Add insights on dividends</p></dd>
 
 
 </dl></dd>
@@ -189,7 +186,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ close               : num  18 18 18 17.9 17.9 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ low                 : num  17.9 17.9 17.9 17.9 17.9 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ high                : num  18 18 18 18 17.9 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ volume              : int  0 11151 41332 25778 34751 20044 55114 8305 46188 34141 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ volume              : int  0 11151 41948 25162 34751 20044 55114 8305 46299 34030 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ timestamp           : int  1743750000 1743750060 1743750120 1743750180 1743750240 1743750300 1743750360 1743750420 1743750480 1743750540 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ date                : POSIXct, format: "2025-04-04 07:00:00" "2025-04-04 07:01:00" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span>

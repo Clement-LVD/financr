@@ -11,7 +11,7 @@ companies names, sector/category (if available), etc."><meta property="og:image"
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,9 +23,9 @@ companies names, sector/category (if available), etc."><meta property="og:image"
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+    <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Deal with currencies</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul></li>
@@ -52,7 +52,13 @@ companies names, sector/category (if available), etc.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">search_assets</span><span class="op">(</span><span class="va">texts</span>, .verbose <span class="op">=</span> <span class="cn">F</span>, exchange <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">search_assets</span><span class="op">(</span></span>
+<span>  <span class="va">texts</span>,</span>
+<span>  exchange <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  add_latest_values <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  .verbose <span class="op">=</span> <span class="cn">F</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -63,16 +69,20 @@ companies names, sector/category (if available), etc.</p>
 <dd><p><code>character</code> A character string or a list of character representing the text(s) to search for, e.g., company names.</p></dd>
 
 
-<dt id="arg--verbose">.verbose<a class="anchor" aria-label="anchor" href="#arg--verbose"></a></dt>
-<dd><p><code>logical</code>, default = <code>FALSE</code> If TRUE, messages are displayed, e.g., when invalid symbols are detected.</p></dd>
-
-
 <dt id="arg-exchange">exchange<a class="anchor" aria-label="anchor" href="#arg-exchange"></a></dt>
-<dd><p>(optionnal)  A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.</p></dd>
+<dd><p><code>character</code> (optionnal) - A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>(optionnal) A character string representing a type of asset to search for ('quotetype' column value is used to filter out results). Case insensitive.</p><table class="table table"><tr><td>Type</td><td>Description</td></tr><tr><td>ETF</td><td>Exchange-Traded Fund - A basket of stocks or bonds traded like a stock.</td></tr><tr><td>EQUITY</td><td>Equity - A stock representing ownership in a company.</td></tr><tr><td>MUTUALFUND</td><td>Mutual Fund - A pooled investment fund.</td></tr><tr><td>INDEX</td><td>Index - A benchmark representing a group of stocks (e.g., S&amp;P 500).</td></tr><tr><td>FUTURE</td><td>Future - A contract to buy/sell an asset at a future date and price.</td></tr></table></dd>
+
+
+<dt id="arg-add-latest-values">add_latest_values<a class="anchor" aria-label="anchor" href="#arg-add-latest-values"></a></dt>
+<dd><p><code>logical</code>, default = <code>FALSE</code> - If <code>TRUE</code>, search for the values of the symbols and add columns from <code><a href="get_values.html">get_values()</a></code></p></dd>
+
+
+<dt id="arg--verbose">.verbose<a class="anchor" aria-label="anchor" href="#arg--verbose"></a></dt>
+<dd><p><code>logical</code>, default = <code>FALSE</code> If TRUE, messages are displayed, e.g., when invalid symbols are detected.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -135,23 +145,60 @@ companies names, sector/category (if available), etc.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>For more details see the help vignette:
-<code>vignette("get_info_and_historic", package = "financr"))</code></p></div>
+<code>vignette("get_info_and_historic", package = "financr"))</code></p>
+<p><code>get_values</code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span>texts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">swedish</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"RENAULT"</span><span class="op">)</span>,  exchange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STO"</span>, <span class="st">"PAR"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">swedish</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         symbol           shortname             longname exchange  exchdisp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  VOLCAR-B.ST Volvo Car AB ser. B Volvo Car AB (publ.)      STO Stockholm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       RNO.PA             RENAULT           Renault SA      PAR     Paris</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      RNL.PA  RENAULTPFRN24OCT49           Renault SA      PAR     Paris</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    quotetype typedisp score isyahoofinance  searched</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     EQUITY   Equity 20012           TRUE volvo car</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EQUITY   Equity 20008           TRUE   renault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14    EQUITY   Equity 20001           TRUE   renault</span>
+<span class="r-in"><span><span class="va">swed</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"RENAULT"</span><span class="op">)</span>,  exchange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STO"</span>, <span class="st">"PAR"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">swed</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        symbol           shortname             longname exchange  exchdisp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 VOLCAR-B.ST Volvo Car AB ser. B Volvo Car AB (publ.)      STO Stockholm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      RNO.PA             RENAULT           Renault SA      PAR     Paris</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   quotetype typedisp score isyahoofinance  searched</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    EQUITY   Equity 20005           TRUE volvo car</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    EQUITY   Equity 20006           TRUE   renault</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">swed_last_values</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"SAAB"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>,  exchange <span class="op">=</span> <span class="st">"STO"</span>, add_latest_values <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">swed_last_values</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	2 obs. of  28 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ symbol              : chr  "SAAB-B.ST" "VOLCAR-B.ST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ shortname           : chr  "SAAB AB ser. B" "Volvo Car AB ser. B"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ longname            : chr  "Saab AB (publ)" "Volvo Car AB (publ.)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchange            : chr  "STO" "STO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchdisp            : chr  "Stockholm" "Stockholm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ quotetype           : chr  "EQUITY" "EQUITY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ typedisp            : chr  "Equity" "Equity"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ score               : num  20003 20005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ isyahoofinance      : logi  TRUE TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ searched            : chr  "saab" "volvo car"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ currency            : chr  "SEK" "SEK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchangename        : chr  "STO" "STO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fullexchangename    : chr  "Stockholm" "Stockholm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ instrumenttype      : chr  "EQUITY" "EQUITY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ firsttradedate      : POSIXct, format: "2000-01-03 08:00:00" "2021-10-29 07:00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarkettime   : POSIXct, format: "2025-04-04 15:29:55" "2025-04-04 15:29:38"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ hasprepostmarketdata: logi  FALSE FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ gmtoffset           : int  7200 7200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ timezone            : chr  "CEST" "CEST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchangetimezonename: chr  "Europe/Stockholm" "Europe/Stockholm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketprice  : num  379.4 17.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweekhigh    : num  420 44.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweeklow     : num  203.7 17.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdayhigh: num  420 18.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdaylow : num  365 17.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketvolume : int  6985601 10297687</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ chartpreviousclose  : num  411.6 17.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ previousclose       : num  411.6 17.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "n.currencies")= int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "currencies")= chr "SEK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date")= Date[1:1], format: "2025-04-06"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "crypto")= logi FALSE</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
