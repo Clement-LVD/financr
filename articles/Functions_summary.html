@@ -42,7 +42,7 @@
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">`'financr'` Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">get_changes</a></li>
+    <li><a class="dropdown-item" href="../articles/Get_changes.html">Deal with currencies</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
     <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
   </ul>
@@ -122,6 +122,7 @@ historic of financial data,</li>
 <li>while the others retrieve up-to-date data and latest financial
 insights.</li>
 </ul>
+<hr>
 </div>
 <div class="section level2">
 <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
@@ -172,13 +173,14 @@ market indices</td>
 […]/markets/crypto</p></li>
 <li><p>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</p></li>
 </ul>
+<hr>
 <p><strong>search_ family.</strong></p>
 <table class="table">
 <caption>Functions with the prefix <code>'search_'</code> retrieve
 latest data and expect free-text input(s).</caption>
 <colgroup>
-<col width="27%">
-<col width="64%">
+<col width="28%">
+<col width="63%">
 <col width="7%">
 </colgroup>
 <thead><tr class="header">
@@ -201,7 +203,7 @@ searched</td>
 <td align="left">*</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>search_asset_quick('Saab')</code></td>
+<td align="left"><code>search_assets_quick('Saab')</code></td>
 <td align="left">Assets names and symbol(s) associated with the text
 searched</td>
 <td align="left">*</td>
@@ -213,6 +215,7 @@ searched</td>
 <li>† : Scraping from <a href="https://finance.yahoo.com/lookup/" class="external-link uri">https://finance.yahoo.com/lookup/</a>
 </li>
 </ul>
+<hr>
 <p><strong>get_ family.</strong></p>
 <table class="table">
 <caption>Functions with the prefix <code>'get_'</code> retrieve the
@@ -264,6 +267,7 @@ provided and similarity scores*</td>
 <ul>
 <li>* : Retrieve latest or historical data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</li>
 </ul>
+<hr>
 <p><strong>Other functions.</strong></p>
 <table class="table">
 <caption>Other helper functions</caption>
