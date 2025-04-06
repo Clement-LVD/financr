@@ -1,8 +1,8 @@
 ---
-title: "get_changes"
+title: "Deal with currencies"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{get_changes}
+  %\VignetteIndexEntry{Deal with currencies}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

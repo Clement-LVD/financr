@@ -24,13 +24,14 @@ alt=" " />
 
 `'financr'` retrieves financial data from Yahoo Finance :
 
-- historical market data, e.g., market prices, currency exchange rates.
-- latest insights on financial assets such as companies, major indices,
+- Historic of financial data, e.g., market prices, currency exchange
+  rates.
+- Latest insights on financial assets such as companies, major indices,
   currencies and cryptocurrency exchange rates.
 - Other insights, e.g., validity of financial symbol(s) and other assets
-  associated with.
+  associated with these symbol(s).
 
-See the [Vignette ‘Summary of financr
+See the [vignette ‘Summary of financr
 Functions’](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
 
 ## Installation
@@ -68,13 +69,13 @@ str(indices)
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
-Or retrieve the symbols and latest values on the stocks exchange places
-with `financr::search_summary()`.
+Or use `financr::search_summary()`, in order to add latest prices to the
+results of the previous example.
 
 ``` r
 swed_indices <- search_summary( c("SAAB", "VOLVO"), exchange = "STO")
 
-str(swed_indices) # More or less similar than the previous example + latest values of the day
+str(swed_indices)
 #> 'data.frame':    4 obs. of  7 variables:
 #>  $ symbol    : chr  "SAAB-B.ST" "VOLCAR-B.ST" "VOLV-B.ST" "VOLV-A.ST"
 #>  $ name      : chr  "SAAB AB ser. B" "Volvo Car AB ser. B" "Volvo, AB ser. B" "Volvo, AB ser. A"
@@ -88,7 +89,8 @@ str(swed_indices) # More or less similar than the previous example + latest valu
 ```
 
 If you don’t know the ticker symbol of an asset, exploring the results
-of `financr::search_summary()` or `search_assets()` is a way to find it.
+of `financr::search_summary()`, `search_assets()` or
+`search_assets_quick()` is a way to find it.
 
 **Get historical financial data.** Given ticker symbol(s), get historic
 of financial values with `financr::get_historic()` :
@@ -127,7 +129,7 @@ str(histo)
 #>  - attr(*, "crypto")= logi FALSE
 ```
 
-## Vignettes
+## Vignettes \[WIP\]
 
 **Get latest financial insights with the ‘last\_’ family of functions**,
 e.g., latest values and insights about major indices, world-indices and
@@ -135,8 +137,8 @@ crypto-currencies. See the [vignette on the ‘`last_` family’ of
 functions\`](https://clement-lvd.github.io/financr/articles/last_family.html).
 
 **Change currencies at current exchange rates and get historic of
-exchange rates.** See the Vignette of [`get_changes()` and
-`get_currencies()`](https://clement-lvd.github.io/financr/articles/Get_changes.html).
+exchange rates.** See the [vignette on currency-related
+functions](https://clement-lvd.github.io/financr/articles/Get_changes.html).
 
 **Cascading functionnality.** `'financr'` offer the possibility to chain
 these process, e.g.,

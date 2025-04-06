@@ -41,6 +41,8 @@ data.frame(Prefix = c("**search_**", "**get_**", "**last_**")
 - Functions with the `'_historic'` suffix return an historic of financial data, 
 - while the others retrieve up-to-date data and latest financial insights.
 
+---
+
 ## Details
 
 **last_ family.**
@@ -71,6 +73,8 @@ knitr::kable(last_fn
 
 - \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
 
+---
+
 **search_ family.**
         
 ```{r search-fn, echo=FALSE}
@@ -80,7 +84,7 @@ fn <- data.frame(Example =   c(
                      
  ,"`search_assets('Saab')`" 
  
- ,"`search_asset_quick('Saab')`" ) 
+ ,"`search_assets_quick('Saab')`" ) 
   
  
  , Data.frame_returned =  c(  "Assets names, ticker symbols, latest insights and financial values" 
@@ -100,6 +104,8 @@ knitr::kable(fn,
 
 - \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
 - † : Scraping from https://finance.yahoo.com/lookup/  
+
+---
 
 **get_ family.**
 
@@ -133,6 +139,8 @@ knitr::kable(fn,
 ```
 
 - \* : Retrieve latest or historical data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+
+---
 
 **Other functions.**
 

@@ -106,9 +106,9 @@ return(construct_financial_df( returned_results) )
  }
 
 
-#' Search Financial Asset From a Keyword (Single Text)
+#' Search Financial Assets From Keyword(s)
 #'
-#' Searches for financial data based on a free-text texts and retrieve asset symbol(s), name(s), exchange, and asset type.
+#' Search for financial data based on texts and retrieve asset symbol(s), name(s), exchanges place(s), and asset type(s).
 #'
 #' @param texts `character` string representing the search texts. This can be a company name, index, or financial term. Default is "Dow Jones".
 #' @param .verbose `logical` If `TRUE`, print additional details about the search process. Default is `TRUE`.
@@ -128,10 +128,10 @@ return(construct_financial_df( returned_results) )
 #' @examples
 #' \dontrun{
 #' # Example of searching for financial data related to "Dow Jones"
-#' results <- search_asset_quick(texts = "Dow Jones")
+#' results <- search_assets_quick(texts = "Dow Jones")
 #' }
 #' @export
-search_asset_quick <- function(texts =  "Dow Jones", .verbose = TRUE, region =NULL, lang = "en"){
+search_assets_quick <- function(texts =  "Dow Jones", .verbose = TRUE, region =NULL, lang = "en"){
    if(length(texts) == 0) return(NULL)
    if(!is.character(texts)) return(NA)
 
