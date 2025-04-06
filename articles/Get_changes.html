@@ -106,9 +106,9 @@ have 1 obs. per day for 1 year).</li>
 <span><span class="co">#&gt; 'data.frame':    526 obs. of  7 variables:</span></span>
 <span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2024-04-03 23:00:00" "2024-04-04 23:00:00" ...</span></span>
 <span><span class="co">#&gt;  $ open     : num  1.08 1.08 1.08 1.09 1.09 ...</span></span>
-<span><span class="co">#&gt;  $ close    : num  1.08 1.08 1.08 1.09 1.09 ...</span></span>
-<span><span class="co">#&gt;  $ low      : num  1.08 1.08 1.08 1.08 1.07 ...</span></span>
 <span><span class="co">#&gt;  $ high     : num  1.09 1.08 1.09 1.09 1.09 ...</span></span>
+<span><span class="co">#&gt;  $ low      : num  1.08 1.08 1.08 1.08 1.07 ...</span></span>
+<span><span class="co">#&gt;  $ close    : num  1.08 1.08 1.08 1.09 1.09 ...</span></span>
 <span><span class="co">#&gt;  $ from     : chr  "EUR" "EUR" "EUR" "EUR" ...</span></span>
 <span><span class="co">#&gt;  $ to       : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
@@ -127,9 +127,9 @@ lists of equal length.</p>
 <span><span class="va">same_as_df2_days</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_changes_historic.html">get_changes_historic</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"USD"</span><span class="op">)</span>, to <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RON"</span> , <span class="st">"EUR"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">same_as_df2_days</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;             timestamp     low   close    open    high from  to</span></span>
-<span><span class="co">#&gt; 1 2024-04-03 23:00:00 4.96739 4.96900 4.96900 4.97048  EUR RON</span></span>
-<span><span class="co">#&gt; 2 2024-04-04 23:00:00 4.96509 4.96824 4.96824 4.96924  EUR RON</span></span></code></pre></div>
+<span><span class="co">#&gt;             timestamp     low    open    high   close from  to</span></span>
+<span><span class="co">#&gt; 1 2024-04-03 23:00:00 4.96739 4.96900 4.97048 4.96900  EUR RON</span></span>
+<span><span class="co">#&gt; 2 2024-04-04 23:00:00 4.96509 4.96824 4.96924 4.96824  EUR RON</span></span></code></pre></div>
 <p><strong>Parameters.</strong> Optionally, you can tweak the returned
 data.frame using the interval and range parameters. E.g., retrieve one
 observation per month over a five-year period.</p>
@@ -139,10 +139,10 @@ observation per month over a five-year period.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">df_month</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    122 obs. of  7 variables:</span></span>
 <span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2020-04-30 23:00:00" "2020-05-31 23:00:00" ...</span></span>
-<span><span class="co">#&gt;  $ close    : num  1.11 1.12 1.19 1.19 1.17 ...</span></span>
-<span><span class="co">#&gt;  $ low      : num  1.08 1.11 1.12 1.17 1.16 ...</span></span>
-<span><span class="co">#&gt;  $ high     : num  1.11 1.14 1.19 1.2 1.2 ...</span></span>
 <span><span class="co">#&gt;  $ open     : num  1.09 1.11 1.12 1.18 1.19 ...</span></span>
+<span><span class="co">#&gt;  $ close    : num  1.11 1.12 1.19 1.19 1.17 ...</span></span>
+<span><span class="co">#&gt;  $ high     : num  1.11 1.14 1.19 1.2 1.2 ...</span></span>
+<span><span class="co">#&gt;  $ low      : num  1.08 1.11 1.12 1.17 1.16 ...</span></span>
 <span><span class="co">#&gt;  $ from     : chr  "EUR" "EUR" "EUR" "EUR" ...</span></span>
 <span><span class="co">#&gt;  $ to       : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
