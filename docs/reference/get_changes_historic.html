@@ -9,7 +9,7 @@ Default parameters will return a period of 1 year (1 obs. per day) and convert t
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@ Default parameters will return a period of 1 year (1 obs. per day) and convert t
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Get_changes</a></li>
+    <li><a class="dropdown-item" href="../articles/get_changes.html">get_changes</a></li>
     <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul></li>
@@ -120,28 +120,22 @@ e.g., a <code>'5y'</code> range  with a <code>'1d'</code> interval will answer a
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Source : https://query1.finance.yahoo.com/v8/finance/chart/</p>
+    <p>Source : https://query2.finance.yahoo.com/v8/finance/chart/</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="get_changes.html">get_changes</a></code></p></div>
+    <div class="dont-index"><p><code><a href="get_changes.html">get_changes</a></code></p>
+<p>For more details see the help vignette:
+<code>vignette("get_changes", package = "financr"))</code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># 1. Define currencies to exchange with the syntax of get_changes().</span></span></span>
-<span class="r-in"><span><span class="co"># Default convert to 'USD"</span></span></span>
-<span class="r-in"><span><span class="co"># e.g., get exchange historical data of exchanges rates from € and ¥ to $ :</span></span></span>
-<span class="r-in"><span><span class="va">df_days</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"JPY"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Or pass a named list of character</span></span></span>
-<span class="r-in"><span><span class="va">df2_days</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span> <span class="op">=</span> <span class="st">"RON"</span>, <span class="st">"USD"</span> <span class="op">=</span> <span class="st">"EUR"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">days</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"JPY"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">days_bis</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span> <span class="op">=</span> <span class="st">"RON"</span>, <span class="st">"USD"</span> <span class="op">=</span> <span class="st">"EUR"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Or pass paired values as 2 list (equivalent to hereabove line) :</span></span></span>
-<span class="r-in"><span><span class="va">same_as_df2_days</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_changes.html">get_changes</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"USD"</span><span class="op">)</span>, to <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RON"</span> , <span class="st">"EUR"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Default answer is a `data.frame` with  1 obs. per day for 1 year</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 2. Tweak the time.series with the parameters interval and range :</span></span></span>
-<span class="r-in"><span><span class="va">df_month</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"JPY"</span><span class="op">)</span>, interval <span class="op">=</span> <span class="st">"1mo"</span>, range <span class="op">=</span> <span class="st">'5y'</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># It's 1 obs. per month for a 5-years period</span></span></span>
+<span class="r-in"><span><span class="va">same_as_days_bis</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"USD"</span><span class="op">)</span>, to <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RON"</span> , <span class="st">"EUR"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">months</span> <span class="op">&lt;-</span> <span class="fu">get_changes_historic</span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"JPY"</span><span class="op">)</span>, interval <span class="op">=</span> <span class="st">"1mo"</span>, range <span class="op">=</span> <span class="st">'5y'</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

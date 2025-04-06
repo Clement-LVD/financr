@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Get_changes</a></li>
+    <li><a class="dropdown-item" href="../articles/get_changes.html">get_changes</a></li>
     <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul>
@@ -73,6 +73,10 @@
 
     
     
+<p><code>'financr'</code> only retrieves the data from Yahoo Finance and
+make no assumptions about the visualizations or analyses performed with
+these financial data. Consequently, <code>financr</code> dependencies
+are kept low.</p>
 <p>This vignette explains the functions offered by
 <code>'financr'</code>.</p>
 <div class="section level2">
@@ -96,7 +100,7 @@ insights.</li>
 <colgroup>
 <col width="20%">
 <col width="34%">
-<col width="38%">
+<col width="37%">
 <col width="7%">
 </colgroup>
 <thead><tr class="header">
@@ -123,12 +127,26 @@ insights.</li>
 </td>
 </tr>
 <tr class="odd">
-<td align="left"><code>get_info_from_name('Saab')</code></td>
-<td align="left">Free-texts, e.g., companies names</td>
-<td align="left">Ticker symbol(s) associated with the text, latest
-insights and values</td>
+<td align="left"><code>search_summary('Saab')</code></td>
+<td align="left">Free-text(s), e.g., companies names</td>
+<td align="left">Assets names, ticker symbols, latest insights and
+financial values</td>
 <td align="left">Latest<strong><sup>†</sup></strong>
 </td>
+</tr>
+<tr class="even">
+<td align="left"><code>search_assets(c('Saab', 'volvo'))</code></td>
+<td align="left">Free-text(s)</td>
+<td align="left">Assets names and symbol(s) associated with the texts
+searched</td>
+<td align="left">Latest*</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>search_asset_quick('Saab')</code></td>
+<td align="left">Free-text(s)</td>
+<td align="left">Assets names and symbol(s) associated with the text
+searched</td>
+<td align="left">Latest*</td>
 </tr>
 <tr class="even">
 <td align="left"><code>get_historic('AAPL')</code></td>
@@ -142,8 +160,7 @@ insights and values</td>
 <td align="left"><code>get_changes('USD', 'EUR')</code></td>
 <td align="left">Currencies to convert</td>
 <td align="left">Latest exchanges rates</td>
-<td align="left">Latest<strong><sup>‡</sup></strong>
-</td>
+<td align="left">Latest*</td>
 </tr>
 <tr class="even">
 <td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
@@ -165,7 +182,7 @@ insights and values</td>
 <p>Sources :</p>
 <ul>
 <li>* : Yahoo Finance APIs, e.g.,
-query1.finance.yahoo.com/v1/finance/currencies ; […]/v8/finance/chart or
+query2.finance.yahoo.com/v1/finance/currencies ; […]/v8/finance/chart or
 query2.finance.yahoo.com/v6/finance, etc.</li>
 <li>
 <strong>†</strong> : Scraping from <a href="https://finance.yahoo.com/lookup/" class="external-link uri">https://finance.yahoo.com/lookup/</a><br>
@@ -197,16 +214,12 @@ conventions</a>, e.g., in lowercase and without spaces;</li>
 <code>'financr'</code> Specifics<a class="anchor" aria-label="anchor" href="#financr-specifics"></a>
 </h2>
 <p><strong>Role of financr in the ‘Reach Yahoo Finance’
-ecosystem.</strong> <code>'financr'</code> only retrieves the data from
-Yahoo Finance and make no assumptions about the visualizations or
-analyses performed with these financial data. Consequently,
-<code>financr</code> dependencies are kept low.</p>
-<p>Other R packages retrieves data from the same source as
-<code>'financr'</code>, i.e. Yahoo Finance. E.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
-<a href="https://cran.r-project.org/package=yfR" class="external-link"><code>yfr</code></a>,
+ecosystem.</strong>Other R packages retrieves data from the same source
+as <code>'financr'</code>, i.e. Yahoo Finance. E.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
 <a href="https://cran.r-project.org/package=quantmod" class="external-link"><code>'quantmod'</code></a>
-and the packages that depends on them such as <a href="https://cran.r-project.org/package=stocks" class="external-link"><code>stocks</code></a>
-that depends on <code>'quantmod'</code>.</p>
+and the packages that depends on them such as <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>yfr</code></a> and
+<a href="https://cran.r-project.org/package=stocks" class="external-link"><code>stocks</code></a>
+(depends on <code>'quantmod'</code>).</p>
 <p>Regarding the fetching of historical financial values from Yahoo
 Finance, the returned objects of these packages have different
 properties, see below.</p>
@@ -250,15 +263,7 @@ Alternatives and Returned Values</caption>
 </tr>
 </tbody>
 </table>
-<p>Other functions offered by these packages are sometimes more or less
-equivalent (e.g., <code><a href="../reference/valid_symbol.html">financr::valid_symbol()</a></code>) whereas other
-functions are specific to one of these packages. E.g.,
-<code>'financr'</code> offer free-text search with
-<code><a href="../reference/get_info_from_name.html">financr::get_info_from_name()</a></code>, while
-<code>'quantmod'</code> offers financial data-analysis oriented
-functions and time series data visualization methods. Other packages are
-derivated from these 2 examples, e.g., which rely on quantmod and
-ans.</p>
+<!-- Other functions offered by these packages are sometimes more or less equivalent (e.g., `financr::valid_symbol()`) whereas other functions are specific to one of these packages. E.g., `'financr'` offer free-text search with `financr::search_summary()`, while `'quantmod'` offers financial data-analysis oriented functions and time series data visualization methods. Other packages are derivated from these 2 examples, e.g.,  which rely on quantmod and ans. -->
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

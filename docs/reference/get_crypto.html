@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of financr Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Get_changes.html">Get_changes</a></li>
+    <li><a class="dropdown-item" href="../articles/get_changes.html">get_changes</a></li>
     <li><a class="dropdown-item" href="../articles/get_indices_and_get_crypto.html">get_indices() And get_crypto()</a></li>
     <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">get_info_and_historic</a></li>
   </ul></li>
@@ -127,32 +127,37 @@ no filtering is applied, and all available indices are returned.</p></dd>
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Source : Yahoo Finance 'crypto' page, <a href="https://finance.yahoo.com/markets/crypto/all/" class="external-link">https://finance.yahoo.com/markets/crypto/all/</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>For more details see the help vignette:
+<code>vignette("get_indices_and_get_crypto", package = "financr"))</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">krypto</span> <span class="op">&lt;-</span> <span class="fu">get_crypto</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">krypto</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     symbol            name        price      change change_percent  market_cap</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  BTC-USD     Bitcoin USD 85236.050000 2870.850000           3.49 1.69200e+12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  ETH-USD    Ethereum USD  1919.200000   96.550000           5.30 2.31570e+11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 USDT-USD Tether USDt USD     0.999965    0.000176           0.02 1.43988e+11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  XRP-USD         XRP USD     2.151100    0.071800           3.45 1.25205e+11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  BNB-USD         BNB USD   611.410000    7.740000           1.28 8.71080e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  SOL-USD      Solana USD   126.900000    1.710000           1.37 6.50380e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     symbol            name      price    change change_percent  market_cap</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  BTC-USD     Bitcoin USD 83371.4000 -529.9800          -0.63 1.65500e+12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  ETH-USD    Ethereum USD  1809.2300   -7.7400          -0.43 2.18323e+11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 USDT-USD Tether USDt USD     1.0001    0.0005           0.05 1.44101e+11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  XRP-USD         XRP USD     2.1409    0.0162           0.76 1.24761e+11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  BNB-USD         BNB USD   591.7800   -5.5700          -0.93 8.43110e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  SOL-USD      Solana USD   120.4800   -0.9900          -0.82 6.19970e+10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       volume volume_in_currency_24hr total_volume_all_currencies_24hr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.8063e+10              2.8063e+10                       2.8063e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.5070e+10              1.5070e+10                       1.5070e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 5.8232e+10              5.8232e+10                       5.8232e+10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 4.0790e+09              4.0790e+09                       4.0790e+09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 2.0650e+09              2.0650e+09                       2.0650e+09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 3.0490e+09              3.0490e+09                       3.0490e+09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   circulating_supply X52_wk_change_percent from  to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        1.98450e+07                 26.13  BTC USD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        1.20660e+08                -44.36  ETH USD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        1.43993e+11                 -0.05 USDT USD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        5.82060e+10                256.96  XRP USD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        1.42472e+08                  9.88  BNB USD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        5.12505e+08                -31.17  SOL USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.4187e+10              1.4187e+10                       1.4187e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 6.3850e+09              6.3850e+09                       6.3850e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 3.3797e+10              3.3797e+10                       3.3797e+10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2.0950e+09              2.0950e+09                       2.0950e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1.0020e+09              1.0020e+09                       1.0020e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1.6350e+09              1.6350e+09                       1.6350e+09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   circulating_supply x52_wk_change_percent from  to</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        1.98470e+07                 20.88  BTC USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        1.20672e+08                -47.43  ETH USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        1.44087e+11                 -0.03 USDT USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        5.82750e+10                257.91  XRP USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        1.42471e+08                  2.31  BNB USD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        5.14589e+08                -31.65  SOL USD</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
