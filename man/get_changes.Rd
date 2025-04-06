@@ -27,29 +27,24 @@ The user must provide \code{from} values with one of the following method :
 \value{
 The returned dataframe contains daily exchange rates, and the following columns:
 \describe{
-\item{currency}{\code{character}, the base currency.}
-\item{symbol}{\code{character}, the Yahoo Finance symbol (e.g., "EURUSD=X").}
-\item{exchange_name}{\code{character}, the exchange place name, i.e. 'CCY' for currencies.}
-\item{fullexchange_name}{\code{character}, the full exchange place name, supposed to be 'CCY' for currencies.}
-\item{intrumenttype}{\code{character}, the type of financial instrument, supposed to be 'CURRENCY'.}
-\item{firsttradedate}{\code{POSIXct}, the oldest date available on the Yahoo Finance API for an exchange rates historic.}
-\item{regularmarketprice}{\code{numeric}, the latest market price.}
-\item{regularmarketdayhigh}{\code{numeric}, the market highest price of this day.}
-\item{regularmarketdaylow}{\code{numeric}, the market lowest price of this day.}
-\item{fifty_two_week_high}{\code{numeric}, the highest price in the last 52 weeks.}
-\item{fifty_two_week_low}{\code{numeric}, the lowest price in the last 52 weeks.}
-\item{previous_close}{\code{numeric}, the last closing price.}
-\item{timezone}{\code{character}, the market's timezone.}
-\item{date}{\code{POSIXct} Date of the observation.}
-\item{from}{\code{character}, the currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-\item{to}{\code{character}, the currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) in this line of the \code{data.frame} are expressed with this currency}.}
-\item{timestamp}{int, the timestamp of the rate.}
-\item{rate.high}{Numeric, the highest exchange rate of the day.}
-\item{rate.low}{Numeric, the lowest exchange rate of the day.}
-\item{rate.open}{Numeric, the opening exchange rate of the day.}
-\item{rate.volume}{Numeric, the trading volume for the day.}
-\item{rate.close}{Numeric, the closing exchange rate of the day.}
-\item{timestamp}{\code{POSIXct}, the corresponding date (YYYY-MM-DD).}
+\item{currency}{\code{character} - The base currency.}
+\item{symbol}{\code{character} - The Yahoo Finance symbol (e.g., "EURUSD=X").}
+\item{exchangename}{\code{character} - The exchange place name, i.e. 'CCY' for currencies.}
+\item{intrumenttype}{\code{character} - The type of financial instrument, supposed to be 'CURRENCY'.}
+\item{firsttradedate}{\code{POSIXct} - The oldest date available on the Yahoo Finance API for an exchange rates historic.}
+\item{gmtoffset}{\code{numeric} - The difference with GMT time (seconds).}
+\item{timezone}{\code{character} - The market's timezone.}
+\item{exchangetimezonename}{\code{character} - The name of the market's timezone, e.g., 'Europe/London'.}
+\item{regularmarketprice}{\code{numeric} - The latest market price.}
+\item{regularmarketdayhigh}{\code{numeric} - The market highest price of this day.}
+\item{regularmarketdaylow}{\code{numeric} - The market lowest price of this day.}
+\item{fiftytwoweekhigh}{\code{numeric} - The highest price in the last 52 weeks.}
+\item{fiftytwoweeklow}{\code{numeric} - The lowest price in the last 52 weeks.}
+\item{previousclose}{\code{numeric} - The last closing price.}
+\item{regular_timezone}{\code{character} - The regular market's timezone.}
+\item{from}{\code{character} - The currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
+\item{to}{\code{character} - The currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) of the row are expressed with this currency}.}
+\item{timestamp}{\code{POSIXct} - The corresponding date (YYYY-MM-DD).}
 }
 }
 \description{
@@ -66,14 +61,18 @@ Return a \code{data.frame} with additionnal attributes:
 }
 }
 \examples{
-# Fetch exchange historical data from € and ¥ to $ (default convert to 'USD")
+# Latest exchange rates from € and ¥ to $ (default convert to 'USD")
 df <- get_changes(from = c("EUR", "JPY"))
 str(df)
-# or pass a named list of character
+# User could pass a named list of character
 df2 <- get_changes(from = c("EUR" = "RON", "USD" = "EUR"))
 # Or pass paired values as 2 list (equivalent to hereabove line) :
 same_as_df2 <- get_changes(from = c("EUR", "USD"), to =c("RON" , "EUR"))
 }
 \references{
-Source : https://query1.finance.yahoo.com/v8/finance/chart/
+Source : https://query2.finance.yahoo.com/v8/finance/chart/
+}
+\seealso{
+For more details see the help vignette:
+\code{vignette("get_changes", package = "financr"))}
 }

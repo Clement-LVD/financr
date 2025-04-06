@@ -3,7 +3,7 @@
 #' Get latest stock market indices values and data for more than 40 world-indices,
 #' e.g., latest prices, change and percentage change.
 #' @inheritParams get_currencies
-#' @references Source : Yahoo's world indices page, https://finance.yahoo.com/markets/world-indices
+#' @references Source : Yahoo's world indices page - https://finance.yahoo.com/markets/world-indices
 #' @return A data frame with the following columns:
 #'   \item{symbol}{`character` - Ticker symbol of the index, aka world indices (e.g., `^GSPC` for S&P 500).}
 #'   \item{name}{`character` -  Full name of the index (e.g., "S&P 500").}
@@ -13,6 +13,8 @@
 #'   \item{volume}{`numeric` - The total trading volume of the index components.}
 #'   \item{currency}{`character` - Currency associated with the world-indice, i.e. `'USD'`.}
 #' @inherit construct_financial_df details
+#' @seealso For more details see the help vignette:
+#' \code{vignette("get_indices_and_get_crypto")}
 #' @examples
 #' \dontrun{
 #' indices <- get_indices()

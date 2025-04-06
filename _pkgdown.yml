@@ -1,3 +1,8 @@
+home:
+  title: An R package for fetching financial data from Yahoo Finance
+  description: Retrieve historical market data (e.g., market prices, currencies exchange rates) ;
+     latest insights on companies, financial symbols, major indices, currencies and crypto-currencies values;
+     and various helper functions, e.g., convert currencies at the latest exchange rates.
 url: https://clement-lvd.github.io/financr/
 favicon: man/figures/logo-gold.png
 template:

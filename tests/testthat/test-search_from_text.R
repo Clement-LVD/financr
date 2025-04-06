@@ -1,9 +1,9 @@
 
-test_that("search_from_text renvoie un data frame avec la structure attendue pour un texte simple", {
+test_that("search_assets renvoie un data frame avec la structure attendue pour un texte simple", {
   if(!internet_or_not()) skip()
 
   # On recherche des symboles pour "Dow jones" en précisant le type "index"
-  res <- search_from_text(texts = "Dow jones", type = "index")
+  res <- search_assets(texts = "Dow jones", type = "index")
 
   # Vérifier que le résultat est un data frame
   expect_s3_class(res, "data.frame")
@@ -20,23 +20,23 @@ test_that("search_from_text renvoie un data frame avec la structure attendue pou
 })
 
 
-test_that("search_from_text renvoie un data frame avec la structure attendue pour un texte simple", {
+test_that("search_assets renvoie un data frame avec la structure attendue pour un texte simple", {
 
   # On recherche des symboles pour "Dow jones" en précisant le type "index"
-  expect_null( search_from_text(texts =NULL ))
+  expect_null( search_assets(texts =NULL ))
   # Vérifier que le résultat est un data frame
- expect_equal(search_from_text(texts =NA), NA)
+ expect_equal(search_assets(texts =NA), NA)
 
- expect_equal(search_from_text(texts =character(0)), NULL)
+ expect_equal(search_assets(texts =character(0)), NULL)
 
 })
 
 
-test_that("search_from_text fonctionne avec plusieurs textes et filtres d'exchange", {
+test_that("search_assets fonctionne avec plusieurs textes et filtres d'exchange", {
   if(!internet_or_not()) skip()
 
   # Rechercher plusieurs textes et préciser un filtre d'exchange
-  res <- search_from_text(texts = c("VOLVO car", "RENAULT"), exchange = c("STO", "PAR"))
+  res <- search_assets(texts = c("VOLVO car", "RENAULT"), exchange = c("STO", "PAR"))
 
   # Le résultat doit être un data frame et contenir au moins une ligne
   expect_s3_class(res, "data.frame")
@@ -55,5 +55,5 @@ test_that("L'argument .verbose fonctionne sans erreur", {
   if(!internet_or_not()) skip()
 
   # Appeler la fonction avec .verbose = TRUE ne doit pas provoquer d'erreur
-  expect_silent(search_from_text(texts = "Dow jones", type = "index", .verbose = TRUE))
+  expect_silent(search_assets(texts = "Dow jones", type = "index", .verbose = TRUE))
 })

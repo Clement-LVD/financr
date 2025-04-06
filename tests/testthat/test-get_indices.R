@@ -27,7 +27,6 @@ expect_true(  is.numeric(test$price))
 
 
 test_that("get_indices respect .verbose parameter", {
-   # if(!internet_or_not()) skip()
 
   expect_silent(get_indices( .verbose = FALSE))
 

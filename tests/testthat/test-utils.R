@@ -4,6 +4,14 @@ test_that("retrieve_yahoo_api_chart_url answer text", {
 expect_length(text_results, 1)
 expect_type(text_results, "character")
 expect_true(grepl("https.*yahoo", text_results))
+
+#and construct several suffixes
+text_results <- retrieve_yahoo_api_chart_url(suffix = c('test1', 'test2', 'test3'))
+expect_length(text_results,3)
+expect_type(text_results, "character")
+expect_true(all(grepl("test(1|2|3)", text_results)))
+
+
 })
 
 # 2nd fn of utils

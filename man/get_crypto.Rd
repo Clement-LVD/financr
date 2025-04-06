@@ -50,3 +50,7 @@ head(krypto)
 \references{
 Source : Yahoo Finance 'crypto' page, \url{https://finance.yahoo.com/markets/crypto/all/}
 }
+\seealso{
+For more details see the help vignette:
+\code{vignette("get_indices_and_get_crypto", package = "financr"))}
+}

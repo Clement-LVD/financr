@@ -30,20 +30,14 @@
 #'  e.g., a `'5y'` range  with a `'1d'` interval will answer approximately 30 days of values from 5 years ago.
 #' @inherit construct_financial_df details
 #' @examples
-#' # 1. Define currencies to exchange with the syntax of get_changes().
-#' # Default convert to 'USD"
-#' # e.g., get exchange historical data of exchanges rates from € and ¥ to $ :
-#' df_days <- get_changes_historic(from = c("EUR", "JPY"))
-#' # Or pass a named list of character
-#' df2_days <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
+#' days <- get_changes_historic(from = c("EUR", "JPY"))
+#' days_bis <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
 #' # Or pass paired values as 2 list (equivalent to hereabove line) :
-#' same_as_df2_days <- get_changes(from = c("EUR", "USD"), to =c("RON" , "EUR"))
-#' # Default answer is a `data.frame` with  1 obs. per day for 1 year
-#'
-#' # 2. Tweak the time.series with the parameters interval and range :
-#' df_month <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
-#' # It's 1 obs. per month for a 5-years period
+#' same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+#' months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
 #' @seealso \code{\link{get_changes}}
+#' @seealso For more details see the help vignette:
+#' \code{vignette("get_changes", package = "financr"))}
 #' @export
 get_changes_historic <- function(from = NULL, to = "USD"
 
@@ -55,7 +49,7 @@ get_changes_historic <- function(from = NULL, to = "USD"
  if(length(historic) == 0) return(historic)
   if(length(historic) == 1) if(is.na(historic)) return(NA)
 
-  historic <- construct_financial_df(historic, latest = get_changes(from = from, to = to))
+  historic <- construct_financial_df(historic)
 
   return(historic)
 }

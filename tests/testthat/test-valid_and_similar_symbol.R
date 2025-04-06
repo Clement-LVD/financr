@@ -1,5 +1,50 @@
 
-test_that("Validation works and answer unique values" , {
+
+test_that("similar_symbols works" , {
+  if(!internet_or_not()) skip()
+
+ test <- similar_symbol(symbols =   "AAPL,GOOGL")
+
+ expect_s3_class(test, "data.frame")
+
+expect_true(nrow(test) > 1)
+
+expect_true(all(unique(test$from) == c("AAPL", "GOOGL")))
+
+expect_false(any(unique(test$symbol) %in% c("AAPL", "GOOGL")))
+
+expect_true(length(unique(test$symbol) ) > 2)
+
+# test with a list of values and deal with na
+test <- similar_symbol(symbols =  c( "AAPL", "GOOGL", NA))
+
+expect_s3_class(test, "data.frame")
+
+expect_true(nrow(test) > 1)
+
+expect_true(all(unique(test$from) == c("AAPL", "GOOGL")))
+
+expect_false(any(unique(test$symbol) %in% c("AAPL", "GOOGL")))
+
+expect_true(length(unique(test$symbol) ) > 2)
+
+
+})
+
+
+test_that("similar_symbols works with null and NA values" , {
+
+test <- similar_symbol(symbols =  NULL)
+expect_null(test)
+
+test <- similar_symbol(symbols =  NA)
+expect_true(is.na(test))
+})
+
+
+
+
+test_that("Valid_symbol() works and answer unique values" , {
   if(!internet_or_not()) skip()
 # answer is in the same order : simple case
 test_vector = c("AAPL", "SAAB", "SAAB")
@@ -47,5 +92,4 @@ test_that(".verbose parameters work", {
   expect_no_message(valid_symbol("fake symbol", .verbose = F))
 
 })
-
 

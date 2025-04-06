@@ -20,6 +20,7 @@ fetch_yahoo <- function(url, .verbose = T){
 #' @importFrom jsonlite fromJSON
 read_json_content <- function(content){ jsonlite::fromJSON(paste(content, collapse = "")) }
 
+# but sometimes we want to read html table
 #' @importFrom XML readHTMLTable
 extract_first_html_table <- function(content){
 

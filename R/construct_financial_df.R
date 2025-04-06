@@ -18,7 +18,7 @@
 #'
 #' @keywords internal
 construct_financial_df <- function(df, crypto = F , ...){
-
+if(!is.data.frame(df)) return(NA)
 namm <- colnames(df)
 
 # init values

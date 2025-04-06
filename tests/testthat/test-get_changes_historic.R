@@ -59,7 +59,6 @@ test_that("get_changes handles non-existent symbols", {
 })
 
 test_that("get_changes respects .verbose parameter", {
-  skip_on_cran()
   if(!internet_or_not()) skip()
 
   expect_silent(get_changes_historic(from = c("eerrorr"), .verbose = FALSE))

@@ -1,7 +1,7 @@
 # url of yahoo api is from here. Default is V8 API
 retrieve_yahoo_api_chart_url <- function(suffix = "v8/finance/chart/"){return(paste0("https://query2.finance.yahoo.com/", suffix) )}
 
-"https://query1.finance.yahoo.com/"
+# "https://query1.finance.yahoo.com/"
 #  add a var full of na, given a list of vars that are supposed to be present
 add_missing_var_to_df <- function(df, vars, .verbose = T){
 if(length(df) == 0) return(df)
@@ -47,8 +47,6 @@ extract_before_sep <- function(vector
   return(first_element)
 }
 
-
-##### 2) connect to yahoo ####
 # check if the user have internet
 internet_or_not <- function(url_to_ping = "https://www.google.com", timeout = 2) {
   old_timeout <- getOption("timeout")
@@ -61,18 +59,10 @@ test <-  tryCatch({
      close(con)
     return(TRUE)
 
-  }, error = function(e) {
-    # error (after 2 seconds of timeout)
-
-    FALSE
-
-  }, warning = function(w){
-    # warning is "no access to google.fr"
-
-    FALSE
-  }
+  }, error = function(e) {  FALSE }, warning = function(w){   FALSE }  # warning is "no access to google.fr"
 
   ) #end trycatch
+
 if(!test) warning("No Internet connection. Please check your network")
 
 return(test)

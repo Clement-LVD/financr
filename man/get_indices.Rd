@@ -43,5 +43,9 @@ head(indices)
 }
 }
 \references{
-Source : Yahoo's world indices page, https://finance.yahoo.com/markets/world-indices
+Source : Yahoo's world indices page - https://finance.yahoo.com/markets/world-indices
+}
+\seealso{
+For more details see the help vignette:
+\code{vignette("get_indices_and_get_crypto")}
 }

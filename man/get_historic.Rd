@@ -17,8 +17,8 @@ get_historic(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...)
   Arguments passed on to \code{\link[=get_yahoo_data]{get_yahoo_data}}
   \describe{
     \item{\code{symbol}}{\code{character} A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
-    \item{\code{start_date}}{\code{character} A character string representing the start date in the format "YYYY-MM-DD". If \code{NULL}, data starts from 1970-01-01.}
-    \item{\code{end_date}}{\code{character} A character string representing the end date in the format "YYYY-MM-DD". If \code{NULL}, data is retrieved up to the current date.}
+    \item{\code{start_date}}{\code{character} A character string representing the start date in R \code{date} format (UTC time). If \code{NULL}, data starts from 1970-01-01.}
+    \item{\code{end_date}}{\code{character} A character string representing the end date in a valid R \code{date} format (UTC time). If \code{NULL}, data is retrieved up to the current date.}
     \item{\code{range}}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
    \strong{Valid \code{range} values} \cr
    \code{"1d"}, \code{"5d"}, \code{"1mo"}, \code{"3mo"}, \code{"6mo"}, \code{"1y"}, \code{"2y"}, \code{"5y"}, \code{"10y"}, \code{"ytd"} and \code{"max"} \cr
@@ -66,10 +66,15 @@ Return a \code{data.frame} with additionnal attributes:
 }
 \examples{
 datas <- get_historic(symbols = c("VOLCAR-B.ST", "SAAB-B.ST") )
+str(datas)
 }
 \references{
 Source : https://query1.finance.yahoo.com/v8/finance/chart/
+#example : data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
 }
 \seealso{
 \code{\link{get_yahoo_data}}
+
+For more details see the help vignette:
+\code{vignette("get_info_and_historic", package = "financr"))}
 }

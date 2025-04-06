@@ -51,21 +51,21 @@ devtools::install_github("clement-LVD/financr")
 ```{r example1}
 library(financr)
 
-indices <- search_from_text(texts = c("Dow jones", "euronext"), type = "index" )
+indices <- search_assets(texts = c("Dow jones", "euronext"), type = "index" )
 
 str(indices) # Ticker symbols of index (all exchange places)
 ```
 
 
-Or retrieve the symbols and latest values on the stocks exchange places with `financr::get_info_from_name()`.
+Or retrieve the symbols and latest values on the stocks exchange places with `financr::search_summary()`.
 
 ```{r example-scraping}
-swed_indices <- get_info_from_name(names = c("SAAB", "VOLVO"), exchange = "STO")
+swed_indices <- search_summary(names = c("SAAB", "VOLVO"), exchange = "STO")
 
 str(swed_indices) # More or less similar than the previous example + latest values of the day
 ```
 
-If you don't know the ticker symbol of an asset, exploring the results of `financr::get_info_from_name()` or `search_from_text()` is a way to find it.
+If you don't know the ticker symbol of an asset, exploring the results of `financr::search_summary()` or `search_from_text()` is a way to find it.
 
 **Get historical financial data.**  Given ticker symbol(s), get historic of financial values with `financr::get_historic()` :
 
@@ -93,7 +93,7 @@ str(histo)
 2. then get the financial historic associated with these ticker symbol, 
 3. and finally convert their values in a given standardized currency, e.g., 'USD'.
 
-See the vignette on [`get_info_from_names()` and `get_historic()`](https://clement-lvd.github.io/financr/articles/get_info_and_historic.html).
+See the vignette on [`search_summarys()` and `get_historic()`](https://clement-lvd.github.io/financr/articles/get_info_and_historic.html).
 
 ## Licence
 This package retrieves data from Yahoo Finance, a property of Yahoo Inc. Users must comply with [Yahoo Finance's API terms](https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html). See more informations on the [legal Vignette](https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html).

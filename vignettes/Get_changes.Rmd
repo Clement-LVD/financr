@@ -1,15 +1,15 @@
 ---
-title: "Get_changes"
+title: "get_changes"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Get_changes}
+  %\VignetteIndexEntry{get_changes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette is about using `financr` functions to understand and exchange currencies, from financial currencies symbols. 
+This vignette presents methods for working with currency exchange rates.
 
-**get_changes() & get_changes_historic()**
+#### get_changes() & get_changes_historic() 
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -18,50 +18,64 @@ knitr::opts_chunk$set(
 )
 ```
 
-- `financr::get_changes()` compute changes with the latest exchange rate, given currencies symbols.
+- `get_changes()` compute changes with the latest exchange rate, given currencies symbols.
 
 ```{r changes}
 library(financr)
 
 changes <- get_changes(from = c("RON", "USD"), to = "EUR")
 
-# print the exchange rate :
-head(changes[ , c("from", "to",  "regularmarketprice", "currency", "timestamp")])
+changes[ , c("from", "to",  "regularmarketprice", "currency", "timestamp")]
 
 ```
 
 
-- `financr::get_changes_historic()` return a `data.frame` with the historic of exchange rates, given currencies symbols. In addition of these historical values, the attributes of this `data.frame` have the latest exchange rates returned by `financr::get_changes()`.
+- `get_changes_historic()` return a `data.frame` with the historic of exchange rates, given currencies symbols (default have  1 obs. per day for 1 year).
 
 ```{r change-historic}
 
 changes <- get_changes_historic(from = c("EUR", "RON") )
 
-# Historic of exchange rate (2 first lines) 
-head(changes, 2)
+str(changes)
 
+```
+
+Currencies are indicated with the syntax of `get_changes()` and, similarly, default are converting to 'USD'. E.g., pass a named list of character vectors, or two separate lists of equal length.
+
+
+```{r change-ways}
+
+df2_days <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
+ 
+same_as_df2_days <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+
+head(same_as_df2_days, 2)
+```
+
+**Parameters.** Optionally, you can tweak the returned data.frame using the interval and range parameters. E.g., retrieve one observation per month over a five-year period.
+
+```{r change-ranges}
+
+df_month <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
+str(df_month)
 ```
 
 ---
-**get_currencies()** 
+### get_currencies()
 
-- `financr::get_currencies()` return a list of currencies symbols and names. This is helpful to understand the currencies symbols of the Yahoo Finance API, such as the `currency` column of the `data.frame` returned by `financr::get_historic`. 
+- `get_currencies()` return a list of currencies symbols and names.
 
 ```{r currencies}
-# If you need to understand a currency symbol
 currencies <- get_currencies()
 str(currencies)
-# If you need to understand a currency symbol :
-
-few_currencies <- get_currencies(keep = c("RON",  "USD") )
-few_currencies
-
 ```
 
+ It is helpful to understand the currency symbols used by the Yahoo Finance API, such as those found in the currency column of the `data.frame` returned by `get_historic()`.
+ 
+**Parameters.** Filter out symbols with the `keep` parameter and/or add the latest market values ('USD') for each currency with `last_usd_values` parameter.
 
-<!-- --- -->
-<!-- **Technical details.** `financr::get_changes()` behavior is similar to `paste(from, to, "-X")`. Thus : -->
+```{r currencies2}
+few_currencies <- get_currencies(keep = c("RON",  "USD"), last_usd_values = T )
+few_currencies
+```
 
-<!-- - it's fine to convert several value into *one* other values, and vice-versa ; -->
-<!-- - it's fine to convert a list of paired values ; -->
-<!-- - 2 list of different lengths will lead to messy results. -->

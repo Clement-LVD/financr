@@ -21,6 +21,8 @@
 #'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
 #' }
 #' @inherit construct_financial_df details
+#' @seealso For more details see the help vignette:
+#' \code{vignette("get_indices_and_get_crypto", package = "financr"))}
 #' @examples
 #' krypto <- get_crypto()
 #' head(krypto)
@@ -36,7 +38,7 @@ get_crypto <- function(keep = NULL, .verbose = T){
 
   if(is.null(krypt) | all(is.na(krypt))) return(krypt)
 # colnames : erase space, replace '%' by percent, etc.
-  krypt <-  standardize_df_cols(krypt)
+  krypt <-  standardize_df_cols(df = krypt)
 # extract text : common pattern to several yahoo tables
   krypt$price <- extract_before_sep(krypt$price)
   krypt <- standardize_df_cols_to_numeric(krypt)

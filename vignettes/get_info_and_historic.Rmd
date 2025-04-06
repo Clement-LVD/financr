@@ -17,46 +17,49 @@ knitr::opts_chunk$set(
 This vignette show how to fetch data from company names and get historic financial data from Yahoo API.
 
 
-**Search for ticker symbols, given keyword(s).**
+**Search for ticker symbols, given keyword(s).** E.g., search symbols of all index with 'dow jones' or 'euronext' (case insensitive).
 
 ```{r setup}
 library(financr)
-# Search symbols of all index with dow jones or euronex
-indices <- search_from_text(texts = c("Dow jones", "euronext"), type = "index" )
+indices <- search_assets(texts = c("Dow jones", "euronext"), type = "index" )
 str(indices)
 ```
 
-**Search for symbols and latest prices on the exchange places, given keyword(s).**
+---
+
+**Search for symbols and latest prices on the exchange places, given keyword(s).** E.g., search the symbols of 'Volvo car' and 'Saab' in the Stockholm exchange place (case insensitive).
 
 ```{r example-price}
-# Search the symbols of volvo car and Saab in the Stockholm exchange place
-swedish <- get_info_from_name(names = c("VOLVO car", "SAAB")
+swedish <- search_summary(c("Volvo car", "Saab")
                          , exchange = "STO")
 str(swedish)
 
 ```
 
-**Get historical financial data, given symbols of assets.** 
+---
+
+**Get historical financial data, given symbols of assets.** Get historical values, given ticker symbol(s), see below.
 
 ```{r example3}
-# Get historical values, given ticker symbol(s)
 historic <- get_historic(symbols = swedish$symbol)
 
 str(historic)
 ```
 
-Additional attributes indicates such as the symbols of currencies in the `data.frame`, e.g., attributes of the `'finance'` `data.frame` from the previous example indicates that prices are in the 'SEK' currency. 
+Additional attributes indicates such as the symbols of currencies in the `data.frame`, e.g., attributes of the `'historic'` `data.frame` from the previous example indicates that prices are in the 'SEK' currency. 
 
-**Find names of all currencies with `financr::get_currencies()`.**
+---
+
+**Find names of all currencies of the results with `get_currencies()`.** And optionally add insights from `get_changes()`, e.g., latest market prices of the currency ('USD').
  
 ```{r}
 unknown_currencies <- unique(historic$currency)
 
-explaination <- get_currencies(unknown_currencies)
+values_currencies <- get_currencies(keep = unknown_currencies, last_usd_values = T)
 
-head(explaination)
+head(values_currencies)
 
 ```
 
-See how to convert it to another currency such as 'USD' with the [Vignette of `get_changes()` and `get_currencies()`](https://clement-lvd.github.io/financr/articles/Get_changes.html). 
+See how to convert currencies and get last exchanges rates with the [Vignette of `get_changes()` and `get_currencies()`](https://clement-lvd.github.io/financr/articles/get_changes.html). 
 

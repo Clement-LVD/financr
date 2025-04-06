@@ -2,24 +2,36 @@
 % Please edit documentation in R/get_currencies.R
 \name{get_currencies}
 \alias{get_currencies}
-\title{Get Currencies Names And Symbols}
+\title{Get Currencies Names, Symbols and Values}
 \usage{
-get_currencies(keep = NULL, .verbose = T)
+get_currencies(keep = NULL, last_usd_values = F, .verbose = T)
 }
 \arguments{
 \item{keep}{A character vector of symbols to filter the results. If NULL (default),
 no filtering is applied, and all available indices are returned.}
+
+\item{last_usd_values}{\code{logical}, default = \code{FALSE}. If \code{TRUE}, add latest market values ('USD') from \code{get_changes()}. See \code{\link[=get_changes]{get_changes()}} for the base structure.}
 
 \item{.verbose}{\code{logical}, default = \code{TRUE}. If \code{TRUE}, send messages to the console if necessary.}
 }
 \value{
 A data frame containing unique financial indices (currencies). The table has
 columns like \code{symbol}, \code{name}, and other relevant information, with all column names in lowercase.
-If \code{keep} is specified, only the matching indices are returned.
+If \code{keep} is specified, only the matching currencies are returned. If \code{last_usd_values} is specified, last financial insights from \code{get_changes()} will be added, e.g., last market values of each currency ('USD')
 }
 \description{
-Return a \code{data.frame} of financial indices (currencies) from Yahoo Finance.
-Optionally, it can filter the results, given a vector of symbols, e.g., 'EUR'.
+Return a \code{data.frame} of financial indices (currencies) given a vector of symbols, e.g., 'EUR'.
+Optionally, it can filter the results and add the last market price ('USD') of these currencies.
+}
+\details{
+Return a \code{data.frame} with additionnal attributes:
+\describe{
+\item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
+\item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
+\item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
+\item{date}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
+\item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
+}
 }
 \examples{
 # Fetch all available indices
@@ -29,5 +41,11 @@ all_indices <- get_currencies()
 selected_indices <- get_currencies(keep = c("USD", "EUR"))
 }
 \references{
-Source : https://query1.finance.yahoo.com/v1/finance/currencies
+Source : https://query2.finance.yahoo.com/v1/finance/currencies
+}
+\seealso{
+\code{\link{get_changes}}
+
+For more details see the help vignette:
+\code{vignette("get_changes", package = "financr"))}
 }

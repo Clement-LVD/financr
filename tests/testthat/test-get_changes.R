@@ -11,8 +11,8 @@ test_that("get_changes returns a valid data.frame", {
 
   # Vérification des colonnes attendues
   expected_cols <- c("currency", "from"  , "to"   ,        "timestamp",
-                     "regularmarketprice", "symbol", "shortname",
-                     "exchangename", "fullexchangename", "regular_timezone")
+                     "regularmarketprice", "symbol",
+                     "exchangename",  "regular_timezone")
   expect_true(all(expected_cols %in% colnames(result)))
 
   expect_equal(unique(result$to), "USD") # defaut convert to usd

@@ -1,4 +1,41 @@
 
+#### 0 reunite data.frame ####
+
+# filter out elements that don't have a proper lenght
+standardize_df_of_dfs <- function(df) {
+  n <- nrow(df)
+
+  clean_cols <- list()
+
+  process_column <- function(col) {
+    if (is.atomic(col)) {
+      if (length(col) == 1) list(rep(col, n))
+      else if (length(col) == n) list(col)
+      else NULL
+    } else if (is.data.frame(col)) {
+      if (nrow(col) == n) as.list(col)
+      else NULL
+    } else {
+      NULL
+    }
+  }
+
+  # Appliquer le traitement à toutes les colonnes
+  cols_processed <- lapply(df, process_column)
+
+  # Aplatir la liste de listes
+  flat_cols <- do.call(c, cols_processed)
+
+  names(flat_cols) <- make.unique(names(flat_cols), sep = "_")
+
+  returned_df <- as.data.frame(flat_cols, stringsAsFactors = FALSE)
+
+  returned_df <- standardize_df_cols(df = returned_df)
+
+
+  return(returned_df)
+}
+
 #### 1) standardize data.frame colnames ####
 standardize_df_cols <- function(df, sep = "_"){
   if(!is.data.frame(df)) return(df)
@@ -10,7 +47,8 @@ standardize_df_cols <- function(df, sep = "_"){
 
   df <- drop_col_wo_char(df)
 
-  df <- standardize_df_percent_col(df) # hereafter
+df <- standardize_df_percent_col(df) # hereafter
+
 
   colnames(df) <- make.names(colnames(df), unique = TRUE)
 
@@ -20,6 +58,9 @@ standardize_df_cols <- function(df, sep = "_"){
   colnames(df) <- trimws(colnames(df))
 
   colnames(df) <- gsub(" ",sep, colnames(df))
+
+
+  df <- standardize_df_cols_to_numeric(df)
 
    return(df)
 }
@@ -42,29 +83,19 @@ standardize_df_percent_col <- function(df, regex_to_replace_by_na  = "^--?$" , p
 
  colnames(df) <- gsub("%", "percent", colnames(df))
 
-  df2 <-  data.frame(
+  df2 <- data.frame(
+
     lapply( df , FUN = function(col){
+      # don't apply on numeric col or col without '%' at each row
     if(!is.character(col)) return(col)
+      col <- trimws(col)
+    if(!all(grepl("^--?$|\\%$", col))) return(col)
+# character col with a percent sign
    col <- gsub(regex_to_replace_by_na, NA, col)
-   col <-  gsub( x = col, pattern = pattern_to_erase, replacement = "") # erase '%' from col'
-     return(   col   )
+
+   col <- gsub( x = col, pattern = pattern_to_erase, replacement = "") # erase '%' from col'
+     return(   as.numeric(col)   )
   }))
-# we next search for var to convert to num
- have_no_char <- lapply(df2, FUN = function(col) all(!grepl(x = col, pattern = "[A-z]")))
- have_num <- lapply(df2, FUN = function(col) {
-   all(!grepl(x = col, pattern = "\\(|\\)"), # without '(' in the content
-
-   grepl(x = col, pattern = "[0-9]") #and a number
-   )
-
-   })
-
- eligible_vars <- which(unlist(have_no_char) & unlist(have_num))
-
- if(length(eligible_vars) > 0) df2[eligible_vars] <-  lapply(df2[eligible_vars], function(col) {
-   as.numeric(as.character(col))
- })
-
 
   return(df2)
 
@@ -74,22 +105,46 @@ standardize_df_cols_to_numeric <- function(df){
   if(!is.data.frame(df)) return(df)
 
 # 1) search for col : with no char instead of our abbreviations (T, B, M, K at the end of the line)
-  have_no_char <- sapply(df, function(col) {
+have_no_char <- sapply(df, function(col) {
     if(is.numeric(col)) return(NA) #not the already numeric col
-    col <- trimws(col)
-    all(any(!grepl("\\(|\\)", col, perl = TRUE)), #DON'T HAVE '(' or ')'
-    any(!grepl("[A-Za-z]{2}(?!(?<=[0-9])(T|B|M|K)$)", col, perl = TRUE))
-    # and have text but not our abbreviations or '-' in our count
- ) })
+
+col <- trimws(col)
+    # we supress the last char if its a
+col <- gsub(pattern = "(T|B|M|K)$", "", col)
+
+# return logical values
+have_no_parenthesis <- !grepl("\\(|\\)", col, perl = TRUE)
+have_character <- grepl("[A-Za-z]", col, perl = TRUE) # na.values are FALSE
+
+logi_text <- all(have_no_parenthesis, !have_character )
+
+return(logi_text)
+})
 
 have_no_char <- which(have_no_char)
 # if there is results : col' without char but abbreviation are treated and returned as numeric
 if(length(have_no_char) == 0) return(df)
-
-  df[have_no_char] <- lapply(df[, have_no_char], standardize_df_convert_abbr_to_numeric)
+if(length(have_no_char) == 1) df[have_no_char] <- standardize_df_convert_abbr_to_numeric(df[have_no_char])
+if(length(have_no_char) > 1) df[have_no_char] <- lapply(df[, have_no_char], standardize_df_convert_abbr_to_numeric)
 
   return(df)
 }
+
+
+# search for var to convert to num
+# have_no_char <- lapply(df2, FUN = function(col) all(!grepl(x = col, pattern = "[A-z]")))
+#
+# have_num <- lapply(df2, FUN = function(col) {
+#   all(!grepl(x = col, pattern = "\\(|\\)"), # without '(' in the content
+#
+#       grepl(x = col, pattern = "[0-9]") #and a number
+#   )   })
+#
+# eligible_vars <- which(unlist(have_no_char) & unlist(have_num))
+#
+# if(length(eligible_vars) > 0) df2[eligible_vars] <- lapply(df2[eligible_vars] , function(col) {
+#   return(as.numeric(as.character(col)) ) })
+
 
 ##### 3) convert billion (B), "Million (M), etc. #####
 standardize_df_convert_abbr_to_numeric <- function(x) {
@@ -128,3 +183,19 @@ standardize_df_convert_abbr_to_numeric <- function(x) {
   return(returned)
 }
 
+# and standardize big number as posixct
+standardize_df_posixct_for_big_number <- function(df, limit = 1e9){
+  # 1000000000 = 2001
+
+  # 'integer'  variables with a value > 1e9
+  cols_posix <- names(df)[sapply(df, is.numeric) & sapply(df, function(col) any(col > limit))]
+
+  cols_posix <- cols_posix[!is.na(cols_posix)]
+
+  #convert with lapply() to posixct
+  if(length(cols_posix) > 0){
+    df[, cols_posix] <- lapply(df[, cols_posix, drop = FALSE], as.POSIXct)
+  }
+
+return(df)
+}

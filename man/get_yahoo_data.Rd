@@ -16,9 +16,9 @@ get_yahoo_data(
 \arguments{
 \item{symbol}{\code{character} A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
 
-\item{start_date}{\code{character} A character string representing the start date in the format "YYYY-MM-DD". If \code{NULL}, data starts from 1970-01-01.}
+\item{start_date}{\code{character} A character string representing the start date in R \code{date} format (UTC time). If \code{NULL}, data starts from 1970-01-01.}
 
-\item{end_date}{\code{character} A character string representing the end date in the format "YYYY-MM-DD". If \code{NULL}, data is retrieved up to the current date.}
+\item{end_date}{\code{character} A character string representing the end date in a valid R \code{date} format (UTC time). If \code{NULL}, data is retrieved up to the current date.}
 
 \item{range}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
    \strong{Valid \code{range} values} \cr
@@ -68,5 +68,6 @@ it retrieves all available data from the beginning of time (default for start) t
 }
 \references{
 Source : https://query1.finance.yahoo.com/v8/finance/chart/
+#example : data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
 }
 \keyword{internal}
