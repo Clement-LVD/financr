@@ -28,24 +28,20 @@ test_that("get_yahoo data handles invalid input", {
 
 # invalid ranges :
   expect_message(result <- get_yahoo_data(symbol = "AAPL", range = "invalid" ))
-# invalid
-  expect_message(result <- get_yahoo_data(symbol = "AAPL", range = "invalid" ))
 
 })
 
 test_that("get_yahoo_data handles non-existent symbols", {
   if(!internet_or_not()) skip()
 
-  result <- get_yahoo_data(symbol = "INVALID-SYMBOL")
+expect_message( result <- get_yahoo_data(symbol = "INVALID-SYMBOL") )
 
   # invalid symbol = NA and a warning
   expect_true(is.na(result)|| is.null(result))
 })
 
-test_that("get_yahoo_data send message by default and respect .verbose parameter", {
+test_that("get_yahoo_data respect .verbose parameter", {
   if(!internet_or_not()) skip()
-
-  expect_message(get_yahoo_data(symbol = "invalide" ))
 
   expect_silent(get_yahoo_data(symbol = "invalide", .verbose = FALSE))
 })

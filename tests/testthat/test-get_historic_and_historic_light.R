@@ -42,7 +42,7 @@ test_that("get_historic handles empty symbols input", {
 test_that("get_historic handles non-existent symbols", {
    if(!internet_or_not()) skip()
 
-  result <- get_historic(symbols = c("INVALID-SYMBOL"))
+ expect_message(result <- get_historic(symbols = c("INVALID-SYMBOL")))
 
   # invalid symbol = NA and a warning
   expect_true(is.na(result)|| is.null(result))

@@ -64,7 +64,7 @@ test_that("get_changes handles non-existent symbols", {
   # skip_on_cran()
   if(!internet_or_not()) skip()
 
-  result <- get_changes(from = c("INVALID-SYMBOL"))
+  expect_message({result <- get_changes(from = c("INVALID-SYMBOL"))})
 
   # invalid symbol = NA and a warning
   expect_true(is.na(result)|| is.null(result))

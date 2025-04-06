@@ -48,7 +48,9 @@ devtools::install_github("clement-LVD/financr")
 ```{r example1}
 library(financr)
 
-indices <- search_assets(c("Dow jones", "euronext"), type = "index" )
+indices <- search_assets(c("Dow jones"
+                           , "euronext")
+                         , type = "index" )
 
 str(indices)
 ```
@@ -57,7 +59,10 @@ str(indices)
 Optionally use `add_latest_values` parameter to add latest prices to these results.
 
 ```{r example-scraping}
-indices2 <- search_assets(c("Dow jones", "euronext"), type = "index", add_latest_values = TRUE )
+indices2 <- search_assets(
+  c("Dow jones", "euronext")
+  , type = "index"
+  , add_latest_values = TRUE )
 
 str(indices2)
 ```
@@ -67,7 +72,9 @@ If you don't know the ticker symbol of an asset, exploring the results of `searc
 **Get historical financial data.**  Given ticker symbol(s), get historic of financial values with `financr::get_historic()` (default interval is daily values).
 
 ```{r example2}
-histo <- get_historic(c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
+histo <- get_historic(
+  c("SAAB-B.ST", "VOLV-B.ST")
+  , .verbose = FALSE)
 
 str(histo)
 

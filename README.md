@@ -48,7 +48,9 @@ companies names, search symbols with `financr::search_assets()`.
 ``` r
 library(financr)
 
-indices <- search_assets(c("Dow jones", "euronext"), type = "index" )
+indices <- search_assets(c("Dow jones"
+                           , "euronext")
+                         , type = "index" )
 
 str(indices)
 #> 'data.frame':    8 obs. of  10 variables:
@@ -70,7 +72,10 @@ Optionally use `add_latest_values` parameter to add latest prices to
 these results.
 
 ``` r
-indices2 <- search_assets(c("Dow jones", "euronext"), type = "index", add_latest_values = TRUE )
+indices2 <- search_assets(
+  c("Dow jones", "euronext")
+  , type = "index"
+  , add_latest_values = TRUE )
 
 str(indices2)
 #> 'data.frame':    8 obs. of  28 variables:
@@ -120,7 +125,9 @@ of financial values with `financr::get_historic()` (default interval is
 daily values).
 
 ``` r
-histo <- get_historic(c("SAAB-B.ST", "VOLV-B.ST"), .verbose = FALSE)
+histo <- get_historic(
+  c("SAAB-B.ST", "VOLV-B.ST")
+  , .verbose = FALSE)
 
 str(histo)
 #> 'data.frame':    1020 obs. of  20 variables:
