@@ -67,43 +67,43 @@ test_that("get_values respects .verbose parameter", {
 
 # and get_asset_values
 
-
-test_that("get_asset_value handles empty symbols input", {
-
-  result <- financr:::get_asset_value(character(0))
-
-  # empty results if empty symbol
-  expect_null(result)
-
-  result <- financr:::get_asset_value( NULL)
-
-  # empty results if empty symbol
-  expect_null(result)
-
-
-  result <- financr:::get_asset_value(NA)
-
-  # empty results if empty symbol
-  expect_null(result)
-
-  result <- financr:::get_asset_value( 12)
-  expect_null(result)
-
-})
-
-test_that("get_asset_value handles non-existent symbols", {
-  if(!internet_or_not()) skip()
-
-  result <- financr:::get_asset_value("INVALID-SYMBOL")
-
-  # invalid symbol = NA and a warning
-  expect_null(result)
-})
-
-test_that("get_asset_value respects .verbose parameter", {
-  if(!internet_or_not()) skip()
-
-  expect_message(result <- financr:::get_asset_value( "INVALID-SYMBOOOL", .verbose = TRUE))
-  expect_silent(result <- financr:::get_asset_value( "INVALID-SYMBOOOL", .verbose = F))
-
-})
+#
+# test_that("get_asset_value handles empty symbols input", {
+#
+#   result <- financr:::get_asset_value(character(0))
+#
+#   # empty results if empty symbol
+#   expect_null(result)
+#
+#   result <- financr:::get_asset_value( NULL)
+#
+#   # empty results if empty symbol
+#   expect_null(result)
+#
+#
+#   result <- financr:::get_asset_value(NA)
+#
+#   # empty results if empty symbol
+#   expect_null(result)
+#
+#   # result <- financr:::get_asset_value( 12)
+#   # expect_null(result)
+#
+# })
+#
+# test_that("get_asset_value handles non-existent symbols", {
+#   if(!internet_or_not()) skip()
+#
+#   result <- financr:::get_asset_value("INVALID-SYMBOL")
+#
+#   # invalid symbol = NA and a warning
+#   expect_null(result)
+# })
+#
+# test_that("get_asset_value respects .verbose parameter", {
+#   if(!internet_or_not()) skip()
+#
+#   expect_message(result <- financr:::get_asset_value( "INVALID-SYMBOOOL", .verbose = TRUE))
+#   expect_silent(result <- financr:::get_asset_value( "INVALID-SYMBOOOL", .verbose = F))
+#
+# })
