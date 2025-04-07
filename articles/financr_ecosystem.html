@@ -41,10 +41,10 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
+    <li><a class="dropdown-item" href="../articles/example.html">Example</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">Workflow Example</a></li>
-    <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
+    <li><a class="dropdown-item" href="../articles/last_family.html">The 'last_' family of functions</a></li>
   </ul>
 </li>
       </ul>
@@ -80,14 +80,17 @@ and thus have the same source as <code>'financr'</code>, e.g., <a href="https://
 The same is true for packages that depends on them, e.g., <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>'yfr'</code></a> and
 <a href="https://cran.r-project.org/package=stocks" class="external-link"><code>'stocks'</code></a>
 that depends on <code>'quantmod'</code>.</p>
+<blockquote>
 <p><code>'financr'</code> only retrieves data from Yahoo Finance,
 without assumptions about the visualizations or analyses performed with
-these financial data. Consequently, <code>'financr'</code> dependencies
-are kept low, while other packages sometimes offers more advanced
-methods. For example, <code>'quantmod'</code> offers financial
-data-analysis oriented functions and time series data visualization
-methods.</p>
-<p>Regarding the fetching of historical data from Yahoo Finance API,</p>
+these financial data.</p>
+</blockquote>
+<p><code>'financr'</code> dependencies are kept low, while other
+packages sometimes offers more advanced methods. For example,
+<code>'quantmod'</code> offers financial data-analysis oriented
+functions and time series data visualization methods.</p>
+<p>Regarding the object returned when fetching historical data from
+Yahoo Finance API:</p>
 <ul>
 <li>
 <code><a href="../reference/get_historic.html">financr::get_historic()</a></code> return a standard
@@ -102,8 +105,8 @@ class object (e.g., <code>Ticker$get_history</code>) ;</li>
 <code>yfr::yf_get()</code> return a tibble.</li>
 </ul>
 <p><code>'financr'</code> functions always return a standardized
-<code>data.frame</code>, see the <a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">Vignette
-‘Summary of financr Functions’</a>.</p>
+<code>data.frame</code>, see the
+<code><a href="../articles/Functions_summary.html">vignette("Functions_summary", package = "financr")</a></code>.</p>
   </main>
 </div>
 

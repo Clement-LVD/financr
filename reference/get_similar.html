@@ -20,10 +20,10 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
     <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
+    <li><a class="dropdown-item" href="../articles/example.html">Example</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
     <li><a class="dropdown-item" href="../articles/Functions_summary.html">Summary of Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/get_info_and_historic.html">Workflow Example</a></li>
-    <li><a class="dropdown-item" href="../articles/last_family.html">The '`last_`' family of functions</a></li>
+    <li><a class="dropdown-item" href="../articles/last_family.html">The 'last_' family of functions</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -87,28 +87,28 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_similar</span><span class="op">(</span>symbols <span class="op">=</span>   <span class="st">"AAPL,GOOGL"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          from symbol    score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.278101</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250701</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210578</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121617</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118386</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.278014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250616</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118379</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118225</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117450</span>
 <span class="r-in"><span><span class="fu">get_similar</span><span class="op">(</span>symbols <span class="op">=</span>   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AAPL"</span>, <span class="st">"GOOGL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          from symbol    score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.278101</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250701</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210578</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121617</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118386</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.278014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250616</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118379</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118225</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117450</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
