@@ -1,8 +1,5 @@
-
-# a last_ prefix indicates that all inputs are optionnal
-
 #### 1) Scraping ####
-
+# a last_ prefix indicates that all inputs are optional
 #' Get Latest Cryptocurrencies Values (USD) and Market Data
 #'
 #' Return a `data.frame` of latest financial data for 100 cryptocurrencies, e.g., actual values of each cryptocurrency in USD.
@@ -21,13 +18,13 @@
 #'   \item{volume_in_currency_24hr}{`numeric` - 24-hour trading volume in the associated 'real-world' currency (most of the time redundant with the `volume` column).}
 #'   \item{total_volume_all_currencies_24hr}{`numeric` - 24-hour total trading volume across all currency pairs.}
 #'   \item{circulating_supply}{`numeric` - Total circulating supply of the cryptocurrency.}
-#'   \item{X52_wk_change_percent}{`numeric` - Percentage change in price over the last 52 weeks (%).}
+#'   \item{x52_wk_change_percent}{`numeric` - Percentage change in price over the last 52 weeks (%).}
 #'   \item{from}{`character`, the currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
 #'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
 #' }
 #' @inherit construct_financial_df details
 #' @seealso For more details on the 'last_' family of functions see the help vignette:
-#' \code{vignette("last_family")}
+#' \code{vignette("last_family", package = "financr"))}
 #' @examples
 #' krypto <- last_crypto()
 #' head(krypto)
@@ -73,7 +70,7 @@ last_crypto <- function(keep = NULL, .verbose = T){
 #'   \item{currency}{`character` - Currency associated with the world-indice, i.e. `'USD'`.}
 #' @inherit construct_financial_df details
 #' @seealso For more details on the 'last_' family of functions see the help vignette:
-#' \code{vignette("last_family")}
+#' \code{vignette("last_family", package = "financr")}
 #' @examples
 #' \dontrun{
 #' indices <- last_indices()
@@ -82,7 +79,7 @@ last_crypto <- function(keep = NULL, .verbose = T){
 #' @export
 last_indices <- function(.verbose = T, keep = NULL){
 
-  if(!internet_or_not()) return(NA)
+  if(!internet_or_not(.verbose = .verbose)) return(NA)
 
   url = "https://finance.yahoo.com/markets/world-indices/?count=100"
   indices <- fetch_yahoo(url, .verbose = .verbose)
@@ -126,7 +123,7 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' @inherit construct_financial_df details
 #' @seealso \code{\link{get_changes}}
 #' @seealso For more details see the help vignette:
-#' \code{vignette("currencies", package = "financr"))}
+#' \code{vignette("currencies", package = "financr")}
 #' @export
 last_currencies <- function(keep = NULL, add_usd_values = F, .verbose = T) {
 
@@ -182,7 +179,7 @@ results <- standardize_df_cols(results)
 #' }
 #' @references Source : https://query2.finance.yahoo.com/v6/finance/quote/marketSummary
 #' @seealso For more details on the 'last_' family of functions see the help vignette:
-#' \code{vignette("last_family")}
+#' \code{vignette("last_family", package = "financr")}
 #' @examples
 #' df <- last_market_summary()
 #'

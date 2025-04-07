@@ -1,5 +1,4 @@
-
-#### 0 reunite data.frame ####
+#### Reunite data.frame ####
 
 # filter out elements that don't have a proper lenght
 standardize_df_of_dfs <- function(df) {
@@ -20,10 +19,10 @@ standardize_df_of_dfs <- function(df) {
     }
   }
 
-  # Appliquer le traitement à toutes les colonnes
+  # Apply to all columns
   cols_processed <- lapply(df, process_column)
 
-  # Aplatir la liste de listes
+  # Flat list of list
   flat_cols <- do.call(c, cols_processed)
 
   names(flat_cols) <- make.unique(names(flat_cols), sep = "_")

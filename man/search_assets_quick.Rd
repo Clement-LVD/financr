@@ -26,7 +26,7 @@ A \code{data.frame} with assets symbols and names.
 \item \code{symbol}: The financial symbol (e.g., stock ticker or index).
 \item \code{name}: The full name of the financial entity (e.g., 'Dow Jones Industrial Average').
 \item \code{exch}: The exchange on which the symbol is listed (e.g., 'DJI', 'CBT').
-\item \code{type}: The type of the financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
+\item \code{type}: The type of financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
 \item \code{exchdisp}: The exchange name displayed (e.g., 'Dow Jones').
 \item \code{typedisp}: A long name for the type of financial instrument (e.g., 'Index', 'Futures' or 'ETF' for 'Exchange Traded Fund').
 }
@@ -35,8 +35,7 @@ A \code{data.frame} with assets symbols and names.
 Search for financial data based on texts and retrieve asset symbol(s), name(s), exchanges place(s), and asset type(s).
 }
 \examples{
-\dontrun{
 # Example of searching for financial data related to "Dow Jones"
 results <- search_assets_quick(texts = "Dow Jones")
-}
+str(results)
 }

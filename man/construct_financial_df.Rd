@@ -10,6 +10,8 @@ construct_financial_df(df, crypto = F, ...)
 \item{df}{\code{data.frame} The function compute statistics with the \code{to} column (if available) or the \code{currency} column}
 
 \item{crypto}{\code{logical} Attribute predefined if cryptocurrencies are in the dataset}
+
+\item{...}{Attribute(s) to add to the returned \code{data.frame}}
 }
 \description{
 This internal function constructs and assigns specific attributes
@@ -23,12 +25,10 @@ Return a \code{data.frame} with additionnal attributes:
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
 \item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
-\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
-\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
-\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
 }
-}
-\seealso{
-Other functions that use these attributes can reference this documentation.
+See \code{vignette("Functions_summary", package = "financr")}
 }
 \keyword{internal}

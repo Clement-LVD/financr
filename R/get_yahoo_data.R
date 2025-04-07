@@ -54,13 +54,16 @@ if( n_symbs > 1 ) {
 if( n_symbs == 0 ) return(NULL)
 if(!is.character(symbol)) return(NA)
 
-  if(!all(valid_symbol(symbol, .verbose = .verbose))){ return(NA) }
+if(!internet_or_not(.verbose = .verbose)) return(NA)
+# check symbol validity
+if(!all(valid_symbol(symbol, .verbose = .verbose))){ return(NA) }
 
   valid_ranges <- c( "1d" , "5d" , "1mo", "3mo" ,"6mo" ,"1y"  ,"2y" , "5y" , "10y", "ytd","max")
-  if(!range %in% valid_ranges){
+if(!range %in% valid_ranges){
 if( .verbose ) message("Specified range ('",range, "') is not a valid range. \nChoices are : ", paste0(collapse= ", ", valid_ranges ))
   return(NA)
   }
+
 
 
 start_timestamp <- 0  # 0 timestamp is the default (01/01/1970)

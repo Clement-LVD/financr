@@ -52,7 +52,7 @@ Functions with the `'_historic'` suffix return an historic of financial data, wh
 ```{r search-fn, echo=FALSE}
 
 fn <- data.frame(Example =   c( 
-"`search_assets('Saab', add_latest_values = T)`"
+"`search_assets('Saab', get_values = T)`"
                      
  ,"`search_assets('Saab')`" 
  
@@ -81,9 +81,9 @@ knitr::kable(fn,
 
 ```{r get-fn, echo = F}
 
-fn <- data.frame(Example =   c( "`get_values('SDV1.F')`"
+fn <- data.frame(Example = c( "`get_historic('SDV1.F')` <br> & `get_historic_light('SDV1.F')`"
+                             , "`get_values('SDV1.F')`"
   
-  , "`get_historic('SDV1.F')` <br> & `get_historic_light('SDV1.F')`"
                   , "`get_changes('USD', 'EUR')`",  "`get_changes_historic('USD', 'EUR')`" 
                  
                   , "`get_similar('SDV1.F')`"
@@ -91,13 +91,13 @@ fn <- data.frame(Example =   c( "`get_values('SDV1.F')`"
   
   , Input = c("Asset symbol(s), such as ticker symbols"
    , "Asset symbol(s)"
- ,"ISO currency code(s) to convert"
+ ,"ISO currency code(s)"
  ,"ISO currency code(s)"
 ,"Asset symbol(s)"
   )
 
- , Data.frame_returned =  c("**Latest** insights and financial values"
- ,  "**Historic** of financial data"
+ , Data.frame_returned =  c(  "**Historic** of financial data"
+ ,"**Latest** insights and financial values"
  ,"**Latest** exchanges rates" , "**Historic** of exchanges rates"
  , "**Latest** symbols associated with those provided and similarity scores"
                            )
@@ -137,13 +137,18 @@ knitr::kable(last_fn
 
 ```
 
+- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+
 - ‡ : Scraping latest data from Yahoo Finance pages, i.e. https://finance.yahoo.com/markets/world-indices/ or [...]/markets/crypto
 
-- \* : Retrieve latest data from Yahoo Finance API (https://query2.finance.yahoo.com) 
+
+See the vignette.
+
+`vignette("last_family", package = "financr")`
 
 ---
 
-**Other functions.**
+**Other function.**
 
 ```{r other-fn, echo = F}
 
@@ -164,9 +169,5 @@ Regarding all the `data.frame` returned by `'financr'` functions:
     
 The column names are:
 
-- following the ['snake_case' conventions](https://wikipedia.org/wiki/Snake_case), e.g., in lowercase and without spaces;
-- and symbols are replaced (e.g., "%' is replaced by 'percent');
-
-<!-- In order to return `integer` or `numeric` class of values, some of the texts provided by the Yahoo Finance API are converted into numeric values, e.g., `"1.2M"` is turned into `1200000` and `"85%"` into `85`.  -->
-
-Examples of similarities and differences with other `'R packages'` are in the [Vignette 'Summary of financr Ecosystem'](https://clement-lvd.github.io/financr/articles/financr_ecosystem.html).
+- following the 'snake_case' conventions^[https://wikipedia.org/wiki/Snake_case], e.g., in lowercase and without spaces;
+- and symbols are replaced (e.g., "%' is replaced by 'percent').

@@ -20,7 +20,7 @@ valid_symbol <- function(symbols = NULL, ..., .verbose = T) {
 
    if(length(symbols) == 0) return(NULL)
 
-  if (!internet_or_not()) return(NA)
+  if (!internet_or_not(.verbose = .verbose)) return(NA)
 
 
      initial_symbols <- standardize_symbols(symbols)

@@ -18,9 +18,9 @@
 #' |FUTURE     |Future - A contract to buy/sell an asset at a future date and price.    |
 #'
 #' @param exchange `character` (optionnal) - A character string representing the exchange place(s) to consider - exact match, e.g., 'STO' (Stockholm stock exchange). Default keep all results.
-#' @param add_latest_values `logical`, default = `FALSE` - If `TRUE`, search for the values of the symbols and add columns from `get_values()`
+#' @param get_values `logical`, default = `FALSE` - If `TRUE`, search for the values of the symbols and add columns from `get_values()`
 #' @param .verbose `logical`, default = `FALSE` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
-#' @return A data frame with the following columns:
+#' @return Return a `data.frame` with the following columns:
 #' \describe{
 #'   \item{symbol}{`character` - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
 #'   \item{shortname}{`character` - A short name for the asset, e.g., ETF or index name.}
@@ -40,7 +40,7 @@
 #' head(swed)
 #'
 #' swed_last_values <- search_assets(c("VOLVO car", "SAAB")
-#' ,  exchange = "STO", add_latest_values = TRUE )
+#' ,  exchange = "STO", get_values = TRUE )
 #'
 #' str(swed_last_values)
 #' @inherit construct_financial_df details
@@ -49,16 +49,16 @@
 #' \code{vignette("get_info_and_historic", package = "financr"))}
 #' @seealso \code{get_values}
 #' @export
-search_assets <- function(texts, exchange = NULL,  type = NULL, add_latest_values = F, .verbose = F){
+search_assets <- function(texts, exchange = NULL,  type = NULL, get_values = F, .verbose = F){
 # url = "https://query2.finance.yahoo.com/v1/finance/search?q=saab"
 if (!is.character(texts)) { return(texts) }
 
 texts <- texts[!is.na(texts)]
 if(length(texts) == 0) return(NULL)
+if(!internet_or_not(.verbose = .verbose)) return(NA)
 
 texts <- as.character(unique(texts))
 texts <- tolower(texts)
-if(!internet_or_not()) return(NA)
 
 url = retrieve_yahoo_api_chart_url(suffix ="v1/finance/search?q=" )
 
@@ -109,7 +109,7 @@ if(!is.null(type   )) returned_results <- returned_results[which(tolower(returne
 if(!is.null(exchange) ) {returned_results <- returned_results[which(tolower(returned_results$exchange) %in% tolower(exchange)), ]}
 
 # optionnaly add last values
-if(add_latest_values){
+if(get_values){
   values <- get_values(returned_results$symbol, .verbose = .verbose)
   returned_results <- merge(returned_results, values, by = c("symbol", "shortname"))
 }
@@ -133,16 +133,15 @@ return(construct_financial_df( returned_results) )
 #'   \item \code{symbol}: The financial symbol (e.g., stock ticker or index).
 #'   \item \code{name}: The full name of the financial entity (e.g., 'Dow Jones Industrial Average').
 #'   \item \code{exch}: The exchange on which the symbol is listed (e.g., 'DJI', 'CBT').
-#'   \item \code{type}: The type of the financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
+#'   \item \code{type}: The type of financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
 #'   \item \code{exchdisp}: The exchange name displayed (e.g., 'Dow Jones').
 #'   \item \code{typedisp}: A long name for the type of financial instrument (e.g., 'Index', 'Futures' or 'ETF' for 'Exchange Traded Fund').
 #' }
 #'
 #' @examples
-#' \dontrun{
 #' # Example of searching for financial data related to "Dow Jones"
 #' results <- search_assets_quick(texts = "Dow Jones")
-#' }
+#' str(results)
 #' @export
 search_assets_quick <- function(texts =  "Dow Jones", .verbose = TRUE, region =NULL, lang = "en"){
    if(length(texts) == 0) return(NULL)
@@ -163,6 +162,8 @@ results <- lapply(texts, FUN = function(text){
   stocks <- fetch_yahoo(url, .verbose = .verbose)
 
   data <- stocks[[1]]$Result
+
+if(length(data) == 0) return(NULL)
 
   data <- standardize_df_cols(data)
 

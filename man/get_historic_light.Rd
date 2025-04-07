@@ -37,6 +37,20 @@ A \code{data.frame} with a historical values :
 \description{
 Get an historic of stock market data for financial ticker symbols, e.g., values at each closing day.
 }
+\details{
+Return a \code{data.frame} with additionnal attributes:
+\describe{
+\item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
+\item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
+\item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
+\item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
+\item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
+}
+See \code{vignette("Functions_summary", package = "financr")}
+}
 \examples{
 histo_light <- get_historic_light(c("SAAB-B.ST", "AAPL"))
 }

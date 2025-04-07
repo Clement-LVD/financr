@@ -37,5 +37,5 @@ Source : https://query2.finance.yahoo.com/v6/finance/quote/marketSummary
 }
 \seealso{
 For more details on the 'last_' family of functions see the help vignette:
-\code{vignette("last_family")}
+\code{vignette("last_family", package = "financr")}
 }

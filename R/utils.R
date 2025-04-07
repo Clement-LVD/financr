@@ -48,7 +48,7 @@ extract_before_sep <- function(vector
 }
 
 # check if the user have internet
-internet_or_not <- function(url_to_ping = "https://www.google.com", timeout = 2) {
+internet_or_not <- function(url_to_ping = "https://www.google.com", timeout = 2, .verbose = T) {
   old_timeout <- getOption("timeout")
 
   options(timeout = timeout)
@@ -63,7 +63,7 @@ test <-  tryCatch({
 
   ) #end trycatch
 
-if(!test) warning("No Internet connection. Please check your network")
+if(!test) if(.verbose) message("No Internet connection. Please check your network")
 
 return(test)
 }

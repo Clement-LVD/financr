@@ -34,10 +34,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
 \item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
-\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
-\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
-\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
 }
+See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
 \dontrun{
@@ -50,5 +51,5 @@ Source : Yahoo's world indices page - https://finance.yahoo.com/markets/world-in
 }
 \seealso{
 For more details on the 'last_' family of functions see the help vignette:
-\code{vignette("last_family")}
+\code{vignette("last_family", package = "financr")}
 }

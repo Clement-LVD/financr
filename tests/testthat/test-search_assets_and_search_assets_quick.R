@@ -118,9 +118,17 @@ test_that("search_assets_quick deal with unknown values", {
   if(!internet_or_not()) skip()
 
   # Appel avec un nom qui n'est pas attendu, on peut espérer un résultat vide ou NA
-  res <- search_assets_quick( "UneEntrepriseInconnueXYZ", NA)
+  res <- search_assets_quick( "UneEntrepriseInconnueXYZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", NA)
 
   # On s'attend à un data frame vide ou à NA
-  expect_true(is.data.frame(res) && nrow(res) == 0 || is.na(res))
+  expect_true( is.na(res))
+
+  res <- search_assets_quick( c("UneEntrepriseInconnueXYZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", NA, "Dow jones"))
+
+  # Vérifier que le résultat est un data frame
+  expect_s3_class(res, "data.frame")
+
+  # Vérifier que la colonne 'searched' contient le terme recherché
+  expect_true(all(grepl("Dow Jones", res$searched, ignore.case = TRUE)))
 })
 

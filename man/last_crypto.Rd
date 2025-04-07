@@ -25,7 +25,7 @@ A data frame with 100 observations and 13 variables:
 \item{volume_in_currency_24hr}{\code{numeric} - 24-hour trading volume in the associated 'real-world' currency (most of the time redundant with the \code{volume} column).}
 \item{total_volume_all_currencies_24hr}{\code{numeric} - 24-hour total trading volume across all currency pairs.}
 \item{circulating_supply}{\code{numeric} - Total circulating supply of the cryptocurrency.}
-\item{X52_wk_change_percent}{\code{numeric} - Percentage change in price over the last 52 weeks (\%).}
+\item{x52_wk_change_percent}{\code{numeric} - Percentage change in price over the last 52 weeks (\%).}
 \item{from}{\code{character}, the currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
 \item{to}{\code{character}, the currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) in this line of the \code{data.frame} are expressed with this currency}.}
 }
@@ -41,10 +41,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
 \item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
-\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
-\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
-\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
 }
+See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
 krypto <- last_crypto()
@@ -55,5 +56,5 @@ Source : Yahoo Finance 'crypto' page, \url{https://finance.yahoo.com/markets/cry
 }
 \seealso{
 For more details on the 'last_' family of functions see the help vignette:
-\code{vignette("last_family")}
+\code{vignette("last_family", package = "financr"))}
 }

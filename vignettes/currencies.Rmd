@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-- `get_changes()` compute changes with the latest exchange rate, given currencies symbols.
+- `get_changes()` fetch the latest exchange rate, given currencies symbols :
 
 ```{r changes}
 library(financr)
@@ -30,7 +30,7 @@ changes[ , c("from", "to",  "regularmarketprice", "currency", "timestamp")]
 ```
 
 
-- Get the historic of exchange rates, given currencies symbols. 
+- Or get the historic of exchange rates, given currencies symbols : 
 
 ```{r change-historic}
 
@@ -40,7 +40,7 @@ str(changes)
 
 ```
 
-Currencies are indicated with the syntax of `get_changes()` and default are converting to 'USD' as `get_changes()` default. E.g., pass a named list of character vectors, or two separate lists of equal length.
+Currencies are indicated with the same syntax across `get_changes_historic()` and `get_changes()`, and both are converting to 'USD' by default. E.g., pass a named list of character vectors, or two separate lists of equal length.
 
 
 ```{r change-ways}
@@ -50,7 +50,7 @@ same_as_df2_days <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "
 
 ```
 
-**Range and Interval Parameters.** Default is 1 row per day for a 1-year period if no `interval` and `range` are indicated. E.g., retrieve one observation per month over a five-year period.
+**Range and Interval Parameters.** Default is 1 row per day for a 1-year period if no '`interval`' and '`range`' parameters are indicated. E.g., retrieve one observation per month over a five-year period.
 
 ```{r change-ranges}
 df_month <- get_changes_historic(
@@ -75,12 +75,12 @@ It is helpful to understand the currency symbols used by the Yahoo Finance API, 
  
 **Parameters.** 
 
-- Add the latest market values ('USD') for each currency with `add_usd_values` parameter
+- Add the latest market values ('USD') for each currency with '`add_usd_values`' parameter,
 
-- And/or filter symbols with the `keep` parameter, matching text with advanced perl regex (ignoring case).
+- And/or filter symbols with the '`keep`' parameter (case insensitive). Hereafter we filter out the results with a regular expression.
 
 ```{r currencies2}
-few_currencies <- last_currencies(keep = c("RON",  "Z..")
+few_currencies <- last_currencies(keep = c("R.N",  "^Z")
                                   , add_usd_values = T )
 few_currencies
 ```

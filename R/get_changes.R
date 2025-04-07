@@ -10,7 +10,7 @@
 #'    - or associated with a list of `from` values of the same length, e.g., `from = c('EUR', "RON"), to = c("USD", "EUR")` .
 #' @param to, default = `"USD"` A character string representing the target currencies, e.g., `c("EUR", "USD")`.
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected. Default is FALSE.
-#' @param ...  Other parameters passed to get_a_change - internal mecanism for get_changes_historic
+#' @param ...  (internal use by get_changes_historic)
 #' @return The returned dataframe contains daily exchange rates, and the following columns:
 #' \describe{
 #'   \item{currency}{`character` - The base currency.}
@@ -35,7 +35,7 @@
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v8/finance/chart/
 #' @seealso For more details see the help vignette:
-#' \code{vignette("currencies", package = "financr"))}
+#' \code{`vignette("currencies", package = "financr"))`}
 #' @examples
 #' # Latest exchange rates from € and ¥ to $ (default convert to 'USD")
 #' df <- get_changes(from = c("EUR", "JPY"))
@@ -49,11 +49,10 @@ get_changes <- function(from = NULL, to = "USD", .verbose = T, ...){
 
 # User have to indicate currencies to get_changes()
 if(any(is.na(c(from, to)))) return(NA)
+if(length(from) == 0) return(NULL)
+if(length(to) == 0) to = "USD"
 
-if(is.null(from)) return(NULL)
-if(is.null(to)) to = "USD"
-
-if(!internet_or_not()) return(NA)
+if(!internet_or_not(.verbose = .verbose)) return(NA)
 
 if(length(names(from)) > 0){to <- as.character(from) ; from <- names(from) }
 

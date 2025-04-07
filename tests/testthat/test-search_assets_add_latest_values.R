@@ -3,7 +3,7 @@
 test_that("search_assets with parameters handling missing values", {
 
   # Appel avec un nom qui n'est pas attendu, on peut espérer un résultat vide ou NA
-  expect_null(search_assets( NULL, add_latest_values = T) )
+  expect_null(search_assets( NULL, get_values = T) )
 
 
 })
@@ -12,7 +12,7 @@ test_that("search_assets with parameters handling missing values", {
 test_that("search_assets with parameters return a valid structure", {
   if(!internet_or_not()) skip()
 
-  res <- search_assets( "Dow Jones", add_latest_values = T)
+  res <- search_assets( "Dow Jones", get_values = T)
 
   # Vérifier que le résultat est un data frame
   expect_s3_class(res, "data.frame")
@@ -25,7 +25,7 @@ test_that("search_assets with parameters return a valid structure", {
   expect_true(all(grepl("Dow Jones", res$searched, ignore.case = TRUE)))
 
 # work with several names and filter
-  res <- search_assets( c("RENAULT", "VOLVO"), exchange = c("STO", "PAR"), add_latest_values = T)
+  res <- search_assets( c("RENAULT", "VOLVO"), exchange = c("STO", "PAR"), get_values = T)
 
   # Vérifier que le résultat est un data frame
   expect_s3_class(res, "data.frame")
@@ -43,11 +43,19 @@ test_that("search_assets with parameters return a valid structure", {
 test_that("search_assets with parameters deal with unknown values", {
   if(!internet_or_not()) skip()
 
-  # Appel avec un nom qui n'est pas attendu, on peut espérer un résultat vide ou NA
-  res <- search_assets( "UneEntrepriseInconnueXYZ", add_latest_values = T)
+  falstxt <- "UneEntrepriseInconnueXYZUneEntrepriseInconnueXYZsdsdsdsdsdsdsdsdsdsdsdsdsdsds"
+  res <- search_assets( falstxt, get_values = T)
 
-  # On s'attend à un data frame vide ou à NA
-  expect_true(is.data.frame(res) && nrow(res) == 0 || is.na(res))
+  expect_true(is.na(res))
+
+  # verif with other
+  res <- search_assets( c(falstxt, "Dow jones") ,get_values = T)
+
+  expect_s3_class(res, "data.frame")
+
+  expect_true(all(grepl("Dow jones", res$searched, ignore.case = TRUE)))
+
+
 })
 
 

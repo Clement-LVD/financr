@@ -8,7 +8,7 @@ search_assets(
   texts,
   exchange = NULL,
   type = NULL,
-  add_latest_values = F,
+  get_values = F,
   .verbose = F
 )
 }
@@ -26,12 +26,12 @@ search_assets(
    FUTURE \tab Future - A contract to buy/sell an asset at a future date and price. \cr
 }}
 
-\item{add_latest_values}{\code{logical}, default = \code{FALSE} - If \code{TRUE}, search for the values of the symbols and add columns from \code{get_values()}}
+\item{get_values}{\code{logical}, default = \code{FALSE} - If \code{TRUE}, search for the values of the symbols and add columns from \code{get_values()}}
 
 \item{.verbose}{\code{logical}, default = \code{FALSE} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
 }
 \value{
-A data frame with the following columns:
+Return a \code{data.frame} with the following columns:
 \describe{
 \item{symbol}{\code{character} - The ticker symbol associated with an asset, e.g., "VTI", "^DWCPF".}
 \item{shortname}{\code{character} - A short name for the asset, e.g., ETF or index name.}
@@ -58,10 +58,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
 \item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
-\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
-\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
-\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
 }
+See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
 indices <- search_assets(texts = c("Dow jones", "euronext"), type = "index" )
@@ -70,7 +71,7 @@ swed <- search_assets(c("VOLVO car", "RENAULT"),  exchange = c("STO", "PAR"))
 head(swed)
 
 swed_last_values <- search_assets(c("VOLVO car", "SAAB")
-,  exchange = "STO", add_latest_values = TRUE )
+,  exchange = "STO", get_values = TRUE )
 
 str(swed_last_values)
 }

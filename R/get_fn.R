@@ -1,4 +1,3 @@
-
 # A 'get_' prefix mean that the expected inputs are symbol(s)
 # some of these functions have their own files, e.g., get_changes and get_yahoo_data
 
@@ -46,7 +45,7 @@ standardize_symbols <- function(symbols){
 get_values <- function(symbols = c("AAPL", "GOOGL"), .verbose = F){
 if(length(symbols) == 0 ) return(NULL)
 if(!is.character(symbols)) return(NA)
-if(!internet_or_not()) return(NA)
+if(!internet_or_not(.verbose = .verbose)) return(NA)
 
 symbols <- standardize_symbols(symbols)
 
@@ -89,7 +88,7 @@ get_asset_value <- function(symbol = "SAAB-B.ST", .verbose = F){
   if(length(symbol) > 1) return(NULL)
   if(all(is.na(symbol))) return(NULL)
 
-  if(!internet_or_not()) return(NULL)
+  if(!internet_or_not(.verbose = .verbose)) return(NULL)
 
   url <- retrieve_yahoo_api_chart_url(suffix = paste0("v8/finance/chart/", symbol) )
 
@@ -142,7 +141,7 @@ get_similar <- function(symbols = "SAAB-B.ST", .verbose = F, ...){
   if(length(symbols) == 0) return(NULL)
   if(all(is.na(symbols))) return(NA)
 
-  if(!internet_or_not()) return(NA)
+  if(!internet_or_not(.verbose = .verbose)) return(NA)
 
   initial_symbols <- standardize_symbols(symbols)
 
@@ -186,13 +185,13 @@ get_similar <- function(symbols = "SAAB-B.ST", .verbose = F, ...){
 #' str(datas)
 #' @seealso \code{\link{get_yahoo_data}}
 #' @seealso For more details see the help vignette:
-#' \code{vignette("get_info_and_historic", package = "financr"))}
+#' \code{vignette("get_info_and_historic", package = "financr")}
 #' @export
 get_historic <- function(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...){
   if(length(symbols) == 0) return(NULL)
   if(all(is.na(symbols))) return(NA)
   if(!is.character(symbols)) return(NA)
-  if(!internet_or_not()) return(NA)
+  if(!internet_or_not(.verbose = .verbose)) return(NA)
 
   result_actions = list()
 
@@ -242,6 +241,8 @@ get_historic <- function(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, 
 #'   \item{timestamp}{`POSIXct` - Date of the observation (closing price).}
 #'   \item{close}{`numeric` - Closing price of the asset.}
 #'   }
+#'
+#' @inherit construct_financial_df details
 #' @examples
 #' histo_light <- get_historic_light(c("SAAB-B.ST", "AAPL"))
 #' @export
@@ -249,7 +250,7 @@ get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '
   if(length(symbols) == 0) return(NULL)
   if(all(is.na(symbols))) return(NA)
   if(!is.character(symbols)) return(NA)
-  if(!internet_or_not()) return(NA)
+  if(!internet_or_not(.verbose = .verbose)) return(NA)
 
   histo_light_results <- lapply(symbols, FUN = function(symbol) {
 
@@ -279,10 +280,10 @@ get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '
 }
 
 
-#' Get Historic of Exchange Rates For Devises
+#' Get Historic of Devises Exchanges Rates
 #'
 #' Get a `data.frame` of historical values of exchanges rates, given currencies to exchange.
-#' Default parameters will return a period of 1 year (1 obs. per day) and convert to USD.
+#' Default parameters are a period of 1 year (1 obs. per day), and convert to USD ($).
 #' @inheritParams get_changes
 #' @param interval `character`, default = `"1d"`. The interval between 2 rows of the time.series answered
 #' | **Valid `interval` values**                                       |
@@ -294,31 +295,32 @@ get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '
 #' |-------------------------------------------------------------------------------|
 #' |  `"1d"`, `"5d"`, `"1m"`, `"3m"`, `"6m"`, `"1y"`, `"5y"`, `"ytd"`, `"all"` |
 #'
-#' @details
-#' For each pair of 'from' and 'to' currency, it returns a `data.frame` with the historical exchanges rates on a given period (default is daily results for a year)
-
 #' @inherit get_changes references
-#' @return A `data.frame` containing the historical exchanges rates on a given period (default is daily results for a year).
+#' @return A `data.frame` with the historic of exchanges rates on a given period, default is daily results for a year.
 #'   The columns are:
 #'   \item{timestamp}{`POSIXct` The opening price for the period (default is each day).}
 #'   \item{close}{`numeric` The closing price for the period (default is each day).}
 #'   \item{low}{`numeric` The highest price for the period (default is each day).}
 #'   \item{open}{`integer` The traded volume.}
 #'   \item{high}{`numeric` The lowest price for the period (default is each day).}
-#'   \item{from}{`character`, the currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-#'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
+#'   \item{from}{`character` - The currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other (`to`) currency to reach 1$.}
+#'   \item{to}{`character` -  The currency exchanged back against a value of 1 of the `from` currency. The currencies-related `numeric` values in this line of the `data.frame` are expressed with this currency**.}
 #'  Depending on the desired interval, recent observation will be truncated,
 #'  e.g., a `'5y'` range  with a `'1d'` interval will answer approximately 30 days of values from 5 years ago.
 #' @inherit construct_financial_df details
 #' @examples
 #' days <- get_changes_historic(from = c("EUR", "JPY"))
 #' days_bis <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
+#'
 #' # Or pass paired values as 2 list (equivalent to hereabove line) :
 #' same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+#'
+#' # Tweak interval and range
 #' months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
+#' str(months)
 #' @seealso \code{\link{get_changes}}
 #' @seealso For more details see the help vignette:
-#' \code{vignette("currencies", package = "financr"))}
+#' \code{`vignette("currencies", package = "financr")`}
 #' @export
 get_changes_historic <- function(from = NULL, to = "USD"
 

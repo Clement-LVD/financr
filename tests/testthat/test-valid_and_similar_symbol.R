@@ -1,5 +1,4 @@
 
-
 test_that("get_similar works" , {
   if(!internet_or_not()) skip()
 

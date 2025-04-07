@@ -1,8 +1,8 @@
 ---
-title: "The '`last_`' family of functions"
+title: "The 'last_' family of functions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The '`last_`' family of functions}
+  %\VignetteIndexEntry{The 'last_' family of functions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,16 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(financr)
-```
-
-This vignette is about the '`last_`' functions.
+This vignette is about the functions with the prefix '`last_`'.
 
 ### Fetching the API
 Retrieve market summary insights.
 
 ```{r}
+library(financr)
+
 datas <- last_market_summary(region = "US")
 
 str(datas)
@@ -43,7 +41,7 @@ last_currencies(keep = "^Z", add_usd_values = T)
 
 ### Scraping on Yahoo Finance
 
-Some functions rely on web scraping (Yahoo Finance webpages), such as `financr::last_indices()` and `financr::last_crypto()` which respectively provide the latest financial values (in USD) for over 40 global market indices and 100 cryptocurrencies.
+Some functions rely on web scraping (Yahoo Finance webpages), such as `last_indices()` and `last_crypto()` which respectively provide the latest financial values (in USD) for over 40 global market indices and 100 cryptocurrencies.
 
 `last_indices()` return a `data.frame` with the latest financial value of major world financial indices.
 
@@ -60,5 +58,4 @@ str(indices)
 krypt <- last_crypto()
 str(krypt)
 ```
-
 

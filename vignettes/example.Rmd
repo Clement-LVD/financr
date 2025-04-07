@@ -1,8 +1,8 @@
 ---
-title: "Workflow Example"
+title: "Example"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Workflow Example}
+  %\VignetteIndexEntry{Example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -31,7 +31,7 @@ str(indices)
 ```{r example-price}
 swedish <- search_assets(c("Volvo car", "Saab")
                          , exchange = "STO"
-                         , add_latest_values = T)
+                         , get_values = T)
 str(swedish)
 
 ```
@@ -60,6 +60,4 @@ values_currencies <- last_currencies(keep = unknown_currencies, add_usd_values =
 head(values_currencies)
 
 ```
-
-See how to convert currencies and get last exchanges rates with the [Vignette of currency-related functions](https://clement-lvd.github.io/financr/articles/currencies.html). 
 

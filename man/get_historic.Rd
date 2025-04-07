@@ -59,10 +59,11 @@ Return a \code{data.frame} with additionnal attributes:
 \item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
 \item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
 \item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
-\item{date.begin}{\code{POSIXct} - The oldest obs. in the dataset.}
-\item{date.end}{\code{POSIXct} - The most recent date in the dataset.}
-\item{date.dif}{\code{numeric} & \code{difftime} - The number of seconds between date.begin and date.end.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
 }
+See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
 datas <- get_historic(symbols = c("VOLCAR-B.ST", "SAAB-B.ST") )
@@ -76,5 +77,5 @@ Source : https://query1.finance.yahoo.com/v8/finance/chart/
 \code{\link{get_yahoo_data}}
 
 For more details see the help vignette:
-\code{vignette("get_info_and_historic", package = "financr"))}
+\code{vignette("get_info_and_historic", package = "financr")}
 }

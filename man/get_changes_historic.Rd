@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_fn.R
 \name{get_changes_historic}
 \alias{get_changes_historic}
-\title{Get Historic of Exchange Rates For Devises}
+\title{Get Historic of Devises Exchanges Rates}
 \usage{
 get_changes_historic(
   from = NULL,
@@ -39,31 +39,46 @@ The user must provide \code{from} values with one of the following method :
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected. Default is FALSE.}
 }
 \value{
-A \code{data.frame} containing the historical exchanges rates on a given period (default is daily results for a year).
+A \code{data.frame} with the historic of exchanges rates on a given period, default is daily results for a year.
 The columns are:
 \item{timestamp}{\code{POSIXct} The opening price for the period (default is each day).}
 \item{close}{\code{numeric} The closing price for the period (default is each day).}
 \item{low}{\code{numeric} The highest price for the period (default is each day).}
 \item{open}{\code{integer} The traded volume.}
 \item{high}{\code{numeric} The lowest price for the period (default is each day).}
-\item{from}{\code{character}, the currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-\item{to}{\code{character}, the currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) in this line of the \code{data.frame} are expressed with this currency}.}
+\item{from}{\code{character} - The currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other (\code{to}) currency to reach 1$.}
+\item{to}{\code{character} -  The currency exchanged back against a value of 1 of the \code{from} currency. The currencies-related \code{numeric} values in this line of the \code{data.frame} are expressed with this currency**.}
 Depending on the desired interval, recent observation will be truncated,
 e.g., a \code{'5y'} range  with a \code{'1d'} interval will answer approximately 30 days of values from 5 years ago.
 }
 \description{
 Get a \code{data.frame} of historical values of exchanges rates, given currencies to exchange.
-Default parameters will return a period of 1 year (1 obs. per day) and convert to USD.
+Default parameters are a period of 1 year (1 obs. per day), and convert to USD ($).
 }
 \details{
-For each pair of 'from' and 'to' currency, it returns a \code{data.frame} with the historical exchanges rates on a given period (default is daily results for a year)
+Return a \code{data.frame} with additionnal attributes:
+\describe{
+\item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
+\item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
+\item{exchange}{\code{character} - A vector of exchange pairs (e.g., \code{"BTC => USD"}). If not applicable, \code{NULL} (no entry).}
+\item{date.fetch}{\code{Date} - The date when the data was retrieved, set using \code{Sys.Date()}.}
+\item{crypto}{\code{logical} - \code{TRUE} if cryptocurrencies are present, otherwise \code{FALSE}.}
+\item{date.begin}{\code{POSIXct} - The oldest observation in the dataset.}
+\item{date.end}{\code{POSIXct} - The most recent observation in the dataset.}
+\item{date.dif}{\code{numeric} - The number of \emph{seconds} between date.begin and date.end, equivalent of \code{difftime} value.}
+}
+See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
 days <- get_changes_historic(from = c("EUR", "JPY"))
 days_bis <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
+
 # Or pass paired values as 2 list (equivalent to hereabove line) :
 same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+
+# Tweak interval and range
 months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
+str(months)
 }
 \references{
 Source : https://query2.finance.yahoo.com/v8/finance/chart/
@@ -72,5 +87,5 @@ Source : https://query2.finance.yahoo.com/v8/finance/chart/
 \code{\link{get_changes}}
 
 For more details see the help vignette:
-\code{vignette("currencies", package = "financr"))}
+\code{`vignette("currencies", package = "financr")`}
 }

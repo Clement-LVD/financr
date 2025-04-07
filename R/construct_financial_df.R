@@ -3,6 +3,7 @@
 #' This internal function constructs and assigns specific attributes
 #' to a financial data frame, providing metadata about its contents.
 #' @param df `data.frame` The function compute statistics with the `to` column (if available) or the `currency` column
+#' @param ... Attribute(s) to add to the returned `data.frame`
 #' @param crypto `logical` Attribute predefined if cryptocurrencies are in the dataset
 #' @details
 #' Return a `data.frame` with additionnal attributes:
@@ -12,16 +13,15 @@
 #'   \item{exchange}{`character` - A vector of exchange pairs (e.g., `"BTC => USD"`). If not applicable, `NULL` (no entry).}
 #'   \item{date.fetch}{`Date` - The date when the data was retrieved, set using `Sys.Date()`.}
 #'   \item{crypto}{`logical` - `TRUE` if cryptocurrencies are present, otherwise `FALSE`.}
-#'   \item{date.begin}{`POSIXct` - The oldest obs. in the dataset.}
-#'   \item{date.end}{`POSIXct` - The most recent date in the dataset.}
-#'   \item{date.dif}{`numeric` & `difftime` - The number of seconds between date.begin and date.end.}
+#'   \item{date.begin}{`POSIXct` - The oldest observation in the dataset.}
+#'   \item{date.end}{`POSIXct` - The most recent observation in the dataset.}
+#'   \item{date.dif}{`numeric` - The number of *seconds* between date.begin and date.end, equivalent of `difftime` value.}
 #' }
-#'
-#' @seealso Other functions that use these attributes can reference this documentation.
-#'
+#' See `vignette("Functions_summary", package = "financr")`
 #' @keywords internal
 construct_financial_df <- function(df, crypto = F , ...){
 if(!is.data.frame(df)) return(NA)
+if(length(df) == 0) return(df)
 namm <- colnames(df)
 
 # init values
@@ -54,7 +54,8 @@ exchange <-  unique(exchange)
 
 if("timestamp"  %in% namm){date_old = min(df$timestamp) ; date_new = max(df$timestamp)}
 if("regularmarkettime"  %in% namm){date_old = min(df$regularmarkettime) ; date_new = max(df$regularmarkettime)}
-date_dif = date_new - date_old
+
+date_dif = as.numeric(date_new - date_old)
 if(length(date_dif) == 0) date_dif <- NULL
 # return a data.frame
 structure(df
