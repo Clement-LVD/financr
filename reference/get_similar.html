@@ -54,15 +54,16 @@
 
 
 <dl><dt id="arg-symbols">symbols<a class="anchor" aria-label="anchor" href="#arg-symbols"></a></dt>
-<dd><p><code>character</code> A character string representing a financial symbol to search.</p></dd>
+<dd><p><code>character</code> - A character string representing a financial symbol to search.</p></dd>
 
 
 <dt id="arg--verbose">.verbose<a class="anchor" aria-label="anchor" href="#arg--verbose"></a></dt>
-<dd><p><code>logical</code> If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.</p></dd>
+<dd><p><code>logical</code> - If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Other symbols (char. or list of char.)</p></dd>
+<dd><ul><li><p>Other symbols (char. or list of char.)</p></li>
+</ul></dd>
 
 </dl></div>
     <div class="section level2">
@@ -87,28 +88,28 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_similar</span><span class="op">(</span>symbols <span class="op">=</span>   <span class="st">"AAPL,GOOGL"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          from symbol    score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294850</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.278014</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250616</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210542</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120012</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118379</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.277906</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117211</span>
 <span class="r-in"><span><span class="fu">get_similar</span><span class="op">(</span>symbols <span class="op">=</span>   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AAPL"</span>, <span class="st">"GOOGL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          from symbol    score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294850</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.278014</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250616</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210542</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120012</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118379</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.1   AAPL   AMZN 0.294692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.2   AAPL   TSLA 0.277906</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.3   AAPL   GOOG 0.261002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.4   AAPL   META 0.250481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAPL.5   AAPL   MSFT 0.210519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.1 GOOGL   BABA 0.121615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.2 GOOGL   NFLX 0.120016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.3 GOOGL   PYPL 0.118353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.4 GOOGL      V 0.118218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GOOGL.5 GOOGL   META 0.117211</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

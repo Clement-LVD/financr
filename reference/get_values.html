@@ -63,7 +63,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data.frame with 1 row per valid financial symbol and 21 columns, including:</p><dl><dt>currency</dt>
+    <p>A <code>data.frame</code> with 1 row per valid financial symbol and 21 columns, including:</p><dl><dt>currency</dt>
 <dd><p><code>character</code> - Trading currency of the asset (e.g., "USD").</p></dd>
 
 <dt>symbol</dt>
@@ -100,10 +100,10 @@
 <dd><p><code>numeric</code>   - Latest regular market trading price.</p></dd>
 
 <dt>fiftytwoweekhigh</dt>
-<dd><p><code>numeric</code>   - highest price over a 52-weeks period.</p></dd>
+<dd><p><code>numeric</code>   - Highest price over a 52-weeks period.</p></dd>
 
 <dt>fiftytwoweeklow</dt>
-<dd><p><code>numeric</code>   - lowest price over a  52-weeks period.</p></dd>
+<dd><p><code>numeric</code> - Lowest price over a  52-weeks period.</p></dd>
 
 <dt>regularmarketdayhigh</dt>
 <dd><p><code>numeric</code>   - Highest price during the current market day.</p></dd>
@@ -121,13 +121,13 @@
 <dd><p><code>numeric</code>   - Closing price shown in charts.</p></dd>
 
 <dt>previousclose</dt>
-<dd><p><code>numeric</code>   - Previous official market close price.</p></dd>
+<dd><p><code>numeric</code> - Previous official market close price.</p></dd>
 
 
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Return a <code>data.frame</code> with additionnal attributes:</p><dl><dt>n.currencies</dt>
+    <p>Return a <code>data.frame</code> with additional attributes:</p><dl><dt>n.currencies</dt>
 <dd><p><code>integer</code> - Number of unique currencies in the <code>data.frame</code>.</p></dd>
 
 <dt>currencies</dt>
@@ -167,21 +167,21 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      USD     GOOGL          NMS         NasdaqGS         EQUITY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      SEK SAAB-B.ST          STO        Stockholm         EQUITY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        firsttradedate   regularmarkettime hasprepostmarketdata gmtoffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1980-12-12 14:30:00 2025-04-07 20:00:02                 TRUE    -14400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2004-08-19 13:30:00 2025-04-07 20:00:01                 TRUE    -14400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2000-01-03 08:00:00 2025-04-07 15:29:33                FALSE      7200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1980-12-12 14:30:00 2025-04-08 20:00:02                 TRUE    -14400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2004-08-19 13:30:00 2025-04-08 20:00:02                 TRUE    -14400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2000-01-03 08:00:00 2025-04-08 15:29:39                FALSE      7200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   timezone exchangetimezonename regularmarketprice fiftytwoweekhigh</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      EDT     America/New_York             181.46           260.10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      EDT     America/New_York             146.75           207.05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     CEST     Europe/Stockholm             369.50           420.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      EDT     America/New_York             172.42           260.10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      EDT     America/New_York             144.70           207.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     CEST     Europe/Stockholm             400.45           420.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   fiftytwoweeklow regularmarketdayhigh regularmarketdaylow regularmarketvolume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          164.08               194.14              174.62           157350538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          140.53               152.82              140.53            74844058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          203.70               382.00              310.55             7032698</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          164.08              190.335             169.210           114038985</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          140.53              152.240             143.035            49090114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          203.70              409.000             381.750             6474387</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        shortname chartpreviousclose previousclose</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Apple Inc.             188.38        188.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Alphabet Inc.             145.60        145.60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 SAAB AB ser. B             379.40        379.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Apple Inc.             181.46        181.46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Alphabet Inc.             146.75        146.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 SAAB AB ser. B             369.50        369.50</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

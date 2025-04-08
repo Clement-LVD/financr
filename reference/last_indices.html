@@ -57,11 +57,11 @@ e.g., latest prices, change and percentage change.</p>
 
 
 <dl><dt id="arg--verbose">.verbose<a class="anchor" aria-label="anchor" href="#arg--verbose"></a></dt>
-<dd><p><code>logical</code>, default = <code>TRUE</code>. If <code>TRUE</code>, send messages to the console if necessary.</p></dd>
+<dd><p><code>logical</code>, default = <code>TRUE</code> - If <code>TRUE</code>, send messages to the console if necessary.</p></dd>
 
 
 <dt id="arg-keep">keep<a class="anchor" aria-label="anchor" href="#arg-keep"></a></dt>
-<dd><p>A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
+<dd><p><code>character</code> - Character vector of symbols to filter the results (perl expression, ignoring case). If <code>NULL</code> (default),
 no filtering is applied, and all available indices are returned.</p></dd>
 
 </dl></div>
@@ -69,7 +69,7 @@ no filtering is applied, and all available indices are returned.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A data frame with the following columns:</p>
 <dl><dt>symbol</dt>
-<dd><p><code>character</code> - Ticker symbol of the index, aka world indices (e.g., <code>^GSPC</code> for S&amp;P 500).</p></dd>
+<dd><p><code>character</code> - Ticker symbol of the index, aka world indices (e.g., <code>'^GSPC'</code> for S&amp;P 500).</p></dd>
 
 <dt>name</dt>
 <dd><p><code>character</code> -  Full name of the index (e.g., "S&amp;P 500").</p></dd>
@@ -87,12 +87,12 @@ no filtering is applied, and all available indices are returned.</p></dd>
 <dd><p><code>numeric</code> - The total trading volume of the index components.</p></dd>
 
 <dt>currency</dt>
-<dd><p><code>character</code> - Currency associated with the world-indice, i.e. <code>'USD'</code>.</p></dd>
+<dd><p><code>character</code> - Currency associated with the world-indice, i.e. 'USD'.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Return a <code>data.frame</code> with additionnal attributes:</p><dl><dt>n.currencies</dt>
+    <p>Return a <code>data.frame</code> with additional attributes:</p><dl><dt>n.currencies</dt>
 <dd><p><code>integer</code> - Number of unique currencies in the <code>data.frame</code>.</p></dd>
 
 <dt>currencies</dt>

@@ -85,11 +85,11 @@
 <li>Latest values of major assets, e.g., world-level indices, currencies and cryptocurrencies</li>
 <li>Other insights, e.g., latest market summary, assets association (related to each other), symbol validation</li>
 </ul>
-<p>Functions are divided into 3 family :</p>
+<p>Functions are divided into three families:</p>
 <ul>
-<li>‘search_’ assets from free-texts</li>
-<li>‘get_’ latest or historical values from symbol</li>
-<li>‘last_’ market summary, latest values of major assets, currencies, etc.</li>
+<li>‘search_’: Search for assets using free-text queries</li>
+<li>‘get_’: Retrieve the latest or historical values for symbols</li>
+<li>‘last_’: Get market summaries, including the latest values of major assets, currencies, and more</li>
 </ul>
 <p>See the <a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">vignette ‘Summary of financr Functions’</a>.</p>
 <div class="section level2">
@@ -119,10 +119,10 @@
 <span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score         : num  35777 20125 20116 20011 20005 ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  58307 20358 20271 20013 20005 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <p>Optionally use the ‘<code>get_values</code>’ parameter to add latest prices to these results.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -140,7 +140,7 @@
 <span><span class="co">#&gt;  $ exchdisp            : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype           : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp            : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score               : num  35777 20125 20116 20011 20004 ...</span></span>
+<span><span class="co">#&gt;  $ score               : num  58307 20358 20271 20013 20004 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance      : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched            : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "USD" "USD" "USD" "EUR" ...</span></span>
@@ -148,26 +148,26 @@
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "DJI" "DJI" "DJI" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ instrumenttype      : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "1992-01-02 15:30:00" "2006-08-24 15:30:00" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-04-07 22:20:01" "2025-04-07 22:20:04" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-04-08 21:21:04" "2025-04-08 21:21:04" ...</span></span>
 <span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  -14400 -14400 -14400 7200 7200 7200 7200 7200 7200</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "EDT" "EDT" "EDT" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ exchangetimezonename: chr  "America/New_York" "America/New_York" "America/New_York" "Europe/Paris" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  37966 1838 262 1370 968 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  45074 2471 273 1619 968 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  36612 1748 256 1337 968 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  39207 1922 273 1436 968 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  36612 1748 256 1337 968 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketvolume : int  1361906582 0 0 0 0 NA 0 NA NA</span></span>
-<span><span class="co">#&gt;  $ chartpreviousclose  : num  38315 1852 270 1436 989 ...</span></span>
-<span><span class="co">#&gt;  $ previousclose       : num  38315 1852 270 1436 989 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  37585 1786 257 1406 982 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  45074 2471 269 1619 982 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  36612 1748 257 1337 982 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  39427 1908 269 1421 982 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  37521 1782 257 1375 982 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  782659263 0 0 0 0 NA 0 NA NA</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  37966 1838 262 1370 968 ...</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  37966 1838 262 1370 968 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 2</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:2] "USD" "EUR"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-04-04 22:40:17"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-07 22:20:04"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 2.99</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-04-07 22:40:13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-08 21:21:04"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 22.7</span></span></code></pre></div>
 <p>Exploring the results of <code><a href="reference/search_assets.html">search_assets()</a></code> is a way to find the symbol of an asset. <code><a href="reference/search_assets_quick.html">search_assets_quick()</a></code> is a variant.</p>
 <p><strong>Get historical financial data.</strong> Given ticker symbol(s), get historical financial data with <code><a href="reference/get_historic.html">financr::get_historic()</a></code>. Default interval is daily values.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -176,14 +176,14 @@
 <span>  , .verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">histo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1016 obs. of  20 variables:</span></span>
-<span><span class="co">#&gt;  $ open                : num  344 341 318 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ close               : num  341 320 311 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ low                 : num  341 319 311 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ high                : num  344 343 321 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ volume              : int  0 78309 35678 NA NA 226045 61094 NA NA 107462 ...</span></span>
-<span><span class="co">#&gt;  $ timestamp           : int  1744009320 1744009380 1744009440 1744009500 1744009560 1744009620 1744009680 1744009740 1744009800 1744009860 ...</span></span>
-<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-07 09:02:00" "2025-04-07 09:03:00" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt;  $ open                : num  382 383 387 388 391 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  383 387 388 391 387 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  382 383 385 387 387 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  387 388 388 391 392 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 82991 66592 48022 56124 42464 43116 21731 23716 20243 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp           : int  1744095600 1744095660 1744095720 1744095780 1744095840 1744095900 1744095960 1744096020 1744096080 1744096140 ...</span></span>
+<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-08 09:00:00" "2025-04-08 09:01:00" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
 <span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
 <span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
@@ -192,18 +192,18 @@
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  370 370 370 370 370 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  400 400 400 400 400 ...</span></span>
 <span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
 <span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  420 420 420 420 420 420 420 420 420 420 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  311 311 311 311 311 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  382 382 382 382 382 382 382 382 382 382 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  382 382 382 382 382 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  409 409 409 409 409 409 409 409 409 409 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1744009320</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= int 1744039740</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 30420</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1744095600</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= int 1744126140</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 30540</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>

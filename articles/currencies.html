@@ -91,8 +91,8 @@ currencies symbols :</li>
 <span></span>
 <span><span class="va">changes</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"from"</span>, <span class="st">"to"</span>,  <span class="st">"regularmarketprice"</span>, <span class="st">"currency"</span>, <span class="st">"timestamp"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;   from  to regularmarketprice currency           timestamp</span></span>
-<span><span class="co">#&gt; 1  RON EUR             0.2004      EUR 2025-04-07 21:03:35</span></span>
-<span><span class="co">#&gt; 2  USD EUR             0.9168      EUR 2025-04-07 21:05:35</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  RON EUR             0.2004      EUR 2025-04-08 20:08:38</span></span>
+<span><span class="co">#&gt; 2  USD EUR             0.9124      EUR 2025-04-08 20:12:39</span></span></code></pre></div>
 <ul>
 <li>Or get the historic of exchange rates, given currencies symbols
 :</li>
@@ -102,22 +102,22 @@ currencies symbols :</li>
 <span><span class="va">changes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_changes_historic.html">get_changes_historic</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EUR"</span>, <span class="st">"RON"</span><span class="op">)</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">changes</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    524 obs. of  7 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    263 obs. of  7 variables:</span></span>
 <span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2024-04-07 23:00:00" "2024-04-08 23:00:00" ...</span></span>
-<span><span class="co">#&gt;  $ open     : num  1.08 1.09 1.09 1.07 1.07 ...</span></span>
-<span><span class="co">#&gt;  $ high     : num  1.09 1.09 1.09 1.08 1.07 ...</span></span>
-<span><span class="co">#&gt;  $ close    : num  1.08 1.09 1.09 1.07 1.07 ...</span></span>
-<span><span class="co">#&gt;  $ low      : num  1.08 1.08 1.07 1.07 1.06 ...</span></span>
+<span><span class="co">#&gt;  $ open     : num  0.923 0.921 0.921 0.931 0.932 ...</span></span>
+<span><span class="co">#&gt;  $ high     : num  0.924 0.922 0.932 0.935 0.941 ...</span></span>
+<span><span class="co">#&gt;  $ low      : num  0.921 0.919 0.92 0.93 0.932 ...</span></span>
+<span><span class="co">#&gt;  $ close    : num  0.923 0.921 0.921 0.931 0.932 ...</span></span>
 <span><span class="co">#&gt;  $ from     : chr  "EUR" "EUR" "EUR" "EUR" ...</span></span>
 <span><span class="co">#&gt;  $ to       : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:3] "EUR" "RON" "USD"</span></span>
 <span><span class="co">#&gt;  - attr(*, "exchange")= chr [1:2] "EUR =&gt; USD" "RON =&gt; USD"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2024-04-07 23:00:00"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-07 21:05:35"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 365</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-08 20:12:50"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 366</span></span></code></pre></div>
 <p>Currencies are indicated with the same syntax across
 <code><a href="../reference/get_changes_historic.html">get_changes_historic()</a></code> and <code><a href="../reference/get_changes.html">get_changes()</a></code>, and
 both are converting to ‘USD’ by default. E.g., pass a named list of
@@ -138,20 +138,20 @@ observation per month over a five-year period.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">df_month</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    122 obs. of  7 variables:</span></span>
 <span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2020-04-30 23:00:00" "2020-05-31 23:00:00" ...</span></span>
-<span><span class="co">#&gt;  $ open     : num  1.09 1.11 1.12 1.18 1.19 ...</span></span>
-<span><span class="co">#&gt;  $ high     : num  1.11 1.14 1.19 1.2 1.2 ...</span></span>
-<span><span class="co">#&gt;  $ low      : num  1.08 1.11 1.12 1.17 1.16 ...</span></span>
-<span><span class="co">#&gt;  $ close    : num  1.11 1.12 1.19 1.19 1.17 ...</span></span>
+<span><span class="co">#&gt;  $ open     : num  0.914 0.9 0.89 0.849 0.838 ...</span></span>
+<span><span class="co">#&gt;  $ low      : num  0.897 0.877 0.84 0.836 0.833 ...</span></span>
+<span><span class="co">#&gt;  $ high     : num  0.929 0.901 0.894 0.855 0.861 ...</span></span>
+<span><span class="co">#&gt;  $ close    : num  0.901 0.889 0.842 0.839 0.852 ...</span></span>
 <span><span class="co">#&gt;  $ from     : chr  "EUR" "EUR" "EUR" "EUR" ...</span></span>
 <span><span class="co">#&gt;  $ to       : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:3] "EUR" "JPY" "USD"</span></span>
 <span><span class="co">#&gt;  - attr(*, "exchange")= chr [1:2] "EUR =&gt; USD" "JPY =&gt; USD"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2020-04-30 23:00:00"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-07 21:06:22"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 1803</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-08 20:12:51"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 1804</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level3">
@@ -166,7 +166,7 @@ observation per month over a five-year period.</p>
 <span><span class="co">#&gt;  $ longname     : chr  "Fijian Dollar" "Mexican Peso" "Seychellois Rupee" "Congolese Franc" ...</span></span>
 <span><span class="co">#&gt;  $ symbol       : chr  "FJD" "MXN" "SCR" "CDF" ...</span></span>
 <span><span class="co">#&gt;  $ locallongname: chr  "Fijian Dollar" "Mexican Peso" "Seychellois Rupee" "Congolese Franc" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <p>It is helpful to understand the currency symbols used by the Yahoo
 Finance API, such as those found in the currency column of the
@@ -181,7 +181,7 @@ expression.</p></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">few_currencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_currencies.html">last_currencies</a></span><span class="op">(</span>keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"R.N"</span>,  <span class="st">"^Z"</span><span class="op">)</span></span>
-<span>                                  , add_usd_values <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
+<span>                                  , get_changes <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
 <span><span class="va">few_currencies</span></span>
 <span><span class="co">#&gt;   symbol shortname           longname      locallongname currency exchangename</span></span>
 <span><span class="co">#&gt; 1    RON       RON       Romanian Leu       Romanian Leu      USD          CCY</span></span>
@@ -192,13 +192,13 @@ expression.</p></li>
 <span><span class="co">#&gt; 2       CURRENCY 2003-12-01 00:00:00      3600      BST        Europe/London</span></span>
 <span><span class="co">#&gt; 3       CURRENCY 2013-01-03 00:00:00      3600      BST        Europe/London</span></span>
 <span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
-<span><span class="co">#&gt; 1             0.2195               0.2221              0.2188           0.2258</span></span>
-<span><span class="co">#&gt; 2             0.0511               0.0527              0.0508           0.0673</span></span>
-<span><span class="co">#&gt; 3             0.0357               0.0361              0.0357           0.0418</span></span>
+<span><span class="co">#&gt; 1             0.2203               0.2210              0.2188           0.2258</span></span>
+<span><span class="co">#&gt; 2             0.0506               0.0518              0.0506           0.0673</span></span>
+<span><span class="co">#&gt; 3             0.0357               0.0360              0.0356           0.0418</span></span>
 <span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
-<span><span class="co">#&gt; 1          0.2048        0.2202              BST USD 2025-04-07 21:05:31</span></span>
-<span><span class="co">#&gt; 2          0.0508        0.0524              BST USD 2025-04-07 21:06:23</span></span>
-<span><span class="co">#&gt; 3          0.0345        0.0360              BST USD 2025-04-07 16:45:37</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          0.2048        0.2194              BST USD 2025-04-08 20:12:51</span></span>
+<span><span class="co">#&gt; 2          0.0506        0.0510              BST USD 2025-04-08 20:12:51</span></span>
+<span><span class="co">#&gt; 3          0.0345        0.0357              BST USD 2025-04-08 19:57:20</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
