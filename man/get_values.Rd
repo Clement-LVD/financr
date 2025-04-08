@@ -12,7 +12,7 @@ get_values(symbols = c("AAPL", "GOOGL"), .verbose = F)
 \item{.verbose}{Logical. If TRUE, displays verbose output during the fetching process. Default is FALSE.}
 }
 \value{
-A data.frame with 1 row per valid financial symbol and 21 columns, including:
+A \code{data.frame} with 1 row per valid financial symbol and 21 columns, including:
 \describe{
 \item{currency}{\code{character} - Trading currency of the asset (e.g., "USD").}
 \item{symbol}{ \code{character} - Symbol of the asset, e.g., ticker symbol.}
@@ -26,21 +26,21 @@ A data.frame with 1 row per valid financial symbol and 21 columns, including:
 \item{timezone}{ \code{character} - Abbreviated timezone name of the market.}
 \item{exchangetimezonename}{ \code{character} - Timezone name of the exchange location.}
 \item{regularmarketprice}{ \code{numeric}   - Latest regular market trading price.}
-\item{fiftytwoweekhigh}{ \code{numeric}   - highest price over a 52-weeks period.}
-\item{fiftytwoweeklow}{ \code{numeric}   - lowest price over a  52-weeks period.}
+\item{fiftytwoweekhigh}{ \code{numeric}   - Highest price over a 52-weeks period.}
+\item{fiftytwoweeklow}{ \code{numeric} - Lowest price over a  52-weeks period.}
 \item{regularmarketdayhigh}{ \code{numeric}   - Highest price during the current market day.}
 \item{regularmarketdaylow}{ \code{numeric}   - Lowest price during the current market day.}
 \item{regularmarketvolume}{ \code{integer}   - Volume traded during the current market day.}
 \item{shortname}{ \code{character} - Shortened or common name of the asset.}
 \item{chartpreviousclose}{ \code{numeric}   - Closing price shown in charts.}
-\item{previousclose}{\code{numeric}   - Previous official market close price.}
+\item{previousclose}{\code{numeric} - Previous official market close price.}
 }
 }
 \description{
 Get latest insights, given financial symbols. Data such as latest prices and trading context are returned.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}

@@ -19,12 +19,12 @@
 #'   \item{total_volume_all_currencies_24hr}{`numeric` - 24-hour total trading volume across all currency pairs.}
 #'   \item{circulating_supply}{`numeric` - Total circulating supply of the cryptocurrency.}
 #'   \item{x52_wk_change_percent}{`numeric` - Percentage change in price over the last 52 weeks (%).}
-#'   \item{from}{`character`, the currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-#'   \item{to}{`character`, the currency that you want to convert into : **all the `numeric` values (not `integer`) in this line of the `data.frame` are expressed with this currency**.}
+#'   \item{from}{`character` - The currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
+#'   \item{to}{`character` - The currency that you want to convert into : all the currency-related `numeric` values in this line of the `data.frame` are expressed with this currency.}
 #' }
 #' @inherit construct_financial_df details
 #' @seealso For more details on the 'last_' family of functions see the help vignette:
-#' \code{vignette("last_family", package = "financr"))}
+#' \code{vignette("last_family", package = "financr")}
 #' @examples
 #' krypto <- last_crypto()
 #' head(krypto)
@@ -61,13 +61,13 @@ last_crypto <- function(keep = NULL, .verbose = T){
 #' @inheritParams last_currencies
 #' @references Source : Yahoo's world indices page - https://finance.yahoo.com/markets/world-indices
 #' @return A data frame with the following columns:
-#'   \item{symbol}{`character` - Ticker symbol of the index, aka world indices (e.g., `^GSPC` for S&P 500).}
+#'   \item{symbol}{`character` - Ticker symbol of the index, aka world indices (e.g., `'^GSPC'` for S&P 500).}
 #'   \item{name}{`character` -  Full name of the index (e.g., "S&P 500").}
 #'   \item{price}{`numeric` - Current value of the index (USD).}
 #'   \item{change}{`numeric` - Absolute change in index value since the last closing of the exchange place.}
 #'   \item{change_percent}{`numeric` - Percentage change in index value since the last closing of the exchange place.}
 #'   \item{volume}{`numeric` - The total trading volume of the index components.}
-#'   \item{currency}{`character` - Currency associated with the world-indice, i.e. `'USD'`.}
+#'   \item{currency}{`character` - Currency associated with the world-indice, i.e. 'USD'.}
 #' @inherit construct_financial_df details
 #' @seealso For more details on the 'last_' family of functions see the help vignette:
 #' \code{vignette("last_family", package = "financr")}
@@ -106,13 +106,13 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' Return a `data.frame` of financial indices (currencies) given a vector of symbols, e.g., 'EUR'.
 #' Optionally, it can filter the results and add the last market price ('USD') of these currencies.
 #'
-#' @param keep A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
+#' @param keep `character` - Character vector of symbols to filter the results (perl expression, ignoring case). If `NULL` (default),
 #'                  no filtering is applied, and all available indices are returned.
-#' @param add_usd_values `logical`, default = `FALSE`. If `TRUE`, add latest market values ('USD') from `get_changes()`. See [get_changes()] for the base structure.
-#' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console if necessary.
-#' @return A data frame containing unique financial indices (currencies). The table has
+#' @param get_changes `logical`, default = `FALSE` - If `TRUE`, add latest market values ('USD') from `get_changes()`. See [get_changes()] for the base structure.
+#' @param .verbose `logical`, default = `TRUE` - If `TRUE`, send messages to the console if necessary.
+#' @return A `data.frame` containing unique financial indices (currencies). The table has
 #'         columns like `symbol`, `name`, and other relevant information, with all column names in lowercase.
-#'         If `keep` is specified, only the matching currencies are returned. If `add_usd_values` is specified, last financial insights from `get_changes()` will be added, e.g., last market values of each currency ('USD')
+#'         If `keep` is specified, only the matching currencies are returned. If `get_changes` is specified, last financial insights from `get_changes()` will be added, e.g., last market values of each currency ('USD')
 #' @examples
 #' # Fetch all available indices
 #' all_indices <- last_currencies()
@@ -125,7 +125,7 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' @seealso For more details see the help vignette:
 #' \code{vignette("currencies", package = "financr")}
 #' @export
-last_currencies <- function(keep = NULL, add_usd_values = F, .verbose = T) {
+last_currencies <- function(keep = NULL, get_changes = F, .verbose = T) {
 
 
   if(!internet_or_not()) return(NA)
@@ -143,7 +143,7 @@ last_currencies <- function(keep = NULL, add_usd_values = F, .verbose = T) {
 
 results <- standardize_df_cols(results)
 
-  if(add_usd_values) {
+  if(get_changes) {
 
     values_to_add <- get_changes(from = results$symbol, .verbose = .verbose)
 
@@ -169,10 +169,10 @@ results <- standardize_df_cols(results)
 #' |-------------------------------------------------------------------------------|
 #' |  `"US"` , `"AU"` , `"CA"` , `"FR"` , `"DE"` , `"HK"` , `"US"` , `"IT"` , `"ES"` , `"GB"` , `"IN"` |
 #'
-#' @return A data frame with 15 rows and 38 variables. Each row corresponds to a market index and includes the following information:
+#' @return A `data.frame` with 15 rows and 38 variables. Each row corresponds to a market index and includes the following information:
 #' \itemize{
-#'   \item \code{symbol}, \code{shortname}, \code{longname}, \code{exchange}, \code{region}, \code{currency}
-#'   \item Market time info: \code{regularmarkettime_raw}, \code{regularmarkettime_fmt}
+#'   \item Information on the asset: \code{symbol}, \code{shortname}, \code{longname}, \code{exchange}, \code{region}, \code{currency}
+#'   \item Market time info, mostly associated with the pricing info: \code{regularmarkettime_raw}, \code{regularmarkettime_fmt}
 #'   \item Market pricing info: \code{regularmarketprice_raw}, \code{regularmarketchange_raw}, \code{regularmarketchangepercent_raw}, etc.
 #'   \item Metadata such as \code{marketstate}, \code{quotetype}, \code{pricehint}, \code{exchangedatadelayedby}, \code{hasprepostmarketdata}
 #'   \item Other fields such as \code{cryptotradeable}, \code{tradeable}, \code{triggerable}, \code{contracts}, etc.

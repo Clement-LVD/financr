@@ -14,7 +14,7 @@ get_historic_light(
 \arguments{
 \item{symbols}{\code{character} A character string representing the financial indices to search for, e.g., ticker symbol(s).}
 
-\item{interval}{\code{character}, default = \code{"1d"}. The interval between 2 rows of the time.series answered\tabular{l}{
+\item{interval}{\code{character}, default = \code{"1d"}. The interval between 2 rows of the time.series answered.\tabular{l}{
    \strong{Valid \code{interval} values} \cr
    \code{"1m"},  \code{"5m"}, \code{"15m"}, \code{"1d"},  \code{"1wk"}, \code{"1mo"} \cr
 }}
@@ -38,7 +38,7 @@ A \code{data.frame} with a historical values :
 Get an historic of stock market data for financial ticker symbols, e.g., values at each closing day.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}

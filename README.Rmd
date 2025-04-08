@@ -34,11 +34,13 @@ Retrieves financial data from Yahoo Finance.
 - Other insights, e.g., latest market summary, assets association (related to each other), symbol validation
 
 
-Functions are divided into 3 family :
+Functions are divided into three families:
 
-- 'search_' assets from free-texts
-- 'get_' latest or historical values from symbol
-- 'last_' market summary, latest values of major assets, currencies, etc.
+- 'search_': Search for assets using free-text queries
+- 'get_': Retrieve the latest or historical values for symbols
+- 'last_': Get market summaries, including the latest values of major assets, currencies, and more
+
+
 
 See the [vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           

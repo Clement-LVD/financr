@@ -18,7 +18,7 @@ This internal function constructs and assigns specific attributes
 to a financial data frame, providing metadata about its contents.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}

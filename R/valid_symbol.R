@@ -1,13 +1,13 @@
 #' Validate Financial Symbols
 #'
-#' Checks the validity of one or multiple financial symbols using Yahoo Finance's validation API.
-#' Return a `data.frame` of boolean values indicating whether each symbol is recognized by Yahoo Finance.
+#' Checks the validity of financial symbols using Yahoo Finance's validation API.
+#' Return a `data.frame` of `logical` values indicating whether each symbol is recognized by Yahoo Finance.
 #'
 #' @param symbols `character` A string or a list of character strings representing financial symbols to validate.
 #' @param .verbose `logical` If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.
 #' @param ... Other symbols (char. or list of char.)
-#' @return A boolean table with one row and as many columns as the number of *unique* symbols provided by the user.
-#' Each column corresponds to a symbol, with TRUE if Yahoo Finance recognizes the symbol, and FALSE otherwise.
+#' @return A `data.frame` boolean `logical` table with one row and as many columns as the number of unique symbols provided by the user.
+#' Each column corresponds to a symbol, and the `logical` value is `TRUE` if Yahoo Finance recognizes the symbol, and `FALSE` otherwise.
 #'
 #' @examples
 #' valid_symbol("AAPL,GOOGL")

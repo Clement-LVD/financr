@@ -4,27 +4,27 @@
 \alias{last_currencies}
 \title{Get Currencies Names, Symbols and Add Latest 'USD' Values}
 \usage{
-last_currencies(keep = NULL, add_usd_values = F, .verbose = T)
+last_currencies(keep = NULL, get_changes = F, .verbose = T)
 }
 \arguments{
-\item{keep}{A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
+\item{keep}{\code{character} - Character vector of symbols to filter the results (perl expression, ignoring case). If \code{NULL} (default),
 no filtering is applied, and all available indices are returned.}
 
-\item{add_usd_values}{\code{logical}, default = \code{FALSE}. If \code{TRUE}, add latest market values ('USD') from \code{get_changes()}. See \code{\link[=get_changes]{get_changes()}} for the base structure.}
+\item{get_changes}{\code{logical}, default = \code{FALSE} - If \code{TRUE}, add latest market values ('USD') from \code{get_changes()}. See \code{\link[=get_changes]{get_changes()}} for the base structure.}
 
-\item{.verbose}{\code{logical}, default = \code{TRUE}. If \code{TRUE}, send messages to the console if necessary.}
+\item{.verbose}{\code{logical}, default = \code{TRUE} - If \code{TRUE}, send messages to the console if necessary.}
 }
 \value{
-A data frame containing unique financial indices (currencies). The table has
+A \code{data.frame} containing unique financial indices (currencies). The table has
 columns like \code{symbol}, \code{name}, and other relevant information, with all column names in lowercase.
-If \code{keep} is specified, only the matching currencies are returned. If \code{add_usd_values} is specified, last financial insights from \code{get_changes()} will be added, e.g., last market values of each currency ('USD')
+If \code{keep} is specified, only the matching currencies are returned. If \code{get_changes} is specified, last financial insights from \code{get_changes()} will be added, e.g., last market values of each currency ('USD')
 }
 \description{
 Return a \code{data.frame} of financial indices (currencies) given a vector of symbols, e.g., 'EUR'.
 Optionally, it can filter the results and add the last market price ('USD') of these currencies.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}

@@ -14,7 +14,7 @@ standardize_symbols <- function(symbols){
 #'
 #' @param symbols Character vector. One or more asset symbols (e.g., \code{c("AAPL", "GOOGL")}).
 #' @param .verbose Logical. If TRUE, displays verbose output during the fetching process. Default is FALSE.
-#' @return A data.frame with 1 row per valid financial symbol and 21 columns, including:
+#' @return A `data.frame` with 1 row per valid financial symbol and 21 columns, including:
 #' \describe{
 #'   \item{currency}{`character` - Trading currency of the asset (e.g., "USD").}
 #'   \item{symbol}{ `character` - Symbol of the asset, e.g., ticker symbol.}
@@ -28,14 +28,14 @@ standardize_symbols <- function(symbols){
 #'   \item{timezone}{ `character` - Abbreviated timezone name of the market.}
 #'   \item{exchangetimezonename}{ `character` - Timezone name of the exchange location.}
 #'   \item{regularmarketprice}{ `numeric`   - Latest regular market trading price.}
-#'   \item{fiftytwoweekhigh}{ `numeric`   - highest price over a 52-weeks period.}
-#'   \item{fiftytwoweeklow}{ `numeric`   - lowest price over a  52-weeks period.}
+#'   \item{fiftytwoweekhigh}{ `numeric`   - Highest price over a 52-weeks period.}
+#'   \item{fiftytwoweeklow}{ `numeric` - Lowest price over a  52-weeks period.}
 #'   \item{regularmarketdayhigh}{ `numeric`   - Highest price during the current market day.}
 #'   \item{regularmarketdaylow}{ `numeric`   - Lowest price during the current market day.}
 #'   \item{regularmarketvolume}{ `integer`   - Volume traded during the current market day.}
 #'   \item{shortname}{ `character` - Shortened or common name of the asset.}
 #'   \item{chartpreviousclose}{ `numeric`   - Closing price shown in charts.}
-#'   \item{previousclose}{`numeric`   - Previous official market close price.}
+#'   \item{previousclose}{`numeric` - Previous official market close price.}
 #' }
 #' @inherit construct_financial_df details
 #' @examples
@@ -120,9 +120,9 @@ last_results <- last_results[, col_2_return]
 #'
 #' Given symbol(s), retrieve identical symbols (according to Yahoo Finance) and a score of similarity.
 #'
-#' @param symbols `character` A character string representing a financial symbol to search.
-#' @param .verbose `logical` If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.
-#' @param ... Other symbols (char. or list of char.)
+#' @param symbols `character` - A character string representing a financial symbol to search.
+#' @param .verbose `logical` - If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.
+#' @param ... - Other symbols (char. or list of char.)
 #' @return A `data.frame` with the symbols associated with those provided by the user and similarity scores, according to Yahoo Finance.
 #' \describe{
 #'   \item{from}{`character` - Financial symbol provided by the user.}
@@ -170,12 +170,12 @@ get_similar <- function(symbols = "SAAB-B.ST", .verbose = F, ...){
 }
 
 
-#' Get Historical Financial Data For Ticker Symbols
+#' Get Historical Financial Data
 #'
 #' Get the historic of stock market data for financial ticker symbols, e.g., values at each closing day.
-#' @param symbols `character` A character string representing the financial indices to search for, e.g., ticker symbol(s).
-#' @param wait.time `double`, default = `0` A character string representing an additional waiting time between 2 calls to the Yahoo API.
-#' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console.
+#' @param symbols `character` - A character string representing the financial indices to search for, e.g., ticker symbol(s).
+#' @param wait.time `double`, default = `0` - A character string representing an additional waiting time between 2 calls to the Yahoo API.
+#' @param .verbose `logical`, default = `TRUE` - If `TRUE`, send messages to the console.
 #' @param ... Parameters passed to `get_yahoo_data`
 #' @inheritDotParams get_yahoo_data
 #' @inherit get_yahoo_data return references
@@ -225,7 +225,7 @@ get_historic <- function(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, 
 #' Get an historic of stock market data for financial ticker symbols, e.g., values at each closing day.
 #' @param symbols `character` A character string representing the financial indices to search for, e.g., ticker symbol(s).
 #' @param .verbose `logical`, default = `TRUE`. If `TRUE`, send messages to the console.
-#' @param interval `character`, default = `"1d"`. The interval between 2 rows of the time.series answered
+#' @param interval `character`, default = `"1d"`. The interval between 2 rows of the time.series answered.
 #' | **Valid `interval` values**                                       |
 #' |-------------------------------------------------------------------|
 #' |  `"1m"`,  `"5m"`, `"15m"`, `"1d"`,  `"1wk"`, `"1mo"` |
@@ -298,29 +298,30 @@ get_historic_light <- function(symbols = "SAAB-B.ST", interval = '1d', range = '
 #' @inherit get_changes references
 #' @return A `data.frame` with the historic of exchanges rates on a given period, default is daily results for a year.
 #'   The columns are:
-#'   \item{timestamp}{`POSIXct` The opening price for the period (default is each day).}
-#'   \item{close}{`numeric` The closing price for the period (default is each day).}
-#'   \item{low}{`numeric` The highest price for the period (default is each day).}
-#'   \item{open}{`integer` The traded volume.}
-#'   \item{high}{`numeric` The lowest price for the period (default is each day).}
+#'   \item{timestamp}{`POSIXct` - The opening price for the period (default is each day).}
+#'   \item{close}{`numeric` - The closing price for the period (default is each day).}
+#'   \item{low}{`numeric` - The highest price for the period (default is each day).}
+#'   \item{open}{`integer` - The traded volume.}
+#'   \item{high}{`numeric` - The lowest price for the period (default is each day).}
 #'   \item{from}{`character` - The currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other (`to`) currency to reach 1$.}
 #'   \item{to}{`character` -  The currency exchanged back against a value of 1 of the `from` currency. The currencies-related `numeric` values in this line of the `data.frame` are expressed with this currency**.}
 #'  Depending on the desired interval, recent observation will be truncated,
 #'  e.g., a `'5y'` range  with a `'1d'` interval will answer approximately 30 days of values from 5 years ago.
 #' @inherit construct_financial_df details
 #' @examples
-#' days <- get_changes_historic(from = c("EUR", "JPY"))
+#' convert_to_usd <- get_changes_historic(from = c("EUR", "JPY"))
+#'
 #' days_bis <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
 #'
-#' # Or pass paired values as 2 list (equivalent to hereabove line) :
-#' same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+#' # (equivalent to the previous line)
+#' # same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
 #'
 #' # Tweak interval and range
 #' months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
 #' str(months)
 #' @seealso \code{\link{get_changes}}
 #' @seealso For more details see the help vignette:
-#' \code{`vignette("currencies", package = "financr")`}
+#' \code{vignette("currencies", package = "financr")}
 #' @export
 get_changes_historic <- function(from = NULL, to = "USD"
 

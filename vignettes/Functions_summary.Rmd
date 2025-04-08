@@ -38,7 +38,7 @@ data.frame(Prefix = c("search_", "get_", "last_")
 
 ---
 
-**Outputs.** All the `'financr'` functions return a standardized `data.frame`, see the last section ['Standardized Return Conventions'](#standardized-return-conventions).
+**Outputs.** All the `'financr'` functions return a standardized `data.frame`, see the last section ['Return Conventions'](#standardized-return-conventions).
 
 Functions with the `'_historic'` suffix return an historic of financial data, while the others retrieve latest financial data.
 
@@ -83,23 +83,23 @@ knitr::kable(fn,
 
 fn <- data.frame(Example = c( "`get_historic('SDV1.F')` <br> & `get_historic_light('SDV1.F')`"
                              , "`get_values('SDV1.F')`"
+                  , "`get_similar('SDV1.F')`"
   
                   , "`get_changes('USD', 'EUR')`",  "`get_changes_historic('USD', 'EUR')`" 
                  
-                  , "`get_similar('SDV1.F')`"
                   ) 
   
   , Input = c("Asset symbol(s), such as ticker symbols"
    , "Asset symbol(s)"
- ,"ISO currency code(s)"
- ,"ISO currency code(s)"
 ,"Asset symbol(s)"
+ ,"ISO currency code(s)"
+ ,"ISO currency code(s)"
   )
 
  , Data.frame_returned =  c(  "**Historic** of financial data"
  ,"**Latest** insights and financial values"
- ,"**Latest** exchanges rates" , "**Historic** of exchanges rates"
  , "**Latest** symbols associated with those provided and similarity scores"
+ ,"**Latest** exchanges rates" , "**Historic** of exchanges rates"
                            )
 )
 
@@ -122,13 +122,14 @@ knitr::kable(fn,
 
 last_fn <- data.frame(
   Example = c( "`last_market_summary()`",
-                     "`last_indices()`" , "`last_crypto()`"
-               , "`last_currencies()`" 
+                     "`last_indices()`" 
+               , "`last_currencies()`", "`last_crypto()`" 
                         
                       )
  , data.frame_returned =  c( "Latest summary information for a set of major financial market indices*",
-   "World indices latest insights and values (USD)^‡^", "100 major crypto-currencies latest insights and values (USD)^‡^" 
-    ,   "ISO currency codes for currencies, names and (optionally) latest 'USD' values*"  )
+   "World indices latest insights and values (USD)^‡^"
+    ,   "ISO currency codes for currencies, names and (optionally) latest values* (USD)"
+   , "100 major crypto-currencies latest insights and values (USD)^‡^"   )
   )
 
 knitr::kable(last_fn
@@ -142,7 +143,7 @@ knitr::kable(last_fn
 - ‡ : Scraping latest data from Yahoo Finance pages, i.e. https://finance.yahoo.com/markets/world-indices/ or [...]/markets/crypto
 
 
-See the vignette.
+See the vignette of the 'last_' functions.
 
 `vignette("last_family", package = "financr")`
 
@@ -164,10 +165,8 @@ knitr::kable(data.frame(Example  =  '`valid_symbol("SAABF")`'
 
 ---
 
-## Standardized Return Conventions
-Regarding all the `data.frame` returned by `'financr'` functions:
-    
-The column names are:
+## Return Conventions
+Regarding a `data.frame` returned by `'financr'` functions, the column names are:
 
 - following the 'snake_case' conventions^[https://wikipedia.org/wiki/Snake_case], e.g., in lowercase and without spaces;
 - and symbols are replaced (e.g., "%' is replaced by 'percent').

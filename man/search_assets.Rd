@@ -46,12 +46,12 @@ Return a \code{data.frame} with the following columns:
 }
 }
 \description{
-Get ticker symbols associated with free texts, such as companies names.
+Get symbols associated with free texts such as companies names or world-indices.
 Several ticker symbols associated with various exchanges places could be returned, with
 companies names, sector/category (if available), etc.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
@@ -82,5 +82,5 @@ Source : https://query2.finance.yahoo.com/v1/
 For more details see the help vignette:
 \code{vignette("get_info_and_historic", package = "financr"))}
 
-\code{get_values}
+\code{get_values} \code{search_assets_quick}
 }

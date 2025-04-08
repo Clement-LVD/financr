@@ -15,10 +15,10 @@ last_market_summary(region = NULL, .verbose = TRUE)
 \item{.verbose}{\code{logical}, default = \code{FALSE} - Logical flag indicating whether to print verbose output for debugging or informational purposes.}
 }
 \value{
-A data frame with 15 rows and 38 variables. Each row corresponds to a market index and includes the following information:
+A \code{data.frame} with 15 rows and 38 variables. Each row corresponds to a market index and includes the following information:
 \itemize{
-\item \code{symbol}, \code{shortname}, \code{longname}, \code{exchange}, \code{region}, \code{currency}
-\item Market time info: \code{regularmarkettime_raw}, \code{regularmarkettime_fmt}
+\item Information on the asset: \code{symbol}, \code{shortname}, \code{longname}, \code{exchange}, \code{region}, \code{currency}
+\item Market time info, mostly associated with the pricing info: \code{regularmarkettime_raw}, \code{regularmarkettime_fmt}
 \item Market pricing info: \code{regularmarketprice_raw}, \code{regularmarketchange_raw}, \code{regularmarketchangepercent_raw}, etc.
 \item Metadata such as \code{marketstate}, \code{quotetype}, \code{pricehint}, \code{exchangedatadelayedby}, \code{hasprepostmarketdata}
 \item Other fields such as \code{cryptotradeable}, \code{tradeable}, \code{triggerable}, \code{contracts}, etc.

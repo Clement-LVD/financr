@@ -10,8 +10,8 @@
 #'    - or associated with a list of `from` values of the same length, e.g., `from = c('EUR', "RON"), to = c("USD", "EUR")` .
 #' @param to, default = `"USD"` A character string representing the target currencies, e.g., `c("EUR", "USD")`.
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected. Default is FALSE.
-#' @param ...  (internal use by get_changes_historic)
-#' @return The returned dataframe contains daily exchange rates, and the following columns:
+#' @param ...  (internal use : the user have `get_changes_historic()` to pass `range` and `interval` parameters)
+#' @return The returned `data.frame` contains daily exchange rates, and the following columns:
 #' \describe{
 #'   \item{currency}{`character` - The base currency.}
 #'   \item{symbol}{`character` - The Yahoo Finance symbol (e.g., "EURUSD=X").}
@@ -29,21 +29,21 @@
 #'   \item{previousclose}{`numeric` - The last closing price.}
 #'   \item{regular_timezone}{`character` - The regular market's timezone.}
 #'   \item{from}{`character` - The currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-#'   \item{to}{`character` - The currency that you want to convert into : **all the `numeric` values (not `integer`) of the row are expressed with this currency**.}
+#'   \item{to}{`character` - The currency that you want to convert into : most of the currency-related `numeric` values of the row are expressed with this currency.}
 #'   \item{timestamp}{`POSIXct` - The corresponding date (YYYY-MM-DD).}
 #' }
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v8/finance/chart/
-#' @seealso For more details see the help vignette:
+#' @seealso For more details on currencies-related functions, see:
 #' \code{`vignette("currencies", package = "financr"))`}
 #' @examples
-#' # Latest exchange rates from € and ¥ to $ (default convert to 'USD")
+#' \dontrun{
 #' df <- get_changes(from = c("EUR", "JPY"))
 #' str(df)
-#' # User could pass a named list of character
 #' df2 <- get_changes(from = c("EUR" = "RON", "USD" = "EUR"))
-#' # Or pass paired values as 2 list (equivalent to hereabove line) :
 #' same_as_df2 <- get_changes(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+#' str(same_as_df2)
+#' }
 #' @export
 get_changes <- function(from = NULL, to = "USD", .verbose = T, ...){
 

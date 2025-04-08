@@ -10,15 +10,15 @@
 #' The function allows the user to specify a date range using start and end dates. If no date range is specified,
 #' it retrieves all available data from the beginning of time (default for start) to the current date (default for end).
 #'
-#' @param symbol `character` A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).
-#' @param start_date `character` A character string representing the start date in R `date` format (UTC time). If `NULL`, data starts from 1970-01-01.
-#' @param end_date `character` A character string representing the end date in a valid R `date` format (UTC time). If `NULL`, data is retrieved up to the current date.
-#' @param range `character` A character string representing the range for the returned datas : default will return daily values.
+#' @param symbol `character` - A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).
+#' @param start_date `character` - A character string representing the start date in R `date` format (UTC time). If `NULL`, data starts from 1970-01-01.
+#' @param end_date `character` - A character string representing the end date in a valid R `date` format (UTC time). If `NULL`, data is retrieved up to the current date.
+#' @param range `character` - A character string representing the range for the returned datas : default will return daily values.
 #' | **Valid `range` values**                                       |
 #' |-------------------------------------------------------------------|
 #' | `"1d"`, `"5d"`, `"1mo"`, `"3mo"`, `"6mo"`, `"1y"`, `"2y"`, `"5y"`, `"10y"`, `"ytd"` and `"max"` |
 #' @param .verbose `logical` If TRUE, messages are displayed, e.g., when invalid symbols are detected.
-#' @return A data frame containing the historical financial data with the following columns:
+#' @return A `data.frame` containing the historical financial data with the following columns:
 #'   \item{open}{`numeric` The opening price for the period (default is each day).}
 #'   \item{close}{`numeric` The closing price for the period (default is each day).}
 #'   \item{low}{`numeric` The lowest price for the period (default is each day).}
@@ -41,7 +41,10 @@
 #'   \item{regularMarketDayLow}{`numeric`  The lowest price of the day (local exchange place day).}
 #' @keywords internal
 #' @references Source : https://query1.finance.yahoo.com/v8/finance/chart/
-#' #example : data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
+#' @examples
+#' \dontrun{
+#'data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
+#' }
 get_yahoo_data <- function(symbol = "AAPL", start_date = NULL, end_date = NULL
                            , range = "1d"
                            , .verbose = T) {

@@ -14,12 +14,12 @@ valid_symbol(symbols = NULL, ..., .verbose = T)
 \item{.verbose}{\code{logical} If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.}
 }
 \value{
-A boolean table with one row and as many columns as the number of \emph{unique} symbols provided by the user.
-Each column corresponds to a symbol, with TRUE if Yahoo Finance recognizes the symbol, and FALSE otherwise.
+A \code{data.frame} boolean \code{logical} table with one row and as many columns as the number of unique symbols provided by the user.
+Each column corresponds to a symbol, and the \code{logical} value is \code{TRUE} if Yahoo Finance recognizes the symbol, and \code{FALSE} otherwise.
 }
 \description{
-Checks the validity of one or multiple financial symbols using Yahoo Finance's validation API.
-Return a \code{data.frame} of boolean values indicating whether each symbol is recognized by Yahoo Finance.
+Checks the validity of financial symbols using Yahoo Finance's validation API.
+Return a \code{data.frame} of \code{logical} values indicating whether each symbol is recognized by Yahoo Finance.
 }
 \examples{
 valid_symbol("AAPL,GOOGL")

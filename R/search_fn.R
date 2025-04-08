@@ -2,7 +2,7 @@
 
 #' Search Financial Asset From Keywords (Multiple Texts)
 #'
-#' Get ticker symbols associated with free texts, such as companies names.
+#' Get symbols associated with free texts such as companies names or world-indices.
 #' Several ticker symbols associated with various exchanges places could be returned, with
 #'  companies names, sector/category (if available), etc.
 #'
@@ -47,7 +47,7 @@
 #' @references Source : https://query2.finance.yahoo.com/v1/
 #' @seealso For more details see the help vignette:
 #' \code{vignette("get_info_and_historic", package = "financr"))}
-#' @seealso \code{get_values}
+#' @seealso \code{get_values} \code{search_assets_quick}
 #' @export
 search_assets <- function(texts, exchange = NULL,  type = NULL, get_values = F, .verbose = F){
 # url = "https://query2.finance.yahoo.com/v1/finance/search?q=saab"
@@ -121,21 +121,21 @@ return(construct_financial_df( returned_results) )
 
 #' Search Financial Assets From Keyword(s)
 #'
-#' Search for financial data based on texts and retrieve asset symbol(s), name(s), exchanges place(s), and asset type(s).
+#' Search for financial data based on texts and retrieve asset symbol(s), name(s), exchanges place(s), and asset type(s). It's a variant of `search_assets()`.
 #'
-#' @param texts `character` string representing the search texts. This can be a company name, index, or financial term. Default is "Dow Jones".
+#' @param texts `character` string representing the texts to search. This can be a company name, index, or financial term.
 #' @param .verbose `logical` If `TRUE`, print additional details about the search process. Default is `TRUE`.
 #' @param region A character string specifying the region for the search (e.g., "US", "EU"). Default is `NULL`, meaning no region filter is applied.
 #' @param lang A character string specifying the language of the data returned. Default is "en" for English.
 #'
 #' @return A `data.frame` with assets symbols and names.
 #' \itemize{
-#'   \item \code{symbol}: The financial symbol (e.g., stock ticker or index).
-#'   \item \code{name}: The full name of the financial entity (e.g., 'Dow Jones Industrial Average').
-#'   \item \code{exch}: The exchange on which the symbol is listed (e.g., 'DJI', 'CBT').
-#'   \item \code{type}: The type of financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
-#'   \item \code{exchdisp}: The exchange name displayed (e.g., 'Dow Jones').
-#'   \item \code{typedisp}: A long name for the type of financial instrument (e.g., 'Index', 'Futures' or 'ETF' for 'Exchange Traded Fund').
+#'   \item \code{symbol} - The financial symbol (e.g., stock ticker or index).
+#'   \item \code{name} - The full name of the financial entity (e.g., 'Dow Jones Industrial Average').
+#'   \item \code{exch} - The exchange on which the symbol is listed (e.g., 'DJI', 'CBT').
+#'   \item \code{type} - The type of financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
+#'   \item \code{exchdisp} - The exchange name displayed (e.g., 'Dow Jones').
+#'   \item \code{typedisp} - A long name for the type of financial instrument (e.g., 'Index', 'Futures' or 'ETF' for 'Exchange Traded Fund').
 #' }
 #'
 #' @examples

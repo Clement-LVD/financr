@@ -41,11 +41,11 @@ The user must provide \code{from} values with one of the following method :
 \value{
 A \code{data.frame} with the historic of exchanges rates on a given period, default is daily results for a year.
 The columns are:
-\item{timestamp}{\code{POSIXct} The opening price for the period (default is each day).}
-\item{close}{\code{numeric} The closing price for the period (default is each day).}
-\item{low}{\code{numeric} The highest price for the period (default is each day).}
-\item{open}{\code{integer} The traded volume.}
-\item{high}{\code{numeric} The lowest price for the period (default is each day).}
+\item{timestamp}{\code{POSIXct} - The opening price for the period (default is each day).}
+\item{close}{\code{numeric} - The closing price for the period (default is each day).}
+\item{low}{\code{numeric} - The highest price for the period (default is each day).}
+\item{open}{\code{integer} - The traded volume.}
+\item{high}{\code{numeric} - The lowest price for the period (default is each day).}
 \item{from}{\code{character} - The currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other (\code{to}) currency to reach 1$.}
 \item{to}{\code{character} -  The currency exchanged back against a value of 1 of the \code{from} currency. The currencies-related \code{numeric} values in this line of the \code{data.frame} are expressed with this currency**.}
 Depending on the desired interval, recent observation will be truncated,
@@ -56,7 +56,7 @@ Get a \code{data.frame} of historical values of exchanges rates, given currencie
 Default parameters are a period of 1 year (1 obs. per day), and convert to USD ($).
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
@@ -70,11 +70,12 @@ Return a \code{data.frame} with additionnal attributes:
 See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
-days <- get_changes_historic(from = c("EUR", "JPY"))
+convert_to_usd <- get_changes_historic(from = c("EUR", "JPY"))
+
 days_bis <- get_changes_historic(from = c("EUR" = "RON", "USD" = "EUR"))
 
-# Or pass paired values as 2 list (equivalent to hereabove line) :
-same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+# (equivalent to the previous line)
+# same_as_days_bis <- get_changes_historic(from = c("EUR", "USD"), to =c("RON" , "EUR"))
 
 # Tweak interval and range
 months <- get_changes_historic(from = c("EUR", "JPY"), interval = "1mo", range = '5y')
@@ -87,5 +88,5 @@ Source : https://query2.finance.yahoo.com/v8/finance/chart/
 \code{\link{get_changes}}
 
 For more details see the help vignette:
-\code{`vignette("currencies", package = "financr")`}
+\code{vignette("currencies", package = "financr")}
 }

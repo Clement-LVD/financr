@@ -50,12 +50,12 @@ Additional attributes indicates such as the symbols of currencies in the `data.f
 
 ---
 
-**Find names of all currencies of the results with `get_currencies()`.** And optionally add insights from `get_changes()`, e.g., latest market prices of the currency ('USD').
+**Get names of currencies.** And optionally add insights from `get_changes()`, e.g., latest market prices of the currency ('USD').
  
 ```{r}
 unknown_currencies <- unique(historic$currency)
 
-values_currencies <- last_currencies(keep = unknown_currencies, add_usd_values = T)
+values_currencies <- last_currencies(keep = unknown_currencies, get_changes = T)
 
 head(values_currencies)
 

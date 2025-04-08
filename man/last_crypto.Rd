@@ -7,10 +7,10 @@
 last_crypto(keep = NULL, .verbose = T)
 }
 \arguments{
-\item{keep}{A character vector of symbols to filter the results (perl expression, ignoring case). If NULL (default),
+\item{keep}{\code{character} - Character vector of symbols to filter the results (perl expression, ignoring case). If \code{NULL} (default),
 no filtering is applied, and all available indices are returned.}
 
-\item{.verbose}{\code{logical}, default = \code{TRUE}. If \code{TRUE}, send messages to the console if necessary.}
+\item{.verbose}{\code{logical}, default = \code{TRUE} - If \code{TRUE}, send messages to the console if necessary.}
 }
 \value{
 A data frame with 100 observations and 13 variables:
@@ -26,15 +26,15 @@ A data frame with 100 observations and 13 variables:
 \item{total_volume_all_currencies_24hr}{\code{numeric} - 24-hour total trading volume across all currency pairs.}
 \item{circulating_supply}{\code{numeric} - Total circulating supply of the cryptocurrency.}
 \item{x52_wk_change_percent}{\code{numeric} - Percentage change in price over the last 52 weeks (\%).}
-\item{from}{\code{character}, the currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-\item{to}{\code{character}, the currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) in this line of the \code{data.frame} are expressed with this currency}.}
+\item{from}{\code{character} - The currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
+\item{to}{\code{character} - The currency that you want to convert into : all the currency-related \code{numeric} values in this line of the \code{data.frame} are expressed with this currency.}
 }
 }
 \description{
 Return a \code{data.frame} of latest financial data for 100 cryptocurrencies, e.g., actual values of each cryptocurrency in USD.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
@@ -56,5 +56,5 @@ Source : Yahoo Finance 'crypto' page, \url{https://finance.yahoo.com/markets/cry
 }
 \seealso{
 For more details on the 'last_' family of functions see the help vignette:
-\code{vignette("last_family", package = "financr"))}
+\code{vignette("last_family", package = "financr")}
 }

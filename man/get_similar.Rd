@@ -7,11 +7,13 @@
 get_similar(symbols = "SAAB-B.ST", .verbose = F, ...)
 }
 \arguments{
-\item{symbols}{\code{character} A character string representing a financial symbol to search.}
+\item{symbols}{\code{character} - A character string representing a financial symbol to search.}
 
-\item{.verbose}{\code{logical} If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.}
+\item{.verbose}{\code{logical} - If TRUE, messages are displayed when invalid symbols are detected. Default is TRUE.}
 
-\item{...}{Other symbols (char. or list of char.)}
+\item{...}{\itemize{
+\item Other symbols (char. or list of char.)
+}}
 }
 \value{
 A \code{data.frame} with the symbols associated with those provided by the user and similarity scores, according to Yahoo Finance.

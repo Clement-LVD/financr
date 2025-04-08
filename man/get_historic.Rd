@@ -2,31 +2,31 @@
 % Please edit documentation in R/get_fn.R
 \name{get_historic}
 \alias{get_historic}
-\title{Get Historical Financial Data For Ticker Symbols}
+\title{Get Historical Financial Data}
 \usage{
 get_historic(symbols = c("SAAB-B.ST"), wait.time = 0, .verbose = T, ...)
 }
 \arguments{
-\item{symbols}{\code{character} A character string representing the financial indices to search for, e.g., ticker symbol(s).}
+\item{symbols}{\code{character} - A character string representing the financial indices to search for, e.g., ticker symbol(s).}
 
-\item{wait.time}{\code{double}, default = \code{0} A character string representing an additional waiting time between 2 calls to the Yahoo API.}
+\item{wait.time}{\code{double}, default = \code{0} - A character string representing an additional waiting time between 2 calls to the Yahoo API.}
 
-\item{.verbose}{\code{logical}, default = \code{TRUE}. If \code{TRUE}, send messages to the console.}
+\item{.verbose}{\code{logical}, default = \code{TRUE} - If \code{TRUE}, send messages to the console.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_yahoo_data]{get_yahoo_data}}
   \describe{
-    \item{\code{symbol}}{\code{character} A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
-    \item{\code{start_date}}{\code{character} A character string representing the start date in R \code{date} format (UTC time). If \code{NULL}, data starts from 1970-01-01.}
-    \item{\code{end_date}}{\code{character} A character string representing the end date in a valid R \code{date} format (UTC time). If \code{NULL}, data is retrieved up to the current date.}
-    \item{\code{range}}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
+    \item{\code{symbol}}{\code{character} - A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
+    \item{\code{start_date}}{\code{character} - A character string representing the start date in R \code{date} format (UTC time). If \code{NULL}, data starts from 1970-01-01.}
+    \item{\code{end_date}}{\code{character} - A character string representing the end date in a valid R \code{date} format (UTC time). If \code{NULL}, data is retrieved up to the current date.}
+    \item{\code{range}}{\code{character} - A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
    \strong{Valid \code{range} values} \cr
    \code{"1d"}, \code{"5d"}, \code{"1mo"}, \code{"3mo"}, \code{"6mo"}, \code{"1y"}, \code{"2y"}, \code{"5y"}, \code{"10y"}, \code{"ytd"} and \code{"max"} \cr
 }}
   }}
 }
 \value{
-A data frame containing the historical financial data with the following columns:
+A \code{data.frame} containing the historical financial data with the following columns:
 \item{open}{\code{numeric} The opening price for the period (default is each day).}
 \item{close}{\code{numeric} The closing price for the period (default is each day).}
 \item{low}{\code{numeric} The lowest price for the period (default is each day).}
@@ -52,7 +52,7 @@ A data frame containing the historical financial data with the following columns
 Get the historic of stock market data for financial ticker symbols, e.g., values at each closing day.
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
@@ -71,7 +71,6 @@ str(datas)
 }
 \references{
 Source : https://query1.finance.yahoo.com/v8/finance/chart/
-#example : data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
 }
 \seealso{
 \code{\link{get_yahoo_data}}

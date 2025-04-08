@@ -27,7 +27,7 @@ expect_true(  is.character(test$longname))
 test_that("last_currencies add usd values", {
   if(!internet_or_not()) skip()
   symbol ="PLN"
-  test <- last_currencies( keep = symbol, add_usd_values = T)
+  test <- last_currencies( keep = symbol, get_changes = T)
 
   expect_true(nrow(test) == 1)
   expect_true(test$symbol==symbol)

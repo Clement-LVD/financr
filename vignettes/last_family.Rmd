@@ -32,7 +32,7 @@ Or retrieve currencies and their latest 'USD' values, e.g. currencies with a 3-l
  
 ```{r}
 
-last_currencies(keep = "^Z", add_usd_values = T)
+last_currencies(keep = "^Z", get_changes = T)
 
 ```
 

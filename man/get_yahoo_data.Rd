@@ -13,13 +13,13 @@ get_yahoo_data(
 )
 }
 \arguments{
-\item{symbol}{\code{character} A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
+\item{symbol}{\code{character} - A character string representing the symbol for the financial instrument (e.g., "AAPL" for Apple).}
 
-\item{start_date}{\code{character} A character string representing the start date in R \code{date} format (UTC time). If \code{NULL}, data starts from 1970-01-01.}
+\item{start_date}{\code{character} - A character string representing the start date in R \code{date} format (UTC time). If \code{NULL}, data starts from 1970-01-01.}
 
-\item{end_date}{\code{character} A character string representing the end date in a valid R \code{date} format (UTC time). If \code{NULL}, data is retrieved up to the current date.}
+\item{end_date}{\code{character} - A character string representing the end date in a valid R \code{date} format (UTC time). If \code{NULL}, data is retrieved up to the current date.}
 
-\item{range}{\code{character} A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
+\item{range}{\code{character} - A character string representing the range for the returned datas : default will return daily values.\tabular{l}{
    \strong{Valid \code{range} values} \cr
    \code{"1d"}, \code{"5d"}, \code{"1mo"}, \code{"3mo"}, \code{"6mo"}, \code{"1y"}, \code{"2y"}, \code{"5y"}, \code{"10y"}, \code{"ytd"} and \code{"max"} \cr
 }}
@@ -27,7 +27,7 @@ get_yahoo_data(
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected.}
 }
 \value{
-A data frame containing the historical financial data with the following columns:
+A \code{data.frame} containing the historical financial data with the following columns:
 \item{open}{\code{numeric} The opening price for the period (default is each day).}
 \item{close}{\code{numeric} The closing price for the period (default is each day).}
 \item{low}{\code{numeric} The lowest price for the period (default is each day).}
@@ -61,8 +61,12 @@ Valid ranges are: "1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd
 The function allows the user to specify a date range using start and end dates. If no date range is specified,
 it retrieves all available data from the beginning of time (default for start) to the current date (default for end).
 }
+\examples{
+\dontrun{
+data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
+}
+}
 \references{
 Source : https://query1.finance.yahoo.com/v8/finance/chart/
-#example : data <- get_yahoo_data(symbol = "SAAB-B.ST", start_date = "2020-01-01", range = "1d")
 }
 \keyword{internal}

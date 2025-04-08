@@ -22,10 +22,10 @@ The user must provide \code{from} values with one of the following method :
 
 \item{.verbose}{\code{logical} If TRUE, messages are displayed, e.g., when invalid symbols are detected. Default is FALSE.}
 
-\item{...}{(internal use by get_changes_historic)}
+\item{...}{(internal use : the user have \code{get_changes_historic()} to pass \code{range} and \code{interval} parameters)}
 }
 \value{
-The returned dataframe contains daily exchange rates, and the following columns:
+The returned \code{data.frame} contains daily exchange rates, and the following columns:
 \describe{
 \item{currency}{\code{character} - The base currency.}
 \item{symbol}{\code{character} - The Yahoo Finance symbol (e.g., "EURUSD=X").}
@@ -43,7 +43,7 @@ The returned dataframe contains daily exchange rates, and the following columns:
 \item{previousclose}{\code{numeric} - The last closing price.}
 \item{regular_timezone}{\code{character} - The regular market's timezone.}
 \item{from}{\code{character} - The currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-\item{to}{\code{character} - The currency that you want to convert into : \strong{all the \code{numeric} values (not \code{integer}) of the row are expressed with this currency}.}
+\item{to}{\code{character} - The currency that you want to convert into : most of the currency-related \code{numeric} values of the row are expressed with this currency.}
 \item{timestamp}{\code{POSIXct} - The corresponding date (YYYY-MM-DD).}
 }
 }
@@ -51,7 +51,7 @@ The returned dataframe contains daily exchange rates, and the following columns:
 Returns a \code{data.frame} with the latest exchange rate(s) for the given currencies. Default will convert to USD ($).
 }
 \details{
-Return a \code{data.frame} with additionnal attributes:
+Return a \code{data.frame} with additional attributes:
 \describe{
 \item{n.currencies}{\code{integer} - Number of unique currencies in the \code{data.frame}.}
 \item{currencies}{\code{character} - A vector of currency symbols in the \code{data.frame} (e.g., \code{"BTC"}, \code{"ETH"}, \code{"USD"}).}
@@ -65,18 +65,18 @@ Return a \code{data.frame} with additionnal attributes:
 See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
-# Latest exchange rates from € and ¥ to $ (default convert to 'USD")
+\dontrun{
 df <- get_changes(from = c("EUR", "JPY"))
 str(df)
-# User could pass a named list of character
 df2 <- get_changes(from = c("EUR" = "RON", "USD" = "EUR"))
-# Or pass paired values as 2 list (equivalent to hereabove line) :
 same_as_df2 <- get_changes(from = c("EUR", "USD"), to =c("RON" , "EUR"))
+str(same_as_df2)
+}
 }
 \references{
 Source : https://query2.finance.yahoo.com/v8/finance/chart/
 }
 \seealso{
-For more details see the help vignette:
+For more details on currencies-related functions, see:
 \code{`vignette("currencies", package = "financr"))`}
 }

@@ -81,7 +81,7 @@ It is helpful to understand the currency symbols used by the Yahoo Finance API, 
 
 ```{r currencies2}
 few_currencies <- last_currencies(keep = c("R.N",  "^Z")
-                                  , add_usd_values = T )
+                                  , get_changes = T )
 few_currencies
 ```
 

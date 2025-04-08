@@ -6,7 +6,7 @@
 #' @param ... Attribute(s) to add to the returned `data.frame`
 #' @param crypto `logical` Attribute predefined if cryptocurrencies are in the dataset
 #' @details
-#' Return a `data.frame` with additionnal attributes:
+#' Return a `data.frame` with additional attributes:
 #' \describe{
 #'   \item{n.currencies}{`integer` - Number of unique currencies in the `data.frame`.}
 #'   \item{currencies}{`character` - A vector of currency symbols in the `data.frame` (e.g., `"BTC"`, `"ETH"`, `"USD"`).}

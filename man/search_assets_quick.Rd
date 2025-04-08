@@ -12,7 +12,7 @@ search_assets_quick(
 )
 }
 \arguments{
-\item{texts}{\code{character} string representing the search texts. This can be a company name, index, or financial term. Default is "Dow Jones".}
+\item{texts}{\code{character} string representing the texts to search. This can be a company name, index, or financial term.}
 
 \item{.verbose}{\code{logical} If \code{TRUE}, print additional details about the search process. Default is \code{TRUE}.}
 
@@ -23,16 +23,16 @@ search_assets_quick(
 \value{
 A \code{data.frame} with assets symbols and names.
 \itemize{
-\item \code{symbol}: The financial symbol (e.g., stock ticker or index).
-\item \code{name}: The full name of the financial entity (e.g., 'Dow Jones Industrial Average').
-\item \code{exch}: The exchange on which the symbol is listed (e.g., 'DJI', 'CBT').
-\item \code{type}: The type of financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
-\item \code{exchdisp}: The exchange name displayed (e.g., 'Dow Jones').
-\item \code{typedisp}: A long name for the type of financial instrument (e.g., 'Index', 'Futures' or 'ETF' for 'Exchange Traded Fund').
+\item \code{symbol} - The financial symbol (e.g., stock ticker or index).
+\item \code{name} - The full name of the financial entity (e.g., 'Dow Jones Industrial Average').
+\item \code{exch} - The exchange on which the symbol is listed (e.g., 'DJI', 'CBT').
+\item \code{type} - The type of financial instrument (e.g., I for Index, F for Futures, E for Exchange Traded Fund).
+\item \code{exchdisp} - The exchange name displayed (e.g., 'Dow Jones').
+\item \code{typedisp} - A long name for the type of financial instrument (e.g., 'Index', 'Futures' or 'ETF' for 'Exchange Traded Fund').
 }
 }
 \description{
-Search for financial data based on texts and retrieve asset symbol(s), name(s), exchanges place(s), and asset type(s).
+Search for financial data based on texts and retrieve asset symbol(s), name(s), exchanges place(s), and asset type(s). It's a variant of \code{search_assets()}.
 }
 \examples{
 # Example of searching for financial data related to "Dow Jones"
