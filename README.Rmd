@@ -89,7 +89,6 @@ str(histo)
 
 - [Summary of financr functions](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
 
-
 - [The 'last_ family' of functions](https://clement-lvd.github.io/financr/articles/last_family.html).
 
 - [Currency-related functions](https://clement-lvd.github.io/financr/articles/currencies.html).

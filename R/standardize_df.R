@@ -40,6 +40,7 @@ standardize_df_of_dfs <- function(df) {
 standardize_df_cols <- function(df, sep = "_"){
   if(!is.data.frame(df)) return(df)
 
+if(nrow(df) == 0) return(df)
   # harmonize colnames :
   colnames(df) <- trimws(colnames(df))
   # empty colnames fixing
@@ -184,7 +185,6 @@ standardize_df_percent_col <- function(df, regex_to_replace_by_na  = "^--?$" , p
 
 standardize_df_cols_to_numeric <- function(df){
   if(!is.data.frame(df)) return(df)
-
 # 1) search within col and return logical when have no char
 have_no_char <- sapply(df, function(col) {
     if(is.numeric(col)  ) return(F) #not the already numeric col

@@ -17,7 +17,7 @@ no filtering is applied, and all available indices are returned.}
 \value{
 A \code{data.frame} containing unique financial indices (currencies). The table has
 columns like \code{symbol}, \code{name}, and other relevant information, with all column names in lowercase.
-If \code{keep} is specified, only the matching currencies are returned. If \code{get_changes} is specified, last financial insights from \code{get_changes()} will be added, e.g., last market values of each currency ('USD')
+If \code{keep} is specified, only the matching currencies are returned. If \code{get_changes} is specified, last market values in 'USD' will be added, see \code{get_changes()}.
 }
 \description{
 Return a \code{data.frame} of financial indices (currencies) given a vector of symbols, e.g., 'EUR'.
@@ -39,7 +39,7 @@ See \code{vignette("Functions_summary", package = "financr")}
 }
 \examples{
 # Fetch all available indices
-all_indices <- last_currencies()
+all_indices <- last_currencies( keep = "LBP" , get_changes = TRUE)
 
 # Fetch only specific indices
 selected_indices <- last_currencies(keep = c("^Z", "EUR"))

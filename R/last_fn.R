@@ -109,10 +109,10 @@ last_indices <- function(.verbose = T, keep = NULL){
 #' @param .verbose `logical`, default = `TRUE` - If `TRUE`, send messages to the console if necessary.
 #' @return A `data.frame` containing unique financial indices (currencies). The table has
 #'         columns like `symbol`, `name`, and other relevant information, with all column names in lowercase.
-#'         If `keep` is specified, only the matching currencies are returned. If `get_changes` is specified, last financial insights from `get_changes()` will be added, e.g., last market values of each currency ('USD')
+#'         If `keep` is specified, only the matching currencies are returned. If `get_changes` is specified, last market values in 'USD' will be added, see `get_changes()`.
 #' @examples
 #' # Fetch all available indices
-#' all_indices <- last_currencies()
+#' all_indices <- last_currencies( keep = "LBP" , get_changes = TRUE)
 #'
 #' # Fetch only specific indices
 #' selected_indices <- last_currencies(keep = c("^Z", "EUR"))
@@ -140,6 +140,8 @@ last_currencies <- function(keep = NULL, get_changes = F, .verbose = T) {
 
 results <- standardize_df_cols(results)
 
+if(nrow(results) ==0) return(NA)
+
   if(get_changes) {
 
     values_to_add <- get_changes(from = results$symbol, .verbose = .verbose)
@@ -147,7 +149,9 @@ results <- standardize_df_cols(results)
     values_to_add <- values_to_add[, setdiff(colnames(values_to_add), colnames(results))]
 
     results <- merge(x = results, y = values_to_add, by.x = "symbol", by.y = "from", all.x = T, all.y = F)
-  }
+
+
+    }
 
   results <- unique(results)
 
