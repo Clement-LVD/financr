@@ -8,8 +8,7 @@ Description: Retrieve historical market data (e.g., market prices, currencies ex
      latest insights on  financial assets, major indices, currencies and crypto-currencies ;
      and various helper functions, e.g., retrieves the latest exchange rates, find symbol validity or similar assets.
 License: MIT + file LICENSE
-URL: https://github.com/clement-LVD/financr,
-    https://clement-lvd.github.io/financr/
+URL: https://github.com/clement-LVD/financr, https://clement-lvd.github.io/financr/
 BugReports: https://github.com/clement-LVD/financr/issues
 Imports: 
     jsonlite,
@@ -25,6 +24,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
+Year: 2025
 References: 
   Sources are (a) Yahoo Finance API, e.g., https://query2.finance.yahoo.com/v1/finance/currencies and https://query2.finance.yahoo.com/v8/finance/chart    
             ; and (b) Yahoo website pages, e.g., https://finance.yahoo.com/lookup> and <https://finance.yahoo.com/markets/world-indices

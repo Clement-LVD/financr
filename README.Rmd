@@ -45,6 +45,8 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
+More examples on [the example Vignette](https://clement-lvd.github.io/financr/articles/example.html).
+
 **Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search symbols with `search_assets()`.
 
 ```{r example1}
@@ -87,10 +89,10 @@ str(histo)
 
 - [Summary of financr functions](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
 
+
 - [The 'last_ family' of functions](https://clement-lvd.github.io/financr/articles/last_family.html).
 
 - [Currency-related functions](https://clement-lvd.github.io/financr/articles/currencies.html).
  
-- [The example Vignette](https://clement-lvd.github.io/financr/articles/example.html).
 
 **Yahoo Finance API Licence.** This package retrieves data from Yahoo Finance, a property of Yahoo Inc. Users must comply with [Yahoo Finance's API terms](https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html). See more informations on the [legal Vignette](https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html).

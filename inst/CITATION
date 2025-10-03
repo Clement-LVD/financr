@@ -1,0 +1,10 @@
+citHeader("To cite this package :")
+
+citEntry(
+  entry    = "Manual",
+  title    = "financr: Retrieve Financial Data From Yahoo Finance",
+  author   = person("Clément", "Laverdet", email = "clementlvd@gmail.com", comment = c(ORCID = "0000-0003-4466-3394")),
+  year     = meta$Year,
+  note     = paste("R package version", meta$Version),
+  url      = "https://github.com/Clement-LVD/financr" # "https://CRAN.R-project.org/package=financr"
+)

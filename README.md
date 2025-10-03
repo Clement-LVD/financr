@@ -44,6 +44,9 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
+More examples on [the example
+Vignette](https://clement-lvd.github.io/financr/articles/example.html).
+
 **Get ticker symbol from free-texts.** Given keyword(s) such as
 companies names, search symbols with `search_assets()`.
 
@@ -112,8 +115,8 @@ str(indices2)
 #>  - attr(*, "currencies")= chr [1:2] "USD" "EUR"
 #>  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"
 #>  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-02 18:05:02"
-#>  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:02:45"
-#>  - attr(*, "date.dif")= num 20
+#>  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:48:30"
+#>  - attr(*, "date.dif")= num 20.7
 ```
 
 Exploring the results of `search_assets()` is a way to find the symbol
@@ -129,7 +132,7 @@ histo <- get_historic(
   , .verbose = FALSE)
 
 str(histo)
-#> 'data.frame':    638 obs. of  20 variables:
+#> 'data.frame':    730 obs. of  20 variables:
 #>  $ open                : num  566 567 568 569 567 ...
 #>  $ close               : num  567 568 569 567 567 ...
 #>  $ low                 : num  566 566 567 567 566 ...
@@ -145,17 +148,17 @@ str(histo)
 #>  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...
 #>  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...
 #>  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...
-#>  $ regularmarketprice  : num  570 570 570 570 570 ...
+#>  $ regularmarketprice  : num  574 574 574 574 574 ...
 #>  $ fiftytwoweeklow     : num  204 204 204 204 204 ...
 #>  $ fiftytwoweekhigh    : num  588 588 588 588 588 ...
 #>  $ regularmarketdaylow : num  564 564 564 564 564 564 564 564 564 564 ...
-#>  $ regularmarketdayhigh: num  574 574 574 574 574 ...
+#>  $ regularmarketdayhigh: num  575 575 575 575 575 ...
 #>  - attr(*, "n.currencies")= int 1
 #>  - attr(*, "currencies")= chr "SEK"
 #>  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"
 #>  - attr(*, "date.begin")= int 1759474800
-#>  - attr(*, "date.end")= int 1759493864
-#>  - attr(*, "date.dif")= num 19064
+#>  - attr(*, "date.end")= int 1759496620
+#>  - attr(*, "date.dif")= num 21820
 ```
 
 ## Vignettes
@@ -168,9 +171,6 @@ str(histo)
 
 - [Currency-related
   functions](https://clement-lvd.github.io/financr/articles/currencies.html).
-
-- [The example
-  Vignette](https://clement-lvd.github.io/financr/articles/example.html).
 
 **Yahoo Finance API Licence.** This package retrieves data from Yahoo
 Finance, a property of Yahoo Inc. Users must comply with [Yahoo

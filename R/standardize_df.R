@@ -35,6 +35,39 @@ standardize_df_of_dfs <- function(df) {
   return(returned_df)
 }
 
+#### Main function ####
+
+standardize_df_cols <- function(df, sep = "_"){
+  if(!is.data.frame(df)) return(df)
+
+  # harmonize colnames :
+  colnames(df) <- trimws(colnames(df))
+  # empty colnames fixing
+  empty_names <- which(nchar( colnames(df)) == 0)
+  colnames(df)[empty_names] <- paste0("var", seq_along(empty_names))
+
+  df <- drop_col_wo_char(df)
+
+df <- standardize_df_percent_col(df) # if there is a % at the end of the chain
+
+df <- standardize_df_colnames(df, sep = sep) # rename (func' hereafter)
+
+# we need to separate cols according to separator values
+# space is the default separator for the hereafter func (assuming it's safe separator)
+df <-  standardize_df_split_col_w_several_values(df)
+# there is exception such as "name" or "time" columns
+# price is in a gangbang of var in the Yahoo.com table : function from utils.R
+if("price" %in% colnames(df)) df$price <- extract_before_sep(df$price)
+
+# transform values into good old numeric
+df <- standardize_df_cols_to_numeric(df)
+
+df <- standardize_timestamp_col(df)
+
+return(df)
+}
+
+#### Specific function####
 # find column to translate into posixct according to names: use hereafter
 standardize_timestamp_col <- function(df){
 regexx <- "((d|D)ate|(t|T)ime|(t|T)imestamp)($|_raw$|_fmt$)" #""
@@ -112,39 +145,6 @@ standardize_df_split_col_w_several_values <- function(df, separator = " ", col_t
   return(as.data.frame(complete_df, stringsAsFactors = FALSE) )
 
 }
-
-#### Main function ####
-
-standardize_df_cols <- function(df, sep = "_"){
-  if(!is.data.frame(df)) return(df)
-
-  # harmonize colnames :
-  colnames(df) <- trimws(colnames(df))
-  # empty colnames fixing
-  empty_names <- which(nchar( colnames(df)) == 0)
-  colnames(df)[empty_names] <- paste0("var", seq_along(empty_names))
-
-  df <- drop_col_wo_char(df)
-
-df <- standardize_df_percent_col(df) # if there is a % at the end of the chain
-
-df <- standardize_df_colnames(df, sep = sep) # rename (func' hereafter)
-
-# we need to separate cols according to separator values
-# space is the default separator for the hereafter func (assuming it's safe separator)
-df <-  standardize_df_split_col_w_several_values(df)
-# there is exception such as "name" or "time" columns
-# price is in a gangbang of var in the Yahoo.com table : function from utils.R
-if("price" %in% colnames(df)) df$price <- extract_before_sep(df$price)
-
-# transform values into good old numeric
-df <- standardize_df_cols_to_numeric(df)
-
-df <- standardize_timestamp_col(df)
-
-return(df)
-}
-
 
 
 # drop col without char :
