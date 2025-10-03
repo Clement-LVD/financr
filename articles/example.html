@@ -103,41 +103,41 @@ given keyword(s).</strong> E.g., search the symbols of ‘Volvo car’ and
 <span>                         , exchange <span class="op">=</span> <span class="st">"STO"</span></span>
 <span>                         , get_values <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">swedish</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1 obs. of  28 variables:</span></span>
-<span><span class="co">#&gt;  $ symbol              : chr "VOLCAR-B.ST"</span></span>
-<span><span class="co">#&gt;  $ shortname           : chr "Volvo Car AB ser. B"</span></span>
-<span><span class="co">#&gt;  $ longname            : chr "Volvo Car AB (publ.)"</span></span>
-<span><span class="co">#&gt;  $ exchange            : chr "STO"</span></span>
-<span><span class="co">#&gt;  $ exchdisp            : chr "Stockholm"</span></span>
-<span><span class="co">#&gt;  $ quotetype           : chr "EQUITY"</span></span>
-<span><span class="co">#&gt;  $ typedisp            : chr "Equity"</span></span>
-<span><span class="co">#&gt;  $ score               : num 20026</span></span>
-<span><span class="co">#&gt;  $ isyahoofinance      : logi TRUE</span></span>
-<span><span class="co">#&gt;  $ searched            : chr "volvo car"</span></span>
-<span><span class="co">#&gt;  $ currency            : chr "SEK"</span></span>
-<span><span class="co">#&gt;  $ exchangename        : chr "STO"</span></span>
-<span><span class="co">#&gt;  $ fullexchangename    : chr "Stockholm"</span></span>
-<span><span class="co">#&gt;  $ instrumenttype      : chr "EQUITY"</span></span>
-<span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "2021-10-29 07:00:00"</span></span>
-<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-10-03 12:22:21"</span></span>
-<span><span class="co">#&gt;  $ hasprepostmarketdata: logi FALSE</span></span>
-<span><span class="co">#&gt;  $ gmtoffset           : int 7200</span></span>
-<span><span class="co">#&gt;  $ timezone            : chr "CEST"</span></span>
-<span><span class="co">#&gt;  $ exchangetimezonename: chr "Europe/Stockholm"</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num 21.4</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num 26.7</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num 15.9</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num 21.8</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num 21.2</span></span>
-<span><span class="co">#&gt;  $ regularmarketvolume : int 2193216</span></span>
-<span><span class="co">#&gt;  $ chartpreviousclose  : num 21.3</span></span>
-<span><span class="co">#&gt;  $ previousclose       : num 21.3</span></span>
+<span><span class="co">#&gt; 'data.frame':    2 obs. of  28 variables:</span></span>
+<span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "VOLCAR-B.ST"</span></span>
+<span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "Volvo Car AB ser. B"</span></span>
+<span><span class="co">#&gt;  $ longname            : chr  "Saab AB (publ)" "Volvo Car AB (publ.)"</span></span>
+<span><span class="co">#&gt;  $ exchange            : chr  "STO" "STO"</span></span>
+<span><span class="co">#&gt;  $ exchdisp            : chr  "Stockholm" "Stockholm"</span></span>
+<span><span class="co">#&gt;  $ quotetype           : chr  "EQUITY" "EQUITY"</span></span>
+<span><span class="co">#&gt;  $ typedisp            : chr  "Equity" "Equity"</span></span>
+<span><span class="co">#&gt;  $ score               : num  20004 20026</span></span>
+<span><span class="co">#&gt;  $ isyahoofinance      : logi  TRUE TRUE</span></span>
+<span><span class="co">#&gt;  $ searched            : chr  "saab" "volvo car"</span></span>
+<span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK"</span></span>
+<span><span class="co">#&gt;  $ exchangename        : chr  "STO" "STO"</span></span>
+<span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm"</span></span>
+<span><span class="co">#&gt;  $ instrumenttype      : chr  "EQUITY" "EQUITY"</span></span>
+<span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "2000-01-03 08:00:00" "2021-10-29 07:00:00"</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-10-03 13:08:57" "2025-10-03 13:07:50"</span></span>
+<span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE</span></span>
+<span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200</span></span>
+<span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST"</span></span>
+<span><span class="co">#&gt;  $ exchangetimezonename: chr  "Europe/Stockholm" "Europe/Stockholm"</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  573.8 21.4</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  587.5 26.7</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  203.7 15.9</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  575.4 21.8</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  564 21.2</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  907874 2381622</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  566.4 21.3</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  566.4 21.3</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-03 12:22:21"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 12:22:21"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 0</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-03 13:07:50"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 13:08:57"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 1.12</span></span></code></pre></div>
 <hr>
 <p><strong>Get historical financial data, given symbols of
 assets.</strong> Get historical values, given ticker symbol(s), see
@@ -146,33 +146,33 @@ below.</p>
 <code class="sourceCode R"><span><span class="va">historic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_historic.html">get_historic</a></span><span class="op">(</span>symbols <span class="op">=</span> <span class="va">swedish</span><span class="op">$</span><span class="va">symbol</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">historic</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    324 obs. of  20 variables:</span></span>
-<span><span class="co">#&gt;  $ open                : num  21.2 21.3 21.4 21.5 21.6 ...</span></span>
-<span><span class="co">#&gt;  $ close               : num  21.3 21.3 21.6 21.6 21.5 ...</span></span>
-<span><span class="co">#&gt;  $ low                 : num  21.2 21.2 21.4 21.5 21.5 ...</span></span>
-<span><span class="co">#&gt;  $ high                : num  21.4 21.3 21.6 21.6 21.6 ...</span></span>
-<span><span class="co">#&gt;  $ volume              : int  0 18603 89888 75238 17985 7789 32174 19877 22364 24220 ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    739 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt;  $ open                : num  566 567 568 569 567 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  567 568 569 567 567 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  566 566 567 567 566 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  568 569 570 570 567 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 14224 5579 12100 3127 19049 734 2325 3713 4596 ...</span></span>
 <span><span class="co">#&gt;  $ timestamp           : int  1759474800 1759474860 1759474920 1759474980 1759475040 1759475100 1759475160 1759475220 1759475280 1759475340 ...</span></span>
 <span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-10-03 07:00:00" "2025-10-03 07:01:00" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
-<span><span class="co">#&gt;  $ symbol              : chr  "VOLCAR-B.ST" "VOLCAR-B.ST" "VOLCAR-B.ST" "VOLCAR-B.ST" ...</span></span>
-<span><span class="co">#&gt;  $ shortname           : chr  "Volvo Car AB ser. B" "Volvo Car AB ser. B" "Volvo Car AB ser. B" "Volvo Car AB ser. B" ...</span></span>
-<span><span class="co">#&gt;  $ longname            : chr  "Volvo Car AB (publ.)" "Volvo Car AB (publ.)" "Volvo Car AB (publ.)" "Volvo Car AB (publ.)" ...</span></span>
+<span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
+<span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
+<span><span class="co">#&gt;  $ longname            : chr  "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" ...</span></span>
 <span><span class="co">#&gt;  $ exchangename        : chr  "STO" "STO" "STO" "STO" ...</span></span>
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  21.4 21.4 21.4 21.4 21.4 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  15.9 15.9 15.9 15.9 15.9 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  26.7 26.7 26.7 26.7 26.7 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  21.2 21.2 21.2 21.2 21.2 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  21.8 21.8 21.8 21.8 21.8 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  574 574 574 574 574 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  588 588 588 588 588 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  564 564 564 564 564 564 564 564 564 564 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  575 575 575 575 575 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.begin")= int 1759474800</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= int 1759494141</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 19341</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.end")= int 1759496937</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 22137</span></span></code></pre></div>
 <p>Additional attributes indicates such as the symbols of currencies in
 the <code>data.frame</code>, e.g., attributes of the
 <code>'historic'</code> <code>data.frame</code> from the previous
@@ -194,7 +194,7 @@ currency (‘USD’).</p>
 <span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
 <span><span class="co">#&gt; 1             0.1067               0.1067              0.1062           0.1113</span></span>
 <span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
-<span><span class="co">#&gt; 1          0.0884        0.1064              BST USD 2025-10-03 12:23:42</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          0.0884        0.1064              BST USD 2025-10-03 13:08:59</span></span></code></pre></div>
   </main>
 </div>
 
