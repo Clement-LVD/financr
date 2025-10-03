@@ -165,14 +165,12 @@ companies names, sector/category (if available), etc.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">swed</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"RENAULT"</span><span class="op">)</span>,  exchange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STO"</span>, <span class="st">"PAR"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">swed</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         symbol           shortname             longname exchange  exchdisp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  VOLCAR-B.ST Volvo Car AB ser. B Volvo Car AB (publ.)      STO Stockholm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       RNO.PA             RENAULT           Renault SA      PAR     Paris</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      RNL.PA  RENAULTPFRN24OCT49           Renault SA      PAR     Paris</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    quotetype typedisp score isyahoofinance  searched</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     EQUITY   Equity 20026           TRUE volvo car</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EQUITY   Equity 20063           TRUE   renault</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12    EQUITY   Equity 20001           TRUE   renault</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        symbol           shortname             longname exchange  exchdisp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 VOLCAR-B.ST Volvo Car AB ser. B Volvo Car AB (publ.)      STO Stockholm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      RNO.PA             RENAULT           Renault SA      PAR     Paris</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   quotetype typedisp score isyahoofinance  searched</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    EQUITY   Equity 20026           TRUE volvo car</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    EQUITY   Equity 20063           TRUE   renault</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">swed_last_values</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"SAAB"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>,  exchange <span class="op">=</span> <span class="st">"STO"</span>, get_values <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span></span>
@@ -194,25 +192,25 @@ companies names, sector/category (if available), etc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ fullexchangename    : chr  "Stockholm" "Stockholm"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ instrumenttype      : chr  "EQUITY" "EQUITY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ firsttradedate      : POSIXct, format: "2000-01-03 08:00:00" "2021-10-29 07:00:00"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarkettime   : POSIXct, format: "2025-10-03 13:08:37" "2025-10-03 13:07:50"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarkettime   : POSIXct, format: "2025-10-03 14:01:04" "2025-10-03 14:00:28"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ hasprepostmarketdata: logi  FALSE FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ gmtoffset           : int  7200 7200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ timezone            : chr  "CEST" "CEST"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchangetimezonename: chr  "Europe/Stockholm" "Europe/Stockholm"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketprice  : num  573.7 21.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketprice  : num  569.5 21.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweekhigh    : num  587.5 26.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweeklow     : num  203.7 15.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdayhigh: num  575.4 21.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdaylow : num  564 21.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketvolume : int  907487 2381622</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketvolume : int  1059620 2495807</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ chartpreviousclose  : num  566.4 21.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ previousclose       : num  566.4 21.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "n.currencies")= int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "currencies")= chr "SEK"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-03 13:07:50"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 13:08:37"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.dif")= num 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-03 14:00:28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:01:04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.dif")= num 36</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

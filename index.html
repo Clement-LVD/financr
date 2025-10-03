@@ -137,25 +137,25 @@
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "DJI" "DJI" "DJI" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ instrumenttype      : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "1992-01-02 15:30:00" "2006-08-24 15:30:00" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-10-02 23:00:59" "2025-10-02 23:09:31" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-10-03 15:56:55" "2025-10-03 15:56:54" ...</span></span>
 <span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  -14400 -14400 -14400 7200 7200 7200 7200 7200</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "EDT" "EDT" "EDT" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ exchangetimezonename: chr  "America/New_York" "America/New_York" "America/New_York" "Europe/Paris" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  46520 2518 296 1185 3028 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  46714 2545 297 1185 3028 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  36612 1748 294 1185 3028 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  46589 2519 297 1185 3028 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  46284 2495 294 1185 3028 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketvolume : int  442792180 0 0 0 NA 0 0 NA</span></span>
-<span><span class="co">#&gt;  $ chartpreviousclose  : num  46441 2500 298 1185 3028 ...</span></span>
-<span><span class="co">#&gt;  $ previousclose       : num  46441 2500 298 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  46772 2534 299 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  46818 2545 299 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  36612 1748 296 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  46818 2534 299 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  46567 2525 296 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  57356050 0 0 0 NA 0 0 NA</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  46520 2518 296 1185 3028 ...</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  46520 2518 296 1185 3028 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 2</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:2] "USD" "EUR"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-02 18:05:02"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:48:30"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 20.7</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 15:56:55"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 21.9</span></span></code></pre></div>
 <p>Exploring the results of <code><a href="reference/search_assets.html">search_assets()</a></code> is a way to find the symbol of an asset. <code><a href="reference/search_assets_quick.html">search_assets_quick()</a></code> is a variant.</p>
 <p><strong>Get historical financial data.</strong> Given ticker symbol(s), get historical financial data with <code><a href="reference/get_historic.html">financr::get_historic()</a></code>. Default interval is daily values.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -164,7 +164,7 @@
 <span>  , .verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">histo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    730 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    836 obs. of  20 variables:</span></span>
 <span><span class="co">#&gt;  $ open                : num  566 567 568 569 567 ...</span></span>
 <span><span class="co">#&gt;  $ close               : num  567 568 569 567 567 ...</span></span>
 <span><span class="co">#&gt;  $ low                 : num  566 566 567 567 566 ...</span></span>
@@ -180,7 +180,7 @@
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  574 574 574 574 574 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  570 570 570 570 570 ...</span></span>
 <span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
 <span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  588 588 588 588 588 ...</span></span>
 <span><span class="co">#&gt;  $ regularmarketdaylow : num  564 564 564 564 564 564 564 564 564 564 ...</span></span>
@@ -189,8 +189,8 @@
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.begin")= int 1759474800</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= int 1759496620</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 21820</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.end")= int 1759499815</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 25015</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>

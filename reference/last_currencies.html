@@ -73,7 +73,7 @@ no filtering is applied, and all available indices are returned.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>data.frame</code> containing unique financial indices (currencies). The table has
 columns like <code>symbol</code>, <code>name</code>, and other relevant information, with all column names in lowercase.
-If <code>keep</code> is specified, only the matching currencies are returned. If <code>get_changes</code> is specified, last financial insights from <code><a href="get_changes.html">get_changes()</a></code> will be added, e.g., last market values of each currency ('USD')</p>
+If <code>keep</code> is specified, only the matching currencies are returned. If <code>get_changes</code> is specified, last market values in 'USD' will be added, see <code><a href="get_changes.html">get_changes()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -118,7 +118,7 @@ If <code>keep</code> is specified, only the matching currencies are returned. If
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Fetch all available indices</span></span></span>
-<span class="r-in"><span><span class="va">all_indices</span> <span class="op">&lt;-</span> <span class="fu">last_currencies</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">all_indices</span> <span class="op">&lt;-</span> <span class="fu">last_currencies</span><span class="op">(</span> keep <span class="op">=</span> <span class="st">"LBP"</span> , get_changes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Fetch only specific indices</span></span></span>
 <span class="r-in"><span><span class="va">selected_indices</span> <span class="op">&lt;-</span> <span class="fu">last_currencies</span><span class="op">(</span>keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"^Z"</span>, <span class="st">"EUR"</span><span class="op">)</span><span class="op">)</span></span></span>

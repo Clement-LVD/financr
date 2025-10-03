@@ -80,24 +80,24 @@ Similarly for packages that depends on them, e.g., <a href="https://cran.r-proje
 and <a href="https://cran.r-project.org/package=stocks" class="external-link"><code>'stocks'</code></a>
 that both depends on <code>'quantmod'</code>.</p>
 <blockquote>
+<p><code>'financr'</code> dependencies are kept low. Therefore other
+packages sometimes offers more advanced methods, e.g.,
+<code>'quantmod'</code> offers financial data-analysis oriented
+functions and time series data visualization methods, <code>'yfr'</code>
+handle large-scale downloads.</p>
+</blockquote>
+<blockquote>
 <p><code>'financr'</code> only retrieves data from Yahoo Finance,
 without assumptions about the visualizations or analyses performed with
 these financial data.</p>
 </blockquote>
-<blockquote>
-<p><code>'financr'</code> dependencies are kept low. Therefore, other
-packages sometimes offers more advanced methods, e.g.,
-<code>'quantmod'</code> offers financial data-analysis oriented
-functions and time series data visualization methods, <code>yfr</code>
-handle large-scale downloads, etc.</p>
-</blockquote>
 <p>Regarding the historical data fetched from Yahoo Finance API,
 <code><a href="../reference/get_historic.html">financr::get_historic()</a></code> return a standard
-<code>data.frame</code> since all <code>'financr'</code> functions
-return a <code>data.frame</code>. <code>'yahoofinancer'</code> methods
-return an <code>'R6'</code> class object,
-<code>quantmod::getSymbols()</code> return a <code>'xts'</code> &amp;
-<code>'zoo'</code> time series object.</p>
+<code>data.frame</code> (all <code>'financr'</code> functions return a
+<code>data.frame</code>) vs. <code>'yahoofinancer'</code> methods return
+an <code>'R6'</code> class object, <code>quantmod::getSymbols()</code>
+return a <code>'xts'</code> &amp; <code>'zoo'</code> time series object,
+etc.</p>
 <p><code><a href="../articles/Functions_summary.html">vignette("Functions_summary", package = "financr")</a></code></p>
   </main>
 </div>
