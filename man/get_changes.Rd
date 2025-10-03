@@ -42,8 +42,8 @@ The returned \code{data.frame} contains daily exchange rates, and the following 
 \item{fiftytwoweeklow}{\code{numeric} - The lowest price in the last 52 weeks.}
 \item{previousclose}{\code{numeric} - The last closing price.}
 \item{regular_timezone}{\code{character} - The regular market's timezone.}
-\item{from}{\code{character} - The currency converted into another, e.g., if the \code{from} value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-\item{to}{\code{character} - The currency that you want to convert into : most of the currency-related \code{numeric} values of the row are expressed with this currency.}
+\item{from}{\code{character} - The currency converted, exchange rate is a value of 1 of this currency against another currency.}
+\item{to}{\code{character} - The currency exchanged back in return: most of the currency-related \code{numeric} values of the row are expressed with this currency.}
 \item{timestamp}{\code{POSIXct} - The corresponding date (YYYY-MM-DD).}
 }
 }
@@ -78,5 +78,5 @@ Source : https://query2.finance.yahoo.com/v8/finance/chart/
 }
 \seealso{
 For more details on currencies-related functions, see:
-\code{`vignette("currencies", package = "financr"))`}
+\code{vignette("currencies", package = "financr")}
 }

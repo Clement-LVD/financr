@@ -39,17 +39,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
-    <li><a class="dropdown-item" href="articles/currencies.html">Currency-related functions</a></li>
-    <li><a class="dropdown-item" href="articles/example.html">Example</a></li>
-    <li><a class="dropdown-item" href="articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
-    <li><a class="dropdown-item" href="articles/Functions_summary.html">Summary of Functions</a></li>
-    <li><a class="dropdown-item" href="articles/last_family.html">The 'last_' family of functions</a></li>
-  </ul>
-</li>
+<li class="nav-item"><a class="nav-link" href="articles/index.html">Articles</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -74,11 +64,22 @@
 <p><a href="https://CRAN.R-project.org/package=financr" class="external-link"><img src="https://www.r-pkg.org/badges/version/financr" alt="CRAN status"></a> <a href="https://app.codecov.io/gh/Clement-LVD/financr" class="external-link"><img src="https://codecov.io/gh/Clement-LVD/financr/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/Clement-LVD/financr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/Clement-LVD/financr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 <figure><img src="https://img.shields.io/badge/Package-bold?style=flat&amp;logoColor=black&amp;logoSize=2&amp;label=R&amp;labelColor=black&amp;color=green" alt=" "><figcaption aria-hidden="true">
  
-</figcaption></figure><p>Retrieves financial data from Yahoo Finance :</p>
+</figcaption></figure><p>Retrieves financial data from Yahoo Finance.</p>
 <ul>
-<li>Historical market data, e.g., prices of assets, currencies exchange rates.</li>
-<li>Latest insights on assets, e.g., major indices, currencies and cryptocurrencies.</li>
-<li>Other insights, e.g., market summary, assets association (related to each other), symbol validation.</li>
+<li>Historical market data :
+<ul>
+<li>values of assets</li>
+<li>currencies exchange rates</li>
+</ul>
+</li>
+<li>Latest values of major assets, e.g., world-level indices, currencies and cryptocurrencies</li>
+<li>Other insights, e.g., latest market summary, assets association (related to each other), symbol validation</li>
+</ul>
+<p>Functions are divided into three families:</p>
+<ul>
+<li>‘search_’: Search for assets using free-text queries</li>
+<li>‘get_’: Retrieve the latest or historical values for symbols</li>
+<li>‘last_’: Get market summaries, including the latest values of major assets, currencies, and more</li>
 </ul>
 <p>See the <a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">vignette ‘Summary of financr Functions’</a>.</p>
 <div class="section level2">
@@ -108,10 +109,10 @@
 <span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score         : num  27917 20056 20049 20010 20005 ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  58307 20358 20271 20013 20005 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span></code></pre></div>
 <p>Optionally use the ‘<code>get_values</code>’ parameter to add latest prices to these results.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -129,7 +130,7 @@
 <span><span class="co">#&gt;  $ exchdisp            : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype           : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp            : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score               : num  27917 20056 20049 20010 20004 ...</span></span>
+<span><span class="co">#&gt;  $ score               : num  58307 20358 20271 20013 20004 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance      : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
 <span><span class="co">#&gt;  $ searched            : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "USD" "USD" "USD" "EUR" ...</span></span>
@@ -137,43 +138,42 @@
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "DJI" "DJI" "DJI" "Paris" ...</span></span>
 <span><span class="co">#&gt;  $ instrumenttype      : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "1992-01-02 15:30:00" "2006-08-24 15:30:00" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-04-07 20:44:35" "2025-04-07 20:44:34" ...</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-04-08 21:21:04" "2025-04-08 21:21:04" ...</span></span>
 <span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  -14400 -14400 -14400 7200 7200 7200 7200 7200 7200</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "EDT" "EDT" "EDT" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ exchangetimezonename: chr  "America/New_York" "America/New_York" "America/New_York" "Europe/Paris" ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  38134 1847 265 1370 968 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  45074 2471 273 1619 968 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  36612 1748 256 1337 968 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  39207 1922 273 1436 968 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  36612 1748 256 1337 968 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketvolume : int  1036954091 0 0 0 0 NA 0 NA NA</span></span>
-<span><span class="co">#&gt;  $ chartpreviousclose  : num  38315 1852 270 1436 989 ...</span></span>
-<span><span class="co">#&gt;  $ previousclose       : num  38315 1852 270 1436 989 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  37585 1786 257 1406 982 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  45074 2471 269 1619 982 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  36612 1748 257 1337 982 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  39427 1908 269 1421 982 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  37521 1782 257 1375 982 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  782659263 0 0 0 0 NA 0 NA NA</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  37966 1838 262 1370 968 ...</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  37966 1838 262 1370 968 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 2</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:2] "USD" "EUR"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-04-04 22:40:17"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-07 20:44:35"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= 'difftime' num 2.91965277777778</span></span>
-<span><span class="co">#&gt;   ..- attr(*, "units")= chr "days"</span></span></code></pre></div>
-<p>If you don’t know the ticker symbol of an asset, exploring the results of <code><a href="reference/search_assets.html">search_assets()</a></code> or <code><a href="reference/search_assets_quick.html">search_assets_quick()</a></code> is a way to find it.</p>
-<p><strong>Get historical financial data.</strong> Given ticker symbol(s), get historical financial data with <code><a href="reference/get_historic.html">financr::get_historic()</a></code> (default interval is daily values).</p>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-04-07 22:40:13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-04-08 21:21:04"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 22.7</span></span></code></pre></div>
+<p>Exploring the results of <code><a href="reference/search_assets.html">search_assets()</a></code> is a way to find the symbol of an asset. <code><a href="reference/search_assets_quick.html">search_assets_quick()</a></code> is a variant.</p>
+<p><strong>Get historical financial data.</strong> Given ticker symbol(s), get historical financial data with <code><a href="reference/get_historic.html">financr::get_historic()</a></code>. Default interval is daily values.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">histo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_historic.html">get_historic</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAAB-B.ST"</span>, <span class="st">"VOLV-B.ST"</span><span class="op">)</span></span>
 <span>  , .verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">histo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1016 obs. of  20 variables:</span></span>
-<span><span class="co">#&gt;  $ open                : num  344 341 318 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ close               : num  341 320 311 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ low                 : num  341 319 311 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ high                : num  344 343 321 NA NA ...</span></span>
-<span><span class="co">#&gt;  $ volume              : int  0 78309 35678 NA NA 226045 61094 NA NA 107462 ...</span></span>
-<span><span class="co">#&gt;  $ timestamp           : int  1744009320 1744009380 1744009440 1744009500 1744009560 1744009620 1744009680 1744009740 1744009800 1744009860 ...</span></span>
-<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-07 09:02:00" "2025-04-07 09:03:00" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt;  $ open                : num  382 383 387 388 391 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  383 387 388 391 387 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  382 383 385 387 387 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  387 388 388 391 392 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 82991 66592 48022 56124 42464 43116 21731 23716 20243 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp           : int  1744095600 1744095660 1744095720 1744095780 1744095840 1744095900 1744095960 1744096020 1744096080 1744096140 ...</span></span>
+<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-04-08 09:00:00" "2025-04-08 09:01:00" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
 <span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
 <span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
@@ -182,28 +182,27 @@
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
 <span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
 <span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  370 370 370 370 370 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  400 400 400 400 400 ...</span></span>
 <span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
 <span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  420 420 420 420 420 420 420 420 420 420 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  311 311 311 311 311 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  382 382 382 382 382 382 382 382 382 382 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  382 382 382 382 382 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  409 409 409 409 409 409 409 409 409 409 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-07"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-04-08"</span></span>
 <span><span class="co">#&gt;  - attr(*, "crypto")= logi FALSE</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1744009320</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= int 1744039740</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= int 30420</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1744095600</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= int 1744126140</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 30540</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
 </h2>
 <ul>
 <li><p><a href="https://clement-lvd.github.io/financr/articles/Functions_summary.html">Summary of financr functions</a>.</p></li>
-<li><p><a href="https://clement-lvd.github.io/financr/articles/last_family.html">The ‘<code>last_</code> family’ of functions`</a>.</p></li>
-<li><p><code><a href="articles/currencies.html">vignette("currencies")</a></code></p></li>
+<li><p><a href="https://clement-lvd.github.io/financr/articles/last_family.html">The ‘last_ family’ of functions</a>.</p></li>
 <li><p><a href="https://clement-lvd.github.io/financr/articles/currencies.html">Currency-related functions</a>.</p></li>
-<li><p><a href="https://clement-lvd.github.io/financr/articles/get_info_and_historic.html">Workflow example</a>.</p></li>
+<li><p><a href="https://clement-lvd.github.io/financr/articles/example.html">The example Vignette</a>.</p></li>
 </ul>
 <p><strong>Yahoo Finance API Licence.</strong> This package retrieves data from Yahoo Finance, a property of Yahoo Inc. Users must comply with <a href="https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html" class="external-link">Yahoo Finance’s API terms</a>. See more informations on the <a href="https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html">legal Vignette</a>.</p>
 </div>

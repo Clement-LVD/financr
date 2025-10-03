@@ -41,8 +41,7 @@ last_crypto <- function(keep = NULL, .verbose = T){
   if(is.null(krypt) | all(is.na(krypt))) return(krypt)
   # colnames : erase space, replace '%' by percent, etc.
   krypt <-  standardize_df_cols(df = krypt)
-  # extract text : common pattern to several yahoo tables
-  krypt$price <- extract_before_sep(krypt$price)
+
   # capture before and after the -
   capture_groups <- "(.*)-(.*)"
   krypt$from <- gsub(pattern = capture_groups, "\\1" , x = krypt$symbol )
@@ -89,9 +88,7 @@ last_indices <- function(.verbose = T, keep = NULL){
   indices <- standardize_df_cols(indices)
 
   if(!is.null(keep) ) {indices <- indices[which(indices$symbol  %in% keep), ]}
-
-  indices$price <- extract_before_sep(indices$price)
-
+# assuming these indices are all in usd
   indices$currency <- "USD"
 
   return(construct_financial_df(indices))
@@ -136,7 +133,7 @@ last_currencies <- function(keep = NULL, get_changes = F, .verbose = T) {
 
   if(is.null(currencies) | is.na(currencies)) return(currencies) # # nocov
 
-  results <- currencies$currencies$result
+  results <- currencies[[1]][[1]]
 
   # filter indices
   if(!is.null(keep) ) {results <- results[grep( paste0(keep, collapse = "|"), x = results$symbol, ignore.case = T, perl = T), ]}
@@ -200,7 +197,7 @@ last_market_summary <- function(region = NULL, .verbose = TRUE){
   if(length(market[[1]]) == 1) if(is.na(market[[1]])) return(NA)
 
 
-  results <- market$marketSummaryResponse$result
+  results <- market[[1]][[1]]
 
   results <- standardize_df_of_dfs(df = results)
   #this run standardize_col for us

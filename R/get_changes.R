@@ -28,14 +28,14 @@
 #'   \item{fiftytwoweeklow}{`numeric` - The lowest price in the last 52 weeks.}
 #'   \item{previousclose}{`numeric` - The last closing price.}
 #'   \item{regular_timezone}{`character` - The regular market's timezone.}
-#'   \item{from}{`character` - The currency converted into another, e.g., if the `from` value is 1$ ('USD'), you want to receive a certain amount of the other currency to reach 1$.}
-#'   \item{to}{`character` - The currency that you want to convert into : most of the currency-related `numeric` values of the row are expressed with this currency.}
+#'   \item{from}{`character` - The currency converted, exchange rate is a value of 1 of this currency against another currency.}
+#'   \item{to}{`character` - The currency exchanged back in return: most of the currency-related `numeric` values of the row are expressed with this currency.}
 #'   \item{timestamp}{`POSIXct` - The corresponding date (YYYY-MM-DD).}
 #' }
 #' @inherit construct_financial_df details
 #' @references Source : https://query2.finance.yahoo.com/v8/finance/chart/
 #' @seealso For more details on currencies-related functions, see:
-#' \code{`vignette("currencies", package = "financr"))`}
+#' \code{vignette("currencies", package = "financr")}
 #' @examples
 #' \dontrun{
 #' df <- get_changes(from = c("EUR", "JPY"))
@@ -120,7 +120,7 @@ suffix = ""
 
   if(length(currencies) == 1 ) if(is.na(currencies)) return(NA)
 
-# extrat financial symbol from the url :
+# extract financial symbol from the url :
 symbs_reconstitued <- basename(url)
 # official devise symbols always have 3 letters
 # 2 first letters are country code ISO 3166-1 alpha-2.

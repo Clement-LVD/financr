@@ -25,22 +25,13 @@ knitr::opts_chunk$set(
 
 ![ ](https://img.shields.io/badge/Package-bold?style=flat&logoColor=black&logoSize=2&label=R&labelColor=black&color=green)
 
-Retrieves financial data from Yahoo Finance.
+Retrieves financial data from Yahoo Finance. Get historical or latest values of financial assets or currencies exchanges rates, latest insights, assets association (related to each other), etc.
 
-- Historical market data :
-    - values of assets
-    - currencies exchange rates
-- Latest values of major assets, e.g., world-level indices, currencies and cryptocurrencies
-- Other insights, e.g., latest market summary, assets association (related to each other), symbol validation
-
-
-Functions are divided into three families:
+Functions are divided into three main families:
 
 - 'search_': Search for assets using free-text queries
-- 'get_': Retrieve the latest or historical values for symbols
-- 'last_': Get market summaries, including the latest values of major assets, currencies, and more
-
-
+- 'get_': Retrieve financial values and insights, given symbols
+- 'last_': Get market summaries, latest values of major assets, world-level indices, currencies and cryptocurrencies
 
 See the [vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           

@@ -51,8 +51,73 @@ return(df)
 }
 
 #### 1) standardize data.frame colnames ####
+# standardize colnames
+standardize_df_colnames <- function(df, sep = "_"){
+colnames(df) <- make.names(colnames(df), unique = TRUE)
+
+colnames(df) <- gsub(" +|\\.+", " ", colnames(df))
+colnames(df) <- tolower( colnames(df) )
+colnames(df) <- gsub("\\(|\\)", "", colnames(df))
+colnames(df) <- trimws(colnames(df))
+
+colnames(df) <- gsub(" ",sep, colnames(df))
+return(df)
+}
+
+# handle 'price' column with a generic extract_before_sep function (utils.R)
+
+
+# utility func : separate several values
+#' Split df cols according to a separator (space the default)
+#' @param df `data.frame` of raw values
+#' @param separator `character` of safe separator for spliting values
+#' @param col_tolerate_separator `character` of regex for colname that DON'T need to be split
+standardize_df_split_col_w_several_values <- function(df, separator = " ", col_tolerate_separator = "name|symbol|date|time|exch" ){
+  # col with separator :
+  contain_sep <- vapply(df, FUN = function(col) any(grepl(separator, col)), FUN.VALUE = logical(1))
+
+  colname_with_sep <- colnames( df[, contain_sep] )
+# supress col accordingly to a regex
+  colname_with_sep <- colname_with_sep[!grepl(pattern = col_tolerate_separator, colname_with_sep) ]
+
+   if(length(colname_with_sep) == 0) return(df)
+
+  # herafter we loop on these cols with our separator :
+  split_col <- function(x, separator = " ", name = "var") {
+    # cut values accordingly to the separator
+    parts <- strsplit(as.character(x), separator, fixed = TRUE)
+
+    # max
+    maxlen <- max(lengths(parts))
+
+    # stack into several col NA for missing
+    mat <- do.call(rbind, lapply(parts, function(y) c(y, rep(NA, maxlen - length(y)))))
+
+    # data.frame to return
+    out <- as.data.frame(mat, stringsAsFactors = FALSE)
+    colnames(out) <- paste0(name, seq_len(maxlen))
+    out
+  }
+
+
+  df_without_col <- df[setdiff(names(df), colname_with_sep)]
+
+  splitted_list <- lapply(colname_with_sep, function(col){
+    tmp <- split_col(df[[col]], separator = separator, name = col)
+    return(tmp)
+  } )
+
+  complete_df <- cbind(df_without_col, do.call(cbind, splitted_list))
+
+  return(as.data.frame(complete_df, stringsAsFactors = FALSE) )
+
+}
+
+#### Main function ####
+
 standardize_df_cols <- function(df, sep = "_"){
   if(!is.data.frame(df)) return(df)
+
   # harmonize colnames :
   colnames(df) <- trimws(colnames(df))
   # empty colnames fixing
@@ -61,22 +126,23 @@ standardize_df_cols <- function(df, sep = "_"){
 
   df <- drop_col_wo_char(df)
 
-df <- standardize_df_percent_col(df) # hereafter
+df <- standardize_df_percent_col(df) # if there is a % at the end of the chain
 
+df <- standardize_df_colnames(df, sep = sep) # rename (func' hereafter)
 
-  colnames(df) <- make.names(colnames(df), unique = TRUE)
+# we need to separate cols according to separator values
+# space is the default separator for the hereafter func (assuming it's safe separator)
+df <-  standardize_df_split_col_w_several_values(df)
+# there is exception such as "name" or "time" columns
+# price is in a gangbang of var in the Yahoo.com table : function from utils.R
+if("price" %in% colnames(df)) df$price <- extract_before_sep(df$price)
 
-  colnames(df) <- gsub(" +|\\.+", " ", colnames(df))
-  colnames(df) <- tolower( colnames(df) )
-  colnames(df) <- gsub("\\(|\\)", "", colnames(df))
-  colnames(df) <- trimws(colnames(df))
+# transform values into good old numeric
+df <- standardize_df_cols_to_numeric(df)
 
-  colnames(df) <- gsub(" ",sep, colnames(df))
+df <- standardize_timestamp_col(df)
 
-  df <- standardize_df_cols_to_numeric(df)
- df <- standardize_timestamp_col(df)
-
- return(df)
+return(df)
 }
 
 
@@ -119,12 +185,12 @@ standardize_df_percent_col <- function(df, regex_to_replace_by_na  = "^--?$" , p
 standardize_df_cols_to_numeric <- function(df){
   if(!is.data.frame(df)) return(df)
 
-# 1) search for col : with no char instead of our abbreviations (T, B, M, K at the end of the line)
+# 1) search within col and return logical when have no char
 have_no_char <- sapply(df, function(col) {
-    if(is.numeric(col)) return(NA) #not the already numeric col
+    if(is.numeric(col)  ) return(F) #not the already numeric col
 
-col <- trimws(col)
-    # we supress the last char if its a
+  col <- trimws(col)
+    # we supress the last char if its abbr. numeric (e.g., B is billion)
 col <- gsub(pattern = "(T|B|M|K)$", "", col)
 
 # return logical values
@@ -162,19 +228,25 @@ if(length(have_no_char) > 1) df[have_no_char] <- lapply(df[, have_no_char], stan
 
 
 ##### 3) convert billion (B), "Million (M), etc. #####
-standardize_df_convert_abbr_to_numeric <- function(x) {
+standardize_df_convert_abbr_to_numeric <- function(x, na_characters = c("-", "--")) {
 
   # x is a vector of caracters
   if (!is.character(x)) {return(x)}
 
-  caracter_regex <- "[0-9]+(T|B|M|K)$"
+  caracter_regex <- "[0-9]+(T|B|M|K)?$"
 
-  x <- gsub(pattern = ",|^-+$", "", x)
+  # suprress begining '+' and the ','
+  x <- gsub(pattern = ",|^\\+", "", x)
+
+  x[x %in% na_characters] <- NA
   # treatment of each value
   convert_value <- function(val) {
+
+    if(is.na(val)) return(as.numeric(NA))
+
     if(!grepl(caracter_regex, val)) return(val)
 
-    if( val  %in% c("-","--") | is.na(val) ) return(NA)
+    if( val  %in% c("-","--") | is.na(val) ) return(val)
 
     if (grepl("T$", val)) {
       return(as.numeric(sub("T$", "", val)) * 1e12)  # Trillion
@@ -194,7 +266,7 @@ standardize_df_convert_abbr_to_numeric <- function(x) {
     return(as.numeric(val) )  }
 # here warning are naturally raised by R
   # numeric return
-  returned <- as.numeric(sapply(USE.NAMES = F, x, convert_value))
+  returned <- sapply(USE.NAMES = F, x, convert_value)
   return(returned)
 }
 

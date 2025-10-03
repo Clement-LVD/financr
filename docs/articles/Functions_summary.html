@@ -116,8 +116,7 @@ optional</td>
 </table>
 <hr>
 <p><strong>Outputs.</strong> All the <code>'financr'</code> functions
-return a standardized <code>data.frame</code>, see the last section <a href="#standardized-return-conventions">‘Standardized Return
-Conventions’</a>.</p>
+return a standardized <code>data.frame</code>, see the last section <a href="#standardized-return-conventions">‘Return Conventions’</a>.</p>
 <p>Functions with the <code>'_historic'</code> suffix return an historic
 of financial data, while the others retrieve latest financial data.</p>
 <hr>
@@ -178,32 +177,20 @@ symbol(s)</caption>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>get_values('SDV1.F')</code></td>
-<td align="left">Asset symbol(s), such as ticker symbols</td>
-<td align="left">
-<strong>Latest</strong> insights and financial
-values</td>
-</tr>
-<tr class="even">
 <td align="left">
 <code>get_historic('SDV1.F')</code> <br> &amp;
 <code>get_historic_light('SDV1.F')</code>
 </td>
-<td align="left">Asset symbol(s)</td>
+<td align="left">Asset symbol(s), such as ticker symbols</td>
 <td align="left">
 <strong>Historic</strong> of financial data</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>get_changes('USD', 'EUR')</code></td>
-<td align="left">ISO currency code(s) to convert</td>
-<td align="left">
-<strong>Latest</strong> exchanges rates</td>
-</tr>
 <tr class="even">
-<td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
-<td align="left">ISO currency code(s)</td>
+<td align="left"><code>get_values('SDV1.F')</code></td>
+<td align="left">Asset symbol(s)</td>
 <td align="left">
-<strong>Historic</strong> of exchanges rates</td>
+<strong>Latest</strong> insights and financial
+values</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>get_similar('SDV1.F')</code></td>
@@ -211,6 +198,18 @@ values</td>
 <td align="left">
 <strong>Latest</strong> symbols associated with those
 provided and similarity scores</td>
+</tr>
+<tr class="even">
+<td align="left"><code>get_changes('USD', 'EUR')</code></td>
+<td align="left">ISO currency code(s)</td>
+<td align="left">
+<strong>Latest</strong> exchanges rates</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>get_changes_historic('USD', 'EUR')</code></td>
+<td align="left">ISO currency code(s)</td>
+<td align="left">
+<strong>Historic</strong> of exchanges rates</td>
 </tr>
 </tbody>
 </table>
@@ -244,25 +243,27 @@ market indices*</td>
 </td>
 </tr>
 <tr class="odd">
+<td align="left"><code><a href="../reference/last_currencies.html">last_currencies()</a></code></td>
+<td align="left">ISO currency codes for currencies, names and
+(optionally) latest values* (USD)</td>
+</tr>
+<tr class="even">
 <td align="left"><code><a href="../reference/last_crypto.html">last_crypto()</a></code></td>
 <td align="left">100 major crypto-currencies latest insights and values
 (USD)<sup>‡</sup>
 </td>
 </tr>
-<tr class="even">
-<td align="left"><code><a href="../reference/last_currencies.html">last_currencies()</a></code></td>
-<td align="left">ISO currency codes for currencies, names and
-(optionally) latest ‘USD’ values*</td>
-</tr>
 </tbody>
 </table>
 <ul>
+<li><p>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</p></li>
 <li><p>‡ : Scraping latest data from Yahoo Finance pages, i.e. <a href="https://finance.yahoo.com/markets/world-indices/" class="external-link uri">https://finance.yahoo.com/markets/world-indices/</a> or
 […]/markets/crypto</p></li>
-<li><p>* : Retrieve latest data from Yahoo Finance API (<a href="https://query2.finance.yahoo.com" class="external-link uri">https://query2.finance.yahoo.com</a>)</p></li>
 </ul>
+<p>See the vignette of the ‘last_’ functions.</p>
+<p><code><a href="../articles/last_family.html">vignette("last_family", package = "financr")</a></code></p>
 <hr>
-<p><strong>Other functions.</strong></p>
+<p><strong>Other function.</strong></p>
 <table class="table">
 <caption>Other helper functions</caption>
 <colgroup>
@@ -287,19 +288,15 @@ market indices*</td>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="standardized-return-conventions">Standardized Return Conventions<a class="anchor" aria-label="anchor" href="#standardized-return-conventions"></a>
+<h2 id="return-conventions">Return Conventions<a class="anchor" aria-label="anchor" href="#return-conventions"></a>
 </h2>
-<p>Regarding all the <code>data.frame</code> returned by
-<code>'financr'</code> functions:</p>
-<p>The column names are:</p>
+<p>Regarding a <code>data.frame</code> returned by
+<code>'financr'</code> functions, the column names are:</p>
 <ul>
-<li>following the <a href="https://wikipedia.org/wiki/Snake_case" class="external-link">‘snake_case’
-conventions</a>, e.g., in lowercase and without spaces;</li>
-<li>and symbols are replaced (e.g., “%’ is replaced by ‘percent’);</li>
+<li>following the ‘snake_case’ conventions<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://wikipedia.org/wiki/Snake_case" class="external-link uri"&gt;https://wikipedia.org/wiki/Snake_case&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, e.g., in lowercase
+and without spaces;</li>
+<li>and symbols are replaced (e.g., “%’ is replaced by ‘percent’).</li>
 </ul>
-<!-- In order to return `integer` or `numeric` class of values, some of the texts provided by the Yahoo Finance API are converted into numeric values, e.g., `"1.2M"` is turned into `1200000` and `"85%"` into `85`.  --><p>Examples of similarities and differences with other
-<code>'R packages'</code> are in the
-<code><a href="../articles/financr_ecosystem.html">vignette("financr_ecosystem")</a></code>.</p>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

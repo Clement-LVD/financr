@@ -12,6 +12,7 @@ fetch_yahoo <- function(url, .verbose = T){
     data <- read_json_content(response_text)
   } else data <- extract_first_html_table(response_text)
 
+  data <- structure(data, Yahoo.url = url)
   return(data)
 }
 

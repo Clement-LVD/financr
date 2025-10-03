@@ -4,7 +4,7 @@
 \alias{construct_financial_df}
 \title{Construct Attributes for a Financial Data Frame}
 \usage{
-construct_financial_df(df, crypto = F, ...)
+construct_financial_df(df, crypto = NULL, ...)
 }
 \arguments{
 \item{df}{\code{data.frame} The function compute statistics with the \code{to} column (if available) or the \code{currency} column}

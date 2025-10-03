@@ -19,7 +19,7 @@
 #' }
 #' See `vignette("Functions_summary", package = "financr")`
 #' @keywords internal
-construct_financial_df <- function(df, crypto = F , ...){
+construct_financial_df <- function(df, crypto = NULL , ...){
 if(!is.data.frame(df)) return(NA)
 if(length(df) == 0) return(df)
 namm <- colnames(df)

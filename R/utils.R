@@ -34,12 +34,14 @@ remove_na_rows <- function(df, na_limit = ncol(df)) {
 }
 
 #### 0) extract from yahoo tables ####
-# sometimes we scrap yahoo table and one value is inside another values
+# sometimes we scrap yahoo table and one value is before other values (no space :s)
 extract_before_sep <- function(vector
                                , char_to_sup = ","
                                ,sep = "-|\\+|\\.00\\("
  # value before a -, a + or a .00( will be extracted
 ){
+  # if it's scientific quote we don't touch anything
+if(is.numeric(vector)) return(vector)
 
   first_element <- sub( paste0("(", sep , ").*"),  "", vector)
   # typically : "(-|\\+|\\.00\\().*"

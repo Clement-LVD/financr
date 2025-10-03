@@ -70,9 +70,11 @@ test_that("standardize_df_convert_abbr_to_numeric convert correctly", {
   expect_equal(standardize_df_convert_abbr_to_numeric(c("-","--", NA)),
                as.numeric(c(NA, NA, NA)))  # Valeurs manquantes ou invalides (telles que "--" et "-")
 
-  # invalid entry raise an error
-  expect_warning(standardize_df_convert_abbr_to_numeric(c("1M", "invalid")))
+  # invalid entry DON'T raise an error : simply answer text with CONVERTED numbers :)
+  expect_silent(standardize_df_convert_abbr_to_numeric(c("1M", "invalid")))
 
-  suppressWarnings({expect_equal(standardize_df_convert_abbr_to_numeric(c("2B", "1M", "invalid", "3K")),
-               c(2e9, 1e6, NA, 3e3))    })
-})
+   # invalid entry DON'T raise an error : simply answer text with CONVERTED numbers :)
+   expect_equal(standardize_df_convert_abbr_to_numeric(c("2B", "1M", "invalid", "3K")),
+               c("2e+09", "1e+06", "invalid", "3000"))
+
+   })

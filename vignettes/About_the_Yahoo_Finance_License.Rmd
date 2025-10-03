@@ -1,8 +1,8 @@
 ---
-title: "About_the_Yahoo_Finance_License"
+title: "About the Yahoo Finance License"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{About_the_Yahoo_Finance_License}
+  %\VignetteIndexEntry{About the Yahoo Finance License}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -38,7 +38,7 @@ data.frame(Prefix = c("search_", "get_", "last_")
 
 ---
 
-**Outputs.** All the `'financr'` functions return a standardized `data.frame`, see the last section ['Return Conventions'](#standardized-return-conventions).
+**Outputs.** All the `'financr'` functions return a standardized `data.frame`, see the last section ['Return Conventions'](#return-conventions).
 
 Functions with the `'_historic'` suffix return an historic of financial data, while the others retrieve latest financial data.
 
