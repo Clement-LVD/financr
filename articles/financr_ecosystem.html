@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>'financr' Ecosystem • financr</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +38,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About_the_Yahoo_Finance_License</a></li>
+<li><a class="dropdown-item" href="../articles/About_the_Yahoo_Finance_License.html">About the Yahoo Finance License</a></li>
     <li><a class="dropdown-item" href="../articles/currencies.html">Currency-related functions</a></li>
     <li><a class="dropdown-item" href="../articles/example.html">Example</a></li>
     <li><a class="dropdown-item" href="../articles/financr_ecosystem.html">'financr' Ecosystem</a></li>
@@ -74,39 +73,30 @@
 
     
     
-<p>Other <code>'R packages'</code> retrieves data from Yahoo Finance,
-and thus have the same source as <code>'financr'</code>, e.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
+<p>Other <code>'R packages'</code> retrieves data from Yahoo Finance and
+have the same source as <code>'financr'</code>, e.g., <a href="https://cran.r-project.org/package=yahoofinancer" class="external-link"><code>'yahoofinancer'</code></a>,
 <a href="https://cran.r-project.org/package=quantmod" class="external-link"><code>'quantmod'</code></a>.
-The same is true for packages that depends on them, e.g., <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>'yfr'</code></a> and
-<a href="https://cran.r-project.org/package=stocks" class="external-link"><code>'stocks'</code></a>
-that depends on <code>'quantmod'</code>.</p>
+Similarly for packages that depends on them, e.g., <a href="https://cran.r-project.org/package=yfR" class="external-link"><code>'yfr'</code></a>,
+and <a href="https://cran.r-project.org/package=stocks" class="external-link"><code>'stocks'</code></a>
+that both depends on <code>'quantmod'</code>.</p>
 <blockquote>
 <p><code>'financr'</code> only retrieves data from Yahoo Finance,
 without assumptions about the visualizations or analyses performed with
 these financial data.</p>
 </blockquote>
-<p><code>'financr'</code> dependencies are kept low, while other
-packages sometimes offers more advanced methods. For example,
+<p>Consequently, <code>'financr'</code> dependencies are kept low.
+Therefore, other packages sometimes offers more advanced methods:
 <code>'quantmod'</code> offers financial data-analysis oriented
-functions and time series data visualization methods.</p>
-<p>Regarding the object returned when fetching historical data from
-Yahoo Finance API:</p>
-<ul>
-<li>
+functions and time series data visualization methods, <code>yfr</code>
+handle large-scale downloads, etc.</p>
+<p>Regarding the historical data fetched from Yahoo Finance API,
 <code><a href="../reference/get_historic.html">financr::get_historic()</a></code> return a standard
-<code>data.frame</code> ;</li>
-<li>
-<code>'yahoofinancer'</code> methods return an <code>'R6'</code>
-class object (e.g., <code>Ticker$get_history</code>) ;</li>
-<li>
-<code>quantmod::getSymbols()</code> return a <code>'xts'</code>
-&amp; <code>'zoo'</code> time series object ;</li>
-<li>
-<code>yfr::yf_get()</code> return a tibble.</li>
-</ul>
-<p><code>'financr'</code> functions always return a standardized
-<code>data.frame</code>, see the
-<code><a href="../articles/Functions_summary.html">vignette("Functions_summary", package = "financr")</a></code>.</p>
+<code>data.frame</code> since all <code>'financr'</code> functions
+return a <code>data.frame</code>. <code>'yahoofinancer'</code> methods
+return an <code>'R6'</code> class object,
+<code>quantmod::getSymbols()</code> return a <code>'xts'</code> &amp;
+<code>'zoo'</code> time series object.</p>
+<p><code><a href="../articles/Functions_summary.html">vignette("Functions_summary", package = "financr")</a></code></p>
   </main>
 </div>
 
@@ -117,7 +107,7 @@ class object (e.g., <code>Ticker$get_history</code>) ;</li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

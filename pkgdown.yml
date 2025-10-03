@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   About_the_Yahoo_Finance_License: About_the_Yahoo_Finance_License.html
@@ -8,7 +8,7 @@ articles:
   financr_ecosystem: financr_ecosystem.html
   Functions_summary: Functions_summary.html
   last_family: last_family.html
-last_built: 2025-04-08T20:12Z
+last_built: 2025-10-03T12:23Z
 urls:
   reference: https://clement-lvd.github.io/financr/reference
   article: https://clement-lvd.github.io/financr/articles
