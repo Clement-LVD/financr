@@ -42,8 +42,11 @@ last_crypto <- function(keep = NULL, .verbose = T){
   # colnames : erase space, replace '%' by percent, etc.
   krypt <-  standardize_df_cols(df = krypt)
 
+  # clean symbol (yahoo 1st letters pollution)
+  krypt$symbol <- gsub(pattern = "[A-z]  ?", replacement = "" , x = krypt$symbol , perl = T)
+
   # capture before and after the -
-  capture_groups <- "(.*)-(.*)"
+  capture_groups <- "(.*)-(.* ?)"
   krypt$from <- gsub(pattern = capture_groups, "\\1" , x = krypt$symbol )
   krypt$to <- gsub(pattern = capture_groups, "\\2" , x = krypt$symbol )
 

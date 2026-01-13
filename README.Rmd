@@ -33,7 +33,7 @@ Functions are divided into three main families:
 - 'get_': Retrieve financial values and insights, given symbols
 - 'last_': Get market summaries, latest values of major assets, world-level indices, currencies and cryptocurrencies
 
-See the [vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
+> See the [vignette 'Summary of financr Functions'](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
           
 ## Installation
 
@@ -45,7 +45,7 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
-More examples on [the example Vignette](https://clement-lvd.github.io/financr/articles/example.html).
+> See [the example Vignette](https://clement-lvd.github.io/financr/articles/example.html).
 
 **Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search symbols with `search_assets()`.
 

@@ -49,16 +49,23 @@ if(nrow(df) == 0) return(df)
 
   df <- drop_col_wo_char(df)
 
+# we need to separate cols according to separator values
+# space is the default separator for the hereafter func (assuming it's safe separator)
+df <-  standardize_df_split_col_w_several_values(df)
+
 df <- standardize_df_percent_col(df) # if there is a % at the end of the chain
 
 df <- standardize_df_colnames(df, sep = sep) # rename (func' hereafter)
 
-# we need to separate cols according to separator values
-# space is the default separator for the hereafter func (assuming it's safe separator)
-df <-  standardize_df_split_col_w_several_values(df)
+
 # there is exception such as "name" or "time" columns
 # price is in a gangbang of var in the Yahoo.com table : function from utils.R
 if("price" %in% colnames(df)) df$price <- extract_before_sep(df$price)
+# previously created to much col ?
+if("price1" %in% colnames(df) & !"price" %in% colnames(df)) {
+  df$price <- df$price1
+  df$price1 <- NULL
+  df$price2 <- NULL }
 
 # transform values into good old numeric
 df <- standardize_df_cols_to_numeric(df)
@@ -103,23 +110,28 @@ return(df)
 
 # utility func : separate several values
 #' Split df cols according to a separator (space the default)
+#'
 #' @param df `data.frame` of raw values
 #' @param separator `character` of safe separator for spliting values
 #' @param col_tolerate_separator `character` of regex for colname that DON'T need to be split
-standardize_df_split_col_w_several_values <- function(df, separator = " ", col_tolerate_separator = "name|symbol|date|time|exch" ){
+#'
+standardize_df_split_col_w_several_values <- function(df, separator = "  ?", col_tolerate_separator = "name|symbol|date|time|exch" ){
   # col with separator :
   contain_sep <- vapply(df, FUN = function(col) any(grepl(separator, col)), FUN.VALUE = logical(1))
 
   colname_with_sep <- colnames( df[, contain_sep] )
 # supress col accordingly to a regex
-  colname_with_sep <- colname_with_sep[!grepl(pattern = col_tolerate_separator, colname_with_sep) ]
+  colname_with_sep <- colname_with_sep[!grepl(pattern = col_tolerate_separator, colname_with_sep, ignore.case = T) ]
 
    if(length(colname_with_sep) == 0) return(df)
 
   # herafter we loop on these cols with our separator :
   split_col <- function(x, separator = " ", name = "var") {
+
+    x <- trimws(x)
+
     # cut values accordingly to the separator
-    parts <- strsplit(as.character(x), separator, fixed = TRUE)
+    parts <- strsplit(as.character(x), separator, fixed = FALSE)
 
     # max
     maxlen <- max(lengths(parts))
@@ -138,6 +150,7 @@ standardize_df_split_col_w_several_values <- function(df, separator = " ", col_t
 
   splitted_list <- lapply(colname_with_sep, function(col){
     tmp <- split_col(df[[col]], separator = separator, name = col)
+
     return(tmp)
   } )
 

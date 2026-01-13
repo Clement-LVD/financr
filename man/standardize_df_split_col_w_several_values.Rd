@@ -6,7 +6,7 @@
 \usage{
 standardize_df_split_col_w_several_values(
   df,
-  separator = " ",
+  separator = "  ?",
   col_tolerate_separator = "name|symbol|date|time|exch"
 )
 }
