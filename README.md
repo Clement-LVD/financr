@@ -44,8 +44,8 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
-> See [the example
-> Vignette](https://clement-lvd.github.io/financr/articles/example.html).
+See [the example
+Vignette](https://clement-lvd.github.io/financr/articles/example.html).
 
 **Get ticker symbol from free-texts.** Given keyword(s) such as
 companies names, search symbols with `search_assets()`.
@@ -69,7 +69,7 @@ str(indices)
 #>  $ score         : num  35415 20667 20294 20184 20005 ...
 #>  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #>  $ searched      : chr  "dow jones" "dow jones" "dow jones" "dow jones" ...
-#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"
+#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-14"
 ```
 
 Optionally use the ‘`get_values`’ parameter to add latest prices to
@@ -113,7 +113,7 @@ str(indices2)
 #>  $ previousclose       : num  49590 2611 296 1780 1191 ...
 #>  - attr(*, "n.currencies")= int 2
 #>  - attr(*, "currencies")= chr [1:2] "USD" "EUR"
-#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"
+#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-14"
 #>  - attr(*, "date.begin")= POSIXct[1:1], format: "2026-01-13 18:05:02"
 #>  - attr(*, "date.end")= POSIXct[1:1], format: "2026-01-13 23:13:42"
 #>  - attr(*, "date.dif")= num 5.14
@@ -155,7 +155,7 @@ str(histo)
 #>  $ regularmarketdayhigh: num  710 710 710 710 710 ...
 #>  - attr(*, "n.currencies")= int 1
 #>  - attr(*, "currencies")= chr "SEK"
-#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"
+#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-14"
 #>  - attr(*, "date.begin")= int 1768291200
 #>  - attr(*, "date.end")= int 1768321740
 #>  - attr(*, "date.dif")= num 30540

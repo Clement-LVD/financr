@@ -45,7 +45,7 @@ devtools::install_github("clement-LVD/financr")
 
 ## Examples
 
-> See [the example Vignette](https://clement-lvd.github.io/financr/articles/example.html).
+See [the example Vignette](https://clement-lvd.github.io/financr/articles/example.html).
 
 **Get ticker symbol from free-texts.** Given keyword(s) such as companies names, search symbols with `search_assets()`.
 
