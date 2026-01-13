@@ -11,7 +11,7 @@ companies names, sector/category (if available), etc."><meta property="og:image"
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -165,12 +165,14 @@ companies names, sector/category (if available), etc.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">swed</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"RENAULT"</span><span class="op">)</span>,  exchange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STO"</span>, <span class="st">"PAR"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">swed</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        symbol           shortname             longname exchange  exchdisp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 VOLCAR-B.ST Volvo Car AB ser. B Volvo Car AB (publ.)      STO Stockholm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      RNO.PA             RENAULT           Renault SA      PAR     Paris</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   quotetype typedisp score isyahoofinance  searched</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    EQUITY   Equity 20026           TRUE volvo car</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    EQUITY   Equity 20063           TRUE   renault</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         symbol           shortname             longname exchange  exchdisp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  VOLCAR-B.ST Volvo Car AB ser. B Volvo Car AB (publ.)      STO Stockholm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       RNO.PA             RENAULT           Renault SA      PAR     Paris</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13      RNL.PA  RENAULTPFRN24OCT49           Renault SA      PAR     Paris</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    quotetype typedisp score isyahoofinance  searched</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     EQUITY   Equity 20014           TRUE volvo car</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EQUITY   Equity 20039           TRUE   renault</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    EQUITY   Equity 20001           TRUE   renault</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">swed_last_values</span> <span class="op">&lt;-</span> <span class="fu">search_assets</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VOLVO car"</span>, <span class="st">"SAAB"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>,  exchange <span class="op">=</span> <span class="st">"STO"</span>, get_values <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span></span>
@@ -184,7 +186,7 @@ companies names, sector/category (if available), etc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchdisp            : chr  "Stockholm" "Stockholm"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ quotetype           : chr  "EQUITY" "EQUITY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ typedisp            : chr  "Equity" "Equity"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ score               : num  20004 20026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ score               : num  20012 20014</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ isyahoofinance      : logi  TRUE TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ searched            : chr  "saab" "volvo car"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ currency            : chr  "SEK" "SEK"</span>
@@ -192,25 +194,25 @@ companies names, sector/category (if available), etc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ fullexchangename    : chr  "Stockholm" "Stockholm"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ instrumenttype      : chr  "EQUITY" "EQUITY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ firsttradedate      : POSIXct, format: "2000-01-03 08:00:00" "2021-10-29 07:00:00"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarkettime   : POSIXct, format: "2025-10-03 14:06:41" "2025-10-03 14:06:37"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarkettime   : POSIXct, format: "2026-01-13 16:29:46" "2026-01-13 16:29:31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ hasprepostmarketdata: logi  FALSE FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ gmtoffset           : int  7200 7200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ timezone            : chr  "CEST" "CEST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ gmtoffset           : int  3600 3600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ timezone            : chr  "CET" "CET"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ exchangetimezonename: chr  "Europe/Stockholm" "Europe/Stockholm"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketprice  : num  570.8 21.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweekhigh    : num  587.5 26.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweeklow     : num  203.7 15.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdayhigh: num  575.4 21.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdaylow : num  564 21.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketvolume : int  1081099 2544679</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ chartpreviousclose  : num  566.4 21.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ previousclose       : num  566.4 21.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketprice  : num  704.1 32.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweekhigh    : num  709.8 36.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fiftytwoweeklow     : num  208 15.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdayhigh: num  709.8 32.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketdaylow : num  679.8 31.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ regularmarketvolume : int  3709372 3418611</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ chartpreviousclose  : num  695.8 32.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ previousclose       : num  695.8 32.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "n.currencies")= int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "currencies")= chr "SEK"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-03 14:06:37"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:06:41"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.dif")= num 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.begin")= POSIXct[1:1], format: "2026-01-13 16:29:31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.end")= POSIXct[1:1], format: "2026-01-13 16:29:46"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "date.dif")= num 15</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -222,7 +224,7 @@ companies names, sector/category (if available), etc.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -1,0 +1,28 @@
+# 'financr' Ecosystem
+
+Other `'R packages'` retrieves data from Yahoo Finance and have the same
+source as `'financr'`, e.g.,
+[`'yahoofinancer'`](https://cran.r-project.org/package=yahoofinancer),
+[`'quantmod'`](https://cran.r-project.org/package=quantmod). Similarly
+for packages that depends on them, e.g.,
+[`'yfr'`](https://cran.r-project.org/package=yfR), and
+[`'stocks'`](https://cran.r-project.org/package=stocks) that both
+depends on `'quantmod'`.
+
+> `'financr'` dependencies are kept low. Therefore other packages
+> sometimes offers more advanced methods, e.g., `'quantmod'` offers
+> financial data-analysis oriented functions and time series data
+> visualization methods, `'yfr'` handle large-scale downloads.
+
+> `'financr'` only retrieves data from Yahoo Finance, without
+> assumptions about the visualizations or analyses performed with these
+> financial data.
+
+Regarding the historical data fetched from Yahoo Finance API,
+[`financr::get_historic()`](https://clement-lvd.github.io/financr/reference/get_historic.md)
+return a standard `data.frame` (all `'financr'` functions return a
+`data.frame`) vs. `'yahoofinancer'` methods return an `'R6'` class
+object, `quantmod::getSymbols()` return a `'xts'` & `'zoo'` time series
+object, etc.
+
+[`vignette("Functions_summary", package = "financr")`](https://clement-lvd.github.io/financr/articles/Functions_summary.md)

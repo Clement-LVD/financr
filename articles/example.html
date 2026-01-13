@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,18 +82,18 @@ insensitive).</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/clement-LVD/financr" class="external-link">financr</a></span><span class="op">)</span></span>
 <span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_assets.html">search_assets</a></span><span class="op">(</span>texts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dow jones"</span>, <span class="st">"euronext"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"index"</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">indices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    8 obs. of  10 variables:</span></span>
-<span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "^DWRTF" "^DWCPF" "ESG1N.AS" ...</span></span>
-<span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Select REIT Inde" "^DWCPF" "Euronext Eurozone 100 ESG NR" ...</span></span>
-<span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Select REIT Inde" "Dow Jones U.S. Completion Total Stock Market Index" "Euronext Eurozone 100 ESG NR" ...</span></span>
-<span><span class="co">#&gt;  $ exchange      : chr  "DJI" "DJI" "DJI" "AMS" ...</span></span>
-<span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Amsterdam" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    9 obs. of  10 variables:</span></span>
+<span><span class="co">#&gt;  $ symbol        : chr  "^DJI" "^DWRTF" "^DWCPF" "^REIT" ...</span></span>
+<span><span class="co">#&gt;  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Select REIT Inde" "Dow Jones U.S. Completion Total" "Dow Jones Equity All REIT Total" ...</span></span>
+<span><span class="co">#&gt;  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Select REIT Inde" "Dow Jones U.S. Completion Total Stock Market Index" "Dow Jones Equity All REIT Total" ...</span></span>
+<span><span class="co">#&gt;  $ exchange      : chr  "DJI" "DJI" "DJI" "DJI" ...</span></span>
+<span><span class="co">#&gt;  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Dow Jones" ...</span></span>
 <span><span class="co">#&gt;  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...</span></span>
 <span><span class="co">#&gt;  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...</span></span>
-<span><span class="co">#&gt;  $ score         : num  39427 20332 20269 20005 20004 ...</span></span>
+<span><span class="co">#&gt;  $ score         : num  35415 20667 20294 20159 20005 ...</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
-<span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "euronext" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ searched      : chr  "dow jones" "dow jones" "dow jones" "dow jones" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span></span></code></pre></div>
 <hr>
 <p><strong>Search for symbols and latest prices on the exchange places,
 given keyword(s).</strong> E.g., search the symbols of ‘Volvo car’ and
@@ -111,7 +111,7 @@ given keyword(s).</strong> E.g., search the symbols of ‘Volvo car’ and
 <span><span class="co">#&gt;  $ exchdisp            : chr  "Stockholm" "Stockholm"</span></span>
 <span><span class="co">#&gt;  $ quotetype           : chr  "EQUITY" "EQUITY"</span></span>
 <span><span class="co">#&gt;  $ typedisp            : chr  "Equity" "Equity"</span></span>
-<span><span class="co">#&gt;  $ score               : num  20004 20026</span></span>
+<span><span class="co">#&gt;  $ score               : num  20012 20014</span></span>
 <span><span class="co">#&gt;  $ isyahoofinance      : logi  TRUE TRUE</span></span>
 <span><span class="co">#&gt;  $ searched            : chr  "saab" "volvo car"</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK"</span></span>
@@ -119,25 +119,25 @@ given keyword(s).</strong> E.g., search the symbols of ‘Volvo car’ and
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm"</span></span>
 <span><span class="co">#&gt;  $ instrumenttype      : chr  "EQUITY" "EQUITY"</span></span>
 <span><span class="co">#&gt;  $ firsttradedate      : POSIXct, format: "2000-01-03 08:00:00" "2021-10-29 07:00:00"</span></span>
-<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2025-10-03 14:06:53" "2025-10-03 14:06:52"</span></span>
+<span><span class="co">#&gt;  $ regularmarkettime   : POSIXct, format: "2026-01-13 16:29:46" "2026-01-13 16:29:31"</span></span>
 <span><span class="co">#&gt;  $ hasprepostmarketdata: logi  FALSE FALSE</span></span>
-<span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200</span></span>
-<span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST"</span></span>
+<span><span class="co">#&gt;  $ gmtoffset           : int  3600 3600</span></span>
+<span><span class="co">#&gt;  $ timezone            : chr  "CET" "CET"</span></span>
 <span><span class="co">#&gt;  $ exchangetimezonename: chr  "Europe/Stockholm" "Europe/Stockholm"</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  570.7 21.6</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  587.5 26.7</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  203.7 15.9</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  575.4 21.8</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  564 21.2</span></span>
-<span><span class="co">#&gt;  $ regularmarketvolume : int  1081211 2545480</span></span>
-<span><span class="co">#&gt;  $ chartpreviousclose  : num  566.4 21.3</span></span>
-<span><span class="co">#&gt;  $ previousclose       : num  566.4 21.3</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  704.1 32.2</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  709.8 36.5</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  208 15.9</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  709.8 32.5</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  679.8 31.6</span></span>
+<span><span class="co">#&gt;  $ regularmarketvolume : int  3709372 3418611</span></span>
+<span><span class="co">#&gt;  $ chartpreviousclose  : num  695.8 32.6</span></span>
+<span><span class="co">#&gt;  $ previousclose       : num  695.8 32.6</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-10-03 14:06:52"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:06:53"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 1</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2026-01-13 16:29:31"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2026-01-13 16:29:46"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 15</span></span></code></pre></div>
 <hr>
 <p><strong>Get historical financial data, given symbols of
 assets.</strong> Get historical values, given ticker symbol(s), see
@@ -146,33 +146,33 @@ below.</p>
 <code class="sourceCode R"><span><span class="va">historic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_historic.html">get_historic</a></span><span class="op">(</span>symbols <span class="op">=</span> <span class="va">swedish</span><span class="op">$</span><span class="va">symbol</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">historic</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    856 obs. of  20 variables:</span></span>
-<span><span class="co">#&gt;  $ open                : num  566 567 568 569 567 ...</span></span>
-<span><span class="co">#&gt;  $ close               : num  567 568 569 567 567 ...</span></span>
-<span><span class="co">#&gt;  $ low                 : num  566 566 567 567 566 ...</span></span>
-<span><span class="co">#&gt;  $ high                : num  568 569 570 570 567 ...</span></span>
-<span><span class="co">#&gt;  $ volume              : int  0 14224 5579 12100 3127 19049 734 2325 3713 4596 ...</span></span>
-<span><span class="co">#&gt;  $ timestamp           : int  1759474800 1759474860 1759474920 1759474980 1759475040 1759475100 1759475160 1759475220 1759475280 1759475340 ...</span></span>
-<span><span class="co">#&gt;  $ date                : POSIXct, format: "2025-10-03 07:00:00" "2025-10-03 07:01:00" ...</span></span>
+<span><span class="co">#&gt; 'data.frame':    1020 obs. of  20 variables:</span></span>
+<span><span class="co">#&gt;  $ open                : num  698 694 691 686 686 ...</span></span>
+<span><span class="co">#&gt;  $ close               : num  694 691 686 686 685 ...</span></span>
+<span><span class="co">#&gt;  $ low                 : num  693 688 686 684 680 ...</span></span>
+<span><span class="co">#&gt;  $ high                : num  701 695 691 689 686 ...</span></span>
+<span><span class="co">#&gt;  $ volume              : int  0 54694 44645 48274 68934 34643 25208 20831 28716 37439 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp           : int  1768291200 1768291260 1768291320 1768291380 1768291440 1768291500 1768291560 1768291620 1768291680 1768291740 ...</span></span>
+<span><span class="co">#&gt;  $ date                : POSIXct, format: "2026-01-13 08:00:00" "2026-01-13 08:01:00" ...</span></span>
 <span><span class="co">#&gt;  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...</span></span>
 <span><span class="co">#&gt;  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...</span></span>
 <span><span class="co">#&gt;  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...</span></span>
 <span><span class="co">#&gt;  $ longname            : chr  "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" ...</span></span>
 <span><span class="co">#&gt;  $ exchangename        : chr  "STO" "STO" "STO" "STO" ...</span></span>
 <span><span class="co">#&gt;  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...</span></span>
-<span><span class="co">#&gt;  $ timezone            : chr  "CEST" "CEST" "CEST" "CEST" ...</span></span>
-<span><span class="co">#&gt;  $ gmtoffset           : int  7200 7200 7200 7200 7200 7200 7200 7200 7200 7200 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketprice  : num  571 571 571 571 571 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  204 204 204 204 204 ...</span></span>
-<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  588 588 588 588 588 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdaylow : num  564 564 564 564 564 564 564 564 564 564 ...</span></span>
-<span><span class="co">#&gt;  $ regularmarketdayhigh: num  575 575 575 575 575 ...</span></span>
+<span><span class="co">#&gt;  $ timezone            : chr  "CET" "CET" "CET" "CET" ...</span></span>
+<span><span class="co">#&gt;  $ gmtoffset           : int  3600 3600 3600 3600 3600 3600 3600 3600 3600 3600 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketprice  : num  704 704 704 704 704 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweeklow     : num  208 208 208 208 208 208 208 208 208 208 ...</span></span>
+<span><span class="co">#&gt;  $ fiftytwoweekhigh    : num  710 710 710 710 710 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdaylow : num  680 680 680 680 680 ...</span></span>
+<span><span class="co">#&gt;  $ regularmarketdayhigh: num  710 710 710 710 710 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 1</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr "SEK"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1759474800</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= int 1759500416</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 25616</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= int 1768291200</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= int 1768321740</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 30540</span></span></code></pre></div>
 <p>Additional attributes indicates such as the symbols of currencies in
 the <code>data.frame</code>, e.g., attributes of the
 <code>'historic'</code> <code>data.frame</code> from the previous
@@ -190,11 +190,11 @@ currency (‘USD’).</p>
 <span><span class="co">#&gt;   symbol shortname      longname locallongname currency exchangename</span></span>
 <span><span class="co">#&gt; 1    SEK       SEK Swedish Krona Swedish Krona      USD          CCY</span></span>
 <span><span class="co">#&gt;   instrumenttype      firsttradedate gmtoffset timezone exchangetimezonename</span></span>
-<span><span class="co">#&gt; 1       CURRENCY 2001-07-15 23:00:00      3600      BST        Europe/London</span></span>
+<span><span class="co">#&gt; 1       CURRENCY 2001-07-15 23:00:00         0      GMT        Europe/London</span></span>
 <span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
-<span><span class="co">#&gt; 1             0.1069                0.107              0.1062           0.1113</span></span>
+<span><span class="co">#&gt; 1             0.1085               0.1085              0.1085           0.1113</span></span>
 <span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
-<span><span class="co">#&gt; 1          0.0884        0.1064              BST USD 2025-10-03 14:06:59</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          0.0888        0.1092              GMT USD 2026-01-13 22:59:34</span></span></code></pre></div>
   </main>
 </div>
 
@@ -205,7 +205,7 @@ currency (‘USD’).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

@@ -1,0 +1,224 @@
+# `financr`
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/financr)](https://CRAN.R-project.org/package=financr)
+[![Codecov test
+coverage](https://codecov.io/gh/Clement-LVD/financr/graph/badge.svg)](https://app.codecov.io/gh/Clement-LVD/financr)
+[![R-CMD-check](https://github.com/Clement-LVD/financr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Clement-LVD/financr/actions/workflows/R-CMD-check.yaml)
+
+![ ](https://img.shields.io/badge/Package-bold?style=flat&logoColor=black&logoSize=2&label=R&labelColor=black&color=green)
+
+ 
+
+Retrieves financial data from Yahoo Finance. Get historical or latest
+values of financial assets or currencies exchanges rates, latest
+insights, assets association (related to each other), etc.
+
+Functions are divided into three main families:
+
+- ‘search\_’: Search for assets using free-text queries
+- ‘get\_’: Retrieve financial values and insights, given symbols
+- ‘last\_’: Get market summaries, latest values of major assets,
+  world-level indices, currencies and cryptocurrencies
+
+> See the [vignette ‘Summary of financr
+> Functions’](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
+
+## Installation
+
+Install the development version of financr with:
+
+``` r
+devtools::install_github("clement-LVD/financr")
+```
+
+## Examples
+
+> See [the example
+> Vignette](https://clement-lvd.github.io/financr/articles/example.html).
+
+**Get ticker symbol from free-texts.** Given keyword(s) such as
+companies names, search symbols with
+[`search_assets()`](https://clement-lvd.github.io/financr/reference/search_assets.md).
+
+``` r
+library(financr)
+
+indices <- search_assets(c("Dow jones"
+                           , "euronext")
+                         , type = "index" )
+
+str(indices)
+#> 'data.frame':    9 obs. of  10 variables:
+#>  $ symbol        : chr  "^DJI" "^DWRTF" "^DWCPF" "^REIT" ...
+#>  $ shortname     : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Select REIT Inde" "Dow Jones U.S. Completion Total" "Dow Jones Equity All REIT Total" ...
+#>  $ longname      : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Select REIT Inde" "Dow Jones U.S. Completion Total Stock Market Index" "Dow Jones Equity All REIT Total" ...
+#>  $ exchange      : chr  "DJI" "DJI" "DJI" "DJI" ...
+#>  $ exchdisp      : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Dow Jones" ...
+#>  $ quotetype     : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...
+#>  $ typedisp      : chr  "Index" "Index" "Index" "Index" ...
+#>  $ score         : num  35415 20667 20294 20184 20005 ...
+#>  $ isyahoofinance: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+#>  $ searched      : chr  "dow jones" "dow jones" "dow jones" "dow jones" ...
+#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"
+```
+
+Optionally use the ‘`get_values`’ parameter to add latest prices to
+these results.
+
+``` r
+indices2 <- search_assets(
+  c("Dow jones", "euronext")
+  , type = "index"
+  , get_values = TRUE )
+
+str(indices2)
+#> 'data.frame':    8 obs. of  28 variables:
+#>  $ symbol              : chr  "^DJI" "^DWCPF" "^DWRTF" "^N100" ...
+#>  $ shortname           : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...
+#>  $ longname            : chr  "Dow Jones Industrial Average" "Dow Jones U.S. Completion Total Stock Market Index" "Dow Jones U.S. Select REIT Inde" "Euronext 100 Index" ...
+#>  $ exchange            : chr  "DJI" "DJI" "DJI" "PAR" ...
+#>  $ exchdisp            : chr  "Dow Jones" "Dow Jones" "Dow Jones" "Paris" ...
+#>  $ quotetype           : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...
+#>  $ typedisp            : chr  "Index" "Index" "Index" "Index" ...
+#>  $ score               : num  35415 20294 20667 20004 20004 ...
+#>  $ isyahoofinance      : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+#>  $ searched            : chr  "dow jones" "dow jones" "dow jones" "euronext" ...
+#>  $ currency            : chr  "USD" "USD" "USD" "EUR" ...
+#>  $ exchangename        : chr  "DJI" "DJI" "DJI" "PAR" ...
+#>  $ fullexchangename    : chr  "DJI" "DJI" "DJI" "Paris" ...
+#>  $ instrumenttype      : chr  "INDEX" "INDEX" "INDEX" "INDEX" ...
+#>  $ firsttradedate      : POSIXct, format: "1992-01-02 15:30:00" "2006-08-24 15:30:00" ...
+#>  $ regularmarkettime   : POSIXct, format: "2026-01-13 22:46:18" "2026-01-13 23:13:42" ...
+#>  $ hasprepostmarketdata: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+#>  $ gmtoffset           : int  -18000 -18000 -18000 3600 3600 3600 3600 3600
+#>  $ timezone            : chr  "EST" "EST" "EST" "CET" ...
+#>  $ exchangetimezonename: chr  "America/New_York" "America/New_York" "America/New_York" "Europe/Paris" ...
+#>  $ regularmarketprice  : num  49192 2610 298 1782 1193 ...
+#>  $ fiftytwoweekhigh    : num  49633 2622 298 1784 1193 ...
+#>  $ fiftytwoweeklow     : num  36612 1748 294 1337 1193 ...
+#>  $ regularmarketdayhigh: num  49617 2622 298 1784 1193 ...
+#>  $ regularmarketdaylow : num  49056 2600 294 1776 1193 ...
+#>  $ regularmarketvolume : int  549959677 0 0 0 0 NA 0 0
+#>  $ chartpreviousclose  : num  49590 2611 296 1780 1191 ...
+#>  $ previousclose       : num  49590 2611 296 1780 1191 ...
+#>  - attr(*, "n.currencies")= int 2
+#>  - attr(*, "currencies")= chr [1:2] "USD" "EUR"
+#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"
+#>  - attr(*, "date.begin")= POSIXct[1:1], format: "2026-01-13 18:05:02"
+#>  - attr(*, "date.end")= POSIXct[1:1], format: "2026-01-13 23:13:42"
+#>  - attr(*, "date.dif")= num 5.14
+```
+
+Exploring the results of
+[`search_assets()`](https://clement-lvd.github.io/financr/reference/search_assets.md)
+is a way to find the symbol of an asset.
+[`search_assets_quick()`](https://clement-lvd.github.io/financr/reference/search_assets_quick.md)
+is a variant.
+
+**Get historical financial data.** Given ticker symbol(s), get
+historical financial data with
+[`financr::get_historic()`](https://clement-lvd.github.io/financr/reference/get_historic.md).
+Default interval is daily values.
+
+``` r
+histo <- get_historic(
+  c("SAAB-B.ST", "VOLV-B.ST")
+  , .verbose = FALSE)
+
+str(histo)
+#> 'data.frame':    1020 obs. of  20 variables:
+#>  $ open                : num  698 694 691 686 686 ...
+#>  $ close               : num  694 691 686 686 685 ...
+#>  $ low                 : num  693 688 686 684 680 ...
+#>  $ high                : num  701 695 691 689 686 ...
+#>  $ volume              : int  0 54694 44645 48274 68934 34643 25208 20831 28716 37439 ...
+#>  $ timestamp           : int  1768291200 1768291260 1768291320 1768291380 1768291440 1768291500 1768291560 1768291620 1768291680 1768291740 ...
+#>  $ date                : POSIXct, format: "2026-01-13 09:00:00" "2026-01-13 09:01:00" ...
+#>  $ currency            : chr  "SEK" "SEK" "SEK" "SEK" ...
+#>  $ symbol              : chr  "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" "SAAB-B.ST" ...
+#>  $ shortname           : chr  "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" "SAAB AB ser. B" ...
+#>  $ longname            : chr  "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" "Saab AB (publ)" ...
+#>  $ exchangename        : chr  "STO" "STO" "STO" "STO" ...
+#>  $ fullexchangename    : chr  "Stockholm" "Stockholm" "Stockholm" "Stockholm" ...
+#>  $ timezone            : chr  "CET" "CET" "CET" "CET" ...
+#>  $ gmtoffset           : int  3600 3600 3600 3600 3600 3600 3600 3600 3600 3600 ...
+#>  $ regularmarketprice  : num  704 704 704 704 704 ...
+#>  $ fiftytwoweeklow     : num  208 208 208 208 208 208 208 208 208 208 ...
+#>  $ fiftytwoweekhigh    : num  710 710 710 710 710 ...
+#>  $ regularmarketdaylow : num  680 680 680 680 680 ...
+#>  $ regularmarketdayhigh: num  710 710 710 710 710 ...
+#>  - attr(*, "n.currencies")= int 1
+#>  - attr(*, "currencies")= chr "SEK"
+#>  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"
+#>  - attr(*, "date.begin")= int 1768291200
+#>  - attr(*, "date.end")= int 1768321740
+#>  - attr(*, "date.dif")= num 30540
+```
+
+## Vignettes
+
+- [Summary of financr
+  functions](https://clement-lvd.github.io/financr/articles/Functions_summary.html).
+
+- [The ‘last\_ family’ of
+  functions](https://clement-lvd.github.io/financr/articles/last_family.html).
+
+- [Currency-related
+  functions](https://clement-lvd.github.io/financr/articles/currencies.html).
+
+**Yahoo Finance API Licence.** This package retrieves data from Yahoo
+Finance, a property of Yahoo Inc. Users must comply with [Yahoo
+Finance’s API
+terms](https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html).
+See more informations on the [legal
+Vignette](https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.html).
+
+# Package index
+
+## All functions
+
+- [`get_changes()`](https://clement-lvd.github.io/financr/reference/get_changes.md)
+  : Get Latest Exchange Rates For Devises
+- [`get_changes_historic()`](https://clement-lvd.github.io/financr/reference/get_changes_historic.md)
+  : Get Historic of Devises Exchanges Rates
+- [`get_historic()`](https://clement-lvd.github.io/financr/reference/get_historic.md)
+  : Get Historical Financial Data
+- [`get_historic_light()`](https://clement-lvd.github.io/financr/reference/get_historic_light.md)
+  : Get Historical Financial Data For Ticker Symbols
+- [`get_similar()`](https://clement-lvd.github.io/financr/reference/get_similar.md)
+  : Find Similar Financial Symbols
+- [`get_values()`](https://clement-lvd.github.io/financr/reference/get_values.md)
+  : Retrieve latest financial data
+- [`last_crypto()`](https://clement-lvd.github.io/financr/reference/last_crypto.md)
+  : Get Latest Cryptocurrencies Values (USD) and Market Data
+- [`last_currencies()`](https://clement-lvd.github.io/financr/reference/last_currencies.md)
+  : Get Currencies Names, Symbols and Add Latest 'USD' Values
+- [`last_indices()`](https://clement-lvd.github.io/financr/reference/last_indices.md)
+  : Get World Financial Indices Latest Values (USD)
+- [`last_market_summary()`](https://clement-lvd.github.io/financr/reference/last_market_summary.md)
+  : Retrieve Market Index Summary Latest Data
+- [`search_assets()`](https://clement-lvd.github.io/financr/reference/search_assets.md)
+  : Search Financial Asset From Keywords (Multiple Texts)
+- [`search_assets_quick()`](https://clement-lvd.github.io/financr/reference/search_assets_quick.md)
+  : Search Financial Assets From Keyword(s)
+- [`standardize_df_split_col_w_several_values()`](https://clement-lvd.github.io/financr/reference/standardize_df_split_col_w_several_values.md)
+  : Split df cols according to a separator (space the default)
+- [`valid_symbol()`](https://clement-lvd.github.io/financr/reference/valid_symbol.md)
+  : Validate Financial Symbols
+
+# Articles
+
+### All vignettes
+
+- [About the Yahoo Finance
+  License](https://clement-lvd.github.io/financr/articles/About_the_Yahoo_Finance_License.md):
+- [Currency-related
+  functions](https://clement-lvd.github.io/financr/articles/currencies.md):
+- [Example](https://clement-lvd.github.io/financr/articles/example.md):
+- ['financr'
+  Ecosystem](https://clement-lvd.github.io/financr/articles/financr_ecosystem.md):
+- [Summary of
+  Functions](https://clement-lvd.github.io/financr/articles/Functions_summary.md):
+- [The 'last\_' family of
+  functions](https://clement-lvd.github.io/financr/articles/last_family.md):

@@ -1,0 +1,26 @@
+# About the Yahoo Finance License
+
+The `financr` package retrieves data from Yahoo Finance, a property of
+Yahoo Inc. 
+
+**Legal Acceptance.** With any use of Yahoo Finance data, the user’s
+agreement is contracted, see hereafter.
+
+The user comply with the [Yahoo Finance’s API
+terms](https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn)
+and has no possibility of disputing it as soon as data as retrieved,
+i.e. if you “disagree with any of the terms in the TOU or API Documents,
+Yahoo does not grant you a license to use the Yahoo APIs”
+(<https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/>
+2025).
+
+**Good Practices.** Regarding the good practices when fetching from the
+Yahoo Finance API:
+
+> Use the Yahoo APIs in a manner that exceeds reasonable request volume,
+> constitutes excessive or abusive usage, or otherwise fails to comply
+> or is inconsistent with any part of the Yahoo API documentation
+> located within <http://developer.yahoo.com/> as determined by Yahoo in
+> its sole discretion.
+> (<https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html>
+> 2025)

@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">financr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,8 +90,8 @@ currencies symbols :</li>
 <span></span>
 <span><span class="va">changes</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"from"</span>, <span class="st">"to"</span>,  <span class="st">"regularmarketprice"</span>, <span class="st">"currency"</span>, <span class="st">"timestamp"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;   from  to regularmarketprice currency           timestamp</span></span>
-<span><span class="co">#&gt; 1  RON EUR             0.1959      EUR 2025-10-03 14:03:54</span></span>
-<span><span class="co">#&gt; 2  USD EUR             0.8507      EUR 2025-10-03 14:05:54</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  RON EUR             0.1960      EUR 2026-01-13 22:57:01</span></span>
+<span><span class="co">#&gt; 2  USD EUR             0.8587      EUR 2026-01-13 22:59:01</span></span></code></pre></div>
 <ul>
 <li>Or get the historic of exchange rates, given currencies symbols
 :</li>
@@ -102,19 +102,19 @@ currencies symbols :</li>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">changes</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    524 obs. of  7 variables:</span></span>
-<span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2024-10-02 23:00:00" "2024-10-03 23:00:00" ...</span></span>
-<span><span class="co">#&gt;  $ close    : num  1.1 1.1 1.1 1.1 1.1 ...</span></span>
-<span><span class="co">#&gt;  $ open     : num  1.1 1.1 1.1 1.1 1.1 ...</span></span>
-<span><span class="co">#&gt;  $ high     : num  1.1 1.1 1.1 1.1 1.1 ...</span></span>
-<span><span class="co">#&gt;  $ low      : num  1.1 1.1 1.1 1.1 1.09 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2025-01-13 00:00:00" "2025-01-14 00:00:00" ...</span></span>
+<span><span class="co">#&gt;  $ low      : num  1.02 1.02 1.03 1.03 1.03 ...</span></span>
+<span><span class="co">#&gt;  $ high     : num  1.03 1.03 1.04 1.03 1.03 ...</span></span>
+<span><span class="co">#&gt;  $ close    : num  1.02 1.03 1.03 1.03 1.03 ...</span></span>
+<span><span class="co">#&gt;  $ open     : num  1.02 1.03 1.03 1.03 1.03 ...</span></span>
 <span><span class="co">#&gt;  $ from     : chr  "EUR" "EUR" "EUR" "EUR" ...</span></span>
 <span><span class="co">#&gt;  $ to       : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:3] "EUR" "RON" "USD"</span></span>
 <span><span class="co">#&gt;  - attr(*, "exchange")= chr [1:2] "EUR =&gt; USD" "RON =&gt; USD"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2024-10-02 23:00:00"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:06:49"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2025-01-13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2026-01-13 22:59:27"</span></span>
 <span><span class="co">#&gt;  - attr(*, "date.dif")= num 366</span></span></code></pre></div>
 <p>Currencies are indicated with the same syntax across
 <code><a href="../reference/get_changes_historic.html">get_changes_historic()</a></code> and <code><a href="../reference/get_changes.html">get_changes()</a></code>, and
@@ -135,20 +135,20 @@ observation per month over a five-year period.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">df_month</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    122 obs. of  7 variables:</span></span>
-<span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2020-11-01 00:00:00" "2020-12-01 00:00:00" ...</span></span>
-<span><span class="co">#&gt;  $ low      : num  1.16 1.19 1.21 1.2 1.17 ...</span></span>
-<span><span class="co">#&gt;  $ open     : num  1.17 1.19 1.22 1.21 1.21 ...</span></span>
-<span><span class="co">#&gt;  $ high     : num  1.2 1.23 1.24 1.22 1.21 ...</span></span>
-<span><span class="co">#&gt;  $ close    : num  1.2 1.23 1.21 1.21 1.17 ...</span></span>
+<span><span class="co">#&gt;  $ timestamp: POSIXct, format: "2021-02-01 00:00:00" "2021-03-01 00:00:00" ...</span></span>
+<span><span class="co">#&gt;  $ close    : num  1.21 1.17 1.21 1.22 1.19 ...</span></span>
+<span><span class="co">#&gt;  $ low      : num  1.2 1.17 1.17 1.2 1.18 ...</span></span>
+<span><span class="co">#&gt;  $ high     : num  1.22 1.21 1.22 1.23 1.23 ...</span></span>
+<span><span class="co">#&gt;  $ open     : num  1.21 1.21 1.17 1.2 1.22 ...</span></span>
 <span><span class="co">#&gt;  $ from     : chr  "EUR" "EUR" "EUR" "EUR" ...</span></span>
 <span><span class="co">#&gt;  $ to       : chr  "USD" "USD" "USD" "USD" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "n.currencies")= int 3</span></span>
 <span><span class="co">#&gt;  - attr(*, "currencies")= chr [1:3] "EUR" "JPY" "USD"</span></span>
 <span><span class="co">#&gt;  - attr(*, "exchange")= chr [1:2] "EUR =&gt; USD" "JPY =&gt; USD"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2020-11-01"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2025-10-03 14:06:52"</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.dif")= num 1798</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.begin")= POSIXct[1:1], format: "2021-02-01"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.end")= POSIXct[1:1], format: "2026-01-13 22:59:29"</span></span>
+<span><span class="co">#&gt;  - attr(*, "date.dif")= num 1808</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level3">
@@ -163,7 +163,7 @@ observation per month over a five-year period.</p>
 <span><span class="co">#&gt;  $ longname     : chr  "Fijian Dollar" "Mexican Peso" "Seychellois Rupee" "Congolese Franc" ...</span></span>
 <span><span class="co">#&gt;  $ symbol       : chr  "FJD" "MXN" "SCR" "CDF" ...</span></span>
 <span><span class="co">#&gt;  $ locallongname: chr  "Fijian Dollar" "Mexican Peso" "Seychellois Rupee" "Congolese Franc" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2025-10-03"</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "date.fetch")= Date[1:1], format: "2026-01-13"</span></span></code></pre></div>
 <p>It is helpful to understand the currency symbols used by the Yahoo
 Finance API, such as those found in the currency column of the
 <code>data.frame</code> returned by <code><a href="../reference/get_historic.html">get_historic()</a></code>.</p>
@@ -184,17 +184,17 @@ expression.</p></li>
 <span><span class="co">#&gt; 2    ZAR       ZAR South African Rand South African Rand      USD          CCY</span></span>
 <span><span class="co">#&gt; 3    ZMW       ZMW                ZMW                ZMW      USD          CCY</span></span>
 <span><span class="co">#&gt;   instrumenttype      firsttradedate gmtoffset timezone exchangetimezonename</span></span>
-<span><span class="co">#&gt; 1       CURRENCY 2005-06-30 23:00:00      3600      BST        Europe/London</span></span>
-<span><span class="co">#&gt; 2       CURRENCY 2003-12-01 00:00:00      3600      BST        Europe/London</span></span>
-<span><span class="co">#&gt; 3       CURRENCY 2013-01-03 00:00:00      3600      BST        Europe/London</span></span>
+<span><span class="co">#&gt; 1       CURRENCY 2005-06-30 23:00:00         0      GMT        Europe/London</span></span>
+<span><span class="co">#&gt; 2       CURRENCY 2003-12-01 00:00:00         0      GMT        Europe/London</span></span>
+<span><span class="co">#&gt; 3       CURRENCY 2013-01-03 00:00:00         0      GMT        Europe/London</span></span>
 <span><span class="co">#&gt;   regularmarketprice regularmarketdayhigh regularmarketdaylow fiftytwoweekhigh</span></span>
-<span><span class="co">#&gt; 1             0.2311               0.2311              0.2303           0.2348</span></span>
-<span><span class="co">#&gt; 2             0.0580               0.0582              0.0577           0.0673</span></span>
-<span><span class="co">#&gt; 3             0.0421               0.0423              0.0419           0.0444</span></span>
+<span><span class="co">#&gt; 1             0.2288               0.2290              0.2288           0.2348</span></span>
+<span><span class="co">#&gt; 2             0.0610               0.0611              0.0610           0.0648</span></span>
+<span><span class="co">#&gt; 3             0.0515               0.0515              0.0511           0.0518</span></span>
 <span><span class="co">#&gt;   fiftytwoweeklow previousclose regular_timezone  to           timestamp</span></span>
-<span><span class="co">#&gt; 1          0.2048        0.2305              BST USD 2025-10-03 14:06:52</span></span>
-<span><span class="co">#&gt; 2          0.0502        0.0578              BST USD 2025-10-03 14:06:53</span></span>
-<span><span class="co">#&gt; 3          0.0345        0.0422              BST USD 2025-10-03 14:06:38</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          0.2055        0.2295              GMT USD 2026-01-13 22:59:29</span></span>
+<span><span class="co">#&gt; 2          0.0502        0.0610              GMT USD 2026-01-13 22:59:29</span></span>
+<span><span class="co">#&gt; 3          0.0345        0.0514              GMT USD 2026-01-13 21:45:14</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -207,7 +207,7 @@ expression.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
